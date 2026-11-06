@@ -5,11 +5,13 @@ the source of truth is `workspace/marketing/landing/` in the wealthclaw workspac
 
 Files, all produced by the same deterministic build:
 
-- `index.html` — the board, the proof card, the free-tier card
+- `index.html` — the board, the 31-market sheet, the build-your-own-board widget, the proof card
 - `feed.xml` — RSS 2.0, one item per alert (guid = sha256 of the chain entry)
-- `board.json` — current value, threshold, distance, trend, chain head
+- `board.json` — current value, threshold, distance, trend, chain head, plus the market sheet
 - `log.json` — genesis, head, verification result, full alert chain
 - `readings.json` — the raw readings behind this build
+- `quotes.json` — all 31 quotes (crypto, FX, metals, indices, energy, stocks) in one object;
+  this is what the page's board widget reads, so the numbers you see are the numbers published
 
 The board is honest by construction: values come from public keyless APIs, a failed
 fetch renders as STALE rather than a guess, and every alert is appended to a

@@ -1,0 +1,747 @@
+{
+  "builtAt": "2026-11-06T06:34:46.792Z",
+  "name": "Tripwire",
+  "method": {
+    "history": "daily closes: Yahoo chart (10y, adjusted where Yahoo provides it) for 25 markets incl. crypto in AUD; ECB/Frankfurter for the 6 FX pairs",
+    "window": "2020-01-01 -> 2026-11-06",
+    "split": "2023-07-01 (in-sample before, out-of-sample after)",
+    "rebalance": "monthly, first trading day, close to close, through a 2pp no-trade band per leg",
+    "lookahead": "signal at close t, weights govern returns from t+1",
+    "costs": "per unit turnover: 25bps crypto, 10bps stocks/indices/metals/energy, 3bps FX",
+    "cash": "0% return, no T-bill",
+    "rf": "0%",
+    "warmup": "273 daily closes before a market is eligible (200d MA + 12-1 momentum)"
+  },
+  "tiers": [
+    {
+      "id": "digest",
+      "name": "Digest",
+      "price": "A$0",
+      "algo": {
+        "name": "Gauge",
+        "rules": [
+          "Hold every market with 273 daily closes, equal weight — 1/31 each once all 31 are live.",
+          "Long while breadth (% of those markets above their 200-day average) is at least 55%; exit below 45% — a band, not a cliff.",
+          "Between the two: hold what you hold. Below 45% breadth: cash. No shorts, no leverage, at most one switch a month.",
+          "Rebalance the first trading day of each month, and only through a 2-point no-trade band; 10bps per unit of turnover (25 crypto, 3 FX)."
+        ],
+        "params": {
+          "maWindow": 200,
+          "breadthEnter": 0.55,
+          "breadthExit": 0.45,
+          "noTradeBand": 0.02,
+          "rebalance": "monthly, first trading day",
+          "cash": "0%"
+        },
+        "honest": "The free tier arms nothing and mails nothing, so this is the engine on paper: the same switch the paid tiers use, watchable for nobody's money."
+      },
+      "stats": {
+        "full": {
+          "from": "2020-01-01",
+          "to": "2026-11-06",
+          "days": 2502,
+          "cagr": 0.19971613226490148,
+          "vol": 0.15042870088167726,
+          "sharpe": 1.2845341854059145,
+          "maxDD": 0.19987678881689308,
+          "calmar": 0.9991962220678922,
+          "hitRate": 0.4578313253012048,
+          "worstMonth": -0.07306883037444545,
+          "bestMonth": 0.3701932232668128,
+          "months": 83
+        },
+        "inSample": {
+          "from": "2020-01-01",
+          "to": "2023-06-30",
+          "days": 1277,
+          "cagr": 0.3079807583012868,
+          "vol": 0.17832227833644865,
+          "sharpe": 1.592978917362317,
+          "maxDD": 0.19987678881689308,
+          "calmar": 1.540853043138629,
+          "hitRate": 0.42857142857142855,
+          "worstMonth": -0.06802105189532259,
+          "bestMonth": 0.3701932232668128,
+          "months": 42
+        },
+        "outOfSample": {
+          "from": "2023-07-01",
+          "to": "2026-11-06",
+          "days": 1225,
+          "cagr": 0.09636605133822918,
+          "vol": 0.11417569622680207,
+          "sharpe": 0.8630068456333522,
+          "maxDD": 0.1409379590214126,
+          "calmar": 0.6837480264886506,
+          "hitRate": 0.4878048780487805,
+          "worstMonth": -0.07306883037444545,
+          "bestMonth": 0.2038872128503999,
+          "months": 41
+        },
+        "baselineFull": {
+          "from": "2020-01-01",
+          "to": "2026-11-06",
+          "days": 2502,
+          "cagr": 0.22762353235802624,
+          "vol": 0.1767971601110676,
+          "sharpe": 1.246863354491333,
+          "maxDD": 0.3143682790766459,
+          "calmar": 0.7240664771477453,
+          "hitRate": 0.6144578313253012,
+          "worstMonth": -0.14079997629024088,
+          "bestMonth": 0.4086636100786687,
+          "months": 83
+        },
+        "baselineOutOfSample": {
+          "from": "2023-07-01",
+          "to": "2026-11-06",
+          "days": 1225,
+          "cagr": 0.11636451677476467,
+          "vol": 0.11696683926430748,
+          "sharpe": 0.9997425157113347,
+          "maxDD": 0.1720351727652767,
+          "calmar": 0.6763995693690581,
+          "hitRate": 0.6341463414634146,
+          "worstMonth": -0.07186402068291309,
+          "bestMonth": 0.20285105263632763,
+          "months": 41
+        }
+      },
+      "costs": {
+        "paid": 0.0174,
+        "turnover": 14.14,
+        "rebalances": 83,
+        "avgExposure": 0.6617
+      },
+      "verdict": "profitable net of costs out of sample (+9.64% a year) but behind its own baseline (+11.64%)",
+      "signal": {
+        "asOf": "2026-11-06",
+        "legs": [],
+        "cash": 1
+      }
+    },
+    {
+      "id": "tripwire",
+      "name": "Tripwire",
+      "price": "A$9/mo",
+      "algo": {
+        "name": "Band",
+        "rules": [
+          "Universe is the 4 markets a subscriber arms first: BTC, ETH, SOL, AUD/USD — any 4 of the 31.",
+          "A leg is held while it is above its 200-day average and its 12-1 momentum is positive; otherwise that leg is cash.",
+          "Held legs are sized 1/volatility (63-day, annualised) with a 40% cap each; the rest is cash.",
+          "Rebalance monthly through the 2-point band; the tripwire is the exit you already have, so the algorithm needs no stop it cannot see."
+        ],
+        "params": {
+          "maWindow": 200,
+          "lookback": "12-1 months",
+          "volWindow": 63,
+          "capPerLeg": 0.4,
+          "noTradeBand": 0.02,
+          "rebalance": "monthly, first trading day"
+        },
+        "honest": "The band tells you when you were wrong; the trend tells you when you were right. Arithmetic, not a forecast."
+      },
+      "stats": {
+        "full": {
+          "from": "2020-01-01",
+          "to": "2026-11-06",
+          "days": 2502,
+          "cagr": 0.32324818598285177,
+          "vol": 0.3302359183463238,
+          "sharpe": 1.013631319518413,
+          "maxDD": 0.5081284939461452,
+          "calmar": 0.6361544173059339,
+          "hitRate": 0.43373493975903615,
+          "worstMonth": -0.26778287436866144,
+          "bestMonth": 1.0088298116205516,
+          "months": 83
+        },
+        "inSample": {
+          "from": "2020-01-01",
+          "to": "2023-06-30",
+          "days": 1277,
+          "cagr": 0.6284695931485762,
+          "vol": 0.3669518659781518,
+          "sharpe": 1.5139955973885542,
+          "maxDD": 0.5081284939461452,
+          "calmar": 1.2368320230732535,
+          "hitRate": 0.42857142857142855,
+          "worstMonth": -0.26778287436866144,
+          "bestMonth": 1.0088298116205516,
+          "months": 42
+        },
+        "outOfSample": {
+          "from": "2023-07-01",
+          "to": "2026-11-06",
+          "days": 1225,
+          "cagr": 0.0661005821403644,
+          "vol": 0.28659294523540463,
+          "sharpe": 0.3658901424294141,
+          "maxDD": 0.37775944353219815,
+          "calmar": 0.17498062132424322,
+          "hitRate": 0.43902439024390244,
+          "worstMonth": -0.19665867466733455,
+          "bestMonth": 0.4204944307570502,
+          "months": 41
+        },
+        "baselineFull": {
+          "from": "2020-01-01",
+          "to": "2026-11-06",
+          "days": 2502,
+          "cagr": 0.40235088736144853,
+          "vol": 0.4334111897757968,
+          "sharpe": 0.9993326557156953,
+          "maxDD": 0.7180178827234156,
+          "calmar": 0.5603633238706344,
+          "hitRate": 0.6024096385542169,
+          "worstMonth": -0.2578751335956043,
+          "bestMonth": 0.642118637355384,
+          "months": 83
+        },
+        "baselineOutOfSample": {
+          "from": "2023-07-01",
+          "to": "2026-11-06",
+          "days": 1225,
+          "cagr": 0.1971920266311329,
+          "vol": 0.35327399606662585,
+          "sharpe": 0.6855971327205589,
+          "maxDD": 0.5349466314279328,
+          "calmar": 0.36861999879271756,
+          "hitRate": 0.5853658536585366,
+          "worstMonth": -0.1879504555015521,
+          "bestMonth": 0.32465173794935565,
+          "months": 41
+        }
+      },
+      "costs": {
+        "paid": 0.0418,
+        "turnover": 21.66,
+        "rebalances": 83,
+        "avgExposure": 0.5757
+      },
+      "verdict": "profitable net of costs out of sample (+6.61% a year) but behind its own baseline (+19.72%)",
+      "signal": {
+        "asOf": "2026-11-06",
+        "legs": [
+          {
+            "id": "btc",
+            "label": "Bitcoin",
+            "w": 0.4
+          },
+          {
+            "id": "eth",
+            "label": "Ethereum",
+            "w": 0.331
+          },
+          {
+            "id": "sol",
+            "label": "Solana",
+            "w": 0.269
+          }
+        ],
+        "cash": 0
+      }
+    },
+    {
+      "id": "package",
+      "name": "Package",
+      "price": "A$29-99/mo",
+      "algo": {
+        "name": "Scale",
+        "rules": [
+          "Weights stay exactly as published — the basket is rebalanced back to them, never re-shaped.",
+          "Each basket's exposure is 1, 0.5 or 0, read off its own index vs its 200-day average and 12-1 momentum.",
+          "Capital is split equally across the three baskets; whatever a scale leaves unspent is cash at 0%.",
+          "A 10% portfolio drawdown halves every exposure until equity recovers to within 5% of the peak."
+        ],
+        "params": {
+          "maWindow": 200,
+          "lookback": "12-1 months",
+          "scales": [
+            0,
+            0.5,
+            1
+          ],
+          "brake": "10% dd / 5% release",
+          "noTradeBand": 0.02,
+          "rebalance": "monthly, first trading day"
+        },
+        "honest": "Weights are the only opinion in the file; the algorithm only decides how much of the basket to own — the smallest opinion on top of the one you already bought."
+      },
+      "stats": {
+        "full": {
+          "from": "2020-01-01",
+          "to": "2026-11-06",
+          "days": 2502,
+          "cagr": 0.1509585657831154,
+          "vol": 0.11622912623842388,
+          "sharpe": 1.2682104393059084,
+          "maxDD": 0.2124819702375087,
+          "calmar": 0.710453529842445,
+          "hitRate": 0.6626506024096386,
+          "worstMonth": -0.0717671715862217,
+          "bestMonth": 0.1467968718088739,
+          "months": 83
+        },
+        "inSample": {
+          "from": "2020-01-01",
+          "to": "2023-06-30",
+          "days": 1277,
+          "cagr": 0.2072118418771336,
+          "vol": 0.1324018221059809,
+          "sharpe": 1.4892207297894644,
+          "maxDD": 0.2124819702375087,
+          "calmar": 0.9751972915420342,
+          "hitRate": 0.6428571428571429,
+          "worstMonth": -0.0717671715862217,
+          "bestMonth": 0.1467968718088739,
+          "months": 42
+        },
+        "outOfSample": {
+          "from": "2023-07-01",
+          "to": "2026-11-06",
+          "days": 1225,
+          "cagr": 0.09522286045788819,
+          "vol": 0.09653152879123635,
+          "sharpe": 0.9906584968409977,
+          "maxDD": 0.12840884724128487,
+          "calmar": 0.7415599664948397,
+          "hitRate": 0.6829268292682927,
+          "worstMonth": -0.07143842469108708,
+          "bestMonth": 0.12696298766568614,
+          "months": 41
+        },
+        "baselineFull": {
+          "from": "2020-01-01",
+          "to": "2026-11-06",
+          "days": 2502,
+          "cagr": 0.19212156209795817,
+          "vol": 0.14039743171347566,
+          "sharpe": 1.3226524609740509,
+          "maxDD": 0.29055062672728027,
+          "calmar": 0.661232654226175,
+          "hitRate": 0.6746987951807228,
+          "worstMonth": -0.12528762527057247,
+          "bestMonth": 0.15998737463038903,
+          "months": 83
+        },
+        "baselineOutOfSample": {
+          "from": "2023-07-01",
+          "to": "2026-11-06",
+          "days": 1225,
+          "cagr": 0.13466871332775554,
+          "vol": 0.1121352872811723,
+          "sharpe": 1.1829714087000882,
+          "maxDD": 0.14693108197733096,
+          "calmar": 0.916543399228032,
+          "hitRate": 0.6829268292682927,
+          "worstMonth": -0.06690027883193261,
+          "bestMonth": 0.1277297317263144,
+          "months": 41
+        }
+      },
+      "costs": {
+        "paid": 0.0112,
+        "turnover": 8.26,
+        "rebalances": 83,
+        "avgExposure": 0.5764
+      },
+      "verdict": "profitable net of costs out of sample (+9.52% a year) but behind its own baseline (+13.47%)",
+      "signal": {
+        "asOf": "2026-11-06",
+        "legs": [
+          {
+            "id": "sp500",
+            "label": "S&P 500",
+            "w": 0.1
+          },
+          {
+            "id": "btc",
+            "label": "Bitcoin",
+            "w": 0.1
+          },
+          {
+            "id": "nasdaq",
+            "label": "Nasdaq Composite",
+            "w": 0.0667
+          },
+          {
+            "id": "gold",
+            "label": "Gold (front month)",
+            "w": 0.0667
+          },
+          {
+            "id": "eth",
+            "label": "Ethereum",
+            "w": 0.0667
+          },
+          {
+            "id": "nvda",
+            "label": "Nvidia",
+            "w": 0.0667
+          },
+          {
+            "id": "cba",
+            "label": "CommBank",
+            "w": 0.05
+          },
+          {
+            "id": "aapl",
+            "label": "Apple",
+            "w": 0.05
+          },
+          {
+            "id": "msft",
+            "label": "Microsoft",
+            "w": 0.05
+          },
+          {
+            "id": "bhp",
+            "label": "BHP Group",
+            "w": 0.0417
+          },
+          {
+            "id": "asx200",
+            "label": "ASX 200",
+            "w": 0.0417
+          },
+          {
+            "id": "wbc",
+            "label": "Westpac",
+            "w": 0.0333
+          },
+          {
+            "id": "sol",
+            "label": "Solana",
+            "w": 0.0333
+          },
+          {
+            "id": "tsla",
+            "label": "Tesla",
+            "w": 0.0333
+          },
+          {
+            "id": "wti",
+            "label": "WTI crude",
+            "w": 0.0333
+          }
+        ],
+        "cash": 0.1666
+      }
+    }
+  ],
+  "history": [
+    {
+      "id": "btc",
+      "label": "Bitcoin",
+      "symbol": "BTC-AUD",
+      "kind": "yahoo-chart",
+      "from": "2016-11-06",
+      "to": "2026-11-06",
+      "n": 3652,
+      "sha256": "0d4a758ba412e8f5"
+    },
+    {
+      "id": "eth",
+      "label": "Ethereum",
+      "symbol": "ETH-AUD",
+      "kind": "yahoo-chart",
+      "from": "2017-11-10",
+      "to": "2026-11-06",
+      "n": 3283,
+      "sha256": "2faca1f2e926abfd"
+    },
+    {
+      "id": "sol",
+      "label": "Solana",
+      "symbol": "SOL-AUD",
+      "kind": "yahoo-chart",
+      "from": "2020-04-10",
+      "to": "2026-11-06",
+      "n": 2401,
+      "sha256": "7f0ff1039ef5e1d3"
+    },
+    {
+      "id": "xrp",
+      "label": "XRP",
+      "symbol": "XRP-AUD",
+      "kind": "yahoo-chart",
+      "from": "2017-11-10",
+      "to": "2026-11-06",
+      "n": 3283,
+      "sha256": "63f201d8cfa3b953"
+    },
+    {
+      "id": "ada",
+      "label": "Cardano",
+      "symbol": "ADA-AUD",
+      "kind": "yahoo-chart",
+      "from": "2017-11-10",
+      "to": "2026-11-06",
+      "n": 3283,
+      "sha256": "0bcf8c3a396e585b"
+    },
+    {
+      "id": "doge",
+      "label": "Dogecoin",
+      "symbol": "DOGE-AUD",
+      "kind": "yahoo-chart",
+      "from": "2017-11-10",
+      "to": "2026-11-06",
+      "n": 3283,
+      "sha256": "50d4cf30f752961a"
+    },
+    {
+      "id": "audusd",
+      "label": "AUD/USD",
+      "symbol": "AUD-USD",
+      "kind": "frankfurter",
+      "from": "2016-11-04",
+      "to": "2026-11-05",
+      "n": 2560,
+      "sha256": "5264bcf1eb1ccceb"
+    },
+    {
+      "id": "audeur",
+      "label": "AUD/EUR",
+      "symbol": "AUD-EUR",
+      "kind": "frankfurter",
+      "from": "2016-11-04",
+      "to": "2026-11-05",
+      "n": 2560,
+      "sha256": "3111500cfaba36d2"
+    },
+    {
+      "id": "audgbp",
+      "label": "AUD/GBP",
+      "symbol": "AUD-GBP",
+      "kind": "frankfurter",
+      "from": "2016-11-04",
+      "to": "2026-11-05",
+      "n": 2560,
+      "sha256": "f68ac212f5a03f7f"
+    },
+    {
+      "id": "audjpy",
+      "label": "AUD/JPY",
+      "symbol": "AUD-JPY",
+      "kind": "frankfurter",
+      "from": "2016-11-04",
+      "to": "2026-11-05",
+      "n": 2560,
+      "sha256": "0b9b1ac2243b45ed"
+    },
+    {
+      "id": "usdjpy",
+      "label": "USD/JPY",
+      "symbol": "USD-JPY",
+      "kind": "frankfurter",
+      "from": "2016-11-04",
+      "to": "2026-11-05",
+      "n": 2560,
+      "sha256": "41c6d45413cf9dfd"
+    },
+    {
+      "id": "eurusd",
+      "label": "EUR/USD",
+      "symbol": "EUR-USD",
+      "kind": "frankfurter",
+      "from": "2016-11-04",
+      "to": "2026-11-05",
+      "n": 2560,
+      "sha256": "f41183cfa7db7102"
+    },
+    {
+      "id": "gold",
+      "label": "Gold (front month)",
+      "symbol": "GC=F",
+      "kind": "yahoo-chart",
+      "from": "2016-11-07",
+      "to": "2026-11-06",
+      "n": 2515,
+      "sha256": "7711520e74c7db9d"
+    },
+    {
+      "id": "silver",
+      "label": "Silver (front month)",
+      "symbol": "SI=F",
+      "kind": "yahoo-chart",
+      "from": "2016-11-07",
+      "to": "2026-11-06",
+      "n": 2514,
+      "sha256": "b8fe559ccd75dc0b"
+    },
+    {
+      "id": "platinum",
+      "label": "Platinum (front month)",
+      "symbol": "PL=F",
+      "kind": "yahoo-chart",
+      "from": "2016-11-07",
+      "to": "2026-11-06",
+      "n": 2514,
+      "sha256": "7551980f0b663333"
+    },
+    {
+      "id": "asx200",
+      "label": "ASX 200",
+      "symbol": "^AXJO",
+      "kind": "yahoo-chart",
+      "from": "2016-11-06",
+      "to": "2026-11-06",
+      "n": 2530,
+      "sha256": "df1507e3addfa5e0"
+    },
+    {
+      "id": "sp500",
+      "label": "S&P 500",
+      "symbol": "^GSPC",
+      "kind": "yahoo-chart",
+      "from": "2016-11-07",
+      "to": "2026-11-05",
+      "n": 2513,
+      "sha256": "2847afe82f7dbfe1"
+    },
+    {
+      "id": "nasdaq",
+      "label": "Nasdaq Composite",
+      "symbol": "^IXIC",
+      "kind": "yahoo-chart",
+      "from": "2016-11-07",
+      "to": "2026-11-05",
+      "n": 2513,
+      "sha256": "6d6e4269b66eca60"
+    },
+    {
+      "id": "dow",
+      "label": "Dow Jones",
+      "symbol": "^DJI",
+      "kind": "yahoo-chart",
+      "from": "2016-11-07",
+      "to": "2026-11-05",
+      "n": 2513,
+      "sha256": "3b79a2542139f6c4"
+    },
+    {
+      "id": "ftse",
+      "label": "FTSE 100",
+      "symbol": "^FTSE",
+      "kind": "yahoo-chart",
+      "from": "2016-11-07",
+      "to": "2026-11-05",
+      "n": 2525,
+      "sha256": "29b8921185ec3a85"
+    },
+    {
+      "id": "nikkei",
+      "label": "Nikkei 225",
+      "symbol": "^N225",
+      "kind": "yahoo-chart",
+      "from": "2016-11-07",
+      "to": "2026-11-06",
+      "n": 2442,
+      "sha256": "56cc7dfd81da3a60"
+    },
+    {
+      "id": "wti",
+      "label": "WTI crude",
+      "symbol": "CL=F",
+      "kind": "yahoo-chart",
+      "from": "2016-11-07",
+      "to": "2026-11-06",
+      "n": 2514,
+      "sha256": "ccbfa4a2b7262455"
+    },
+    {
+      "id": "brent",
+      "label": "Brent crude",
+      "symbol": "BZ=F",
+      "kind": "yahoo-chart",
+      "from": "2016-11-07",
+      "to": "2026-11-06",
+      "n": 2516,
+      "sha256": "faa4da25d3d93d44"
+    },
+    {
+      "id": "natgas",
+      "label": "Natural gas",
+      "symbol": "NG=F",
+      "kind": "yahoo-chart",
+      "from": "2016-11-07",
+      "to": "2026-11-06",
+      "n": 2516,
+      "sha256": "05967a812eaf8306"
+    },
+    {
+      "id": "bhp",
+      "label": "BHP Group",
+      "symbol": "BHP.AX",
+      "kind": "yahoo-chart",
+      "from": "2016-11-06",
+      "to": "2026-11-06",
+      "n": 2532,
+      "sha256": "fddc35220b736981"
+    },
+    {
+      "id": "cba",
+      "label": "CommBank",
+      "symbol": "CBA.AX",
+      "kind": "yahoo-chart",
+      "from": "2016-11-06",
+      "to": "2026-11-06",
+      "n": 2532,
+      "sha256": "1d5a964bccabc9ac"
+    },
+    {
+      "id": "wbc",
+      "label": "Westpac",
+      "symbol": "WBC.AX",
+      "kind": "yahoo-chart",
+      "from": "2016-11-06",
+      "to": "2026-11-06",
+      "n": 2532,
+      "sha256": "d025e0b3babe2f21"
+    },
+    {
+      "id": "aapl",
+      "label": "Apple",
+      "symbol": "AAPL",
+      "kind": "yahoo-chart",
+      "from": "2016-11-07",
+      "to": "2026-11-05",
+      "n": 2513,
+      "sha256": "f81c0f5ca953c77f"
+    },
+    {
+      "id": "msft",
+      "label": "Microsoft",
+      "symbol": "MSFT",
+      "kind": "yahoo-chart",
+      "from": "2016-11-07",
+      "to": "2026-11-05",
+      "n": 2513,
+      "sha256": "7d9b336b464e912e"
+    },
+    {
+      "id": "nvda",
+      "label": "Nvidia",
+      "symbol": "NVDA",
+      "kind": "yahoo-chart",
+      "from": "2016-11-07",
+      "to": "2026-11-05",
+      "n": 2513,
+      "sha256": "218f7a48ace05522"
+    },
+    {
+      "id": "tsla",
+      "label": "Tesla",
+      "symbol": "TSLA",
+      "kind": "yahoo-chart",
+      "from": "2016-11-07",
+      "to": "2026-11-05",
+      "n": 2513,
+      "sha256": "601e738b8caefa20"
+    }
+  ],
+  "honest": "Backtest, not track record: closes from public keyless APIs, costs charged on turnover, no slippage model beyond the cost line, nothing larger than the tier allows. The desk book is still the only thing marked live."
+}

@@ -7,6 +7,7 @@ Files, all produced by the same deterministic build:
 
 - `index.html` — the packages (the selling tiers), the desk book (live trade updates), the board, the 31-market sheet, the build-your-own-board widget, the tier × sector matrix, the proof card
 - `trades.json` — the desk book: every basket leg as a position (entry = our first recorded read, last = the live sheet, band = the basket's own ±% rule), with stops/targets read off recorded marks
+- `algos.json` — one algorithm per tier (Gauge, Band, Scale): its rules, its parameters, the monthly-close backtest with costs, both halves of the 2020–26 window, the tier's own always-on baseline beside it, and the current target weights with the date. Every price series it used is listed with its sha256
 - `packages.json` — each basket: weights (total 100), live combined move, index level, the level series the graph is drawn from, the research note, and the package-level alert state
 - `feed.xml` — RSS 2.0, one item per alert (guid = sha256 of the chain entry) — package basket moves included
 - `board.json` — current value, threshold, distance, trend, chain head, plus the market sheet and the package summary

@@ -1,43 +1,43 @@
 {
-  "builtAt": "2026-11-06T02:08:14.342Z",
+  "builtAt": "2026-11-06T02:09:35.860Z",
   "watchers": [
     {
       "id": "btc-aud-floor",
       "label": "Bitcoin below A$100k",
-      "value": 109751,
+      "value": 109662,
       "threshold": 100000,
       "op": "lt",
       "fired": false,
-      "distancePct": 8.88,
+      "distancePct": 8.81,
       "sourceStatus": 200,
       "cached": false,
-      "fetchedAt": 1793930894029,
+      "fetchedAt": 1793930975243,
       "url": "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=aud"
     },
     {
       "id": "eth-aud-floor",
       "label": "Ethereum below A$3k",
-      "value": 3226.77,
+      "value": 3225.6,
       "threshold": 3000,
       "op": "lt",
       "fired": false,
-      "distancePct": 7.03,
+      "distancePct": 6.99,
       "sourceStatus": 200,
       "cached": false,
-      "fetchedAt": 1793930894134,
+      "fetchedAt": 1793930975574,
       "url": "https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=aud"
     },
     {
       "id": "sol-aud-floor",
       "label": "Solana below A$120",
-      "value": 130.03,
+      "value": 129.87,
       "threshold": 120,
       "op": "lt",
       "fired": false,
-      "distancePct": 7.71,
+      "distancePct": 7.6,
       "sourceStatus": 200,
       "cached": false,
-      "fetchedAt": 1793930894183,
+      "fetchedAt": 1793930975709,
       "url": "https://api.coingecko.com/api/v3/simple/price?ids=solana&vs_currencies=aud"
     },
     {
@@ -50,7 +50,7 @@
       "distancePct": 2.85,
       "sourceStatus": 200,
       "cached": false,
-      "fetchedAt": 1793930894342,
+      "fetchedAt": 1793930975859,
       "url": "https://api.frankfurter.dev/v1/latest?from=AUD&to=USD"
     }
   ]

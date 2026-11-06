@@ -57,16 +57,16 @@
       <li class="row armed">
         <div class="row-top"><span class="lbl">Bitcoin below A$100k</span>
           <span class="state">ARMED</span></div>
-        <div class="nums"><span class="now">109,751</span> <span class="vs">vs 100,000 · lt</span></div>
-        <div class="bar"><i style="width:64.4613716503722%"></i></div>
-        <div class="hint">8.9% away — trips when it falls to 100,000</div>
+        <div class="nums"><span class="now">109,662</span> <span class="vs">vs 100,000 · lt</span></div>
+        <div class="bar"><i style="width:64.75716291878682%"></i></div>
+        <div class="hint">8.8% away — trips when it falls to 100,000</div>
         <div class="hint sub2">trend over 3 reads: 0.03pp closer · closest 8.87% · 02:05–02:05Z</div>
       </li>
       <li class="row armed">
         <div class="row-top"><span class="lbl">Ethereum below A$3k</span>
           <span class="state">ARMED</span></div>
-        <div class="nums"><span class="now">3,227</span> <span class="vs">vs 3,000 · lt</span></div>
-        <div class="bar"><i style="width:71.88891678055765%"></i></div>
+        <div class="nums"><span class="now">3,226</span> <span class="vs">vs 3,000 · lt</span></div>
+        <div class="bar"><i style="width:72.02380952380953%"></i></div>
         <div class="hint">7.0% away — trips when it falls to 3,000</div>
         <div class="hint sub2">trend over 3 reads: flat · closest 7.09% · 02:05–02:05Z</div>
       </li>
@@ -74,8 +74,8 @@
         <div class="row-top"><span class="lbl">Solana below A$120</span>
           <span class="state">ARMED</span></div>
         <div class="nums"><span class="now">130</span> <span class="vs">vs 120 · lt</span></div>
-        <div class="bar"><i style="width:69.14558178881796%"></i></div>
-        <div class="hint">7.7% away — trips when it falls to 120</div>
+        <div class="bar"><i style="width:69.60036960036959%"></i></div>
+        <div class="hint">7.6% away — trips when it falls to 120</div>
         <div class="hint sub2">trend over 3 reads: flat · closest 7.69% · 02:05–02:05Z</div>
       </li>
       <li class="row armed">
@@ -88,7 +88,7 @@
       </li>
     </ul>
   </section>
-  <p class="stamp">Read 2026-11-06T02:08:14.342Z · 4 tripwires · sources: public keyless APIs (CoinGecko, ECB via Frankfurter) · refreshed hourly.</p>
+  <p class="stamp">Read 2026-11-06T02:09:35.860Z · 4 tripwires · sources: public keyless APIs (CoinGecko, ECB via Frankfurter) · refreshed hourly.</p>
 
   <section class="card">
     <h2>Proof — the alert log is append-only and hash-chained</h2>
@@ -98,7 +98,7 @@
           <span class="state">VERIFIED</span></div>
         <div class="nums"><span class="now mono">11e24f5192254d97</span> <span class="vs">· 0 alerts on the chain</span></div>
         <div class="hint">Nothing has crossed yet, so the chain holds one fact: the empty set. The head above is the genesis hash — <code>sha256("tripwire:genesis:v1")</code> — and it verifies just as strictly as a full log.</div>
-        <div class="hint sub2">Check it yourself — <code>wealthclaw chain verify</code> · <a class="u" href="https://flak3dd.github.io/tripwire/log.json">log.json</a> · the same values are in every alert email.</div>
+        <div class="hint sub2">Check it yourself — <code>wealthclaw chain verify</code> · <a class="u" href="https://flak3dd.github.io/tripwire/log.json">log.json</a> · the hash travels with every alert (feed item, JSON, email).</div>
       </li>
     </ul>
   </section>
@@ -132,7 +132,7 @@
   <h3>What you actually get</h3>
   <ol>
     <li><b>The board above, mailed</b> — one line per tripwire: current value, your number, distance left.</li>
-    <li><b>An alert the moment it crosses</b> — sent within the hour, with the timestamped value as evidence.</li>
+    <li><b>An alert the moment it crosses</b> — sent within the hour, with the timestamped value and the chain hash as evidence. Delivery is a human pressing send today; wiring SMTP is the next step, and the page will say so until it is done.</li>
     <li><b>Weekly digest</b> — what moved past a number, nothing that didn't.</li>
   </ol>
 
@@ -146,6 +146,6 @@
   <footer>
     Values above were fetched from public keyless APIs at build time, and the rendered page is recorded with a
     SHA-256 proof. Not financial advice. A tripwire fires on arithmetic, not opinion.<br>
-    Built 2026-11-06T02:08:14.342Z · Tripwire · <a class="u" href="https://flak3dd.github.io/tripwire/">https://flak3dd.github.io/tripwire/</a>
+    Built 2026-11-06T02:09:35.860Z · Tripwire · <a class="u" href="https://flak3dd.github.io/tripwire/">https://flak3dd.github.io/tripwire/</a>
   </footer>
 </div></body></html>

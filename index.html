@@ -2,7 +2,8 @@
 <html lang="en-AU"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Tripwire — Emails you when a price or FX rate crosses your number. No charts, no hot takes, no predictions.</title>
-<meta name="description" content="Hourly price and FX tripwires on BTC, ETH, SOL and AUD/USD. You set the number; it emails you when arithmetic crosses it. Free weekly digest, paid hourly alerts.">
+<meta name="description" content="Hourly price and FX tripwires on BTC, ETH, SOL and AUD/USD. You set the number; it tells you when arithmetic crosses it — and every alert is recorded in a hash-chained log you can verify yourself. Free feed, paid hourly alerts.">
+<link rel="alternate" type="application/rss+xml" title="Tripwire — alert feed" href="feed.xml">
 <style>
   :root{--bg:#0a0c10;--fg:#e8edf5;--dim:#8b96a8;--line:#1e2430;--hot:#ff5c47;--live:#31d68a;--warn:#e3b341}
   *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.55 ui-sans-serif,-apple-system,"Segoe UI",Inter,sans-serif}
@@ -40,7 +41,10 @@
   ol{color:var(--dim);padding-left:20px} ol b{color:var(--fg)}
   footer{margin-top:48px;border-top:1px solid var(--line);padding-top:18px;color:var(--dim);font-size:12px}
   code{background:#141a23;padding:1px 5px;border-radius:4px;font-size:12px}
-  .u{color:var(--dim)}
+  .u{color:var(--dim);text-decoration:none;border-bottom:1px dotted #2d3542}
+  .u:hover{color:var(--fg)}
+  .mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px}
+  .sub2{opacity:.72;margin-top:3px}
 </style></head>
 <body><div class="wrap">
   <p class="kick">🦞 WEALTHCLAW · tripwires on things you already own</p>
@@ -53,23 +57,26 @@
       <li class="row armed">
         <div class="row-top"><span class="lbl">Bitcoin below A$100k</span>
           <span class="state">ARMED</span></div>
-        <div class="nums"><span class="now">109,771</span> <span class="vs">vs 100,000 · lt</span></div>
-        <div class="bar"><i style="width:64.39496770549599%"></i></div>
+        <div class="nums"><span class="now">109,737</span> <span class="vs">vs 100,000 · lt</span></div>
+        <div class="bar"><i style="width:64.50786881361802%"></i></div>
         <div class="hint">8.9% away — trips when it falls to 100,000</div>
+        <div class="hint sub2">trend over 3 reads: 0.03pp closer · closest 8.87% · 02:05–02:05Z</div>
       </li>
       <li class="row armed">
         <div class="row-top"><span class="lbl">Ethereum below A$3k</span>
           <span class="state">ARMED</span></div>
-        <div class="nums"><span class="now">3,231</span> <span class="vs">vs 3,000 · lt</span></div>
-        <div class="bar"><i style="width:71.42388441288718%"></i></div>
+        <div class="nums"><span class="now">3,229</span> <span class="vs">vs 3,000 · lt</span></div>
+        <div class="bar"><i style="width:71.62172624485535%"></i></div>
         <div class="hint">7.1% away — trips when it falls to 3,000</div>
+        <div class="hint sub2">trend over 3 reads: flat · closest 7.09% · 02:05–02:05Z</div>
       </li>
       <li class="row armed">
         <div class="row-top"><span class="lbl">Solana below A$120</span>
           <span class="state">ARMED</span></div>
         <div class="nums"><span class="now">130</span> <span class="vs">vs 120 · lt</span></div>
-        <div class="bar"><i style="width:69.08881199538635%"></i></div>
+        <div class="bar"><i style="width:69.23076923076923%"></i></div>
         <div class="hint">7.7% away — trips when it falls to 120</div>
+        <div class="hint sub2">trend over 3 reads: flat · closest 7.69% · 02:05–02:05Z</div>
       </li>
       <li class="row armed">
         <div class="row-top"><span class="lbl">AUD above 0.72 USD</span>
@@ -77,20 +84,50 @@
         <div class="nums"><span class="now">0.7001</span> <span class="vs">vs 0.72 · gt</span></div>
         <div class="bar"><i style="width:88.60669085506959%"></i></div>
         <div class="hint">2.8% away — trips when it rises to 0.72</div>
+        <div class="hint sub2">trend over 3 reads: flat · closest 2.85% · 02:05–02:05Z</div>
       </li>
     </ul>
   </section>
-  <p class="stamp">Read 2026-11-06T02:02:55.892Z · 4 tripwires · sources: public keyless APIs (CoinGecko, ECB via Frankfurter) · refreshed hourly.</p>
+  <p class="stamp">Read 2026-11-06T02:05:59.046Z · 4 tripwires · 4 from ≤60s cache · sources: public keyless APIs (CoinGecko, ECB via Frankfurter) · refreshed hourly.</p>
+
+  <section class="card">
+    <h2>Proof — the alert log is append-only and hash-chained</h2>
+    <ul>
+      <li class="row armed">
+        <div class="row-top"><span class="lbl">Chain head</span>
+          <span class="state">VERIFIED</span></div>
+        <div class="nums"><span class="now mono">11e24f5192254d97</span> <span class="vs">· 0 alerts on the chain</span></div>
+        <div class="hint">Nothing has crossed yet, so the chain holds one fact: the empty set. The head above is the genesis hash — <code>sha256("tripwire:genesis:v1")</code> — and it verifies just as strictly as a full log.</div>
+        <div class="hint sub2">Check it yourself — <code>wealthclaw chain verify</code> · <a class="u" href="https://flak3dd.github.io/tripwire/log.json">log.json</a> · the same values are in every alert email.</div>
+      </li>
+    </ul>
+  </section>
 
   <div class="cols">
-    <div class="tier"><b>Digest</b><div class="price">A$0</div><p>Weekly email: what crossed a threshold this week and what is close. No account needed.</p></div>
-    <div class="tier"><b>Tripwire</b><div class="price">A$9/mo</div><p>The four tripwires on the board above, checked hourly, emailed within the hour of a cross.</p></div>
-    <div class="tier"><b>Custom</b><div class="price">A$19/mo</div><p>Your own ticker, your own number, your own hour. Up to five tripwires.</p></div>
+    <div class="tier"><b>Digest</b><div class="price">A$0</div><p>The RSS feed and board.json, refreshed hourly: what crossed, what is close, and which way it is moving. No account, no card, no email address.</p></div>
+    <div class="tier"><b>Tripwire</b><div class="price">A$9/mo</div><p>The four tripwires on the board above, checked hourly, emailed within the hour of a cross — with the timestamped value and the chain hash as evidence.</p></div>
+    <div class="tier"><b>Custom</b><div class="price">A$19/mo</div><p>Your own ticker, your own number, your own hour. Up to five tripwires, added with one command that proves the source parses before it stores anything.</p></div>
   </div>
 
   <a class="btn" href="mailto:andrew098710@gmail.com?subject=Tripwire%20signup%20%E2%80%94%20the%20four%20tripwires">Get the tripwire — A$9/mo</a>
   <p class="note">No card checkout yet — this opens an email to <b>andrew098710@gmail.com</b>. First week free, then a manual invoice.
   That's the honest state of a one-person product on day one.</p>
+
+  <section class="card">
+    <h2>Subscribe without an account — the A$0 tier, working today</h2>
+    <ul>
+      <li class="row">
+        <div class="row-top"><span class="lbl">RSS feed</span><span class="state armed">FEED</span></div>
+        <div class="nums"><a class="u mono" href="feed.xml">feed.xml</a></div>
+        <div class="hint">Every alert as an item, newest first. Point any reader at it: no signup, no card, no email address. When nothing crossed, the feed says so — that is the digest.</div>
+      </li>
+      <li class="row">
+        <div class="row-top"><span class="lbl">Machine-readable board</span><span class="state armed">JSON</span></div>
+        <div class="nums"><a class="u mono" href="https://flak3dd.github.io/tripwire/board.json">board.json</a></div>
+        <div class="hint">Current value, your number, distance, source status and the chain head — the same numbers this page renders, for a script or an agent.</div>
+      </li>
+    </ul>
+  </section>
 
   <h3>What you actually get</h3>
   <ol>
@@ -109,6 +146,6 @@
   <footer>
     Values above were fetched from public keyless APIs at build time, and the rendered page is recorded with a
     SHA-256 proof. Not financial advice. A tripwire fires on arithmetic, not opinion.<br>
-    Built 2026-11-06T02:02:55.892Z · Tripwire · <a class="u" href="https://flak3dd.github.io/tripwire/">https://flak3dd.github.io/tripwire/</a>
+    Built 2026-11-06T02:05:59.046Z · Tripwire · <a class="u" href="https://flak3dd.github.io/tripwire/">https://flak3dd.github.io/tripwire/</a>
   </footer>
 </div></body></html>

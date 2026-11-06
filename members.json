@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-11-06T07:30:10.196Z",
+  "builtAt": "2026-11-06T10:47:42.261Z",
   "name": "Tripwire",
   "url": "https://flak3dd.github.io/tripwire/",
   "count": 1,
@@ -7,11 +7,12 @@
   "source": "workspace/marketing/members.json — the ledger the page's copy is built from",
   "how": "sha256(\"wc1|email|\" + address.toLowerCase())[0:16] and sha256(\"wc1|token|\" + token)[0:24], both written by `wealthclaw login issue` and checked in the browser by the page's own sha256 (crypto.subtle is HTTPS-only, and this page must also open from disk).",
   "honest": "It proves possession of a token, not identity: whoever holds it gets in. The list is published at build time, so a revoke signs someone out on the next hourly build, not on their next refresh. And there is no server, so signing in can tell you what your tier covers — it cannot arm a tripwire or take a card.",
-  "fields": "id, tier, label (masked), email_sha = sha256(\"wc1|email|\" + address.toLowerCase())[0:16], token_sha = sha256(\"wc1|token|\" + token)[0:24], since, until, state. Check the pair yourself: wealthclaw login whoami --token <token>",
+  "fields": "id, tier, stack (the chosen trading style — one of the five the tier measured), label (masked), email_sha = sha256(\"wc1|email|\" + address.toLowerCase())[0:16], token_sha = sha256(\"wc1|token|\" + token)[0:24], since, until, state. Check the pair yourself: wealthclaw login whoami --token <token>",
   "members": [
     {
       "id": "m_54ab50c8",
       "tier": "Tripwire",
+      "stack": "momentum",
       "label": "a***********@gmail.com",
       "email_sha": "435e40a339bb3cfe",
       "token_sha": "7cf5ecf8a6593f36863fe03a",

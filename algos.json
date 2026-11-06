@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-11-06T07:29:42.342Z",
+  "builtAt": "2026-11-06T10:31:00.551Z",
   "name": "Tripwire",
   "method": {
     "history": "daily closes: Yahoo chart (10y, adjusted where Yahoo provides it) for 25 markets incl. crypto in AUD, plus the 5 leveraged funds the high-yield sleeve holds; ECB/Frankfurter for the 6 FX pairs",
@@ -115,6 +115,407 @@
         "avgExposure": 0.6617,
         "avgLeverage": 0.662
       },
+      "stacks": [
+        {
+          "id": "momentum",
+          "name": "Momentum",
+          "tag": "the shipped rule",
+          "what": "Own a leg while it is above its 200-day average with positive 12-1 momentum; size 1/vol, 40% cap.",
+          "wins": "long, one-way trends — 2020-21, 2023-24",
+          "loses": "whipsaw: a market that crosses its average six times a year pays six round trips",
+          "default": true,
+          "stats": {
+            "from": "2020-01-01",
+            "to": "2026-11-06",
+            "days": 2502,
+            "cagr": 0.19971613226490148,
+            "vol": 0.15042870088167726,
+            "sharpe": 1.2845341854059145,
+            "maxDD": 0.19987678881689308,
+            "calmar": 0.9991962220678922,
+            "hitRate": 0.4578313253012048,
+            "worstMonth": -0.07306883037444545,
+            "bestMonth": 0.3701932232668128,
+            "months": 83
+          },
+          "outOfSample": {
+            "from": "2023-07-01",
+            "to": "2026-11-06",
+            "days": 1225,
+            "cagr": 0.09636605133822918,
+            "vol": 0.11417569622680207,
+            "sharpe": 0.8630068456333522,
+            "maxDD": 0.1409379590214126,
+            "calmar": 0.6837480264886506,
+            "hitRate": 0.4878048780487805,
+            "worstMonth": -0.07306883037444545,
+            "bestMonth": 0.2038872128503999,
+            "months": 41
+          },
+          "costs": {
+            "paid": 0.0174,
+            "turnover": 14.14,
+            "rebalances": 83,
+            "avgExposure": 0.6617,
+            "avgLeverage": 0.662
+          },
+          "signal": {
+            "asOf": "2026-11-06",
+            "legs": [],
+            "cash": 1
+          },
+          "vsDefaultOos": 0
+        },
+        {
+          "id": "trend",
+          "name": "Trend & breakout",
+          "tag": "fewer, bigger, later",
+          "what": "Own a leg only while it is above both its 200-day and its 50-day average and closing at a 63-day high; equal weight, so the few names that qualify carry the book.",
+          "wins": "breakouts that keep going, and quiet starts to big moves",
+          "loses": "a market grinding sideways just under its high — the entry is always a little late and the exit a little early",
+          "default": false,
+          "stats": {
+            "from": "2020-01-01",
+            "to": "2026-11-06",
+            "days": 2502,
+            "cagr": 0.21426741944426775,
+            "vol": 0.2597724257307779,
+            "sharpe": 0.8668637760700939,
+            "maxDD": 0.25255362951227667,
+            "calmar": 0.8484036434481421,
+            "hitRate": 0.5301204819277109,
+            "worstMonth": -0.10054414821219326,
+            "bestMonth": 0.6539223024005834,
+            "months": 83
+          },
+          "outOfSample": {
+            "from": "2023-07-01",
+            "to": "2026-11-06",
+            "days": 1225,
+            "cagr": 0.06312608032058731,
+            "vol": 0.13196846962504818,
+            "sharpe": 0.5299686277999999,
+            "maxDD": 0.1994482598987165,
+            "calmar": 0.31650354007923603,
+            "hitRate": 0.5121951219512195,
+            "worstMonth": -0.09826916087325599,
+            "bestMonth": 0.13933416517298913,
+            "months": 41
+          },
+          "costs": {
+            "paid": 0.0876,
+            "turnover": 81.1,
+            "rebalances": 83,
+            "avgExposure": 0.5608,
+            "avgLeverage": 0.561
+          },
+          "signal": {
+            "asOf": "2026-11-06",
+            "legs": [
+              {
+                "id": "cba",
+                "label": "CommBank",
+                "w": 0.25
+              },
+              {
+                "id": "wbc",
+                "label": "Westpac",
+                "w": 0.25
+              }
+            ],
+            "cash": 0.5
+          },
+          "vsDefaultOos": -0.0332
+        },
+        {
+          "id": "dip",
+          "name": "Mean reversion",
+          "tag": "buy what just hurt",
+          "what": "Own a leg while it is above its 200-day average but below its 20-day average (a pullback inside an uptrend), sized by depth of the dip over its own volatility.",
+          "wins": "choppy bull markets where every dip gets bought",
+          "loses": "a real trend change: the 200-day average turns last, so the first three dips are the whole drawdown",
+          "default": false,
+          "stats": {
+            "from": "2020-01-01",
+            "to": "2026-11-06",
+            "days": 2502,
+            "cagr": 0.026556649202890137,
+            "vol": 0.22186556709590516,
+            "sharpe": 0.23060774821690713,
+            "maxDD": 0.4969121705938725,
+            "calmar": 0.05344334627817951,
+            "hitRate": 0.5903614457831325,
+            "worstMonth": -0.2216457696635007,
+            "bestMonth": 0.16877086798105245,
+            "months": 83
+          },
+          "outOfSample": {
+            "from": "2023-07-01",
+            "to": "2026-11-06",
+            "days": 1225,
+            "cagr": 0.06318816242635017,
+            "vol": 0.22034852876295666,
+            "sharpe": 0.38840571112835254,
+            "maxDD": 0.26971078453418507,
+            "calmar": 0.2342811858097623,
+            "hitRate": 0.6585365853658537,
+            "worstMonth": -0.11648220100339324,
+            "bestMonth": 0.16626582762839548,
+            "months": 41
+          },
+          "costs": {
+            "paid": 0.1302,
+            "turnover": 120.24,
+            "rebalances": 83,
+            "avgExposure": 0.864,
+            "avgLeverage": 0.864
+          },
+          "signal": {
+            "asOf": "2026-11-06",
+            "legs": [
+              {
+                "id": "brent",
+                "label": "Brent crude",
+                "w": 0.25
+              },
+              {
+                "id": "wti",
+                "label": "WTI crude",
+                "w": 0.2166
+              },
+              {
+                "id": "sol",
+                "label": "Solana",
+                "w": 0.2029
+              },
+              {
+                "id": "btc",
+                "label": "Bitcoin",
+                "w": 0.1362
+              },
+              {
+                "id": "eth",
+                "label": "Ethereum",
+                "w": 0.1019
+              },
+              {
+                "id": "audeur",
+                "label": "AUD/EUR",
+                "w": 0.0882
+              },
+              {
+                "id": "aapl",
+                "label": "Apple",
+                "w": 0.0042
+              }
+            ],
+            "cash": 0
+          },
+          "vsDefaultOos": -0.0332
+        },
+        {
+          "id": "lowvol",
+          "name": "Low volatility",
+          "tag": "the quietest half",
+          "what": "Of the legs above their 200-day average, keep the calmest half by 63-day volatility; 1/vol inside that half.",
+          "wins": "risk-off years, and any client who measures the ride and not only the return",
+          "loses": "a melt-up led by the loudest names — this style is structurally underweight what runs",
+          "default": false,
+          "stats": {
+            "from": "2020-01-01",
+            "to": "2026-11-06",
+            "days": 2502,
+            "cagr": 0.04442281116187852,
+            "vol": 0.07528858754721023,
+            "sharpe": 0.614979192463409,
+            "maxDD": 0.19876094789016974,
+            "calmar": 0.22349868841652656,
+            "hitRate": 0.5783132530120482,
+            "worstMonth": -0.055197586161238155,
+            "bestMonth": 0.08702015710979083,
+            "months": 83
+          },
+          "outOfSample": {
+            "from": "2023-07-01",
+            "to": "2026-11-06",
+            "days": 1225,
+            "cagr": 0.0348462320772962,
+            "vol": 0.06187685196863816,
+            "sharpe": 0.5846283388659089,
+            "maxDD": 0.11757319033098501,
+            "calmar": 0.2963790637916618,
+            "hitRate": 0.5853658536585366,
+            "worstMonth": -0.026345124688991417,
+            "bestMonth": 0.044584416048606856,
+            "months": 41
+          },
+          "costs": {
+            "paid": 0.0357,
+            "turnover": 50.98,
+            "rebalances": 83,
+            "avgExposure": 0.99,
+            "avgLeverage": 0.99
+          },
+          "signal": {
+            "asOf": "2026-11-06",
+            "legs": [
+              {
+                "id": "audeur",
+                "label": "AUD/EUR",
+                "w": 0.25
+              },
+              {
+                "id": "ftse",
+                "label": "FTSE 100",
+                "w": 0.1769
+              },
+              {
+                "id": "asx200",
+                "label": "ASX 200",
+                "w": 0.1764
+              },
+              {
+                "id": "wbc",
+                "label": "Westpac",
+                "w": 0.1056
+              },
+              {
+                "id": "cba",
+                "label": "CommBank",
+                "w": 0.1045
+              },
+              {
+                "id": "aapl",
+                "label": "Apple",
+                "w": 0.1012
+              },
+              {
+                "id": "msft",
+                "label": "Microsoft",
+                "w": 0.0855
+              }
+            ],
+            "cash": 0
+          },
+          "vsDefaultOos": -0.0615
+        },
+        {
+          "id": "balanced",
+          "name": "Risk parity",
+          "tag": "no momentum screen",
+          "what": "Own every leg above its 200-day average, with no momentum filter at all, and split the risk 1/vol — one leg per cluster where the tier has clusters.",
+          "wins": "broad participation: the least opinionated way to be invested",
+          "loses": "a market that is above its average and falling — it holds the leg the other four styles have already sold",
+          "default": false,
+          "stats": {
+            "from": "2020-01-01",
+            "to": "2026-11-06",
+            "days": 2502,
+            "cagr": 0.09657283929452776,
+            "vol": 0.10762496254456969,
+            "sharpe": 0.9106598077340895,
+            "maxDD": 0.23695061692195774,
+            "calmar": 0.40756525789648007,
+            "hitRate": 0.6024096385542169,
+            "worstMonth": -0.09038169246363359,
+            "bestMonth": 0.22331429075826104,
+            "months": 83
+          },
+          "outOfSample": {
+            "from": "2023-07-01",
+            "to": "2026-11-06",
+            "days": 1225,
+            "cagr": 0.06902467489633368,
+            "vol": 0.07619299272867464,
+            "sharpe": 0.9142789827446275,
+            "maxDD": 0.14259283409370238,
+            "calmar": 0.48406832878414724,
+            "hitRate": 0.5609756097560976,
+            "worstMonth": -0.04880481117046831,
+            "bestMonth": 0.08678894980918983,
+            "months": 41
+          },
+          "costs": {
+            "paid": 0.0365,
+            "turnover": 44.67,
+            "rebalances": 83,
+            "avgExposure": 1.0053,
+            "avgLeverage": 1.005
+          },
+          "signal": {
+            "asOf": "2026-11-06",
+            "legs": [
+              {
+                "id": "audeur",
+                "label": "AUD/EUR",
+                "w": 0.25
+              },
+              {
+                "id": "ftse",
+                "label": "FTSE 100",
+                "w": 0.1351
+              },
+              {
+                "id": "asx200",
+                "label": "ASX 200",
+                "w": 0.1346
+              },
+              {
+                "id": "wbc",
+                "label": "Westpac",
+                "w": 0.0729
+              },
+              {
+                "id": "cba",
+                "label": "CommBank",
+                "w": 0.0719
+              },
+              {
+                "id": "aapl",
+                "label": "Apple",
+                "w": 0.069
+              },
+              {
+                "id": "msft",
+                "label": "Microsoft",
+                "w": 0.0553
+              },
+              {
+                "id": "btc",
+                "label": "Bitcoin",
+                "w": 0.0459
+              },
+              {
+                "id": "eth",
+                "label": "Ethereum",
+                "w": 0.0375
+              },
+              {
+                "id": "natgas",
+                "label": "Natural gas",
+                "w": 0.033
+              },
+              {
+                "id": "wti",
+                "label": "WTI crude",
+                "w": 0.0325
+              },
+              {
+                "id": "brent",
+                "label": "Brent crude",
+                "w": 0.0319
+              },
+              {
+                "id": "sol",
+                "label": "Solana",
+                "w": 0.0304
+              }
+            ],
+            "cash": 0
+          },
+          "vsDefaultOos": -0.0273
+        }
+      ],
       "verdict": "profitable net of costs out of sample (+9.64% a year) but behind its own baseline (+11.64%)",
       "signal": {
         "asOf": "2026-11-06",
@@ -223,6 +624,317 @@
         "avgExposure": 0.5757,
         "avgLeverage": 0.576
       },
+      "stacks": [
+        {
+          "id": "momentum",
+          "name": "Momentum",
+          "tag": "the shipped rule",
+          "what": "Own a leg while it is above its 200-day average with positive 12-1 momentum; size 1/vol, 40% cap.",
+          "wins": "long, one-way trends — 2020-21, 2023-24",
+          "loses": "whipsaw: a market that crosses its average six times a year pays six round trips",
+          "default": true,
+          "stats": {
+            "from": "2020-01-01",
+            "to": "2026-11-06",
+            "days": 2502,
+            "cagr": 0.32324818598285177,
+            "vol": 0.3302359183463238,
+            "sharpe": 1.013631319518413,
+            "maxDD": 0.5081284939461452,
+            "calmar": 0.6361544173059339,
+            "hitRate": 0.43373493975903615,
+            "worstMonth": -0.26778287436866144,
+            "bestMonth": 1.0088298116205516,
+            "months": 83
+          },
+          "outOfSample": {
+            "from": "2023-07-01",
+            "to": "2026-11-06",
+            "days": 1225,
+            "cagr": 0.0661005821403644,
+            "vol": 0.28659294523540463,
+            "sharpe": 0.3658901424294141,
+            "maxDD": 0.37775944353219815,
+            "calmar": 0.17498062132424322,
+            "hitRate": 0.43902439024390244,
+            "worstMonth": -0.19665867466733455,
+            "bestMonth": 0.4204944307570502,
+            "months": 41
+          },
+          "costs": {
+            "paid": 0.0418,
+            "turnover": 21.66,
+            "rebalances": 83,
+            "avgExposure": 0.5757,
+            "avgLeverage": 0.576
+          },
+          "signal": {
+            "asOf": "2026-11-06",
+            "legs": [
+              {
+                "id": "btc",
+                "label": "Bitcoin",
+                "w": 0.4
+              },
+              {
+                "id": "eth",
+                "label": "Ethereum",
+                "w": 0.331
+              },
+              {
+                "id": "sol",
+                "label": "Solana",
+                "w": 0.269
+              }
+            ],
+            "cash": 0
+          },
+          "vsDefaultOos": 0
+        },
+        {
+          "id": "trend",
+          "name": "Trend & breakout",
+          "tag": "fewer, bigger, later",
+          "what": "Own a leg only while it is above both its 200-day and its 50-day average and closing at a 63-day high; equal weight, so the few names that qualify carry the book.",
+          "wins": "breakouts that keep going, and quiet starts to big moves",
+          "loses": "a market grinding sideways just under its high — the entry is always a little late and the exit a little early",
+          "default": false,
+          "stats": {
+            "from": "2020-01-01",
+            "to": "2026-11-06",
+            "days": 2502,
+            "cagr": 0.07397780938908882,
+            "vol": 0.22510080986577993,
+            "sharpe": 0.4305119300058234,
+            "maxDD": 0.3835644379118296,
+            "calmar": 0.19286931236856267,
+            "hitRate": 0.08433734939759036,
+            "worstMonth": -0.1683766077979879,
+            "bestMonth": 0.7178472744896844,
+            "months": 83
+          },
+          "outOfSample": {
+            "from": "2023-07-01",
+            "to": "2026-11-06",
+            "days": 1225,
+            "cagr": 0.04087800213066961,
+            "vol": 0.13659273370546499,
+            "sharpe": 0.36084841593726164,
+            "maxDD": 0.17651425523300723,
+            "calmar": 0.23158470729012057,
+            "hitRate": 0.04878048780487805,
+            "worstMonth": -0.1118005233134799,
+            "bestMonth": 0.24924493919069213,
+            "months": 41
+          },
+          "costs": {
+            "paid": 0.0346,
+            "turnover": 18.09,
+            "rebalances": 83,
+            "avgExposure": 0.1237,
+            "avgLeverage": 0.124
+          },
+          "signal": {
+            "asOf": "2026-11-06",
+            "legs": [],
+            "cash": 1
+          },
+          "vsDefaultOos": -0.0252
+        },
+        {
+          "id": "dip",
+          "name": "Mean reversion",
+          "tag": "buy what just hurt",
+          "what": "Own a leg while it is above its 200-day average but below its 20-day average (a pullback inside an uptrend), sized by depth of the dip over its own volatility.",
+          "wins": "choppy bull markets where every dip gets bought",
+          "loses": "a real trend change: the 200-day average turns last, so the first three dips are the whole drawdown",
+          "default": false,
+          "stats": {
+            "from": "2020-01-01",
+            "to": "2026-11-06",
+            "days": 2502,
+            "cagr": -0.0275040850710897,
+            "vol": 0.24013364221910136,
+            "sharpe": 0.00907096430964138,
+            "maxDD": 0.6076118089608282,
+            "calmar": -0.04526588302839066,
+            "hitRate": 0.20481927710843373,
+            "worstMonth": -0.27186836184247454,
+            "bestMonth": 0.25433534648119815,
+            "months": 83
+          },
+          "outOfSample": {
+            "from": "2023-07-01",
+            "to": "2026-11-06",
+            "days": 1225,
+            "cagr": -0.09956872140779449,
+            "vol": 0.19277979917959706,
+            "sharpe": -0.4474055434313893,
+            "maxDD": 0.535604390623567,
+            "calmar": -0.18589974830466482,
+            "hitRate": 0.17073170731707318,
+            "worstMonth": -0.26101188927560814,
+            "bestMonth": 0.18902721892383423,
+            "months": 41
+          },
+          "costs": {
+            "paid": 0.0641,
+            "turnover": 30.32,
+            "rebalances": 83,
+            "avgExposure": 0.2559,
+            "avgLeverage": 0.256
+          },
+          "signal": {
+            "asOf": "2026-11-06",
+            "legs": [
+              {
+                "id": "sol",
+                "label": "Solana",
+                "w": 0.4
+              },
+              {
+                "id": "btc",
+                "label": "Bitcoin",
+                "w": 0.3301
+              },
+              {
+                "id": "eth",
+                "label": "Ethereum",
+                "w": 0.2699
+              }
+            ],
+            "cash": 0
+          },
+          "vsDefaultOos": -0.1657
+        },
+        {
+          "id": "lowvol",
+          "name": "Low volatility",
+          "tag": "the quietest half",
+          "what": "Of the legs above their 200-day average, keep the calmest half by 63-day volatility; 1/vol inside that half.",
+          "wins": "risk-off years, and any client who measures the ride and not only the return",
+          "loses": "a melt-up led by the loudest names — this style is structurally underweight what runs",
+          "default": false,
+          "stats": {
+            "from": "2020-01-01",
+            "to": "2026-11-06",
+            "days": 2502,
+            "cagr": 0.05848624114413914,
+            "vol": 0.22626517890722128,
+            "sharpe": 0.36464913694906353,
+            "maxDD": 0.4349316266650076,
+            "calmar": 0.13447226542848384,
+            "hitRate": 0.4457831325301205,
+            "worstMonth": -0.17563453007921825,
+            "bestMonth": 0.36556428617647185,
+            "months": 83
+          },
+          "outOfSample": {
+            "from": "2023-07-01",
+            "to": "2026-11-06",
+            "days": 1225,
+            "cagr": 0.012898530378302242,
+            "vol": 0.21022489777980014,
+            "sharpe": 0.16554716299581274,
+            "maxDD": 0.38020983241479556,
+            "calmar": 0.033924768058681866,
+            "hitRate": 0.4878048780487805,
+            "worstMonth": -0.17563453007921825,
+            "bestMonth": 0.36556428617647185,
+            "months": 41
+          },
+          "costs": {
+            "paid": 0.0426,
+            "turnover": 24.37,
+            "rebalances": 83,
+            "avgExposure": 0.5534,
+            "avgLeverage": 0.553
+          },
+          "signal": {
+            "asOf": "2026-11-06",
+            "legs": [
+              {
+                "id": "btc",
+                "label": "Bitcoin",
+                "w": 0.4
+              },
+              {
+                "id": "eth",
+                "label": "Ethereum",
+                "w": 0.4
+              }
+            ],
+            "cash": 0.2
+          },
+          "vsDefaultOos": -0.0532
+        },
+        {
+          "id": "balanced",
+          "name": "Risk parity",
+          "tag": "no momentum screen",
+          "what": "Own every leg above its 200-day average, with no momentum filter at all, and split the risk 1/vol — one leg per cluster where the tier has clusters.",
+          "wins": "broad participation: the least opinionated way to be invested",
+          "loses": "a market that is above its average and falling — it holds the leg the other four styles have already sold",
+          "default": false,
+          "stats": {
+            "from": "2020-01-01",
+            "to": "2026-11-06",
+            "days": 2502,
+            "cagr": 0.30487943094986636,
+            "vol": 0.3695398864015548,
+            "sharpe": 0.9079528421408323,
+            "maxDD": 0.5257818303861894,
+            "calmar": 0.5798591988732872,
+            "hitRate": 0.5421686746987951,
+            "worstMonth": -0.26413732502741416,
+            "bestMonth": 1.0088298116205507,
+            "months": 83
+          },
+          "outOfSample": {
+            "from": "2023-07-01",
+            "to": "2026-11-06",
+            "days": 1225,
+            "cagr": 0.10462072791871524,
+            "vol": 0.30474687770818937,
+            "sharpe": 0.47805726454070535,
+            "maxDD": 0.4170113904747559,
+            "calmar": 0.25088218285742137,
+            "hitRate": 0.5365853658536586,
+            "worstMonth": -0.24029224261633408,
+            "bestMonth": 0.41881792199721524,
+            "months": 41
+          },
+          "costs": {
+            "paid": 0.0532,
+            "turnover": 29.07,
+            "rebalances": 83,
+            "avgExposure": 0.7131,
+            "avgLeverage": 0.713
+          },
+          "signal": {
+            "asOf": "2026-11-06",
+            "legs": [
+              {
+                "id": "btc",
+                "label": "Bitcoin",
+                "w": 0.4
+              },
+              {
+                "id": "eth",
+                "label": "Ethereum",
+                "w": 0.331
+              },
+              {
+                "id": "sol",
+                "label": "Solana",
+                "w": 0.269
+              }
+            ],
+            "cash": 0
+          },
+          "vsDefaultOos": 0.0385
+        }
+      ],
       "verdict": "profitable net of costs out of sample (+6.61% a year) but behind its own baseline (+19.72%)",
       "signal": {
         "asOf": "2026-11-06",
@@ -353,6 +1065,512 @@
         "avgExposure": 0.5764,
         "avgLeverage": 0.576
       },
+      "stacks": [
+        {
+          "id": "momentum",
+          "name": "Momentum",
+          "tag": "the shipped rule",
+          "what": "Own a leg while it is above its 200-day average with positive 12-1 momentum; size 1/vol, 40% cap.",
+          "wins": "long, one-way trends — 2020-21, 2023-24",
+          "loses": "whipsaw: a market that crosses its average six times a year pays six round trips",
+          "default": true,
+          "stats": {
+            "from": "2020-01-01",
+            "to": "2026-11-06",
+            "days": 2502,
+            "cagr": 0.1509585657831154,
+            "vol": 0.11622912623842388,
+            "sharpe": 1.2682104393059084,
+            "maxDD": 0.2124819702375087,
+            "calmar": 0.710453529842445,
+            "hitRate": 0.6626506024096386,
+            "worstMonth": -0.0717671715862217,
+            "bestMonth": 0.1467968718088739,
+            "months": 83
+          },
+          "outOfSample": {
+            "from": "2023-07-01",
+            "to": "2026-11-06",
+            "days": 1225,
+            "cagr": 0.09522286045788819,
+            "vol": 0.09653152879123635,
+            "sharpe": 0.9906584968409977,
+            "maxDD": 0.12840884724128487,
+            "calmar": 0.7415599664948397,
+            "hitRate": 0.6829268292682927,
+            "worstMonth": -0.07143842469108708,
+            "bestMonth": 0.12696298766568614,
+            "months": 41
+          },
+          "costs": {
+            "paid": 0.0112,
+            "turnover": 8.26,
+            "rebalances": 83,
+            "avgExposure": 0.5764,
+            "avgLeverage": 0.576
+          },
+          "signal": {
+            "asOf": "2026-11-06",
+            "legs": [
+              {
+                "id": "sp500",
+                "label": "S&P 500",
+                "w": 0.1
+              },
+              {
+                "id": "btc",
+                "label": "Bitcoin",
+                "w": 0.1
+              },
+              {
+                "id": "nasdaq",
+                "label": "Nasdaq Composite",
+                "w": 0.0667
+              },
+              {
+                "id": "gold",
+                "label": "Gold (front month)",
+                "w": 0.0667
+              },
+              {
+                "id": "eth",
+                "label": "Ethereum",
+                "w": 0.0667
+              },
+              {
+                "id": "nvda",
+                "label": "Nvidia",
+                "w": 0.0667
+              },
+              {
+                "id": "cba",
+                "label": "CommBank",
+                "w": 0.05
+              },
+              {
+                "id": "aapl",
+                "label": "Apple",
+                "w": 0.05
+              },
+              {
+                "id": "msft",
+                "label": "Microsoft",
+                "w": 0.05
+              },
+              {
+                "id": "bhp",
+                "label": "BHP Group",
+                "w": 0.0417
+              },
+              {
+                "id": "asx200",
+                "label": "ASX 200",
+                "w": 0.0417
+              },
+              {
+                "id": "wbc",
+                "label": "Westpac",
+                "w": 0.0333
+              },
+              {
+                "id": "sol",
+                "label": "Solana",
+                "w": 0.0333
+              },
+              {
+                "id": "tsla",
+                "label": "Tesla",
+                "w": 0.0333
+              },
+              {
+                "id": "wti",
+                "label": "WTI crude",
+                "w": 0.0333
+              }
+            ],
+            "cash": 0.1666
+          },
+          "vsDefaultOos": 0
+        },
+        {
+          "id": "trend",
+          "name": "Trend & breakout",
+          "tag": "fewer, bigger, later",
+          "what": "Own a leg only while it is above both its 200-day and its 50-day average and closing at a 63-day high; equal weight, so the few names that qualify carry the book.",
+          "wins": "breakouts that keep going, and quiet starts to big moves",
+          "loses": "a market grinding sideways just under its high — the entry is always a little late and the exit a little early",
+          "default": false,
+          "stats": {
+            "from": "2020-01-01",
+            "to": "2026-11-06",
+            "days": 2502,
+            "cagr": 0.1151081184477567,
+            "vol": 0.14028669174718247,
+            "sharpe": 0.8471348754935238,
+            "maxDD": 0.2756970608298044,
+            "calmar": 0.4175166688440549,
+            "hitRate": 0.25301204819277107,
+            "worstMonth": -0.14729592311533246,
+            "bestMonth": 0.2918062040138627,
+            "months": 83
+          },
+          "outOfSample": {
+            "from": "2023-07-01",
+            "to": "2026-11-06",
+            "days": 1225,
+            "cagr": 0.020905580172811966,
+            "vol": 0.0418112246589024,
+            "sharpe": 0.515751682256717,
+            "maxDD": 0.0461611276596432,
+            "calmar": 0.45288278759032286,
+            "hitRate": 0.21951219512195122,
+            "worstMonth": -0.015326228097079952,
+            "bestMonth": 0.04875845863908057,
+            "months": 41
+          },
+          "costs": {
+            "paid": 0.0365,
+            "turnover": 28.11,
+            "rebalances": 83,
+            "avgExposure": 0.2311,
+            "avgLeverage": 0.231
+          },
+          "signal": {
+            "asOf": "2026-11-06",
+            "legs": [],
+            "cash": 1
+          },
+          "vsDefaultOos": -0.0743
+        },
+        {
+          "id": "dip",
+          "name": "Mean reversion",
+          "tag": "buy what just hurt",
+          "what": "Own a leg while it is above its 200-day average but below its 20-day average (a pullback inside an uptrend), sized by depth of the dip over its own volatility.",
+          "wins": "choppy bull markets where every dip gets bought",
+          "loses": "a real trend change: the 200-day average turns last, so the first three dips are the whole drawdown",
+          "default": false,
+          "stats": {
+            "from": "2020-01-01",
+            "to": "2026-11-06",
+            "days": 2502,
+            "cagr": -0.006783831793949924,
+            "vol": 0.0865854713980326,
+            "sharpe": -0.0347893017352149,
+            "maxDD": 0.27053815821395144,
+            "calmar": -0.025075323343426558,
+            "hitRate": 0.3373493975903614,
+            "worstMonth": -0.17479770272642137,
+            "bestMonth": 0.0864857889776165,
+            "months": 83
+          },
+          "outOfSample": {
+            "from": "2023-07-01",
+            "to": "2026-11-06",
+            "days": 1225,
+            "cagr": 0.012359761292926041,
+            "vol": 0.05930221769416304,
+            "sharpe": 0.23683187462820188,
+            "maxDD": 0.12005762210290971,
+            "calmar": 0.10294857649547343,
+            "hitRate": 0.36585365853658536,
+            "worstMonth": -0.07879297970773047,
+            "bestMonth": 0.057401784562308045,
+            "months": 41
+          },
+          "costs": {
+            "paid": 0.0422,
+            "turnover": 33.56,
+            "rebalances": 83,
+            "avgExposure": 0.2651,
+            "avgLeverage": 0.265
+          },
+          "signal": {
+            "asOf": "2026-11-06",
+            "legs": [
+              {
+                "id": "sp500",
+                "label": "S&P 500",
+                "w": 0.15
+              },
+              {
+                "id": "btc",
+                "label": "Bitcoin",
+                "w": 0.15
+              },
+              {
+                "id": "nasdaq",
+                "label": "Nasdaq Composite",
+                "w": 0.1
+              },
+              {
+                "id": "gold",
+                "label": "Gold (front month)",
+                "w": 0.1
+              },
+              {
+                "id": "eth",
+                "label": "Ethereum",
+                "w": 0.1
+              },
+              {
+                "id": "nvda",
+                "label": "Nvidia",
+                "w": 0.1
+              },
+              {
+                "id": "aapl",
+                "label": "Apple",
+                "w": 0.075
+              },
+              {
+                "id": "msft",
+                "label": "Microsoft",
+                "w": 0.075
+              },
+              {
+                "id": "sol",
+                "label": "Solana",
+                "w": 0.05
+              },
+              {
+                "id": "tsla",
+                "label": "Tesla",
+                "w": 0.05
+              },
+              {
+                "id": "wti",
+                "label": "WTI crude",
+                "w": 0.05
+              }
+            ],
+            "cash": 0
+          },
+          "vsDefaultOos": -0.0829
+        },
+        {
+          "id": "lowvol",
+          "name": "Low volatility",
+          "tag": "the quietest half",
+          "what": "Of the legs above their 200-day average, keep the calmest half by 63-day volatility; 1/vol inside that half.",
+          "wins": "risk-off years, and any client who measures the ride and not only the return",
+          "loses": "a melt-up led by the loudest names — this style is structurally underweight what runs",
+          "default": false,
+          "stats": {
+            "from": "2020-01-01",
+            "to": "2026-11-06",
+            "days": 2502,
+            "cagr": 0.09994384464166073,
+            "vol": 0.09641342790491222,
+            "sharpe": 1.0364593681801992,
+            "maxDD": 0.20982991893311487,
+            "calmar": 0.4763088369372087,
+            "hitRate": 0.6626506024096386,
+            "worstMonth": -0.069067011662312,
+            "bestMonth": 0.10640394220576299,
+            "months": 83
+          },
+          "outOfSample": {
+            "from": "2023-07-01",
+            "to": "2026-11-06",
+            "days": 1225,
+            "cagr": 0.12567269423479455,
+            "vol": 0.09457671268702023,
+            "sharpe": 1.2992728962514903,
+            "maxDD": 0.14509024368043433,
+            "calmar": 0.8661691582212273,
+            "hitRate": 0.7073170731707317,
+            "worstMonth": -0.05689582331811027,
+            "bestMonth": 0.06632523480155061,
+            "months": 41
+          },
+          "costs": {
+            "paid": 0.0035,
+            "turnover": 3.54,
+            "rebalances": 83,
+            "avgExposure": 0.9112,
+            "avgLeverage": 0.911
+          },
+          "signal": {
+            "asOf": "2026-11-06",
+            "legs": [
+              {
+                "id": "cba",
+                "label": "CommBank",
+                "w": 0.15
+              },
+              {
+                "id": "sp500",
+                "label": "S&P 500",
+                "w": 0.15
+              },
+              {
+                "id": "bhp",
+                "label": "BHP Group",
+                "w": 0.125
+              },
+              {
+                "id": "asx200",
+                "label": "ASX 200",
+                "w": 0.125
+              },
+              {
+                "id": "wbc",
+                "label": "Westpac",
+                "w": 0.1
+              },
+              {
+                "id": "nasdaq",
+                "label": "Nasdaq Composite",
+                "w": 0.1
+              },
+              {
+                "id": "gold",
+                "label": "Gold (front month)",
+                "w": 0.1
+              },
+              {
+                "id": "aapl",
+                "label": "Apple",
+                "w": 0.075
+              },
+              {
+                "id": "msft",
+                "label": "Microsoft",
+                "w": 0.075
+              }
+            ],
+            "cash": 0
+          },
+          "vsDefaultOos": 0.0304
+        },
+        {
+          "id": "balanced",
+          "name": "Risk parity",
+          "tag": "no momentum screen",
+          "what": "Own every leg above its 200-day average, with no momentum filter at all, and split the risk 1/vol — one leg per cluster where the tier has clusters.",
+          "wins": "broad participation: the least opinionated way to be invested",
+          "loses": "a market that is above its average and falling — it holds the leg the other four styles have already sold",
+          "default": false,
+          "stats": {
+            "from": "2020-01-01",
+            "to": "2026-11-06",
+            "days": 2502,
+            "cagr": 0.14664747170817471,
+            "vol": 0.10856762804543788,
+            "sharpe": 1.3151420815399333,
+            "maxDD": 0.23320356101508333,
+            "calmar": 0.6288389039594886,
+            "hitRate": 0.7108433734939759,
+            "worstMonth": -0.07469782796024704,
+            "bestMonth": 0.14687687162255036,
+            "months": 83
+          },
+          "outOfSample": {
+            "from": "2023-07-01",
+            "to": "2026-11-06",
+            "days": 1225,
+            "cagr": 0.1417867581036738,
+            "vol": 0.10075803736673745,
+            "sharpe": 1.3666855236133912,
+            "maxDD": 0.1467941416309898,
+            "calmar": 0.9658883966915823,
+            "hitRate": 0.7073170731707317,
+            "worstMonth": -0.0668868651022273,
+            "bestMonth": 0.06939306153398772,
+            "months": 41
+          },
+          "costs": {
+            "paid": 0.007,
+            "turnover": 5.69,
+            "rebalances": 83,
+            "avgExposure": 0.8731,
+            "avgLeverage": 0.873
+          },
+          "signal": {
+            "asOf": "2026-11-06",
+            "legs": [
+              {
+                "id": "cba",
+                "label": "CommBank",
+                "w": 0.1241
+              },
+              {
+                "id": "sp500",
+                "label": "S&P 500",
+                "w": 0.1091
+              },
+              {
+                "id": "bhp",
+                "label": "BHP Group",
+                "w": 0.1034
+              },
+              {
+                "id": "asx200",
+                "label": "ASX 200",
+                "w": 0.1034
+              },
+              {
+                "id": "wbc",
+                "label": "Westpac",
+                "w": 0.0827
+              },
+              {
+                "id": "nasdaq",
+                "label": "Nasdaq Composite",
+                "w": 0.0728
+              },
+              {
+                "id": "gold",
+                "label": "Gold (front month)",
+                "w": 0.0728
+              },
+              {
+                "id": "btc",
+                "label": "Bitcoin",
+                "w": 0.0668
+              },
+              {
+                "id": "aapl",
+                "label": "Apple",
+                "w": 0.0546
+              },
+              {
+                "id": "msft",
+                "label": "Microsoft",
+                "w": 0.0546
+              },
+              {
+                "id": "eth",
+                "label": "Ethereum",
+                "w": 0.0445
+              },
+              {
+                "id": "nvda",
+                "label": "Nvidia",
+                "w": 0.0445
+              },
+              {
+                "id": "sol",
+                "label": "Solana",
+                "w": 0.0223
+              },
+              {
+                "id": "tsla",
+                "label": "Tesla",
+                "w": 0.0223
+              },
+              {
+                "id": "wti",
+                "label": "WTI crude",
+                "w": 0.0223
+              }
+            ],
+            "cash": 0
+          },
+          "vsDefaultOos": 0.0466
+        }
+      ],
       "verdict": "profitable net of costs out of sample (+9.52% a year) but behind its own baseline (+13.47%)",
       "signal": {
         "asOf": "2026-11-06",
@@ -675,6 +1893,297 @@
           }
         }
       ],
+      "stacks": [
+        {
+          "id": "momentum",
+          "name": "Momentum",
+          "tag": "the shipped rule",
+          "what": "Own a leg while it is above its 200-day average with positive 12-1 momentum; size 1/vol, 40% cap.",
+          "wins": "long, one-way trends — 2020-21, 2023-24",
+          "loses": "whipsaw: a market that crosses its average six times a year pays six round trips",
+          "default": true,
+          "stats": {
+            "from": "2020-01-01",
+            "to": "2026-11-06",
+            "days": 2502,
+            "cagr": 0.15524926898234281,
+            "vol": 0.23201795185917928,
+            "sharpe": 0.7390818126461012,
+            "maxDD": 0.2848376050314837,
+            "calmar": 0.5450448474497698,
+            "hitRate": 0.5903614457831325,
+            "worstMonth": -0.15528304802131332,
+            "bestMonth": 0.29203048792840014,
+            "months": 83
+          },
+          "outOfSample": {
+            "from": "2023-07-01",
+            "to": "2026-11-06",
+            "days": 1225,
+            "cagr": 0.10423062793585669,
+            "vol": 0.22922109671742627,
+            "sharpe": 0.5486713257058158,
+            "maxDD": 0.26769880071973595,
+            "calmar": 0.38935784417271146,
+            "hitRate": 0.6341463414634146,
+            "worstMonth": -0.15528304802131332,
+            "bestMonth": 0.21323499826576375,
+            "months": 41
+          },
+          "costs": {
+            "paid": 0.0569,
+            "turnover": 29.24,
+            "rebalances": 83,
+            "avgExposure": 0.5775,
+            "avgLeverage": 1.123
+          },
+          "signal": {
+            "asOf": "2026-11-06",
+            "legs": [
+              {
+                "id": "eth",
+                "label": "Ethereum",
+                "w": 0.4
+              },
+              {
+                "id": "wti",
+                "label": "WTI crude",
+                "w": 0.4
+              }
+            ],
+            "cash": 0.2
+          },
+          "vsDefaultOos": 0
+        },
+        {
+          "id": "trend",
+          "name": "Trend & breakout",
+          "tag": "fewer, bigger, later",
+          "what": "Own a leg only while it is above both its 200-day and its 50-day average and closing at a 63-day high; equal weight, so the few names that qualify carry the book.",
+          "wins": "breakouts that keep going, and quiet starts to big moves",
+          "loses": "a market grinding sideways just under its high — the entry is always a little late and the exit a little early",
+          "default": false,
+          "stats": {
+            "from": "2020-01-01",
+            "to": "2026-11-06",
+            "days": 2502,
+            "cagr": 0.018162421819488683,
+            "vol": 0.16013871042914177,
+            "sharpe": 0.1934221771028967,
+            "maxDD": 0.2662393202542961,
+            "calmar": 0.06821840516322311,
+            "hitRate": 0.3373493975903614,
+            "worstMonth": -0.17618930627043816,
+            "bestMonth": 0.10401704104170073,
+            "months": 83
+          },
+          "outOfSample": {
+            "from": "2023-07-01",
+            "to": "2026-11-06",
+            "days": 1225,
+            "cagr": 0.005557273451645139,
+            "vol": 0.12753763848101546,
+            "sharpe": 0.1081143079802856,
+            "maxDD": 0.25664299154975156,
+            "calmar": 0.021653712100561426,
+            "hitRate": 0.2926829268292683,
+            "worstMonth": -0.17618930627043816,
+            "bestMonth": 0.10401704104170073,
+            "months": 41
+          },
+          "costs": {
+            "paid": 0.0428,
+            "turnover": 21.85,
+            "rebalances": 83,
+            "avgExposure": 0.1672,
+            "avgLeverage": 0.344
+          },
+          "signal": {
+            "asOf": "2026-11-06",
+            "legs": [],
+            "cash": 1
+          },
+          "vsDefaultOos": -0.0987
+        },
+        {
+          "id": "dip",
+          "name": "Mean reversion",
+          "tag": "buy what just hurt",
+          "what": "Own a leg while it is above its 200-day average but below its 20-day average (a pullback inside an uptrend), sized by depth of the dip over its own volatility.",
+          "wins": "choppy bull markets where every dip gets bought",
+          "loses": "a real trend change: the 200-day average turns last, so the first three dips are the whole drawdown",
+          "default": false,
+          "stats": {
+            "from": "2020-01-01",
+            "to": "2026-11-06",
+            "days": 2502,
+            "cagr": 0.009449407660730769,
+            "vol": 0.1490363710287327,
+            "sharpe": 0.1394623287978227,
+            "maxDD": 0.3613937949026712,
+            "calmar": 0.02614712204252327,
+            "hitRate": 0.3493975903614458,
+            "worstMonth": -0.14508957992153382,
+            "bestMonth": 0.14559319785141933,
+            "months": 83
+          },
+          "outOfSample": {
+            "from": "2023-07-01",
+            "to": "2026-11-06",
+            "days": 1225,
+            "cagr": 0.01060530389444203,
+            "vol": 0.14562205663495087,
+            "sharpe": 0.14577808446021082,
+            "maxDD": 0.31353851506221375,
+            "calmar": 0.03382456503736926,
+            "hitRate": 0.36585365853658536,
+            "worstMonth": -0.06830061258669484,
+            "bestMonth": 0.14559319785141933,
+            "months": 41
+          },
+          "costs": {
+            "paid": 0.0647,
+            "turnover": 32.16,
+            "rebalances": 83,
+            "avgExposure": 0.2339,
+            "avgLeverage": 0.472
+          },
+          "signal": {
+            "asOf": "2026-11-06",
+            "legs": [
+              {
+                "id": "btc",
+                "label": "Bitcoin",
+                "w": 0.4
+              },
+              {
+                "id": "wti",
+                "label": "WTI crude",
+                "w": 0.4
+              }
+            ],
+            "cash": 0.2
+          },
+          "vsDefaultOos": -0.0936
+        },
+        {
+          "id": "lowvol",
+          "name": "Low volatility",
+          "tag": "the quietest half",
+          "what": "Of the legs above their 200-day average, keep the calmest half by 63-day volatility; 1/vol inside that half.",
+          "wins": "risk-off years, and any client who measures the ride and not only the return",
+          "loses": "a melt-up led by the loudest names — this style is structurally underweight what runs",
+          "default": false,
+          "stats": {
+            "from": "2020-01-01",
+            "to": "2026-11-06",
+            "days": 2502,
+            "cagr": 0.13025407736246275,
+            "vol": 0.18133996347442097,
+            "sharpe": 0.7663980924275972,
+            "maxDD": 0.27955436946437795,
+            "calmar": 0.46593468602199867,
+            "hitRate": 0.5662650602409639,
+            "worstMonth": -0.09732167960369464,
+            "bestMonth": 0.22711235492660986,
+            "months": 83
+          },
+          "outOfSample": {
+            "from": "2023-07-01",
+            "to": "2026-11-06",
+            "days": 1225,
+            "cagr": 0.14857524991010607,
+            "vol": 0.16900165565146041,
+            "sharpe": 0.9045768608169219,
+            "maxDD": 0.14511483407958226,
+            "calmar": 1.0238460516629615,
+            "hitRate": 0.5853658536585366,
+            "worstMonth": -0.05784611913306548,
+            "bestMonth": 0.15902632956752116,
+            "months": 41
+          },
+          "costs": {
+            "paid": 0.0641,
+            "turnover": 34.34,
+            "rebalances": 83,
+            "avgExposure": 0.6048,
+            "avgLeverage": 1.271
+          },
+          "signal": {
+            "asOf": "2026-11-06",
+            "legs": [
+              {
+                "id": "btc",
+                "label": "Bitcoin",
+                "w": 0.4
+              }
+            ],
+            "cash": 0.6
+          },
+          "vsDefaultOos": 0.0443
+        },
+        {
+          "id": "balanced",
+          "name": "Risk parity",
+          "tag": "no momentum screen",
+          "what": "Own every leg above its 200-day average, with no momentum filter at all, and split the risk 1/vol — one leg per cluster where the tier has clusters.",
+          "wins": "broad participation: the least opinionated way to be invested",
+          "loses": "a market that is above its average and falling — it holds the leg the other four styles have already sold",
+          "default": false,
+          "stats": {
+            "from": "2020-01-01",
+            "to": "2026-11-06",
+            "days": 2502,
+            "cagr": 0.14978910195913264,
+            "vol": 0.20052835307269756,
+            "sharpe": 0.7970043080873628,
+            "maxDD": 0.3099872085819416,
+            "calmar": 0.4832105900251609,
+            "hitRate": 0.5662650602409639,
+            "worstMonth": -0.12013835166099573,
+            "bestMonth": 0.24578087251491,
+            "months": 83
+          },
+          "outOfSample": {
+            "from": "2023-07-01",
+            "to": "2026-11-06",
+            "days": 1225,
+            "cagr": 0.16090402349201272,
+            "vol": 0.17282887624040283,
+            "sharpe": 0.9504620726052464,
+            "maxDD": 0.17646449961008592,
+            "calmar": 0.911820926291376,
+            "hitRate": 0.6341463414634146,
+            "worstMonth": -0.12013835166099573,
+            "bestMonth": 0.24578087251491,
+            "months": 41
+          },
+          "costs": {
+            "paid": 0.0637,
+            "turnover": 34.06,
+            "rebalances": 83,
+            "avgExposure": 0.7257,
+            "avgLeverage": 1.411
+          },
+          "signal": {
+            "asOf": "2026-11-06",
+            "legs": [
+              {
+                "id": "btc",
+                "label": "Bitcoin",
+                "w": 0.4
+              },
+              {
+                "id": "wti",
+                "label": "WTI crude",
+                "w": 0.4
+              }
+            ],
+            "cash": 0.2
+          },
+          "vsDefaultOos": 0.0567
+        }
+      ],
       "verdict": "profitable net of costs out of sample (+10.42% a year) but behind its own baseline (+19.38%)",
       "signal": {
         "asOf": "2026-11-06",
@@ -694,6 +2203,48 @@
         ],
         "cash": 0.2
       }
+    }
+  ],
+  "stacks": [
+    {
+      "id": "momentum",
+      "name": "Momentum",
+      "tag": "the shipped rule",
+      "what": "Own a leg while it is above its 200-day average with positive 12-1 momentum; size 1/vol, 40% cap.",
+      "wins": "long, one-way trends — 2020-21, 2023-24",
+      "loses": "whipsaw: a market that crosses its average six times a year pays six round trips"
+    },
+    {
+      "id": "trend",
+      "name": "Trend & breakout",
+      "tag": "fewer, bigger, later",
+      "what": "Own a leg only while it is above both its 200-day and its 50-day average and closing at a 63-day high; equal weight, so the few names that qualify carry the book.",
+      "wins": "breakouts that keep going, and quiet starts to big moves",
+      "loses": "a market grinding sideways just under its high — the entry is always a little late and the exit a little early"
+    },
+    {
+      "id": "dip",
+      "name": "Mean reversion",
+      "tag": "buy what just hurt",
+      "what": "Own a leg while it is above its 200-day average but below its 20-day average (a pullback inside an uptrend), sized by depth of the dip over its own volatility.",
+      "wins": "choppy bull markets where every dip gets bought",
+      "loses": "a real trend change: the 200-day average turns last, so the first three dips are the whole drawdown"
+    },
+    {
+      "id": "lowvol",
+      "name": "Low volatility",
+      "tag": "the quietest half",
+      "what": "Of the legs above their 200-day average, keep the calmest half by 63-day volatility; 1/vol inside that half.",
+      "wins": "risk-off years, and any client who measures the ride and not only the return",
+      "loses": "a melt-up led by the loudest names — this style is structurally underweight what runs"
+    },
+    {
+      "id": "balanced",
+      "name": "Risk parity",
+      "tag": "no momentum screen",
+      "what": "Own every leg above its 200-day average, with no momentum filter at all, and split the risk 1/vol — one leg per cluster where the tier has clusters.",
+      "wins": "broad participation: the least opinionated way to be invested",
+      "loses": "a market that is above its average and falling — it holds the leg the other four styles have already sold"
     }
   ],
   "history": [

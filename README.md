@@ -5,7 +5,8 @@ the source of truth is `workspace/marketing/landing/` in the wealthclaw workspac
 
 Files, all produced by the same deterministic build:
 
-- `index.html` — the packages (the selling tiers), the board, the 31-market sheet, the build-your-own-board widget, the proof card
+- `index.html` — the packages (the selling tiers), the desk book (live trade updates), the board, the 31-market sheet, the build-your-own-board widget, the tier × sector matrix, the proof card
+- `trades.json` — the desk book: every basket leg as a position (entry = our first recorded read, last = the live sheet, band = the basket's own ±% rule), with stops/targets read off recorded marks
 - `packages.json` — each basket: weights (total 100), live combined move, index level, the level series the graph is drawn from, the research note, and the package-level alert state
 - `feed.xml` — RSS 2.0, one item per alert (guid = sha256 of the chain entry) — package basket moves included
 - `board.json` — current value, threshold, distance, trend, chain head, plus the market sheet and the package summary
@@ -13,6 +14,11 @@ Files, all produced by the same deterministic build:
 - `readings.json` — the raw readings behind this build
 - `quotes.json` — all 31 quotes (crypto, FX, metals, indices, energy, stocks) in one object;
   this is what the page's board widget reads, so the numbers you see are the numbers published
+- `members.json` — the sign-in list the page checks against: per member, a masked label,
+  `sha256("wc1|email|"+address)[0:16]`, `sha256("wc1|token|"+token)[0:24]`, since/until and state.
+  No plaintext address and no token ships; the page hashes what you type in the tab and compares.
+  A revoke lands on the next build, because the list is built with the page — `wealthclaw login verify`
+  checks ledger and shipped copy agree row for row.
 
 The board is honest by construction: values come from public keyless APIs, a failed
 fetch renders as STALE rather than a guess, and every alert is appended to a

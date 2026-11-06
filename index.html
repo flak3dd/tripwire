@@ -1,8 +1,8 @@
 <!doctype html>
 <html lang="en-AU"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Tripwire — Emails you when a market crosses your number — crypto, ASX and US stocks, FX, gold, oil. No charts, no hot takes, no predictions.</title>
-<meta name="description" content="Hourly tripwires on 31 markets across six classes: Bitcoin to BHP, the ASX 200 to gold, AUD/USD to WTI. You name the number — or just ask for a ±5% move — and it tells you when arithmetic crosses it. Every alert lands in a hash-chained log you can verify yourself. Free quotes, free feed, free board; paid hourly email.">
+<title>Tripwire — A basket, not a tip: three weighted packages with a live combined metric, a live graph, and a tripwire on the basket itself.</title>
+<meta name="description" content="Three signal packages — ASX, global, momentum — where the weights add to 100% by construction, so &quot;combined&quot; is arithmetic and not a promise. Each package ships with its live combined move, a live graph drawn from our own hourly reads, the research note behind the weights, and an hourly alert when the basket itself moves past its ±% — on a hash-chained log you can verify. Underneath: 31 markets across six classes from public keyless APIs. Free quotes, free feed, free board; paid hourly email.">
 <link rel="alternate" type="application/rss+xml" title="Tripwire — alert feed" href="feed.xml">
 <style>
   :root{--bg:#0a0c10;--fg:#e8edf5;--dim:#8b96a8;--line:#1e2430;--hot:#ff5c47;--live:#31d68a;--warn:#e3b341}
@@ -62,12 +62,204 @@
   .presets{padding:2px 18px 14px;color:var(--dim);font-size:12px}
   .chip{display:inline-block;margin:4px 6px 0 0;padding:6px 10px;border:1px solid var(--line);border-radius:999px;color:var(--dim);text-decoration:none;font-size:12px}
   .chip:hover{color:var(--fg);border-color:#2d3542}
+  /* packages: the tiers, rendered from packages.json + the live sheet */
+  .pkg{display:grid;gap:16px;grid-template-columns:1fr;margin:16px 0}
+  .pkgcard{border:1px solid var(--line);border-radius:14px;background:#0d1117;padding:18px}
+  .pkghead{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+  .pkghead b{font-size:17px}
+  .ticker{font:11px/1 ui-monospace,monospace;letter-spacing:.1em;color:var(--dim)}
+  .pkgprice{font:15px/1 ui-monospace,monospace;color:var(--live);white-space:nowrap}
+  .pkgmeta{color:var(--dim);font-size:12px;margin-top:4px}
+  .pkgbig{font:26px/1.25 ui-monospace,SFMono-Regular,Menlo,monospace;font-weight:700;margin:12px 0 4px}
+  .pkgbig.up{color:var(--live)}.pkgbig.down{color:var(--hot)}
+  .pkglab{font:12px/1.3 ui-sans-serif,sans-serif;color:var(--dim);font-weight:400;margin-left:8px}
+  .sparkwrap{margin:8px 0 10px}
+  .spark{width:100%;height:56px;display:block;background:#0a0f15;border:1px solid var(--line);border-radius:8px}
+  .spark.empty{display:flex;align-items:center;justify-content:center;color:var(--dim);font:11px/1.4 ui-monospace,monospace;height:56px;padding:0 10px;text-align:center}
+  .wbar{display:flex;height:8px;border-radius:6px;overflow:hidden;margin:12px 0 8px;background:#161c26}
+  .wseg{height:100%}
+  .holds{list-style:none;margin:0 0 10px;padding:0}
+  .holds li{display:grid;grid-template-columns:7px 1fr 38px 96px 58px 62px;gap:8px;align-items:center;
+    padding:4px 0;border-bottom:1px solid #131922;font:12px/1.4 ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--dim)}
+  .holds li:last-child{border-bottom:0}
+  .holds .dot{width:7px;height:7px;border-radius:2px;display:block}
+  .hlbl{color:var(--fg);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .hu{opacity:.65}
+  .hc.up{color:var(--live)}.hc.down{color:var(--hot)}
+  @media(max-width:560px){.holds li{grid-template-columns:7px 1fr 46px 62px;gap:6px}.holds .hv,.holds .hk{display:none}}
+  .thesis{font-size:14px;line-height:1.5;margin:10px 0}
+  .res{color:var(--dim);font-size:12.5px;margin:8px 0 10px;border-left:2px solid #1e2430;padding-left:12px}
+  .reshead{color:var(--fg);font-size:13px;font-weight:600;margin-bottom:6px}
+  .res ul{margin:0;padding-left:16px}
+  .res li{margin:6px 0}
+  .pkgalert{border-top:1px solid var(--line);padding-top:10px;color:var(--dim);font-size:12.5px}
+  .fired{color:#fff;background:var(--hot);padding:2px 5px;border-radius:4px;font-size:10px;letter-spacing:.08em}
   .live-dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--live);margin-right:6px;vertical-align:middle}
 </style></head>
 <body><div class="wrap">
   <p class="kick">🦞 WEALTHCLAW · tripwires on things you already own</p>
   <h1>Tripwire</h1>
-  <p class="sub">Emails you when a market crosses your number — crypto, ASX and US stocks, FX, gold, oil. No charts, no hot takes, no predictions.</p>
+  <p class="sub">A basket, not a tip: three weighted packages with a live combined metric, a live graph, and a tripwire on the basket itself.</p>
+
+  <h3 id="packages">Signal packages — a basket, a live graph, and the alerts that watch it</h3>
+  <p class="sub">Weights add to 100% by construction, so "combined" is arithmetic, not a claim. You get the basket, its live combined metric, the research note behind the weights, and a tripwire on the basket itself. The graph is drawn from our own hourly reads — no backtest, because a backtest is a history someone could have written after the fact.</p>
+  <div class="pkg">
+      <article class="pkgcard">
+        <div class="pkghead">
+          <div><b>ASX Steady</b> <span class="ticker">asx-steady</span></div>
+          <div class="pkgprice">A$29/mo</div>
+        </div>
+        <div class="pkgmeta">4 holdings · weights total 100% · rebalanced daily, back to these weights · risk lower · horizon 6–12 months</div>
+        <div class="pkgbig down">-0.70%<span class="pkglab">combined, today — the weighted sum of the legs below</span></div>
+        <div class="sparkwrap"><div class="spark empty"><span>index 100.00 at first read — this graph grows one point per hourly build</span></div></div>
+        <div class="wbar"><span class="wseg" style="width:30%;background:#31d68a" title="CommBank 30%"></span><span class="wseg" style="width:20%;background:#4a9eff" title="Westpac 20%"></span><span class="wseg" style="width:25%;background:#e3b341" title="BHP Group 25%"></span><span class="wseg" style="width:25%;background:#c084fc" title="ASX 200 25%"></span></div>
+        <ul class="holds">
+          <li><span class="dot" style="background:#31d68a"></span>
+            <span class="hlbl">CommBank</span><span class="hw">30%</span>
+            <span class="hv">167.37 <span class="hu">A$</span></span>
+            <span class="hc up">+0.65%</span>
+            <span class="hk">+0.20pp</span></li>
+          <li><span class="dot" style="background:#4a9eff"></span>
+            <span class="hlbl">Westpac</span><span class="hw">20%</span>
+            <span class="hv">36.94 <span class="hu">A$</span></span>
+            <span class="hc up">+0.82%</span>
+            <span class="hk">+0.16pp</span></li>
+          <li><span class="dot" style="background:#e3b341"></span>
+            <span class="hlbl">BHP Group</span><span class="hw">25%</span>
+            <span class="hv">57.13 <span class="hu">A$</span></span>
+            <span class="hc down">-3.17%</span>
+            <span class="hk">-0.79pp</span></li>
+          <li><span class="dot" style="background:#c084fc"></span>
+            <span class="hlbl">ASX 200</span><span class="hw">25%</span>
+            <span class="hv">8,969.2 <span class="hu">pts</span></span>
+            <span class="hc down">-1.06%</span>
+            <span class="hk">-0.27pp</span></li>
+        </ul>
+        <p class="thesis">The four things an Australian already owns, in the weights an Australian already owns them: two banks for the earnings that pay the dividend, BHP for the commodity cycle, and the index for everything else.</p>
+        <div class="res">
+          <div class="reshead">Research note — why these weights</div>
+          <ul>
+            <li>Banks are 50 points because Australian bank earnings move with the cash rate and housing credit, not with US tech sentiment — the two banks are half the basket and today&#39;s combined move is mostly theirs.</li>
+            <li>BHP at 25 is the commodity leg: iron ore and copper set its revenue, so this basket already contains a China-growth bet, sold to you as one stock.</li>
+            <li>The ASX 200 leg is 25 points of diversification for free — it holds the other three at slightly different weights, so a single-name blow-up cannot take the basket alone.</li>
+            <li>The honest risk is concentration by geography: four Australian exposures means a domestic recession is a basket-wide event, not one holding&#39;s problem.</li>
+          </ul>
+          <p class="note"><b>What would invalidate it:</b> A sustained fall in the cash rate that compresses bank net interest margins at the same time the iron ore price falls — both legs down for one macro reason, which is exactly when a 50-point bank weight stops diversifying.</p>
+        </div>
+        <div class="pkgalert"><span class="live-dot"></span>Armed at ±2.5% / 24h — <b>warming up</b>: it needs 24h of hourly reads before a basket move means anything.<br>
+          <span class="note">Index 99.92 · 1 hourly read(s) since 2026-11-06 · -0.08% measured from our own recorded reads, not a backtest.</span></div>
+        <a class="btn" href="mailto:andrew098710@gmail.com?subject=Tripwire%20package%3A%20ASX%20Steady">Take ASX Steady — A$29/mo</a>
+      </article>
+      <article class="pkgcard">
+        <div class="pkghead">
+          <div><b>Global Core</b> <span class="ticker">global-core</span></div>
+          <div class="pkgprice">A$59/mo</div>
+        </div>
+        <div class="pkgmeta">5 holdings · weights total 100% · rebalanced daily, back to these weights · risk moderate · horizon 12–24 months</div>
+        <div class="pkgbig down">-3.36%<span class="pkglab">combined, today — the weighted sum of the legs below</span></div>
+        <div class="sparkwrap"><div class="spark empty"><span>index 100.00 at first read — this graph grows one point per hourly build</span></div></div>
+        <div class="wbar"><span class="wseg" style="width:30%;background:#31d68a" title="S&amp;P 500 30%"></span><span class="wseg" style="width:20%;background:#4a9eff" title="Nasdaq Composite 20%"></span><span class="wseg" style="width:15%;background:#e3b341" title="Apple 15%"></span><span class="wseg" style="width:15%;background:#c084fc" title="Microsoft 15%"></span><span class="wseg" style="width:20%;background:#ff5c47" title="Gold (front month) 20%"></span></div>
+        <ul class="holds">
+          <li><span class="dot" style="background:#31d68a"></span>
+            <span class="hlbl">S&amp;P 500</span><span class="hw">30%</span>
+            <span class="hv">7,353.7 <span class="hu">pts</span></span>
+            <span class="hc down">-4.36%</span>
+            <span class="hk">-1.31pp</span></li>
+          <li><span class="dot" style="background:#4a9eff"></span>
+            <span class="hlbl">Nasdaq Composite</span><span class="hw">20%</span>
+            <span class="hv">24,315 <span class="hu">pts</span></span>
+            <span class="hc down">-5.52%</span>
+            <span class="hk">-1.10pp</span></li>
+          <li><span class="dot" style="background:#e3b341"></span>
+            <span class="hlbl">Apple</span><span class="hw">15%</span>
+            <span class="hv">344.17 <span class="hu">USD</span></span>
+            <span class="hc down">-1.53%</span>
+            <span class="hk">-0.23pp</span></li>
+          <li><span class="dot" style="background:#c084fc"></span>
+            <span class="hlbl">Microsoft</span><span class="hw">15%</span>
+            <span class="hv">535.93 <span class="hu">USD</span></span>
+            <span class="hc down">-3.58%</span>
+            <span class="hk">-0.54pp</span></li>
+          <li><span class="dot" style="background:#ff5c47"></span>
+            <span class="hlbl">Gold (front month)</span><span class="hw">20%</span>
+            <span class="hv">4,076.6 <span class="hu">USD/oz</span></span>
+            <span class="hc down">-0.9%</span>
+            <span class="hk">-0.18pp</span></li>
+        </ul>
+        <p class="thesis">The two things people actually argue about — US earnings and the price of safety — in one number: 80 points of US equity in three shapes, against 20 points of gold as the thing that is not equity.</p>
+        <div class="res">
+          <div class="reshead">Research note — why these weights</div>
+          <ul>
+            <li>The index legs (50) and the single names (30) overlap by construction: Apple and Microsoft are among the largest weights inside both the S&amp;P 500 and the Nasdaq, so real single-name exposure is higher than the 30 points shown. That is stated here rather than hidden behind a label.</li>
+            <li>Gold at 20 is the only holding whose price is not somebody&#39;s earnings — it moves on real yields and reserve demand, so it is the leg that can carry the basket on a day US equity does not.</li>
+            <li>FX is inside this basket whether you like it or not: three holdings quote in USD, so an Australian holder is also long USD against AUD. Weights act on returns, so this basket does not pretend the currency is neutral.</li>
+            <li>No bonds, no cash leg. The basket is always fully invested, which means its only defence is the 20-point gold position.</li>
+          </ul>
+          <p class="note"><b>What would invalidate it:</b> A US earnings recession with gold falling at the same time (real yields up, dollar up) — then 80 points of equity and the 20-point hedge go down together.</p>
+        </div>
+        <div class="pkgalert"><span class="live-dot"></span>Armed at ±3% / 24h — <b>warming up</b>: it needs 24h of hourly reads before a basket move means anything.<br>
+          <span class="note">Index 100.01 · 1 hourly read(s) since 2026-11-06 · +0.01% measured from our own recorded reads, not a backtest.</span></div>
+        <a class="btn" href="mailto:andrew098710@gmail.com?subject=Tripwire%20package%3A%20Global%20Core">Take Global Core — A$59/mo</a>
+      </article>
+      <article class="pkgcard">
+        <div class="pkghead">
+          <div><b>Momentum</b> <span class="ticker">momentum</span></div>
+          <div class="pkgprice">A$99/mo</div>
+        </div>
+        <div class="pkgmeta">6 holdings · weights total 100% · rebalanced daily, back to these weights · risk higher · horizon 1–6 months</div>
+        <div class="pkgbig down">-5.78%<span class="pkglab">combined, today — the weighted sum of the legs below</span></div>
+        <div class="sparkwrap"><div class="spark empty"><span>index 100.00 at first read — this graph grows one point per hourly build</span></div></div>
+        <div class="wbar"><span class="wseg" style="width:30%;background:#31d68a" title="Bitcoin 30%"></span><span class="wseg" style="width:20%;background:#4a9eff" title="Ethereum 20%"></span><span class="wseg" style="width:20%;background:#e3b341" title="Nvidia 20%"></span><span class="wseg" style="width:10%;background:#c084fc" title="Solana 10%"></span><span class="wseg" style="width:10%;background:#ff5c47" title="Tesla 10%"></span><span class="wseg" style="width:10%;background:#22d3ee" title="WTI crude 10%"></span></div>
+        <ul class="holds">
+          <li><span class="dot" style="background:#31d68a"></span>
+            <span class="hlbl">Bitcoin</span><span class="hw">30%</span>
+            <span class="hv">110,077 <span class="hu">A$</span></span>
+            <span class="hc down">-4.06%</span>
+            <span class="hk">-1.22pp</span></li>
+          <li><span class="dot" style="background:#4a9eff"></span>
+            <span class="hlbl">Ethereum</span><span class="hw">20%</span>
+            <span class="hv">3,240.35 <span class="hu">A$</span></span>
+            <span class="hc down">-6.25%</span>
+            <span class="hk">-1.25pp</span></li>
+          <li><span class="dot" style="background:#e3b341"></span>
+            <span class="hlbl">Nvidia</span><span class="hw">20%</span>
+            <span class="hv">181.60 <span class="hu">USD</span></span>
+            <span class="hc down">-9.26%</span>
+            <span class="hk">-1.85pp</span></li>
+          <li><span class="dot" style="background:#c084fc"></span>
+            <span class="hlbl">Solana</span><span class="hw">10%</span>
+            <span class="hv">130.52 <span class="hu">A$</span></span>
+            <span class="hc down">-4.84%</span>
+            <span class="hk">-0.48pp</span></li>
+          <li><span class="dot" style="background:#ff5c47"></span>
+            <span class="hlbl">Tesla</span><span class="hw">10%</span>
+            <span class="hv">343.69 <span class="hu">USD</span></span>
+            <span class="hc down">-10.77%</span>
+            <span class="hk">-1.08pp</span></li>
+          <li><span class="dot" style="background:#22d3ee"></span>
+            <span class="hlbl">WTI crude</span><span class="hw">10%</span>
+            <span class="hv">91.41 <span class="hu">USD/bbl</span></span>
+            <span class="hc up">+0.98%</span>
+            <span class="hk">+0.10pp</span></li>
+        </ul>
+        <p class="thesis">The highest-beta liquid things we can price for free, weighted so no single one can sink the basket: 60 points of crypto, 30 of high-beta US equity, 10 of crude.</p>
+        <div class="res">
+          <div class="reshead">Research note — why these weights</div>
+          <ul>
+            <li>Crypto is 60 points and correlates with itself: BTC and ETH have traded as one macro position for years, and SOL is a higher-amplitude version of the same trade. Three names, closer to one exposure — the weights say 60, the truth is nearer 60 as a single bet.</li>
+            <li>NVDA at 20 is the AI capex theme in single-name form: the same thesis as the Nasdaq leg of Global Core, at roughly twice the amplitude.</li>
+            <li>WTI at 10 is the only leg that is not a risk asset in the same way — crude spikes on supply shocks when equity is falling, so it is a partial hedge that pays no income and can gap on a single headline.</li>
+            <li>This basket is built to move. The ±6% alert is the feature, not a fault: expect it to trip most often, and expect drawdowns of a size the other two do not have.</li>
+          </ul>
+          <p class="note"><b>What would invalidate it:</b> A liquidity event where crypto, high-beta equity and crude fall on the same day — the 60-point crypto leg and the 30-point equity leg collapse into one position at the worst possible moment.</p>
+        </div>
+        <div class="pkgalert"><span class="live-dot"></span>Armed at ±6% / 24h — <b>warming up</b>: it needs 24h of hourly reads before a basket move means anything.<br>
+          <span class="note">Index 99.98 · 1 hourly read(s) since 2026-11-06 · -0.02% measured from our own recorded reads, not a backtest.</span></div>
+        <a class="btn" href="mailto:andrew098710@gmail.com?subject=Tripwire%20package%3A%20Momentum">Take Momentum — A$99/mo</a>
+      </article>
+  </div>
+  <p class="stamp">A basket is a set of weights, not a promise: nothing here forecasts a return. The combined % is each leg's own last-day change (prior close for equities, indices, futures and metals; trailing 24h for crypto; prior ECB business day for FX) times its weight. Every leg is live at this build.</p>
+
 
   <section class="card">
     <h2>Live right now — the board you'd get mailed</h2>
@@ -75,26 +267,26 @@
       <li class="row armed">
         <div class="row-top"><span class="lbl">Bitcoin below A$100k</span>
           <span class="state">ARMED</span></div>
-        <div class="nums"><span class="now">109,907</span> <span class="vs">vs 100,000 · lt</span></div>
-        <div class="bar"><i style="width:63.94406179770169%"></i></div>
-        <div class="hint">9.0% away — trips when it falls to 100,000</div>
-        <div class="hint sub2">trend over 4 reads: 0.06pp closer · closest 8.84% · 02:05–02:35Z</div>
+        <div class="nums"><span class="now">110,001</span> <span class="vs">vs 100,000 · lt</span></div>
+        <div class="bar"><i style="width:63.63305788129199%"></i></div>
+        <div class="hint">9.1% away — trips when it falls to 100,000</div>
+        <div class="hint sub2">trend over 6 reads: 0.18pp further · closest 8.84% · 02:05–03:02Z</div>
       </li>
       <li class="row armed">
         <div class="row-top"><span class="lbl">Ethereum below A$3k</span>
           <span class="state">ARMED</span></div>
-        <div class="nums"><span class="now">3,236</span> <span class="vs">vs 3,000 · lt</span></div>
-        <div class="bar"><i style="width:70.80984870958174%"></i></div>
-        <div class="hint">7.3% away — trips when it falls to 3,000</div>
-        <div class="hint sub2">trend over 4 reads: 0.02pp closer · closest 7.07% · 02:05–02:35Z</div>
+        <div class="nums"><span class="now">3,238</span> <span class="vs">vs 3,000 · lt</span></div>
+        <div class="bar"><i style="width:70.59799074122684%"></i></div>
+        <div class="hint">7.4% away — trips when it falls to 3,000</div>
+        <div class="hint sub2">trend over 6 reads: 0.26pp further · closest 7.07% · 02:05–03:02Z</div>
       </li>
       <li class="row armed">
         <div class="row-top"><span class="lbl">Solana below A$120</span>
           <span class="state">ARMED</span></div>
-        <div class="nums"><span class="now">130</span> <span class="vs">vs 120 · lt</span></div>
-        <div class="bar"><i style="width:68.55036855036852%"></i></div>
-        <div class="hint">7.9% away — trips when it falls to 120</div>
-        <div class="hint sub2">trend over 3 reads: flat · closest 7.69% · 02:05–02:05Z</div>
+        <div class="nums"><span class="now">131</span> <span class="vs">vs 120 · lt</span></div>
+        <div class="bar"><i style="width:67.75973030953108%"></i></div>
+        <div class="hint">8.1% away — trips when it falls to 120</div>
+        <div class="hint sub2">trend over 5 reads: 0.37pp further · closest 7.69% · 02:05–03:02Z</div>
       </li>
       <li class="row armed">
         <div class="row-top"><span class="lbl">AUD above 0.72 USD</span>
@@ -102,101 +294,101 @@
         <div class="nums"><span class="now">0.7001</span> <span class="vs">vs 0.72 · gt</span></div>
         <div class="bar"><i style="width:88.60669085506959%"></i></div>
         <div class="hint">2.8% away — trips when it rises to 0.72</div>
-        <div class="hint sub2">trend over 4 reads: flat · closest 2.85% · 02:05–02:35Z</div>
+        <div class="hint sub2">trend over 6 reads: flat · closest 2.85% · 02:05–03:02Z</div>
       </li>
       <li class="row armed">
         <div class="row-top"><span class="lbl">Gold above 4200 USD/oz</span>
           <span class="state">ARMED</span></div>
-        <div class="nums"><span class="now">4,066</span> <span class="vs">vs 4,200 · gt</span></div>
-        <div class="bar"><i style="width:86.8124%"></i></div>
-        <div class="hint">3.3% away — trips when it rises to 4,200</div>
-        <div class="hint sub2">first reading on record — the trend builds itself, one line per hourly check</div>
+        <div class="nums"><span class="now">4,077</span> <span class="vs">vs 4,200 · gt</span></div>
+        <div class="bar"><i style="width:87.89187067654417%"></i></div>
+        <div class="hint">3.0% away — trips when it rises to 4,200</div>
+        <div class="hint sub2">trend over 3 reads: 0.21pp closer · closest 3.03% · 02:35–03:02Z</div>
       </li>
       <li class="row armed">
         <div class="row-top"><span class="lbl">ASX 200 below 8500 pts</span>
           <span class="state">ARMED</span></div>
-        <div class="nums"><span class="now">8,972</span> <span class="vs">vs 8,500 · lt</span></div>
-        <div class="bar"><i style="width:78.95675434685688%"></i></div>
-        <div class="hint">5.3% away — trips when it falls to 8,500</div>
-        <div class="hint sub2">first reading on record — the trend builds itself, one line per hourly check</div>
+        <div class="nums"><span class="now">8,969</span> <span class="vs">vs 8,500 · lt</span></div>
+        <div class="bar"><i style="width:79.0750568612585%"></i></div>
+        <div class="hint">5.2% away — trips when it falls to 8,500</div>
+        <div class="hint sub2">trend over 3 reads: 0.01pp closer · closest 5.21% · 02:35–03:02Z</div>
       </li>
       <li class="row armed">
         <div class="row-top"><span class="lbl">CommBank below 160 A$</span>
           <span class="state">ARMED</span></div>
         <div class="nums"><span class="now">167</span> <span class="vs">vs 160 · lt</span></div>
-        <div class="bar"><i style="width:82.40917782026766%"></i></div>
+        <div class="bar"><i style="width:82.38632968871362%"></i></div>
         <div class="hint">4.4% away — trips when it falls to 160</div>
-        <div class="hint sub2">first reading on record — the trend builds itself, one line per hourly check</div>
+        <div class="hint sub2">trend over 3 reads: 0.02pp closer · closest 4.28% · 02:35–03:02Z</div>
       </li>
       <li class="row armed">
         <div class="row-top"><span class="lbl">Bitcoin moves 5% in 24h</span>
           <span class="state">ARMED</span></div>
-        <div class="nums"><span class="now">109,907</span> <span class="vs">vs ±5% over 24h</span></div>
+        <div class="nums"><span class="now">110,001</span> <span class="vs">vs ±5% over 24h</span></div>
         <div class="bar"><i style="width:0%"></i></div>
         <div class="hint">warming up — needs 24h of hourly reads before this can fire</div>
         <div class="hint sub2">moves, not levels — computed from our own hourly readings, never predicted</div>
       </li>
     </ul>
   </section>
-  <p class="stamp">Read 2026-11-06T02:40:47.265Z · 8 tripwires · 1 from ≤60s cache · sources: public keyless APIs (CoinGecko, ECB via Frankfurter, Coinbase spot, Yahoo Finance) · refreshed hourly.</p>
+  <p class="stamp">Read 2026-11-06T03:02:54.543Z · 8 tripwires · 8 from ≤60s cache · sources: public keyless APIs (CoinGecko, ECB via Frankfurter, Yahoo Finance) · refreshed hourly.</p>
 
   <section class="card" id="markets">
     <h2><span class="live-dot"></span>Every market we can read — 31 of them, six classes</h2>
     <ul>
       <li class="row grp"><span class="kick2">Crypto</span></li>
       <li class="row mkt ">
-        <div class="mkt-top"><span class="lbl">Bitcoin</span></div>
-        <div class="mkt-bot"><span class="mono2">109,881</span> <span class="vs">A$</span></div>
+        <div class="mkt-top"><span class="lbl">Bitcoin</span><span class="chg down">▼ 4.06%</span></div>
+        <div class="mkt-bot"><span class="mono2">110,077</span> <span class="vs">A$</span></div>
       </li>
       <li class="row mkt ">
-        <div class="mkt-top"><span class="lbl">Ethereum</span></div>
-        <div class="mkt-bot"><span class="mono2">3,235.5</span> <span class="vs">A$</span></div>
+        <div class="mkt-top"><span class="lbl">Ethereum</span><span class="chg down">▼ 6.25%</span></div>
+        <div class="mkt-bot"><span class="mono2">3,240.35</span> <span class="vs">A$</span></div>
       </li>
       <li class="row mkt ">
-        <div class="mkt-top"><span class="lbl">Solana</span></div>
-        <div class="mkt-bot"><span class="mono2">130.21</span> <span class="vs">A$</span></div>
+        <div class="mkt-top"><span class="lbl">Solana</span><span class="chg down">▼ 4.84%</span></div>
+        <div class="mkt-bot"><span class="mono2">130.52</span> <span class="vs">A$</span></div>
       </li>
       <li class="row mkt ">
-        <div class="mkt-top"><span class="lbl">XRP</span></div>
+        <div class="mkt-top"><span class="lbl">XRP</span><span class="chg down">▼ 5.54%</span></div>
         <div class="mkt-bot"><span class="mono2">1.760</span> <span class="vs">A$</span></div>
       </li>
       <li class="row mkt ">
-        <div class="mkt-top"><span class="lbl">Cardano</span></div>
+        <div class="mkt-top"><span class="lbl">Cardano</span><span class="chg down">▼ 5.39%</span></div>
         <div class="mkt-bot"><span class="mono2">0.2674</span> <span class="vs">A$</span></div>
       </li>
       <li class="row mkt ">
-        <div class="mkt-top"><span class="lbl">Dogecoin</span></div>
-        <div class="mkt-bot"><span class="mono2">0.1043</span> <span class="vs">A$</span></div>
+        <div class="mkt-top"><span class="lbl">Dogecoin</span><span class="chg down">▼ 5.18%</span></div>
+        <div class="mkt-bot"><span class="mono2">0.1042</span> <span class="vs">A$</span></div>
       </li>
       <li class="row grp"><span class="kick2">Exchange rates</span></li>
       <li class="row mkt ">
-        <div class="mkt-top"><span class="lbl">AUD/USD</span></div>
+        <div class="mkt-top"><span class="lbl">AUD/USD</span><span class="chg down">▼ 0.21%</span></div>
         <div class="mkt-bot"><span class="mono2">0.7001</span> <span class="vs">USD</span></div>
       </li>
       <li class="row mkt ">
-        <div class="mkt-top"><span class="lbl">AUD/EUR</span></div>
+        <div class="mkt-top"><span class="lbl">AUD/EUR</span><span class="chg up">▲ 0.17%</span></div>
         <div class="mkt-bot"><span class="mono2">0.6237</span> <span class="vs">EUR</span></div>
       </li>
       <li class="row mkt ">
-        <div class="mkt-top"><span class="lbl">AUD/GBP</span></div>
+        <div class="mkt-top"><span class="lbl">AUD/GBP</span><span class="chg up">▲ 0.09%</span></div>
         <div class="mkt-bot"><span class="mono2">0.5201</span> <span class="vs">GBP</span></div>
       </li>
       <li class="row mkt ">
-        <div class="mkt-top"><span class="lbl">AUD/JPY</span></div>
+        <div class="mkt-top"><span class="lbl">AUD/JPY</span><span class="chg down">▼ 0.07%</span></div>
         <div class="mkt-bot"><span class="mono2">110.93</span> <span class="vs">JPY</span></div>
       </li>
       <li class="row mkt ">
-        <div class="mkt-top"><span class="lbl">USD/JPY</span></div>
+        <div class="mkt-top"><span class="lbl">USD/JPY</span><span class="chg up">▲ 0.13%</span></div>
         <div class="mkt-bot"><span class="mono2">158.46</span> <span class="vs">JPY</span></div>
       </li>
       <li class="row mkt ">
-        <div class="mkt-top"><span class="lbl">EUR/USD</span></div>
+        <div class="mkt-top"><span class="lbl">EUR/USD</span><span class="chg down">▼ 0.38%</span></div>
         <div class="mkt-bot"><span class="mono2">1.1224</span> <span class="vs">USD</span></div>
       </li>
       <li class="row grp"><span class="kick2">Indices</span></li>
       <li class="row mkt ">
-        <div class="mkt-top"><span class="lbl">ASX 200</span><span class="chg down">▼ 1.03%</span></div>
-        <div class="mkt-bot"><span class="mono2">8,972</span> <span class="vs">pts</span></div>
+        <div class="mkt-top"><span class="lbl">ASX 200</span><span class="chg down">▼ 1.06%</span></div>
+        <div class="mkt-bot"><span class="mono2">8,969.2</span> <span class="vs">pts</span></div>
       </li>
       <li class="row mkt ">
         <div class="mkt-top"><span class="lbl">S&amp;P 500</span><span class="chg down">▼ 4.36%</span></div>
@@ -215,47 +407,47 @@
         <div class="mkt-bot"><span class="mono2">10,782.7</span> <span class="vs">pts</span></div>
       </li>
       <li class="row mkt ">
-        <div class="mkt-top"><span class="lbl">Nikkei 225</span><span class="chg down">▼ 5.49%</span></div>
-        <div class="mkt-bot"><span class="mono2">57,722.6</span> <span class="vs">pts</span></div>
+        <div class="mkt-top"><span class="lbl">Nikkei 225</span><span class="chg down">▼ 5.27%</span></div>
+        <div class="mkt-bot"><span class="mono2">57,858.6</span> <span class="vs">pts</span></div>
       </li>
       <li class="row grp"><span class="kick2">Metals</span></li>
       <li class="row mkt ">
-        <div class="mkt-top"><span class="lbl">Gold</span></div>
-        <div class="mkt-bot"><span class="mono2">4,067.17</span> <span class="vs">USD/oz</span></div>
+        <div class="mkt-top"><span class="lbl">Gold (front month)</span><span class="chg down">▼ 0.9%</span></div>
+        <div class="mkt-bot"><span class="mono2">4,076.6</span> <span class="vs">USD/oz</span></div>
       </li>
       <li class="row mkt ">
-        <div class="mkt-top"><span class="lbl">Silver</span></div>
-        <div class="mkt-bot"><span class="mono2">52.039</span> <span class="vs">USD/oz</span></div>
+        <div class="mkt-top"><span class="lbl">Silver (front month)</span><span class="chg down">▼ 0.63%</span></div>
+        <div class="mkt-bot"><span class="mono2">52.045</span> <span class="vs">USD/oz</span></div>
       </li>
       <li class="row mkt ">
-        <div class="mkt-top"><span class="lbl">Platinum</span></div>
-        <div class="mkt-bot"><span class="mono2">1,512.54</span> <span class="vs">USD/oz</span></div>
+        <div class="mkt-top"><span class="lbl">Platinum (front month)</span><span class="chg up">▲ 0.43%</span></div>
+        <div class="mkt-bot"><span class="mono2">1,528.9</span> <span class="vs">USD/oz</span></div>
       </li>
       <li class="row grp"><span class="kick2">Energy</span></li>
       <li class="row mkt ">
-        <div class="mkt-top"><span class="lbl">WTI crude</span><span class="chg up">▲ 1.24%</span></div>
-        <div class="mkt-bot"><span class="mono2">91.64</span> <span class="vs">USD/bbl</span></div>
+        <div class="mkt-top"><span class="lbl">WTI crude</span><span class="chg up">▲ 0.98%</span></div>
+        <div class="mkt-bot"><span class="mono2">91.41</span> <span class="vs">USD/bbl</span></div>
       </li>
       <li class="row mkt ">
-        <div class="mkt-top"><span class="lbl">Brent crude</span><span class="chg up">▲ 1.64%</span></div>
-        <div class="mkt-bot"><span class="mono2">99.90</span> <span class="vs">USD/bbl</span></div>
+        <div class="mkt-top"><span class="lbl">Brent crude</span><span class="chg up">▲ 1.38%</span></div>
+        <div class="mkt-bot"><span class="mono2">99.65</span> <span class="vs">USD/bbl</span></div>
       </li>
       <li class="row mkt ">
-        <div class="mkt-top"><span class="lbl">Natural gas</span><span class="chg up">▲ 1.26%</span></div>
-        <div class="mkt-bot"><span class="mono2">2.984</span> <span class="vs">USD</span></div>
+        <div class="mkt-top"><span class="lbl">Natural gas</span><span class="chg up">▲ 1.7%</span></div>
+        <div class="mkt-bot"><span class="mono2">2.997</span> <span class="vs">USD</span></div>
       </li>
       <li class="row grp"><span class="kick2">Stocks</span></li>
       <li class="row mkt ">
-        <div class="mkt-top"><span class="lbl">BHP Group</span><span class="chg down">▼ 3.24%</span></div>
-        <div class="mkt-bot"><span class="mono2">57.09</span> <span class="vs">A$</span></div>
+        <div class="mkt-top"><span class="lbl">BHP Group</span><span class="chg down">▼ 3.17%</span></div>
+        <div class="mkt-bot"><span class="mono2">57.13</span> <span class="vs">A$</span></div>
       </li>
       <li class="row mkt ">
-        <div class="mkt-top"><span class="lbl">CommBank</span><span class="chg up">▲ 0.63%</span></div>
-        <div class="mkt-bot"><span class="mono2">167.33</span> <span class="vs">A$</span></div>
+        <div class="mkt-top"><span class="lbl">CommBank</span><span class="chg up">▲ 0.65%</span></div>
+        <div class="mkt-bot"><span class="mono2">167.37</span> <span class="vs">A$</span></div>
       </li>
       <li class="row mkt ">
-        <div class="mkt-top"><span class="lbl">Westpac</span><span class="chg up">▲ 0.87%</span></div>
-        <div class="mkt-bot"><span class="mono2">36.96</span> <span class="vs">A$</span></div>
+        <div class="mkt-top"><span class="lbl">Westpac</span><span class="chg up">▲ 0.82%</span></div>
+        <div class="mkt-bot"><span class="mono2">36.94</span> <span class="vs">A$</span></div>
       </li>
       <li class="row mkt ">
         <div class="mkt-top"><span class="lbl">Apple</span><span class="chg down">▼ 1.53%</span></div>
@@ -275,18 +467,18 @@
       </li>
     </ul>
   </section>
-  <p class="stamp">All 31 quotes fetched at build time from four keyless public APIs: CoinGecko (crypto), ECB via Frankfurter (FX), Coinbase spot (metals), Yahoo Finance (equities, indices, futures). None stale right now. The % is each source's own previous close, not our arithmetic.</p>
+  <p class="stamp">All 31 quotes fetched at build time from three keyless public APIs: CoinGecko (crypto), ECB via Frankfurter (FX), Yahoo Finance (equities, indices, energy and COMEX metals futures). None stale right now. The % is each leg's own last-day change — prior close for equities, indices and futures; trailing 24h for crypto; prior ECB business day for FX — never our arithmetic.</p>
 
   <section class="card" id="mine">
     <h2>Your board — pick a market, name your number</h2>
     <div class="mk">
-      <label for="w-asset">Market<select id="w-asset"><option value="btc">Bitcoin — A$</option><option value="eth">Ethereum — A$</option><option value="sol">Solana — A$</option><option value="xrp">XRP — A$</option><option value="ada">Cardano — A$</option><option value="doge">Dogecoin — A$</option><option value="audusd">AUD/USD — USD</option><option value="audeur">AUD/EUR — EUR</option><option value="audgbp">AUD/GBP — GBP</option><option value="audjpy">AUD/JPY — JPY</option><option value="usdjpy">USD/JPY — JPY</option><option value="eurusd">EUR/USD — USD</option><option value="gold">Gold — USD/oz</option><option value="silver">Silver — USD/oz</option><option value="platinum">Platinum — USD/oz</option><option value="asx200">ASX 200 — pts</option><option value="sp500">S&amp;P 500 — pts</option><option value="nasdaq">Nasdaq Composite — pts</option><option value="dow">Dow Jones — pts</option><option value="ftse">FTSE 100 — pts</option><option value="nikkei">Nikkei 225 — pts</option><option value="wti">WTI crude — USD/bbl</option><option value="brent">Brent crude — USD/bbl</option><option value="natgas">Natural gas — USD</option><option value="bhp">BHP Group — A$</option><option value="cba">CommBank — A$</option><option value="wbc">Westpac — A$</option><option value="aapl">Apple — USD</option><option value="msft">Microsoft — USD</option><option value="nvda">Nvidia — USD</option><option value="tsla">Tesla — USD</option></select></label>
+      <label for="w-asset">Market<select id="w-asset"><option value="btc">Bitcoin — A$</option><option value="eth">Ethereum — A$</option><option value="sol">Solana — A$</option><option value="xrp">XRP — A$</option><option value="ada">Cardano — A$</option><option value="doge">Dogecoin — A$</option><option value="audusd">AUD/USD — USD</option><option value="audeur">AUD/EUR — EUR</option><option value="audgbp">AUD/GBP — GBP</option><option value="audjpy">AUD/JPY — JPY</option><option value="usdjpy">USD/JPY — JPY</option><option value="eurusd">EUR/USD — USD</option><option value="gold">Gold (front month) — USD/oz</option><option value="silver">Silver (front month) — USD/oz</option><option value="platinum">Platinum (front month) — USD/oz</option><option value="asx200">ASX 200 — pts</option><option value="sp500">S&amp;P 500 — pts</option><option value="nasdaq">Nasdaq Composite — pts</option><option value="dow">Dow Jones — pts</option><option value="ftse">FTSE 100 — pts</option><option value="nikkei">Nikkei 225 — pts</option><option value="wti">WTI crude — USD/bbl</option><option value="brent">Brent crude — USD/bbl</option><option value="natgas">Natural gas — USD</option><option value="bhp">BHP Group — A$</option><option value="cba">CommBank — A$</option><option value="wbc">Westpac — A$</option><option value="aapl">Apple — USD</option><option value="msft">Microsoft — USD</option><option value="nvda">Nvidia — USD</option><option value="tsla">Tesla — USD</option></select></label>
       <label for="w-dir">Fires when it<select id="w-dir"><option value="above">crosses above</option><option value="below">crosses below</option><option value="move">moves by %</option></select></label>
       <label for="w-val"><span id="w-lab">your number</span><input id="w-val" type="number" step="any" inputmode="decimal" placeholder="0"></label>
       <div><button class="btn2" id="w-add" type="button">Add to my board</button><button class="btn3" id="w-clear" type="button">Clear</button></div>
     </div>
     <div class="presets">Or start from one of these — the numbers are computed fresh from today's quotes:
-      <a class="chip" href="?w=gold:above:4250">Gold above 4250</a>
+      <a class="chip" href="?w=gold:above:4250">Gold (front month) above 4250</a>
       <a class="chip" href="?w=asx200:below:8600">ASX 200 below 8600</a>
       <a class="chip" href="?w=cba:below:161">CommBank below 161</a>
       <a class="chip" href="?w=btc:move:5">Bitcoin moves ±5%</a>
@@ -311,10 +503,12 @@
     </ul>
   </section>
 
+  <h3>Prefer to pick your own numbers? Those tiers still exist</h3>
+  <p class="stamp">The packages above are the click-and-forget version: we choose the weights, you get the basket and its alerts. These three are the do-it-yourself version.</p>
   <div class="cols">
-    <div class="tier"><b>Digest</b><div class="price">A$0</div><p>31 live quotes, the RSS feed, board.json and quotes.json, refreshed hourly. Build your own board in the URL — no account, no card, no email address.</p></div>
-    <div class="tier"><b>Tripwire</b><div class="price">A$9/mo</div><p>Any four markets on the sheet — crypto, ASX, US, FX, gold, oil — checked hourly and emailed within the hour of a cross, with the timestamped value and the chain hash as evidence.</p></div>
-    <div class="tier"><b>Custom</b><div class="price">A$19/mo</div><p>Your own board: up to ten markets, including move tripwires (±5% in 24h) so you don&#39;t have to guess the level. Answer one email and it is armed.</p></div>
+    <div class="tier"><b>Digest</b><div class="price">A$0</div><p>31 live quotes, the RSS feed, board.json, packages.json and quotes.json, refreshed hourly. Build your own board in the URL — no account, no card, no email address.</p></div>
+    <div class="tier"><b>Tripwire</b><div class="price">A$9/mo</div><p>Pick any four markets yourself — crypto, ASX, US, FX, gold, oil — checked hourly and emailed within the hour of a cross, with the timestamped value and the chain hash as evidence. The do-it-yourself version of a package.</p></div>
+    <div class="tier"><b>Package</b><div class="price">A$29–99/mo</div><p>A weighted basket (ASX Steady, Global Core, Momentum) with its live combined metric, its live graph, the research note behind the weights, and a basket-level ±% tripwire. Choose the weights for you and stop naming numbers.</p></div>
   </div>
 
   <a class="btn" href="mailto:andrew098710@gmail.com?subject=Tripwire%20signup%20%E2%80%94%20which%20number%20do%20you%20want%20watched%3F">Get the tripwire — A$9/mo</a>
@@ -348,17 +542,17 @@
   <ol>
     <li>Predictions. The alert says <i>it crossed your number</i>, never <i>it will go up</i>.</li>
     <li>Charts, dashboards, communities, a mobile app.</li>
-    <li>A count of "10,000 traders trust us". This is new. The subscriber count is the number of people who asked, and today that is not a large number.</li>
+    <li>A count of "10,000 traders trust us". This is new. The subscriber count is the number of people who asked, and today that is not a large number. The package returns are measured from our own recorded reads, not backtested.</li>
   </ol>
 
   <footer>
     Values above were fetched from public keyless APIs at build time, and the rendered page is recorded with a
-    SHA-256 proof. Not financial advice. A tripwire fires on arithmetic, not opinion.<br>
-    Built 2026-11-06T02:40:47.265Z · Tripwire · <a class="u" href="https://flak3dd.github.io/tripwire/">https://flak3dd.github.io/tripwire/</a>
+    SHA-256 proof. Not financial advice. A tripwire fires on arithmetic, not opinion; a basket is weights, not a forecast.<br>
+    Built 2026-11-06T03:02:54.543Z · Tripwire · <a class="u" href="https://flak3dd.github.io/tripwire/">https://flak3dd.github.io/tripwire/</a>
   </footer>
   <script>
 (function(){
-  var META = {"btc":{"label":"Bitcoin","unit":"A$","dec":0},"eth":{"label":"Ethereum","unit":"A$","dec":2},"sol":{"label":"Solana","unit":"A$","dec":2},"xrp":{"label":"XRP","unit":"A$","dec":3},"ada":{"label":"Cardano","unit":"A$","dec":4},"doge":{"label":"Dogecoin","unit":"A$","dec":4},"audusd":{"label":"AUD/USD","unit":"USD","dec":4},"audeur":{"label":"AUD/EUR","unit":"EUR","dec":4},"audgbp":{"label":"AUD/GBP","unit":"GBP","dec":4},"audjpy":{"label":"AUD/JPY","unit":"JPY","dec":2},"usdjpy":{"label":"USD/JPY","unit":"JPY","dec":2},"eurusd":{"label":"EUR/USD","unit":"USD","dec":4},"gold":{"label":"Gold","unit":"USD/oz","dec":2},"silver":{"label":"Silver","unit":"USD/oz","dec":3},"platinum":{"label":"Platinum","unit":"USD/oz","dec":2},"asx200":{"label":"ASX 200","unit":"pts","dec":1},"sp500":{"label":"S&P 500","unit":"pts","dec":1},"nasdaq":{"label":"Nasdaq Composite","unit":"pts","dec":1},"dow":{"label":"Dow Jones","unit":"pts","dec":1},"ftse":{"label":"FTSE 100","unit":"pts","dec":1},"nikkei":{"label":"Nikkei 225","unit":"pts","dec":1},"wti":{"label":"WTI crude","unit":"USD/bbl","dec":2},"brent":{"label":"Brent crude","unit":"USD/bbl","dec":2},"natgas":{"label":"Natural gas","unit":"USD","dec":3},"bhp":{"label":"BHP Group","unit":"A$","dec":2},"cba":{"label":"CommBank","unit":"A$","dec":2},"wbc":{"label":"Westpac","unit":"A$","dec":2},"aapl":{"label":"Apple","unit":"USD","dec":2},"msft":{"label":"Microsoft","unit":"USD","dec":2},"nvda":{"label":"Nvidia","unit":"USD","dec":2},"tsla":{"label":"Tesla","unit":"USD","dec":2}};
+  var META = {"btc":{"label":"Bitcoin","unit":"A$","dec":0},"eth":{"label":"Ethereum","unit":"A$","dec":2},"sol":{"label":"Solana","unit":"A$","dec":2},"xrp":{"label":"XRP","unit":"A$","dec":3},"ada":{"label":"Cardano","unit":"A$","dec":4},"doge":{"label":"Dogecoin","unit":"A$","dec":4},"audusd":{"label":"AUD/USD","unit":"USD","dec":4},"audeur":{"label":"AUD/EUR","unit":"EUR","dec":4},"audgbp":{"label":"AUD/GBP","unit":"GBP","dec":4},"audjpy":{"label":"AUD/JPY","unit":"JPY","dec":2},"usdjpy":{"label":"USD/JPY","unit":"JPY","dec":2},"eurusd":{"label":"EUR/USD","unit":"USD","dec":4},"gold":{"label":"Gold (front month)","unit":"USD/oz","dec":2},"silver":{"label":"Silver (front month)","unit":"USD/oz","dec":3},"platinum":{"label":"Platinum (front month)","unit":"USD/oz","dec":2},"asx200":{"label":"ASX 200","unit":"pts","dec":1},"sp500":{"label":"S&P 500","unit":"pts","dec":1},"nasdaq":{"label":"Nasdaq Composite","unit":"pts","dec":1},"dow":{"label":"Dow Jones","unit":"pts","dec":1},"ftse":{"label":"FTSE 100","unit":"pts","dec":1},"nikkei":{"label":"Nikkei 225","unit":"pts","dec":1},"wti":{"label":"WTI crude","unit":"USD/bbl","dec":2},"brent":{"label":"Brent crude","unit":"USD/bbl","dec":2},"natgas":{"label":"Natural gas","unit":"USD","dec":3},"bhp":{"label":"BHP Group","unit":"A$","dec":2},"cba":{"label":"CommBank","unit":"A$","dec":2},"wbc":{"label":"Westpac","unit":"A$","dec":2},"aapl":{"label":"Apple","unit":"USD","dec":2},"msft":{"label":"Microsoft","unit":"USD","dec":2},"nvda":{"label":"Nvidia","unit":"USD","dec":2},"tsla":{"label":"Tesla","unit":"USD","dec":2}};
   var board = [], quotes = null;
   function $(id){ return document.getElementById(id); }
   function esc(s){ return String(s==null?"":s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];}); }

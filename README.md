@@ -5,9 +5,10 @@ the source of truth is `workspace/marketing/landing/` in the wealthclaw workspac
 
 Files, all produced by the same deterministic build:
 
-- `index.html` — the board, the 31-market sheet, the build-your-own-board widget, the proof card
-- `feed.xml` — RSS 2.0, one item per alert (guid = sha256 of the chain entry)
-- `board.json` — current value, threshold, distance, trend, chain head, plus the market sheet
+- `index.html` — the packages (the selling tiers), the board, the 31-market sheet, the build-your-own-board widget, the proof card
+- `packages.json` — each basket: weights (total 100), live combined move, index level, the level series the graph is drawn from, the research note, and the package-level alert state
+- `feed.xml` — RSS 2.0, one item per alert (guid = sha256 of the chain entry) — package basket moves included
+- `board.json` — current value, threshold, distance, trend, chain head, plus the market sheet and the package summary
 - `log.json` — genesis, head, verification result, full alert chain
 - `readings.json` — the raw readings behind this build
 - `quotes.json` — all 31 quotes (crypto, FX, metals, indices, energy, stocks) in one object;
@@ -17,3 +18,9 @@ The board is honest by construction: values come from public keyless APIs, a fai
 fetch renders as STALE rather than a guess, and every alert is appended to a
 hash-chained log (`wealthclaw chain verify`). No subscriber count is claimed because
 there are no subscribers to count yet.
+
+The packages are honest the same way: the weights total 100 by validation, the combined
+percentage is each leg's own last-day change times its weight, and the index level is
+compounded from our own hourly snapshots — never a backtest. A basket that has fewer
+than two snapshots says "index 100.00 at first read" instead of drawing a line it does
+not have.

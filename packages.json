@@ -1,0 +1,272 @@
+{
+  "builtAt": "2026-11-06T03:02:54.543Z",
+  "name": "Tripwire",
+  "rebalance": "daily, back to these weights",
+  "note": "A basket is weights, not a promise. dayPct is the weighted mean of each leg's own last-day change; level is an index that starts at 100 at the first hourly snapshot and compounds from recorded per-leg values. No backtest: the history here was written by our own builds, one point per hour.",
+  "packages": [
+    {
+      "id": "asx-steady",
+      "name": "ASX Steady",
+      "price": "A$29/mo",
+      "risk": "lower",
+      "horizon": "6–12 months",
+      "thesis": "The four things an Australian already owns, in the weights an Australian already owns them: two banks for the earnings that pay the dividend, BHP for the commodity cycle, and the index for everything else.",
+      "research": [
+        "Banks are 50 points because Australian bank earnings move with the cash rate and housing credit, not with US tech sentiment — the two banks are half the basket and today's combined move is mostly theirs.",
+        "BHP at 25 is the commodity leg: iron ore and copper set its revenue, so this basket already contains a China-growth bet, sold to you as one stock.",
+        "The ASX 200 leg is 25 points of diversification for free — it holds the other three at slightly different weights, so a single-name blow-up cannot take the basket alone.",
+        "The honest risk is concentration by geography: four Australian exposures means a domestic recession is a basket-wide event, not one holding's problem."
+      ],
+      "invalidates": "A sustained fall in the cash rate that compresses bank net interest margins at the same time the iron ore price falls — both legs down for one macro reason, which is exactly when a 50-point bank weight stops diversifying.",
+      "cadence": "Checked hourly. A ±2.5% basket move in 24h is written to the hash chain and mailed with the constituent that contributed most.",
+      "weightsTotal": 100,
+      "dayPct": -0.7,
+      "coveragePct": 100,
+      "level": 99.9157,
+      "sincePct": -0.08,
+      "since": "2026-11-06T02:52:23.224Z",
+      "series": [
+        100
+      ],
+      "alert": {
+        "move": 2.5,
+        "windowH": 24,
+        "state": {
+          "package": "asx-steady",
+          "name": "ASX Steady",
+          "kind": "package-move",
+          "fired": false,
+          "pct": null,
+          "base": null,
+          "level": 99.9157,
+          "threshold": 2.5,
+          "windowH": 24,
+          "note": "warming up — needs 24h of hourly snapshots, 1 on record"
+        }
+      },
+      "holds": [
+        {
+          "id": "cba",
+          "label": "CommBank",
+          "w": 30,
+          "unit": "A$",
+          "value": 167.37,
+          "changePct": 0.65,
+          "contribPp": 0.195
+        },
+        {
+          "id": "wbc",
+          "label": "Westpac",
+          "w": 20,
+          "unit": "A$",
+          "value": 36.94,
+          "changePct": 0.82,
+          "contribPp": 0.164
+        },
+        {
+          "id": "bhp",
+          "label": "BHP Group",
+          "w": 25,
+          "unit": "A$",
+          "value": 57.13,
+          "changePct": -3.17,
+          "contribPp": -0.792
+        },
+        {
+          "id": "asx200",
+          "label": "ASX 200",
+          "w": 25,
+          "unit": "pts",
+          "value": 8969.2,
+          "changePct": -1.06,
+          "contribPp": -0.265
+        }
+      ]
+    },
+    {
+      "id": "global-core",
+      "name": "Global Core",
+      "price": "A$59/mo",
+      "risk": "moderate",
+      "horizon": "12–24 months",
+      "thesis": "The two things people actually argue about — US earnings and the price of safety — in one number: 80 points of US equity in three shapes, against 20 points of gold as the thing that is not equity.",
+      "research": [
+        "The index legs (50) and the single names (30) overlap by construction: Apple and Microsoft are among the largest weights inside both the S&P 500 and the Nasdaq, so real single-name exposure is higher than the 30 points shown. That is stated here rather than hidden behind a label.",
+        "Gold at 20 is the only holding whose price is not somebody's earnings — it moves on real yields and reserve demand, so it is the leg that can carry the basket on a day US equity does not.",
+        "FX is inside this basket whether you like it or not: three holdings quote in USD, so an Australian holder is also long USD against AUD. Weights act on returns, so this basket does not pretend the currency is neutral.",
+        "No bonds, no cash leg. The basket is always fully invested, which means its only defence is the 20-point gold position."
+      ],
+      "invalidates": "A US earnings recession with gold falling at the same time (real yields up, dollar up) — then 80 points of equity and the 20-point hedge go down together.",
+      "cadence": "Checked hourly. A ±3% basket move in 24h is written to the hash chain with the per-holding contribution, so the alert names the leg that moved.",
+      "weightsTotal": 100,
+      "dayPct": -3.36,
+      "coveragePct": 100,
+      "level": 100.0108,
+      "sincePct": 0.01,
+      "since": "2026-11-06T02:52:23.226Z",
+      "series": [
+        100
+      ],
+      "alert": {
+        "move": 3,
+        "windowH": 24,
+        "state": {
+          "package": "global-core",
+          "name": "Global Core",
+          "kind": "package-move",
+          "fired": false,
+          "pct": null,
+          "base": null,
+          "level": 100.0108,
+          "threshold": 3,
+          "windowH": 24,
+          "note": "warming up — needs 24h of hourly snapshots, 1 on record"
+        }
+      },
+      "holds": [
+        {
+          "id": "sp500",
+          "label": "S&P 500",
+          "w": 30,
+          "unit": "pts",
+          "value": 7353.73,
+          "changePct": -4.36,
+          "contribPp": -1.308
+        },
+        {
+          "id": "nasdaq",
+          "label": "Nasdaq Composite",
+          "w": 20,
+          "unit": "pts",
+          "value": 24314.998,
+          "changePct": -5.52,
+          "contribPp": -1.104
+        },
+        {
+          "id": "aapl",
+          "label": "Apple",
+          "w": 15,
+          "unit": "USD",
+          "value": 344.17,
+          "changePct": -1.53,
+          "contribPp": -0.229
+        },
+        {
+          "id": "msft",
+          "label": "Microsoft",
+          "w": 15,
+          "unit": "USD",
+          "value": 535.93,
+          "changePct": -3.58,
+          "contribPp": -0.537
+        },
+        {
+          "id": "gold",
+          "label": "Gold (front month)",
+          "w": 20,
+          "unit": "USD/oz",
+          "value": 4076.6,
+          "changePct": -0.9,
+          "contribPp": -0.18
+        }
+      ]
+    },
+    {
+      "id": "momentum",
+      "name": "Momentum",
+      "price": "A$99/mo",
+      "risk": "higher",
+      "horizon": "1–6 months",
+      "thesis": "The highest-beta liquid things we can price for free, weighted so no single one can sink the basket: 60 points of crypto, 30 of high-beta US equity, 10 of crude.",
+      "research": [
+        "Crypto is 60 points and correlates with itself: BTC and ETH have traded as one macro position for years, and SOL is a higher-amplitude version of the same trade. Three names, closer to one exposure — the weights say 60, the truth is nearer 60 as a single bet.",
+        "NVDA at 20 is the AI capex theme in single-name form: the same thesis as the Nasdaq leg of Global Core, at roughly twice the amplitude.",
+        "WTI at 10 is the only leg that is not a risk asset in the same way — crude spikes on supply shocks when equity is falling, so it is a partial hedge that pays no income and can gap on a single headline.",
+        "This basket is built to move. The ±6% alert is the feature, not a fault: expect it to trip most often, and expect drawdowns of a size the other two do not have."
+      ],
+      "invalidates": "A liquidity event where crypto, high-beta equity and crude fall on the same day — the 60-point crypto leg and the 30-point equity leg collapse into one position at the worst possible moment.",
+      "cadence": "Checked hourly. A ±6% basket move in 24h is written to the hash chain; because the legs are correlated, the alert fires early in a risk-off move rather than after it.",
+      "weightsTotal": 100,
+      "dayPct": -5.78,
+      "coveragePct": 100,
+      "level": 99.979,
+      "sincePct": -0.02,
+      "since": "2026-11-06T02:52:23.227Z",
+      "series": [
+        100
+      ],
+      "alert": {
+        "move": 6,
+        "windowH": 24,
+        "state": {
+          "package": "momentum",
+          "name": "Momentum",
+          "kind": "package-move",
+          "fired": false,
+          "pct": null,
+          "base": null,
+          "level": 99.979,
+          "threshold": 6,
+          "windowH": 24,
+          "note": "warming up — needs 24h of hourly snapshots, 1 on record"
+        }
+      },
+      "holds": [
+        {
+          "id": "btc",
+          "label": "Bitcoin",
+          "w": 30,
+          "unit": "A$",
+          "value": 110077,
+          "changePct": -4.06,
+          "contribPp": -1.218
+        },
+        {
+          "id": "eth",
+          "label": "Ethereum",
+          "w": 20,
+          "unit": "A$",
+          "value": 3240.35,
+          "changePct": -6.25,
+          "contribPp": -1.25
+        },
+        {
+          "id": "nvda",
+          "label": "Nvidia",
+          "w": 20,
+          "unit": "USD",
+          "value": 181.6,
+          "changePct": -9.26,
+          "contribPp": -1.852
+        },
+        {
+          "id": "sol",
+          "label": "Solana",
+          "w": 10,
+          "unit": "A$",
+          "value": 130.52,
+          "changePct": -4.84,
+          "contribPp": -0.484
+        },
+        {
+          "id": "tsla",
+          "label": "Tesla",
+          "w": 10,
+          "unit": "USD",
+          "value": 343.69,
+          "changePct": -10.77,
+          "contribPp": -1.077
+        },
+        {
+          "id": "wti",
+          "label": "WTI crude",
+          "w": 10,
+          "unit": "USD/bbl",
+          "value": 91.41,
+          "changePct": 0.98,
+          "contribPp": 0.098
+        }
+      ]
+    }
+  ]
+}

@@ -1,8 +1,8 @@
 <!doctype html>
 <html lang="en-AU"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Tripwire — Emails you when a price or FX rate crosses your number. No charts, no hot takes, no predictions.</title>
-<meta name="description" content="Hourly price and FX tripwires on BTC, ETH, SOL and AUD/USD. You set the number; it tells you when arithmetic crosses it — and every alert is recorded in a hash-chained log you can verify yourself. Free feed, paid hourly alerts.">
+<title>Tripwire — Emails you when a market crosses your number — crypto, ASX and US stocks, FX, gold, oil. No charts, no hot takes, no predictions.</title>
+<meta name="description" content="Hourly tripwires on 31 markets across six classes: Bitcoin to BHP, the ASX 200 to gold, AUD/USD to WTI. You name the number — or just ask for a ±5% move — and it tells you when arithmetic crosses it. Every alert lands in a hash-chained log you can verify yourself. Free quotes, free feed, free board; paid hourly email.">
 <link rel="alternate" type="application/rss+xml" title="Tripwire — alert feed" href="feed.xml">
 <style>
   :root{--bg:#0a0c10;--fg:#e8edf5;--dim:#8b96a8;--line:#1e2430;--hot:#ff5c47;--live:#31d68a;--warn:#e3b341}
@@ -45,11 +45,29 @@
   .u:hover{color:var(--fg)}
   .mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px}
   .sub2{opacity:.72;margin-top:3px}
+  .grp{background:#0b0f15;padding:8px 18px;border-bottom:1px solid var(--line)}
+  .kick2{font:10px/1 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.18em;color:var(--dim);text-transform:uppercase}
+  .mkt{padding:10px 18px}
+  .mkt-bot{margin-top:3px}
+  .mono2{font:14px/1 ui-monospace,SFMono-Regular,Menlo,monospace;font-weight:600}
+  .chg{font:11px/1 ui-monospace,SFMono-Regular,Menlo,monospace;padding:4px 6px;border-radius:5px;border:1px solid var(--line);white-space:nowrap}
+  .chg.up{color:var(--live);border-color:#1c5c3f;background:#0e2018}
+  .chg.down{color:var(--hot);border-color:#5c231c;background:#1d0f0c}
+  .mk{display:grid;gap:10px;grid-template-columns:1.25fr 1fr .9fr auto;padding:14px 18px;align-items:end}
+  @media(max-width:640px){.mk{grid-template-columns:1fr}}
+  .mk label{display:block;font:11px/1.6 ui-monospace,monospace;letter-spacing:.08em;color:var(--dim);text-transform:uppercase}
+  .mk select,.mk input{width:100%;margin-top:5px;background:#0d131a;color:var(--fg);border:1px solid var(--line);border-radius:8px;padding:10px;font:14px/1 ui-monospace,monospace}
+  .btn2{background:var(--live);color:#04140c;border:0;border-radius:9px;padding:12px 16px;font:14px/1 ui-sans-serif,sans-serif;font-weight:700;cursor:pointer}
+  .btn3{background:transparent;color:var(--dim);border:1px solid var(--line);border-radius:9px;padding:11px 14px;font:13px/1 ui-sans-serif,sans-serif;cursor:pointer;margin-left:10px}
+  .presets{padding:2px 18px 14px;color:var(--dim);font-size:12px}
+  .chip{display:inline-block;margin:4px 6px 0 0;padding:6px 10px;border:1px solid var(--line);border-radius:999px;color:var(--dim);text-decoration:none;font-size:12px}
+  .chip:hover{color:var(--fg);border-color:#2d3542}
+  .live-dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--live);margin-right:6px;vertical-align:middle}
 </style></head>
 <body><div class="wrap">
   <p class="kick">🦞 WEALTHCLAW · tripwires on things you already own</p>
   <h1>Tripwire</h1>
-  <p class="sub">Emails you when a price or FX rate crosses your number. No charts, no hot takes, no predictions.</p>
+  <p class="sub">Emails you when a market crosses your number — crypto, ASX and US stocks, FX, gold, oil. No charts, no hot takes, no predictions.</p>
 
   <section class="card">
     <h2>Live right now — the board you'd get mailed</h2>
@@ -57,24 +75,24 @@
       <li class="row armed">
         <div class="row-top"><span class="lbl">Bitcoin below A$100k</span>
           <span class="state">ARMED</span></div>
-        <div class="nums"><span class="now">109,662</span> <span class="vs">vs 100,000 · lt</span></div>
-        <div class="bar"><i style="width:64.75716291878682%"></i></div>
+        <div class="nums"><span class="now">109,670</span> <span class="vs">vs 100,000 · lt</span></div>
+        <div class="bar"><i style="width:64.73055530227045%"></i></div>
         <div class="hint">8.8% away — trips when it falls to 100,000</div>
-        <div class="hint sub2">trend over 3 reads: 0.03pp closer · closest 8.87% · 02:05–02:05Z</div>
+        <div class="hint sub2">trend over 4 reads: 0.06pp closer · closest 8.84% · 02:05–02:35Z</div>
       </li>
       <li class="row armed">
         <div class="row-top"><span class="lbl">Ethereum below A$3k</span>
           <span class="state">ARMED</span></div>
-        <div class="nums"><span class="now">3,226</span> <span class="vs">vs 3,000 · lt</span></div>
-        <div class="bar"><i style="width:72.02380952380953%"></i></div>
-        <div class="hint">7.0% away — trips when it falls to 3,000</div>
-        <div class="hint sub2">trend over 3 reads: flat · closest 7.09% · 02:05–02:05Z</div>
+        <div class="nums"><span class="now">3,228</span> <span class="vs">vs 3,000 · lt</span></div>
+        <div class="bar"><i style="width:71.78291595537365%"></i></div>
+        <div class="hint">7.1% away — trips when it falls to 3,000</div>
+        <div class="hint sub2">trend over 4 reads: 0.02pp closer · closest 7.07% · 02:05–02:35Z</div>
       </li>
       <li class="row armed">
         <div class="row-top"><span class="lbl">Solana below A$120</span>
           <span class="state">ARMED</span></div>
         <div class="nums"><span class="now">130</span> <span class="vs">vs 120 · lt</span></div>
-        <div class="bar"><i style="width:69.60036960036959%"></i></div>
+        <div class="bar"><i style="width:69.54345985064289%"></i></div>
         <div class="hint">7.6% away — trips when it falls to 120</div>
         <div class="hint sub2">trend over 3 reads: flat · closest 7.69% · 02:05–02:05Z</div>
       </li>
@@ -84,11 +102,201 @@
         <div class="nums"><span class="now">0.7001</span> <span class="vs">vs 0.72 · gt</span></div>
         <div class="bar"><i style="width:88.60669085506959%"></i></div>
         <div class="hint">2.8% away — trips when it rises to 0.72</div>
-        <div class="hint sub2">trend over 3 reads: flat · closest 2.85% · 02:05–02:05Z</div>
+        <div class="hint sub2">trend over 4 reads: flat · closest 2.85% · 02:05–02:35Z</div>
+      </li>
+      <li class="row armed">
+        <div class="row-top"><span class="lbl">Gold above 4200 USD/oz</span>
+          <span class="state">ARMED</span></div>
+        <div class="nums"><span class="now">4,066</span> <span class="vs">vs 4,200 · gt</span></div>
+        <div class="bar"><i style="width:86.82247999999998%"></i></div>
+        <div class="hint">3.3% away — trips when it rises to 4,200</div>
+        <div class="hint sub2">first reading on record — the trend builds itself, one line per hourly check</div>
+      </li>
+      <li class="row armed">
+        <div class="row-top"><span class="lbl">ASX 200 below 8500 pts</span>
+          <span class="state">ARMED</span></div>
+        <div class="nums"><span class="now">8,971</span> <span class="vs">vs 8,500 · lt</span></div>
+        <div class="bar"><i style="width:78.99054752987334%"></i></div>
+        <div class="hint">5.3% away — trips when it falls to 8,500</div>
+        <div class="hint sub2">first reading on record — the trend builds itself, one line per hourly check</div>
+      </li>
+      <li class="row armed">
+        <div class="row-top"><span class="lbl">CommBank below 160 A$</span>
+          <span class="state">ARMED</span></div>
+        <div class="nums"><span class="now">167</span> <span class="vs">vs 160 · lt</span></div>
+        <div class="bar"><i style="width:82.31780167264037%"></i></div>
+        <div class="hint">4.4% away — trips when it falls to 160</div>
+        <div class="hint sub2">first reading on record — the trend builds itself, one line per hourly check</div>
+      </li>
+      <li class="row armed">
+        <div class="row-top"><span class="lbl">Bitcoin moves 5% in 24h</span>
+          <span class="state">ARMED</span></div>
+        <div class="nums"><span class="now">109,670</span> <span class="vs">vs ±5% over 24h</span></div>
+        <div class="bar"><i style="width:0%"></i></div>
+        <div class="hint">warming up — needs 24h of hourly reads before this can fire</div>
+        <div class="hint sub2">moves, not levels — computed from our own hourly readings, never predicted</div>
       </li>
     </ul>
   </section>
-  <p class="stamp">Read 2026-11-06T02:09:35.860Z · 4 tripwires · sources: public keyless APIs (CoinGecko, ECB via Frankfurter) · refreshed hourly.</p>
+  <p class="stamp">Read 2026-11-06T02:37:14.914Z · 8 tripwires · 8 from ≤60s cache · sources: public keyless APIs (CoinGecko, ECB via Frankfurter, Coinbase spot, Yahoo Finance) · refreshed hourly.</p>
+
+  <section class="card" id="markets">
+    <h2><span class="live-dot"></span>Every market we can read — 31 of them, six classes</h2>
+    <ul>
+      <li class="row grp"><span class="kick2">Crypto</span></li>
+      <li class="row mkt ">
+        <div class="mkt-top"><span class="lbl">Bitcoin</span></div>
+        <div class="mkt-bot"><span class="mono2">109,674</span> <span class="vs">A$</span></div>
+      </li>
+      <li class="row mkt ">
+        <div class="mkt-top"><span class="lbl">Ethereum</span></div>
+        <div class="mkt-bot"><span class="mono2">3,228.69</span> <span class="vs">A$</span></div>
+      </li>
+      <li class="row mkt ">
+        <div class="mkt-top"><span class="lbl">Solana</span></div>
+        <div class="mkt-bot"><span class="mono2">129.93</span> <span class="vs">A$</span></div>
+      </li>
+      <li class="row mkt ">
+        <div class="mkt-top"><span class="lbl">XRP</span></div>
+        <div class="mkt-bot"><span class="mono2">1.750</span> <span class="vs">A$</span></div>
+      </li>
+      <li class="row mkt ">
+        <div class="mkt-top"><span class="lbl">Cardano</span></div>
+        <div class="mkt-bot"><span class="mono2">0.2669</span> <span class="vs">A$</span></div>
+      </li>
+      <li class="row mkt ">
+        <div class="mkt-top"><span class="lbl">Dogecoin</span></div>
+        <div class="mkt-bot"><span class="mono2">0.1040</span> <span class="vs">A$</span></div>
+      </li>
+      <li class="row grp"><span class="kick2">Exchange rates</span></li>
+      <li class="row mkt ">
+        <div class="mkt-top"><span class="lbl">AUD/USD</span></div>
+        <div class="mkt-bot"><span class="mono2">0.7001</span> <span class="vs">USD</span></div>
+      </li>
+      <li class="row mkt ">
+        <div class="mkt-top"><span class="lbl">AUD/EUR</span></div>
+        <div class="mkt-bot"><span class="mono2">0.6237</span> <span class="vs">EUR</span></div>
+      </li>
+      <li class="row mkt ">
+        <div class="mkt-top"><span class="lbl">AUD/GBP</span></div>
+        <div class="mkt-bot"><span class="mono2">0.5201</span> <span class="vs">GBP</span></div>
+      </li>
+      <li class="row mkt ">
+        <div class="mkt-top"><span class="lbl">AUD/JPY</span></div>
+        <div class="mkt-bot"><span class="mono2">110.93</span> <span class="vs">JPY</span></div>
+      </li>
+      <li class="row mkt ">
+        <div class="mkt-top"><span class="lbl">USD/JPY</span></div>
+        <div class="mkt-bot"><span class="mono2">158.46</span> <span class="vs">JPY</span></div>
+      </li>
+      <li class="row mkt ">
+        <div class="mkt-top"><span class="lbl">EUR/USD</span></div>
+        <div class="mkt-bot"><span class="mono2">1.1224</span> <span class="vs">USD</span></div>
+      </li>
+      <li class="row grp"><span class="kick2">Indices</span></li>
+      <li class="row mkt ">
+        <div class="mkt-top"><span class="lbl">ASX 200</span><span class="chg down">▼ 1.04%</span></div>
+        <div class="mkt-bot"><span class="mono2">8,971.2</span> <span class="vs">pts</span></div>
+      </li>
+      <li class="row mkt ">
+        <div class="mkt-top"><span class="lbl">S&amp;P 500</span><span class="chg down">▼ 4.36%</span></div>
+        <div class="mkt-bot"><span class="mono2">7,353.7</span> <span class="vs">pts</span></div>
+      </li>
+      <li class="row mkt ">
+        <div class="mkt-top"><span class="lbl">Nasdaq Composite</span><span class="chg down">▼ 5.52%</span></div>
+        <div class="mkt-bot"><span class="mono2">24,315</span> <span class="vs">pts</span></div>
+      </li>
+      <li class="row mkt ">
+        <div class="mkt-top"><span class="lbl">Dow Jones</span><span class="chg down">▼ 3.44%</span></div>
+        <div class="mkt-bot"><span class="mono2">51,523.1</span> <span class="vs">pts</span></div>
+      </li>
+      <li class="row mkt ">
+        <div class="mkt-top"><span class="lbl">FTSE 100</span><span class="chg down">▼ 0.43%</span></div>
+        <div class="mkt-bot"><span class="mono2">10,782.7</span> <span class="vs">pts</span></div>
+      </li>
+      <li class="row mkt ">
+        <div class="mkt-top"><span class="lbl">Nikkei 225</span><span class="chg down">▼ 5.36%</span></div>
+        <div class="mkt-bot"><span class="mono2">57,806.3</span> <span class="vs">pts</span></div>
+      </li>
+      <li class="row grp"><span class="kick2">Metals</span></li>
+      <li class="row mkt ">
+        <div class="mkt-top"><span class="lbl">Gold</span></div>
+        <div class="mkt-bot"><span class="mono2">4,066.05</span> <span class="vs">USD/oz</span></div>
+      </li>
+      <li class="row mkt ">
+        <div class="mkt-top"><span class="lbl">Silver</span></div>
+        <div class="mkt-bot"><span class="mono2">52.020</span> <span class="vs">USD/oz</span></div>
+      </li>
+      <li class="row mkt ">
+        <div class="mkt-top"><span class="lbl">Platinum</span></div>
+        <div class="mkt-bot"><span class="mono2">1,512.45</span> <span class="vs">USD/oz</span></div>
+      </li>
+      <li class="row grp"><span class="kick2">Energy</span></li>
+      <li class="row mkt ">
+        <div class="mkt-top"><span class="lbl">WTI crude</span><span class="chg up">▲ 1.26%</span></div>
+        <div class="mkt-bot"><span class="mono2">91.66</span> <span class="vs">USD/bbl</span></div>
+      </li>
+      <li class="row mkt ">
+        <div class="mkt-top"><span class="lbl">Brent crude</span><span class="chg up">▲ 1.6%</span></div>
+        <div class="mkt-bot"><span class="mono2">99.86</span> <span class="vs">USD/bbl</span></div>
+      </li>
+      <li class="row mkt ">
+        <div class="mkt-top"><span class="lbl">Natural gas</span><span class="chg up">▲ 1.36%</span></div>
+        <div class="mkt-bot"><span class="mono2">2.987</span> <span class="vs">USD</span></div>
+      </li>
+      <li class="row grp"><span class="kick2">Stocks</span></li>
+      <li class="row mkt ">
+        <div class="mkt-top"><span class="lbl">BHP Group</span><span class="chg down">▼ 3.32%</span></div>
+        <div class="mkt-bot"><span class="mono2">57.04</span> <span class="vs">A$</span></div>
+      </li>
+      <li class="row mkt ">
+        <div class="mkt-top"><span class="lbl">CommBank</span><span class="chg up">▲ 0.67%</span></div>
+        <div class="mkt-bot"><span class="mono2">167.40</span> <span class="vs">A$</span></div>
+      </li>
+      <li class="row mkt ">
+        <div class="mkt-top"><span class="lbl">Westpac</span><span class="chg up">▲ 0.9%</span></div>
+        <div class="mkt-bot"><span class="mono2">36.97</span> <span class="vs">A$</span></div>
+      </li>
+      <li class="row mkt ">
+        <div class="mkt-top"><span class="lbl">Apple</span><span class="chg down">▼ 1.53%</span></div>
+        <div class="mkt-bot"><span class="mono2">344.17</span> <span class="vs">USD</span></div>
+      </li>
+      <li class="row mkt ">
+        <div class="mkt-top"><span class="lbl">Microsoft</span><span class="chg down">▼ 3.58%</span></div>
+        <div class="mkt-bot"><span class="mono2">535.93</span> <span class="vs">USD</span></div>
+      </li>
+      <li class="row mkt ">
+        <div class="mkt-top"><span class="lbl">Nvidia</span><span class="chg down">▼ 9.26%</span></div>
+        <div class="mkt-bot"><span class="mono2">181.60</span> <span class="vs">USD</span></div>
+      </li>
+      <li class="row mkt ">
+        <div class="mkt-top"><span class="lbl">Tesla</span><span class="chg down">▼ 10.77%</span></div>
+        <div class="mkt-bot"><span class="mono2">343.69</span> <span class="vs">USD</span></div>
+      </li>
+    </ul>
+  </section>
+  <p class="stamp">All 31 quotes fetched at build time from four keyless public APIs: CoinGecko (crypto), ECB via Frankfurter (FX), Coinbase spot (metals), Yahoo Finance (equities, indices, futures). None stale right now. The % is each source's own previous close, not our arithmetic.</p>
+
+  <section class="card" id="mine">
+    <h2>Your board — pick a market, name your number</h2>
+    <div class="mk">
+      <label for="w-asset">Market<select id="w-asset"><option value="btc">Bitcoin — A$</option><option value="eth">Ethereum — A$</option><option value="sol">Solana — A$</option><option value="xrp">XRP — A$</option><option value="ada">Cardano — A$</option><option value="doge">Dogecoin — A$</option><option value="audusd">AUD/USD — USD</option><option value="audeur">AUD/EUR — EUR</option><option value="audgbp">AUD/GBP — GBP</option><option value="audjpy">AUD/JPY — JPY</option><option value="usdjpy">USD/JPY — JPY</option><option value="eurusd">EUR/USD — USD</option><option value="gold">Gold — USD/oz</option><option value="silver">Silver — USD/oz</option><option value="platinum">Platinum — USD/oz</option><option value="asx200">ASX 200 — pts</option><option value="sp500">S&amp;P 500 — pts</option><option value="nasdaq">Nasdaq Composite — pts</option><option value="dow">Dow Jones — pts</option><option value="ftse">FTSE 100 — pts</option><option value="nikkei">Nikkei 225 — pts</option><option value="wti">WTI crude — USD/bbl</option><option value="brent">Brent crude — USD/bbl</option><option value="natgas">Natural gas — USD</option><option value="bhp">BHP Group — A$</option><option value="cba">CommBank — A$</option><option value="wbc">Westpac — A$</option><option value="aapl">Apple — USD</option><option value="msft">Microsoft — USD</option><option value="nvda">Nvidia — USD</option><option value="tsla">Tesla — USD</option></select></label>
+      <label for="w-dir">Fires when it<select id="w-dir"><option value="above">crosses above</option><option value="below">crosses below</option><option value="move">moves by %</option></select></label>
+      <label for="w-val"><span id="w-lab">your number</span><input id="w-val" type="number" step="any" inputmode="decimal" placeholder="0"></label>
+      <div><button class="btn2" id="w-add" type="button">Add to my board</button><button class="btn3" id="w-clear" type="button">Clear</button></div>
+    </div>
+    <div class="presets">Or start from one of these — the numbers are computed fresh from today's quotes:
+      <a class="chip" href="?w=gold:above:4250">Gold above 4250</a>
+      <a class="chip" href="?w=asx200:below:8600">ASX 200 below 8600</a>
+      <a class="chip" href="?w=cba:below:161">CommBank below 161</a>
+      <a class="chip" href="?w=btc:move:5">Bitcoin moves ±5%</a>
+      <a class="chip" href="?w=audusd:above:0.728">AUD/USD above 0.728</a>
+      <a class="chip" href="?w=aapl:above:358">Apple above 358</a>
+    </div>
+    <ul id="w-out"></ul>
+    <p class="note">The board lives in your URL (<a class="u mono" id="w-link" href="#mine">this page</a>), so it bookmarks and shares with no account and nothing stored on our side. It is computed in your browser from <code>quotes.json</code> — the same published numbers as the sheet above.
+    What the paid tier adds is the part a browser cannot do: it checks your board every hour, and emails you with the timestamped value and the chain hash.</p>
+  </section>
 
   <section class="card">
     <h2>Proof — the alert log is append-only and hash-chained</h2>
@@ -104,12 +312,12 @@
   </section>
 
   <div class="cols">
-    <div class="tier"><b>Digest</b><div class="price">A$0</div><p>The RSS feed and board.json, refreshed hourly: what crossed, what is close, and which way it is moving. No account, no card, no email address.</p></div>
-    <div class="tier"><b>Tripwire</b><div class="price">A$9/mo</div><p>The four tripwires on the board above, checked hourly, emailed within the hour of a cross — with the timestamped value and the chain hash as evidence.</p></div>
-    <div class="tier"><b>Custom</b><div class="price">A$19/mo</div><p>Your own ticker, your own number, your own hour. Up to five tripwires, added with one command that proves the source parses before it stores anything.</p></div>
+    <div class="tier"><b>Digest</b><div class="price">A$0</div><p>31 live quotes, the RSS feed, board.json and quotes.json, refreshed hourly. Build your own board in the URL — no account, no card, no email address.</p></div>
+    <div class="tier"><b>Tripwire</b><div class="price">A$9/mo</div><p>Any four markets on the sheet — crypto, ASX, US, FX, gold, oil — checked hourly and emailed within the hour of a cross, with the timestamped value and the chain hash as evidence.</p></div>
+    <div class="tier"><b>Custom</b><div class="price">A$19/mo</div><p>Your own board: up to ten markets, including move tripwires (±5% in 24h) so you don&#39;t have to guess the level. Answer one email and it is armed.</p></div>
   </div>
 
-  <a class="btn" href="mailto:andrew098710@gmail.com?subject=Tripwire%20signup%20%E2%80%94%20the%20four%20tripwires">Get the tripwire — A$9/mo</a>
+  <a class="btn" href="mailto:andrew098710@gmail.com?subject=Tripwire%20signup%20%E2%80%94%20which%20number%20do%20you%20want%20watched%3F">Get the tripwire — A$9/mo</a>
   <p class="note">No card checkout yet — this opens an email to <b>andrew098710@gmail.com</b>. First week free, then a manual invoice.
   That's the honest state of a one-person product on day one.</p>
 
@@ -146,6 +354,89 @@
   <footer>
     Values above were fetched from public keyless APIs at build time, and the rendered page is recorded with a
     SHA-256 proof. Not financial advice. A tripwire fires on arithmetic, not opinion.<br>
-    Built 2026-11-06T02:09:35.860Z · Tripwire · <a class="u" href="https://flak3dd.github.io/tripwire/">https://flak3dd.github.io/tripwire/</a>
+    Built 2026-11-06T02:37:14.914Z · Tripwire · <a class="u" href="https://flak3dd.github.io/tripwire/">https://flak3dd.github.io/tripwire/</a>
   </footer>
+  <script>
+(function(){
+  var META = {"btc":{"label":"Bitcoin","unit":"A$","dec":0},"eth":{"label":"Ethereum","unit":"A$","dec":2},"sol":{"label":"Solana","unit":"A$","dec":2},"xrp":{"label":"XRP","unit":"A$","dec":3},"ada":{"label":"Cardano","unit":"A$","dec":4},"doge":{"label":"Dogecoin","unit":"A$","dec":4},"audusd":{"label":"AUD/USD","unit":"USD","dec":4},"audeur":{"label":"AUD/EUR","unit":"EUR","dec":4},"audgbp":{"label":"AUD/GBP","unit":"GBP","dec":4},"audjpy":{"label":"AUD/JPY","unit":"JPY","dec":2},"usdjpy":{"label":"USD/JPY","unit":"JPY","dec":2},"eurusd":{"label":"EUR/USD","unit":"USD","dec":4},"gold":{"label":"Gold","unit":"USD/oz","dec":2},"silver":{"label":"Silver","unit":"USD/oz","dec":3},"platinum":{"label":"Platinum","unit":"USD/oz","dec":2},"asx200":{"label":"ASX 200","unit":"pts","dec":1},"sp500":{"label":"S&P 500","unit":"pts","dec":1},"nasdaq":{"label":"Nasdaq Composite","unit":"pts","dec":1},"dow":{"label":"Dow Jones","unit":"pts","dec":1},"ftse":{"label":"FTSE 100","unit":"pts","dec":1},"nikkei":{"label":"Nikkei 225","unit":"pts","dec":1},"wti":{"label":"WTI crude","unit":"USD/bbl","dec":2},"brent":{"label":"Brent crude","unit":"USD/bbl","dec":2},"natgas":{"label":"Natural gas","unit":"USD","dec":3},"bhp":{"label":"BHP Group","unit":"A$","dec":2},"cba":{"label":"CommBank","unit":"A$","dec":2},"wbc":{"label":"Westpac","unit":"A$","dec":2},"aapl":{"label":"Apple","unit":"USD","dec":2},"msft":{"label":"Microsoft","unit":"USD","dec":2},"nvda":{"label":"Nvidia","unit":"USD","dec":2},"tsla":{"label":"Tesla","unit":"USD","dec":2}};
+  var board = [], quotes = null;
+  function $(id){ return document.getElementById(id); }
+  function esc(s){ return String(s==null?"":s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];}); }
+  function fmt(v,d){
+    if(v===null||v===undefined||isNaN(v))return "—";
+    var n=Number(v), dd=(d===undefined||d===null)?2:d;
+    if(Math.abs(n)>=1000)return n.toLocaleString("en-AU",{maximumFractionDigits:Math.min(dd,1)});
+    return String(Number(n.toFixed(Math.max(0,Math.min(6,dd)))));
+  }
+  function parse(){
+    var m=/[?&]w=([^&]*)/.exec(location.search);
+    if(!m)return [];
+    var out=[];
+    decodeURIComponent(m[1]).split(",").forEach(function(s){
+      var p=s.split(":");
+      if(p.length!==3)return;
+      var t={id:p[0],dir:p[1],val:Number(p[2])};
+      if(META[t.id]&&(t.dir==="above"||t.dir==="below"||t.dir==="move")&&isFinite(t.val)&&t.val>0)out.push(t);
+    });
+    return out;
+  }
+  function sync(){
+    var u=new URL(location.href);
+    if(board.length)u.searchParams.set("w",board.map(function(t){return t.id+":"+t.dir+":"+t.val;}).join(","));
+    else u.searchParams.delete("w");
+    try{history.replaceState(null,"",u.href);}catch(e){}
+    var a=$("w-link");if(a){a.href=u.href;a.textContent=board.length?"copy this board link":"this page";}
+  }
+  function row(t){
+    var m=META[t.id],q=quotes?quotes[t.id]:null,price=(q&&q.value!==null&&q.value!==undefined)?q.value:null;
+    var unit=m.unit,hint,bar=0,state="ARMED",cls="armed";
+    if(price===null){state="STALE";cls="stale";hint="source unreachable at the last build — your number is still on the board";}
+    else if(t.dir==="move"){
+      var ch=(q&&q.changePct!==null&&q.changePct!==undefined)?q.changePct:null;
+      hint="fires when it moves ±"+t.val+"% over 24h"+(ch===null?" — no prior close from this source":", today "+(ch>0?"+":"")+ch+"%");
+      bar=ch===null?0:Math.min(96,Math.abs(ch)/t.val*100);
+    } else {
+      var away=t.dir==="above"?-((price-t.val)/price*100):((price-t.val)/price*100);
+      var crossed=t.dir==="above"?price>t.val:price<t.val;
+      if(crossed){cls="tripped";state="TRIPPED";hint="already past it — the moment it crosses, this is the line that gets mailed";bar=100;}
+      else {hint=away.toFixed(1)+"% away — fires when it "+(t.dir==="above"?"rises above ":"falls below ")+fmt(t.val,m.dec)+" "+unit;bar=Math.max(2,Math.min(96,100-away*4));}
+    }
+    var label=esc(m.label)+" "+(t.dir==="move"?"±"+t.val+"%":(t.dir==="above"?"above ":"below ")+fmt(t.val,m.dec));
+    return '<li class="row '+cls+'">'+
+      '<div class="row-top"><span class="lbl">'+label+'</span><span class="state">'+state+'</span></div>'+
+      '<div class="nums"><span class="now">'+fmt(price,m.dec)+'</span> <span class="vs">'+esc(unit)+'</span></div>'+
+      '<div class="bar"><i style="width:'+bar+'%"></i></div>'+
+      '<div class="hint">'+esc(hint)+'</div></li>';
+  }
+  function render(){
+    var out=$("w-out");
+    if(!out)return;
+    if(!board.length){out.innerHTML='<li class="row"><div class="hint">Nothing on your board yet — pick a market above, or tap a preset. It is only a URL: nothing is stored on our side.</div></li>';sync();return;}
+    out.innerHTML=board.map(row).join("");
+    sync();
+  }
+  function unitLabel(){
+    var d=$("w-dir").value,m=META[$("w-asset").value];
+    $("w-lab").textContent=d==="move"?"move by % (24h)":"your number ("+m.unit+")";
+  }
+  $("w-add").addEventListener("click",function(){
+    var id=$("w-asset").value,dir=$("w-dir").value,val=Number($("w-val").value);
+    if(!isFinite(val)||val<=0){$("w-val").style.borderColor="var(--hot)";$("w-val").focus();return;}
+    $("w-val").style.borderColor="";
+    board=board.filter(function(t){return !(t.id===id&&t.dir===dir);});
+    board.push({id:id,dir:dir,val:val});
+    board.sort(function(a,b){return a.id<b.id?-1:(a.id>b.id?1:0);});
+    $("w-val").value="";render();
+  });
+  $("w-clear").addEventListener("click",function(){board=[];render();});
+  $("w-dir").addEventListener("change",unitLabel);
+  $("w-asset").addEventListener("change",unitLabel);
+  board=parse();
+  unitLabel();
+  render();
+  fetch("quotes.json",{cache:"no-store"}).then(function(r){return r.json();}).then(function(j){
+    quotes={};(j.quotes||[]).forEach(function(q){quotes[q.id]=q;});render();
+  }).catch(function(){ /* the static sheet above is still the record */ });
+})();
+  </script>
 </div></body></html>

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-06T14:02:42.939Z",
+  "generatedAt": "2026-11-06T15:02:42.729Z",
   "name": "Tripwire",
   "url": "https://flak3dd.github.io/tripwire/",
   "book": "Tripwire desk book",
@@ -9,9 +9,9 @@
   "rule": "entry = the leg price at our first recorded snapshot (a read, not a fill) · band = the basket's ±alertMove rule applied to the leg · state = the first band crossing in recorded order",
   "summary": {
     "positions": 15,
-    "open": 15,
+    "open": 14,
     "stopped": 0,
-    "targets": 0,
+    "targets": 1,
     "awaiting_first_read": 0,
     "stale": 0,
     "sectors": [
@@ -44,7 +44,7 @@
       "state": "open",
       "hitAt": null,
       "entryAt": "2026-11-06T02:52:23.224Z",
-      "marks": 14
+      "marks": 15
     },
     {
       "id": "asx-steady:wbc",
@@ -67,7 +67,7 @@
       "state": "open",
       "hitAt": null,
       "entryAt": "2026-11-06T02:52:23.224Z",
-      "marks": 14
+      "marks": 15
     },
     {
       "id": "asx-steady:bhp",
@@ -90,7 +90,7 @@
       "state": "open",
       "hitAt": null,
       "entryAt": "2026-11-06T02:52:23.224Z",
-      "marks": 14
+      "marks": 15
     },
     {
       "id": "asx-steady:asx200",
@@ -113,7 +113,7 @@
       "state": "open",
       "hitAt": null,
       "entryAt": "2026-11-06T02:52:23.224Z",
-      "marks": 14
+      "marks": 15
     },
     {
       "id": "global-core:sp500",
@@ -127,16 +127,16 @@
       "unit": "pts",
       "dec": 1,
       "entry": 7353.73,
-      "last": 7353.73,
-      "movePct": 0,
-      "contribPp": 0,
+      "last": 7419.12,
+      "movePct": 0.89,
+      "contribPp": 0.267,
       "band": 3,
-      "peakPct": 0,
+      "peakPct": 0.89,
       "troughPct": 0,
       "state": "open",
       "hitAt": null,
       "entryAt": "2026-11-06T02:52:23.226Z",
-      "marks": 14
+      "marks": 15
     },
     {
       "id": "global-core:nasdaq",
@@ -150,16 +150,16 @@
       "unit": "pts",
       "dec": 1,
       "entry": 24314.998,
-      "last": 24314.998,
-      "movePct": 0,
-      "contribPp": 0,
+      "last": 24730.047,
+      "movePct": 1.71,
+      "contribPp": 0.342,
       "band": 3,
-      "peakPct": 0,
+      "peakPct": 1.71,
       "troughPct": 0,
       "state": "open",
       "hitAt": null,
       "entryAt": "2026-11-06T02:52:23.226Z",
-      "marks": 14
+      "marks": 15
     },
     {
       "id": "global-core:aapl",
@@ -173,16 +173,16 @@
       "unit": "USD",
       "dec": 2,
       "entry": 344.17,
-      "last": 344.17,
-      "movePct": 0,
-      "contribPp": 0,
+      "last": 341.9,
+      "movePct": -0.66,
+      "contribPp": -0.099,
       "band": 3,
       "peakPct": 0,
-      "troughPct": 0,
+      "troughPct": -0.66,
       "state": "open",
       "hitAt": null,
       "entryAt": "2026-11-06T02:52:23.226Z",
-      "marks": 14
+      "marks": 15
     },
     {
       "id": "global-core:msft",
@@ -196,16 +196,16 @@
       "unit": "USD",
       "dec": 2,
       "entry": 535.93,
-      "last": 535.93,
-      "movePct": 0,
-      "contribPp": 0,
+      "last": 529.49,
+      "movePct": -1.2,
+      "contribPp": -0.18,
       "band": 3,
       "peakPct": 0,
-      "troughPct": 0,
+      "troughPct": -1.2,
       "state": "open",
       "hitAt": null,
       "entryAt": "2026-11-06T02:52:23.226Z",
-      "marks": 14
+      "marks": 15
     },
     {
       "id": "global-core:gold",
@@ -219,16 +219,16 @@
       "unit": "USD/oz",
       "dec": 2,
       "entry": 4074.4,
-      "last": 4060.6,
-      "movePct": -0.34,
-      "contribPp": -0.068,
+      "last": 4053.1,
+      "movePct": -0.52,
+      "contribPp": -0.104,
       "band": 3,
       "peakPct": 0.09,
-      "troughPct": -0.51,
+      "troughPct": -0.52,
       "state": "open",
       "hitAt": null,
       "entryAt": "2026-11-06T02:52:23.226Z",
-      "marks": 14
+      "marks": 15
     },
     {
       "id": "momentum:btc",
@@ -242,16 +242,16 @@
       "unit": "A$",
       "dec": 0,
       "entry": 110061,
-      "last": 110391,
-      "movePct": 0.3,
-      "contribPp": 0.09,
+      "last": 109419,
+      "movePct": -0.58,
+      "contribPp": -0.174,
       "band": 6,
       "peakPct": 0.77,
-      "troughPct": -0.38,
+      "troughPct": -0.58,
       "state": "open",
       "hitAt": null,
       "entryAt": "2026-11-06T02:52:23.227Z",
-      "marks": 14
+      "marks": 15
     },
     {
       "id": "momentum:eth",
@@ -265,16 +265,16 @@
       "unit": "A$",
       "dec": 2,
       "entry": 3239.62,
-      "last": 3252.25,
-      "movePct": 0.39,
-      "contribPp": 0.078,
+      "last": 3228.12,
+      "movePct": -0.35,
+      "contribPp": -0.07,
       "band": 6,
       "peakPct": 0.67,
       "troughPct": -0.35,
       "state": "open",
       "hitAt": null,
       "entryAt": "2026-11-06T02:52:23.227Z",
-      "marks": 14
+      "marks": 15
     },
     {
       "id": "momentum:nvda",
@@ -288,16 +288,16 @@
       "unit": "USD",
       "dec": 2,
       "entry": 181.6,
-      "last": 181.6,
-      "movePct": 0,
-      "contribPp": 0,
+      "last": 193.065,
+      "movePct": 6.31,
+      "contribPp": 1.262,
       "band": 6,
-      "peakPct": 0,
+      "peakPct": 6.31,
       "troughPct": 0,
-      "state": "open",
-      "hitAt": null,
+      "state": "target",
+      "hitAt": "2026-11-06T15:02:37.543Z",
       "entryAt": "2026-11-06T02:52:23.227Z",
-      "marks": 14
+      "marks": 15
     },
     {
       "id": "momentum:sol",
@@ -311,16 +311,16 @@
       "unit": "A$",
       "dec": 2,
       "entry": 130.54,
-      "last": 131.41,
-      "movePct": 0.67,
-      "contribPp": 0.067,
+      "last": 131.8,
+      "movePct": 0.97,
+      "contribPp": 0.097,
       "band": 6,
-      "peakPct": 0.76,
+      "peakPct": 0.97,
       "troughPct": -0.84,
       "state": "open",
       "hitAt": null,
       "entryAt": "2026-11-06T02:52:23.227Z",
-      "marks": 14
+      "marks": 15
     },
     {
       "id": "momentum:tsla",
@@ -334,16 +334,16 @@
       "unit": "USD",
       "dec": 2,
       "entry": 343.69,
-      "last": 343.69,
-      "movePct": 0,
-      "contribPp": 0,
+      "last": 356.65,
+      "movePct": 3.77,
+      "contribPp": 0.377,
       "band": 6,
-      "peakPct": 0,
+      "peakPct": 3.77,
       "troughPct": 0,
       "state": "open",
       "hitAt": null,
       "entryAt": "2026-11-06T02:52:23.227Z",
-      "marks": 14
+      "marks": 15
     },
     {
       "id": "momentum:wti",
@@ -357,16 +357,16 @@
       "unit": "USD/bbl",
       "dec": 2,
       "entry": 91.67,
-      "last": 91.03,
-      "movePct": -0.7,
-      "contribPp": -0.07,
+      "last": 90.94,
+      "movePct": -0.8,
+      "contribPp": -0.08,
       "band": 6,
       "peakPct": 0.5,
       "troughPct": -1.68,
       "state": "open",
       "hitAt": null,
       "entryAt": "2026-11-06T02:52:23.227Z",
-      "marks": 14
+      "marks": 15
     }
   ]
 }

@@ -1,13 +1,14 @@
 {
-  "builtAt": "2026-11-06T06:34:46.792Z",
+  "builtAt": "2026-11-06T07:24:29.776Z",
   "name": "Tripwire",
   "method": {
-    "history": "daily closes: Yahoo chart (10y, adjusted where Yahoo provides it) for 25 markets incl. crypto in AUD; ECB/Frankfurter for the 6 FX pairs",
+    "history": "daily closes: Yahoo chart (10y, adjusted where Yahoo provides it) for 25 markets incl. crypto in AUD, plus the 5 leveraged funds the high-yield sleeve holds; ECB/Frankfurter for the 6 FX pairs",
     "window": "2020-01-01 -> 2026-11-06",
     "split": "2023-07-01 (in-sample before, out-of-sample after)",
     "rebalance": "monthly, first trading day, close to close, through a 2pp no-trade band per leg",
     "lookahead": "signal at close t, weights govern returns from t+1",
-    "costs": "per unit turnover: 25bps crypto, 10bps stocks/indices/metals/energy, 3bps FX",
+    "costs": "per unit turnover: 25bps crypto, 20bps leveraged ETFs, 10bps stocks/indices/metals/energy, 3bps FX",
+    "leverage": "held inside the instrument (2x/3x daily-reset ETFs), so financing and daily-rebalance drag are in the price series, not in a made-up weight above 1",
     "cash": "0% return, no T-bill",
     "rf": "0%",
     "warmup": "273 daily closes before a market is eligible (200d MA + 12-1 momentum)"
@@ -111,7 +112,8 @@
         "paid": 0.0174,
         "turnover": 14.14,
         "rebalances": 83,
-        "avgExposure": 0.6617
+        "avgExposure": 0.6617,
+        "avgLeverage": 0.662
       },
       "verdict": "profitable net of costs out of sample (+9.64% a year) but behind its own baseline (+11.64%)",
       "signal": {
@@ -218,7 +220,8 @@
         "paid": 0.0418,
         "turnover": 21.66,
         "rebalances": 83,
-        "avgExposure": 0.5757
+        "avgExposure": 0.5757,
+        "avgLeverage": 0.576
       },
       "verdict": "profitable net of costs out of sample (+6.61% a year) but behind its own baseline (+19.72%)",
       "signal": {
@@ -227,12 +230,14 @@
           {
             "id": "btc",
             "label": "Bitcoin",
-            "w": 0.4
+            "w": 0.4,
+            "cluster": "Crypto"
           },
           {
             "id": "eth",
             "label": "Ethereum",
-            "w": 0.331
+            "w": 0.331,
+            "cluster": "Crypto"
           },
           {
             "id": "sol",
@@ -345,7 +350,8 @@
         "paid": 0.0112,
         "turnover": 8.26,
         "rebalances": 83,
-        "avgExposure": 0.5764
+        "avgExposure": 0.5764,
+        "avgLeverage": 0.576
       },
       "verdict": "profitable net of costs out of sample (+9.52% a year) but behind its own baseline (+13.47%)",
       "signal": {
@@ -359,7 +365,8 @@
           {
             "id": "btc",
             "label": "Bitcoin",
-            "w": 0.1
+            "w": 0.1,
+            "cluster": "Crypto"
           },
           {
             "id": "nasdaq",
@@ -374,7 +381,8 @@
           {
             "id": "eth",
             "label": "Ethereum",
-            "w": 0.0667
+            "w": 0.0667,
+            "cluster": "Crypto"
           },
           {
             "id": "nvda",
@@ -424,10 +432,267 @@
           {
             "id": "wti",
             "label": "WTI crude",
-            "w": 0.0333
+            "w": 0.0333,
+            "cluster": "Crude"
           }
         ],
         "cash": 0.1666
+      }
+    },
+    {
+      "id": "gear",
+      "name": "Package · high yield",
+      "price": "A$99/mo",
+      "algo": {
+        "name": "Gear",
+        "rules": [
+          "One sleeve over both kinds of market: the owned ones (BTC, ETH, WTI crude) and the bought leverage (S&P 500 3x, Nasdaq-100 3x, semis 3x, 20y Treasuries 3x, gold 2x) — eight instruments in five clusters: US index leverage, Treasuries, gold, crypto, crude.",
+          "The leverage is a holding, not a weight above 1: a 3x fund's price already carries its financing and its daily rebalance, so the drag is measured instead of promised.",
+          "A leg is bought only while it is above its own 200-day average with positive 12-1 momentum; inside a cluster only the strongest momentum leg is held, so three 3x equity funds are one position and a choice — never three bets.",
+          "The risk budget is split 1/vol across the clusters that are in, capped at 40% a leg, then the sleeve is scaled so its ex-ante vol is the tier's target — 15% core, 22% balanced, 30% high yield; a 20% drawdown halves the sleeve until equity is back within 6% of the peak.",
+          "Monthly rebalance through the 2-point band, 20bps per unit of turnover on a levered fund, 25bps crypto, 10bps crude; cash earns 0% and an empty sleeve holds cash."
+        ],
+        "params": {
+          "maWindow": 200,
+          "lookback": "12-1 months",
+          "volWindow": 63,
+          "clusters": [
+            "US index 3x",
+            "Treasuries 3x",
+            "Gold 2x",
+            "Crypto",
+            "Crude"
+          ],
+          "capPerLeg": 0.4,
+          "targetVol": 0.3,
+          "maxWeight": 1,
+          "gears": [
+            0.15,
+            0.22,
+            0.3
+          ],
+          "brake": "20% dd / 6% release",
+          "noTradeBand": 0.02,
+          "rebalance": "monthly, first trading day"
+        },
+        "honest": "This is the tier where the arithmetic can hurt: a 3x fund that halves needs to double just to be even, and a 30% vol target means one month in twenty is a bad one. The vol target is a dial, not a floor — the sleeve is often less than fully invested."
+      },
+      "stats": {
+        "full": {
+          "from": "2020-01-01",
+          "to": "2026-11-06",
+          "days": 2502,
+          "cagr": 0.15524926898234281,
+          "vol": 0.23201795185917928,
+          "sharpe": 0.7390818126461012,
+          "maxDD": 0.2848376050314837,
+          "calmar": 0.5450448474497698,
+          "hitRate": 0.5903614457831325,
+          "worstMonth": -0.15528304802131332,
+          "bestMonth": 0.29203048792840014,
+          "months": 83
+        },
+        "inSample": {
+          "from": "2020-01-01",
+          "to": "2023-06-30",
+          "days": 1277,
+          "cagr": 0.20648403175517127,
+          "vol": 0.2348159088022065,
+          "sharpe": 0.9173970138722869,
+          "maxDD": 0.2848376050314837,
+          "calmar": 0.7249184381126508,
+          "hitRate": 0.5476190476190477,
+          "worstMonth": -0.15487502040188883,
+          "bestMonth": 0.29203048792840014,
+          "months": 42
+        },
+        "outOfSample": {
+          "from": "2023-07-01",
+          "to": "2026-11-06",
+          "days": 1225,
+          "cagr": 0.10423062793585669,
+          "vol": 0.22922109671742627,
+          "sharpe": 0.5486713257058158,
+          "maxDD": 0.26769880071973595,
+          "calmar": 0.38935784417271146,
+          "hitRate": 0.6341463414634146,
+          "worstMonth": -0.15528304802131332,
+          "bestMonth": 0.21323499826576375,
+          "months": 41
+        },
+        "baselineFull": {
+          "from": "2020-01-01",
+          "to": "2026-11-06",
+          "days": 2502,
+          "cagr": 0.22616260624880558,
+          "vol": 0.3255986669140284,
+          "sharpe": 0.7905716933612874,
+          "maxDD": 0.6006817492676874,
+          "calmar": 0.37650986820313503,
+          "hitRate": 0.5783132530120482,
+          "worstMonth": -0.28369764217895954,
+          "bestMonth": 0.32579651495980144,
+          "months": 83
+        },
+        "baselineOutOfSample": {
+          "from": "2023-07-01",
+          "to": "2026-11-06",
+          "days": 1225,
+          "cagr": 0.19381302511090137,
+          "vol": 0.27954557425549703,
+          "sharpe": 0.7738623278719747,
+          "maxDD": 0.3718613103700473,
+          "calmar": 0.5211970691923657,
+          "hitRate": 0.5609756097560976,
+          "worstMonth": -0.12072962558808631,
+          "bestMonth": 0.24956552185447234,
+          "months": 41
+        }
+      },
+      "costs": {
+        "paid": 0.0569,
+        "turnover": 29.24,
+        "rebalances": 83,
+        "avgExposure": 0.5775,
+        "avgLeverage": 1.123
+      },
+      "gears": [
+        {
+          "gear": "core",
+          "targetVol": 0.15,
+          "maxWeight": 0.5,
+          "stats": {
+            "from": "2020-01-01",
+            "to": "2026-11-06",
+            "days": 2502,
+            "cagr": 0.1255552968942144,
+            "vol": 0.14405708207454362,
+            "sharpe": 0.8934776218391164,
+            "maxDD": 0.18624357781327894,
+            "calmar": 0.6741456450116717,
+            "hitRate": 0.5783132530120482,
+            "worstMonth": -0.08177674348208286,
+            "bestMonth": 0.14452123055565447,
+            "months": 83
+          },
+          "outOfSample": {
+            "from": "2023-07-01",
+            "to": "2026-11-06",
+            "days": 1225,
+            "cagr": 0.1066867229425279,
+            "vol": 0.14155486136834183,
+            "sharpe": 0.7873022670884178,
+            "maxDD": 0.1585146501942971,
+            "calmar": 0.6730401436823545,
+            "hitRate": 0.6341463414634146,
+            "worstMonth": -0.08177674348208286,
+            "bestMonth": 0.12318629101366052,
+            "months": 41
+          },
+          "costs": {
+            "paid": 0.0393,
+            "turnover": 20.55,
+            "avgExposure": 0.4021,
+            "avgLeverage": 0.768
+          }
+        },
+        {
+          "gear": "balanced",
+          "targetVol": 0.22,
+          "maxWeight": 0.75,
+          "stats": {
+            "from": "2020-01-01",
+            "to": "2026-11-06",
+            "days": 2502,
+            "cagr": 0.16818899756056482,
+            "vol": 0.19419621337488666,
+            "sharpe": 0.8982828617894436,
+            "maxDD": 0.2648126936138079,
+            "calmar": 0.6351243789160834,
+            "hitRate": 0.5903614457831325,
+            "worstMonth": -0.1145437077647592,
+            "bestMonth": 0.22740210209575462,
+            "months": 83
+          },
+          "outOfSample": {
+            "from": "2023-07-01",
+            "to": "2026-11-06",
+            "days": 1225,
+            "cagr": 0.14432587316249235,
+            "vol": 0.1939223855435213,
+            "sharpe": 0.7929961538507404,
+            "maxDD": 0.22641362134970477,
+            "calmar": 0.6374434201534869,
+            "hitRate": 0.6341463414634146,
+            "worstMonth": -0.11387423521562978,
+            "bestMonth": 0.1803417185388152,
+            "months": 41
+          },
+          "costs": {
+            "paid": 0.0498,
+            "turnover": 25.74,
+            "avgExposure": 0.5153,
+            "avgLeverage": 1.001
+          }
+        },
+        {
+          "gear": "high-yield",
+          "targetVol": 0.3,
+          "maxWeight": 1,
+          "stats": {
+            "from": "2020-01-01",
+            "to": "2026-11-06",
+            "days": 2502,
+            "cagr": 0.15524926898234281,
+            "vol": 0.23201795185917928,
+            "sharpe": 0.7390818126461012,
+            "maxDD": 0.2848376050314837,
+            "calmar": 0.5450448474497698,
+            "hitRate": 0.5903614457831325,
+            "worstMonth": -0.15528304802131332,
+            "bestMonth": 0.29203048792840014,
+            "months": 83
+          },
+          "outOfSample": {
+            "from": "2023-07-01",
+            "to": "2026-11-06",
+            "days": 1225,
+            "cagr": 0.10423062793585669,
+            "vol": 0.22922109671742627,
+            "sharpe": 0.5486713257058158,
+            "maxDD": 0.26769880071973595,
+            "calmar": 0.38935784417271146,
+            "hitRate": 0.6341463414634146,
+            "worstMonth": -0.15528304802131332,
+            "bestMonth": 0.21323499826576375,
+            "months": 41
+          },
+          "costs": {
+            "paid": 0.0569,
+            "turnover": 29.24,
+            "avgExposure": 0.5775,
+            "avgLeverage": 1.123
+          }
+        }
+      ],
+      "verdict": "profitable net of costs out of sample (+10.42% a year) but behind its own baseline (+19.38%)",
+      "signal": {
+        "asOf": "2026-11-06",
+        "legs": [
+          {
+            "id": "eth",
+            "label": "Ethereum",
+            "w": 0.4,
+            "cluster": "Crypto"
+          },
+          {
+            "id": "wti",
+            "label": "WTI crude",
+            "w": 0.4,
+            "cluster": "Crude"
+          }
+        ],
+        "cash": 0.2
       }
     }
   ],
@@ -741,6 +1006,56 @@
       "to": "2026-11-05",
       "n": 2513,
       "sha256": "601e738b8caefa20"
+    },
+    {
+      "id": "upro",
+      "label": "S&P 500 3x",
+      "symbol": "UPRO",
+      "kind": "yahoo-chart",
+      "from": "2016-11-07",
+      "to": "2026-11-05",
+      "n": 2513,
+      "sha256": "173cc5a9b98f0bc2"
+    },
+    {
+      "id": "tqqq",
+      "label": "Nasdaq-100 3x",
+      "symbol": "TQQQ",
+      "kind": "yahoo-chart",
+      "from": "2016-11-07",
+      "to": "2026-11-05",
+      "n": 2513,
+      "sha256": "0e5233728c9e0d0d"
+    },
+    {
+      "id": "soxl",
+      "label": "Semiconductors 3x",
+      "symbol": "SOXL",
+      "kind": "yahoo-chart",
+      "from": "2016-11-07",
+      "to": "2026-11-05",
+      "n": 2513,
+      "sha256": "1f71d38f60418aef"
+    },
+    {
+      "id": "tmf",
+      "label": "US 20y Treasuries 3x",
+      "symbol": "TMF",
+      "kind": "yahoo-chart",
+      "from": "2016-11-07",
+      "to": "2026-11-05",
+      "n": 2513,
+      "sha256": "ac4fbce8e39c0dd6"
+    },
+    {
+      "id": "ugl",
+      "label": "Gold 2x",
+      "symbol": "UGL",
+      "kind": "yahoo-chart",
+      "from": "2016-11-07",
+      "to": "2026-11-05",
+      "n": 2513,
+      "sha256": "e2effa97038b65cb"
     }
   ],
   "honest": "Backtest, not track record: closes from public keyless APIs, costs charged on turnover, no slippage model beyond the cost line, nothing larger than the tier allows. The desk book is still the only thing marked live."

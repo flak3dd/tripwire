@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-11-06T11:03:30.313Z",
+  "builtAt": "2026-11-06T12:11:20.939Z",
   "name": "Tripwire",
   "method": {
     "history": "daily closes: Yahoo chart (10y, adjusted where Yahoo provides it) for 25 markets incl. crypto in AUD, plus the 5 leveraged funds the high-yield sleeve holds; ECB/Frankfurter for the 6 FX pairs",
@@ -170,7 +170,7 @@
           "id": "trend",
           "name": "Trend & breakout",
           "tag": "fewer, bigger, later",
-          "what": "Own a leg only while it is above both its 200-day and its 50-day average and closing at a 63-day high; equal weight, so the few names that qualify carry the book.",
+          "what": "Enter a leg above its 200-day and 50-day averages when within 2% (or 5 days) of a 63-day high, and hold while above both averages; equal weight.",
           "wins": "breakouts that keep going, and quiet starts to big moves",
           "loses": "a market grinding sideways just under its high — the entry is always a little late and the exit a little early",
           "default": false,
@@ -178,54 +178,79 @@
             "from": "2020-01-01",
             "to": "2026-11-06",
             "days": 2502,
-            "cagr": 0.21426741944426775,
-            "vol": 0.2597724257307779,
-            "sharpe": 0.8668637760700939,
-            "maxDD": 0.25255362951227667,
-            "calmar": 0.8484036434481421,
-            "hitRate": 0.5301204819277109,
-            "worstMonth": -0.10054414821219326,
-            "bestMonth": 0.6539223024005834,
+            "cagr": 0.222206774681609,
+            "vol": 0.1957468781555173,
+            "sharpe": 1.122252710224559,
+            "maxDD": 0.3096800093046389,
+            "calmar": 0.7175367088775155,
+            "hitRate": 0.6144578313253012,
+            "worstMonth": -0.08919943516650053,
+            "bestMonth": 0.37383290591699936,
             "months": 83
           },
           "outOfSample": {
             "from": "2023-07-01",
             "to": "2026-11-06",
             "days": 1225,
-            "cagr": 0.06312608032058731,
-            "vol": 0.13196846962504818,
-            "sharpe": 0.5299686277999999,
-            "maxDD": 0.1994482598987165,
-            "calmar": 0.31650354007923603,
-            "hitRate": 0.5121951219512195,
-            "worstMonth": -0.09826916087325599,
-            "bestMonth": 0.13933416517298913,
+            "cagr": 0.12486940865109464,
+            "vol": 0.15231766366701052,
+            "sharpe": 0.8488298790163449,
+            "maxDD": 0.1985518497275116,
+            "calmar": 0.6289007572705205,
+            "hitRate": 0.6341463414634146,
+            "worstMonth": -0.084357673534173,
+            "bestMonth": 0.36050283010893835,
             "months": 41
           },
           "costs": {
-            "paid": 0.0876,
-            "turnover": 81.1,
+            "paid": 0.082,
+            "turnover": 78.72,
             "rebalances": 83,
-            "avgExposure": 0.5608,
-            "avgLeverage": 0.561
+            "avgExposure": 0.9384,
+            "avgLeverage": 0.938
           },
           "signal": {
             "asOf": "2026-11-06",
             "legs": [
               {
+                "id": "audeur",
+                "label": "AUD/EUR",
+                "w": 0.1429
+              },
+              {
+                "id": "asx200",
+                "label": "ASX 200",
+                "w": 0.1429
+              },
+              {
+                "id": "ftse",
+                "label": "FTSE 100",
+                "w": 0.1429
+              },
+              {
                 "id": "cba",
                 "label": "CommBank",
-                "w": 0.25
+                "w": 0.1429
               },
               {
                 "id": "wbc",
                 "label": "Westpac",
-                "w": 0.25
+                "w": 0.1429
+              },
+              {
+                "id": "aapl",
+                "label": "Apple",
+                "w": 0.1429
+              },
+              {
+                "id": "msft",
+                "label": "Microsoft",
+                "w": 0.1429
               }
             ],
-            "cash": 0.5
+            "cash": 0
           },
-          "vsDefaultOos": -0.0332
+          "vsDefaultOos": 0.0285
         },
         {
           "id": "dip",
@@ -695,7 +720,7 @@
           "id": "trend",
           "name": "Trend & breakout",
           "tag": "fewer, bigger, later",
-          "what": "Own a leg only while it is above both its 200-day and its 50-day average and closing at a 63-day high; equal weight, so the few names that qualify carry the book.",
+          "what": "Enter a leg above its 200-day and 50-day averages when within 2% (or 5 days) of a 63-day high, and hold while above both averages; equal weight.",
           "wins": "breakouts that keep going, and quiet starts to big moves",
           "loses": "a market grinding sideways just under its high — the entry is always a little late and the exit a little early",
           "default": false,
@@ -703,43 +728,43 @@
             "from": "2020-01-01",
             "to": "2026-11-06",
             "days": 2502,
-            "cagr": 0.07397780938908882,
-            "vol": 0.22510080986577993,
-            "sharpe": 0.4305119300058234,
-            "maxDD": 0.3835644379118296,
-            "calmar": 0.19286931236856267,
-            "hitRate": 0.08433734939759036,
-            "worstMonth": -0.1683766077979879,
-            "bestMonth": 0.7178472744896844,
+            "cagr": 0.3075977471188023,
+            "vol": 0.3174282947325863,
+            "sharpe": 1.0039267835128662,
+            "maxDD": 0.354687466530643,
+            "calmar": 0.8672360208483081,
+            "hitRate": 0.39759036144578314,
+            "worstMonth": -0.19968612675708908,
+            "bestMonth": 0.7127335270945774,
             "months": 83
           },
           "outOfSample": {
             "from": "2023-07-01",
             "to": "2026-11-06",
             "days": 1225,
-            "cagr": 0.04087800213066961,
-            "vol": 0.13659273370546499,
-            "sharpe": 0.36084841593726164,
-            "maxDD": 0.17651425523300723,
-            "calmar": 0.23158470729012057,
-            "hitRate": 0.04878048780487805,
-            "worstMonth": -0.1118005233134799,
-            "bestMonth": 0.24924493919069213,
+            "cagr": 0.12826628725110756,
+            "vol": 0.2471574568050303,
+            "sharpe": 0.6112087682753302,
+            "maxDD": 0.354687466530643,
+            "calmar": 0.36163185721147006,
+            "hitRate": 0.3902439024390244,
+            "worstMonth": -0.19968612675708908,
+            "bestMonth": 0.40123815937470875,
             "months": 41
           },
           "costs": {
-            "paid": 0.0346,
-            "turnover": 18.09,
+            "paid": 0.0576,
+            "turnover": 33.19,
             "rebalances": 83,
-            "avgExposure": 0.1237,
-            "avgLeverage": 0.124
+            "avgExposure": 0.4793,
+            "avgLeverage": 0.479
           },
           "signal": {
             "asOf": "2026-11-06",
             "legs": [],
             "cash": 1
           },
-          "vsDefaultOos": -0.0252
+          "vsDefaultOos": 0.0622
         },
         {
           "id": "dip",
@@ -1196,7 +1221,7 @@
           "id": "trend",
           "name": "Trend & breakout",
           "tag": "fewer, bigger, later",
-          "what": "Own a leg only while it is above both its 200-day and its 50-day average and closing at a 63-day high; equal weight, so the few names that qualify carry the book.",
+          "what": "Enter a leg above its 200-day and 50-day averages when within 2% (or 5 days) of a 63-day high, and hold while above both averages; equal weight.",
           "wins": "breakouts that keep going, and quiet starts to big moves",
           "loses": "a market grinding sideways just under its high — the entry is always a little late and the exit a little early",
           "default": false,
@@ -1204,43 +1229,64 @@
             "from": "2020-01-01",
             "to": "2026-11-06",
             "days": 2502,
-            "cagr": 0.1151081184477567,
-            "vol": 0.14028669174718247,
-            "sharpe": 0.8471348754935238,
-            "maxDD": 0.2756970608298044,
-            "calmar": 0.4175166688440549,
-            "hitRate": 0.25301204819277107,
-            "worstMonth": -0.14729592311533246,
-            "bestMonth": 0.2918062040138627,
+            "cagr": 0.1450927895241354,
+            "vol": 0.13865029377516389,
+            "sharpe": 1.0470832237596537,
+            "maxDD": 0.2533876833197847,
+            "calmar": 0.5726118476762065,
+            "hitRate": 0.5180722891566265,
+            "worstMonth": -0.09862798870176115,
+            "bestMonth": 0.24116662677520262,
             "months": 83
           },
           "outOfSample": {
             "from": "2023-07-01",
             "to": "2026-11-06",
             "days": 1225,
-            "cagr": 0.020905580172811966,
-            "vol": 0.0418112246589024,
-            "sharpe": 0.515751682256717,
-            "maxDD": 0.0461611276596432,
-            "calmar": 0.45288278759032286,
-            "hitRate": 0.21951219512195122,
-            "worstMonth": -0.015326228097079952,
-            "bestMonth": 0.04875845863908057,
+            "cagr": 0.11285457650334552,
+            "vol": 0.11775547348283255,
+            "sharpe": 0.9670622168946592,
+            "maxDD": 0.14076379017578444,
+            "calmar": 0.801730163434885,
+            "hitRate": 0.5609756097560976,
+            "worstMonth": -0.0682505585043508,
+            "bestMonth": 0.12649455975308532,
             "months": 41
           },
           "costs": {
-            "paid": 0.0365,
-            "turnover": 28.11,
+            "paid": 0.0546,
+            "turnover": 44.13,
             "rebalances": 83,
-            "avgExposure": 0.2311,
-            "avgLeverage": 0.231
+            "avgExposure": 0.6315,
+            "avgLeverage": 0.631
           },
           "signal": {
             "asOf": "2026-11-06",
-            "legs": [],
-            "cash": 1
+            "legs": [
+              {
+                "id": "cba",
+                "label": "CommBank",
+                "w": 0.3
+              },
+              {
+                "id": "bhp",
+                "label": "BHP Group",
+                "w": 0.25
+              },
+              {
+                "id": "asx200",
+                "label": "ASX 200",
+                "w": 0.25
+              },
+              {
+                "id": "wbc",
+                "label": "Westpac",
+                "w": 0.2
+              }
+            ],
+            "cash": 0
           },
-          "vsDefaultOos": -0.0743
+          "vsDefaultOos": 0.0176
         },
         {
           "id": "dip",
@@ -1959,7 +2005,7 @@
           "id": "trend",
           "name": "Trend & breakout",
           "tag": "fewer, bigger, later",
-          "what": "Own a leg only while it is above both its 200-day and its 50-day average and closing at a 63-day high; equal weight, so the few names that qualify carry the book.",
+          "what": "Enter a leg above its 200-day and 50-day averages when within 2% (or 5 days) of a 63-day high, and hold while above both averages; equal weight.",
           "wins": "breakouts that keep going, and quiet starts to big moves",
           "loses": "a market grinding sideways just under its high — the entry is always a little late and the exit a little early",
           "default": false,
@@ -1967,43 +2013,43 @@
             "from": "2020-01-01",
             "to": "2026-11-06",
             "days": 2502,
-            "cagr": 0.018162421819488683,
-            "vol": 0.16013871042914177,
-            "sharpe": 0.1934221771028967,
-            "maxDD": 0.2662393202542961,
-            "calmar": 0.06821840516322311,
-            "hitRate": 0.3373493975903614,
-            "worstMonth": -0.17618930627043816,
-            "bestMonth": 0.10401704104170073,
+            "cagr": 0.12646609908863216,
+            "vol": 0.20814978286751462,
+            "sharpe": 0.6770964117728515,
+            "maxDD": 0.2893063541328158,
+            "calmar": 0.43713557369906103,
+            "hitRate": 0.5542168674698795,
+            "worstMonth": -0.17618930627043794,
+            "bestMonth": 0.21323499826576375,
             "months": 83
           },
           "outOfSample": {
             "from": "2023-07-01",
             "to": "2026-11-06",
             "days": 1225,
-            "cagr": 0.005557273451645139,
-            "vol": 0.12753763848101546,
-            "sharpe": 0.1081143079802856,
-            "maxDD": 0.25664299154975156,
-            "calmar": 0.021653712100561426,
-            "hitRate": 0.2926829268292683,
-            "worstMonth": -0.17618930627043816,
-            "bestMonth": 0.10401704104170073,
+            "cagr": 0.13399353001317849,
+            "vol": 0.20893720094860055,
+            "sharpe": 0.707448216923761,
+            "maxDD": 0.27731735284224357,
+            "calmar": 0.4831775892848756,
+            "hitRate": 0.6341463414634146,
+            "worstMonth": -0.17618930627043794,
+            "bestMonth": 0.21323499826576375,
             "months": 41
           },
           "costs": {
-            "paid": 0.0428,
-            "turnover": 21.85,
+            "paid": 0.0579,
+            "turnover": 29.79,
             "rebalances": 83,
-            "avgExposure": 0.1672,
-            "avgLeverage": 0.344
+            "avgExposure": 0.3922,
+            "avgLeverage": 0.773
           },
           "signal": {
             "asOf": "2026-11-06",
             "legs": [],
             "cash": 1
           },
-          "vsDefaultOos": -0.0987
+          "vsDefaultOos": 0.0298
         },
         {
           "id": "dip",
@@ -2218,7 +2264,7 @@
       "id": "trend",
       "name": "Trend & breakout",
       "tag": "fewer, bigger, later",
-      "what": "Own a leg only while it is above both its 200-day and its 50-day average and closing at a 63-day high; equal weight, so the few names that qualify carry the book.",
+      "what": "Enter a leg above its 200-day and 50-day averages when within 2% (or 5 days) of a 63-day high, and hold while above both averages; equal weight.",
       "wins": "breakouts that keep going, and quiet starts to big moves",
       "loses": "a market grinding sideways just under its high — the entry is always a little late and the exit a little early"
     },

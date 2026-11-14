@@ -4,12 +4,16 @@
 <title>Tripwire — A basket, not a tip: three weighted packages with a live combined metric, a live graph, and a tripwire on the basket itself.</title>
 <meta name="description" content="Three signal packages — ASX, global, momentum — where the weights add to 100% by construction, so &quot;combined&quot; is arithmetic and not a promise. Every tier names the sectors it covers — crypto, US equities, ASX equities, indices (S&amp;P 500, Nasdaq), commodities and FX, 31 markets — how many market tokens you can arm, and the live desk book: each leg marked hourly with its entry, last, move and band. Each package ships with its live combined move, a live graph drawn from our own hourly reads, the research note behind the weights, and an hourly alert when the basket itself moves past its ±% — on a hash-chained log you can verify. Paid hourly email; free quotes, feed, board and desk book.">
 <link rel="alternate" type="application/rss+xml" title="Tripwire — alert feed" href="feed.xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif&display=swap">
 <style>
-  :root{--bg:#0a0c10;--fg:#e8edf5;--dim:#8b96a8;--line:#1e2430;--hot:#ff5c47;--live:#31d68a;--warn:#e3b341}
+  :root{--bg:#0a0c10;--fg:#e8edf5;--dim:#8b96a8;--line:#1e2430;--hot:#ff5c47;--live:#31d68a;--warn:#e3b341;--brass:#c9a227;--brass-dim:#9c8434;--serif:"Instrument Serif",Georgia,serif}
   *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.55 ui-sans-serif,-apple-system,"Segoe UI",Inter,sans-serif}
   .wrap{max-width:760px;margin:0 auto;padding:56px 22px 80px}
   .kick{font:12px/1 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.16em;color:var(--dim);text-transform:uppercase}
-  h1{font-size:clamp(30px,5vw,44px);line-height:1.1;letter-spacing:-.02em;margin:14px 0 10px}
+  h1{font-family:var(--serif);font-weight:400;font-size:clamp(44px,7vw,66px);line-height:1.02;letter-spacing:-.01em;margin:14px 0 10px}
+  h1::after{content:".";color:var(--brass)}
   .sub{color:var(--dim);font-size:18px;max-width:56ch}
   .card{margin:34px 0;border:1px solid var(--line);border-radius:14px;background:#0d1117;overflow:hidden}
   .card h2{font:12px/1 ui-monospace,monospace;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);margin:0;padding:14px 18px;border-bottom:1px solid var(--line)}
@@ -23,7 +27,7 @@
   .tripped .state{color:#fff;background:var(--hot);border-color:var(--hot)}
   .stale .state{color:var(--warn);border-color:#5c4a1c;background:#1d1808}
   .nums{margin-top:6px;font:15px/1 ui-monospace,monospace}
-  .now{font-size:20px;font-weight:700}.vs{color:var(--dim);font-size:13px}
+  .now{font-family:var(--serif);font-size:27px;font-weight:400;color:var(--brass);letter-spacing:.01em}.vs{color:var(--dim);font-size:13px}
   .bar{height:5px;border-radius:4px;background:#161c26;margin:10px 0 7px;overflow:hidden}
   .bar i{display:block;height:100%;background:linear-gradient(90deg,#1f6f4a,var(--live))}
   .tripped .bar i{background:linear-gradient(90deg,#8c2d1f,var(--hot))}
@@ -31,7 +35,7 @@
   .stamp{color:var(--dim);font-size:13px}
   .btn{display:inline-block;margin-top:8px;background:var(--hot);color:#fff;text-decoration:none;font-weight:700;padding:14px 22px;border-radius:10px}
   .note{color:var(--dim);font-size:12px;margin-top:10px}
-  .cols{display:grid;gap:14px;grid-template-columns:1fr 1fr 1fr;margin:30px 0}
+  .cols{display:grid;gap:14px;grid-template-columns:1fr 1fr;margin:30px 0}
   @media(max-width:640px){.cols{grid-template-columns:1fr}}
   .tier{border:1px solid var(--line);border-radius:12px;padding:16px;background:#0d1117}
   .tier b{display:block;font-size:15px;margin-bottom:6px}
@@ -46,10 +50,10 @@
   .sectabwrap{overflow-x:auto;margin:14px 0 6px;border:1px solid var(--line);border-radius:12px;background:#0d1117}
   .sectab{width:100%;border-collapse:collapse;font-size:12px}
   .sectab th,.sectab td{padding:9px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
-  .sectab thead th{font:10px/1.4 ui-monospace,monospace;letter-spacing:.12em;text-transform:uppercase;color:var(--dim)}
+  .sectab thead th{font:11px/1.4 ui-monospace,monospace;letter-spacing:.12em;text-transform:uppercase;color:var(--dim)}
   .sectab tbody th{font-weight:600;color:var(--fg)}
   .sectab tr:last-child th,.sectab tr:last-child td{border-bottom:0}
-  .thn{display:block;font:10px/1.4 ui-monospace,monospace;color:var(--dim);font-weight:400;letter-spacing:.02em}
+  .thn{display:block;font:11px/1.4 ui-monospace,monospace;color:var(--dim);font-weight:400;letter-spacing:.02em}
   .sectab td.yes{color:var(--live);white-space:nowrap}
   .sectab td.yes b{font-size:14px}
   .sectab td.no{color:#4a5361}
@@ -63,9 +67,9 @@
   .book{width:100%;border-collapse:collapse;font:12px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace}
   .book th,.book td{padding:7px 10px;border-bottom:1px solid var(--line);text-align:right;white-space:nowrap}
   .book th:first-child,.book td:first-child{text-align:left}
-  .book thead th{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);font-weight:400}
+  .book thead th{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);font-weight:400}
   .book td.up{color:var(--live)}.book td.down{color:var(--hot)}
-  .book td.state2{font-size:10px;letter-spacing:.06em;color:var(--dim)}
+  .book td.state2{font-size:11px;letter-spacing:.06em;color:var(--dim)}
   .book tr.down td.state2{color:var(--hot)}.book tr.up td.state2{color:var(--live)}
   .warn{color:var(--warn)}
   h3{margin:34px 0 10px;font-size:18px}
@@ -77,7 +81,7 @@
   .mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px}
   .sub2{opacity:.72;margin-top:3px}
   .grp{background:#0b0f15;padding:8px 18px;border-bottom:1px solid var(--line)}
-  .kick2{font:10px/1 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.18em;color:var(--dim);text-transform:uppercase}
+  .kick2{font:11px/1 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.18em;color:var(--dim);text-transform:uppercase}
   .mkt{padding:10px 18px}
   .mkt-bot{margin-top:3px}
   .mono2{font:14px/1 ui-monospace,SFMono-Regular,Menlo,monospace;font-weight:600}
@@ -101,7 +105,7 @@
   .ticker{font:11px/1 ui-monospace,monospace;letter-spacing:.1em;color:var(--dim)}
   .pkgprice{font:15px/1 ui-monospace,monospace;color:var(--live);white-space:nowrap}
   .pkgmeta{color:var(--dim);font-size:12px;margin-top:4px}
-  .pkgbig{font:26px/1.25 ui-monospace,SFMono-Regular,Menlo,monospace;font-weight:700;margin:12px 0 4px}
+  .pkgbig{font-family:var(--serif);font-weight:400;font-size:34px;line-height:1.12;margin:12px 0 4px}
   .pkgbig.up{color:var(--live)}.pkgbig.down{color:var(--hot)}
   .pkglab{font:12px/1.3 ui-sans-serif,sans-serif;color:var(--dim);font-weight:400;margin-left:8px}
   .sparkwrap{margin:8px 0 10px}
@@ -110,21 +114,50 @@
   .wbar{display:flex;height:8px;border-radius:6px;overflow:hidden;margin:12px 0 8px;background:#161c26}
   .wseg{height:100%}
   .holds{list-style:none;margin:0 0 10px;padding:0}
-  .holds li{display:grid;grid-template-columns:7px 1fr 38px 96px 58px 62px;gap:8px;align-items:center;
+  .holds li{display:grid;grid-template-columns:7px 1fr 38px 96px 58px 62px 78px;gap:8px;align-items:center;
     padding:4px 0;border-bottom:1px solid #131922;font:12px/1.4 ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--dim)}
   .holds li:last-child{border-bottom:0}
   .holds .dot{width:7px;height:7px;border-radius:2px;display:block}
   .hlbl{color:var(--fg);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
   .hu{opacity:.65}
   .hc.up{color:var(--live)}.hc.down{color:var(--hot)}
-  @media(max-width:560px){.holds li{grid-template-columns:7px 1fr 46px 62px;gap:6px}.holds .hv,.holds .hk{display:none}}
+  .h4{text-align:right;white-space:nowrap}.h4.up,.w4 .up,.note .up{color:var(--live)}.h4.down,.w4 .down,.note .down{color:var(--hot)}
+  @media(max-width:560px){.holds li{grid-template-columns:7px 1fr 46px 62px 74px;gap:6px}.holds .hv,.holds .hk{display:none}}
+  .w4{display:flex;flex-wrap:wrap;align-items:center;gap:4px 10px;margin:4px 0 8px;font:12px/1.4 ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--dim)}
+  .w4 .w4k{font-size:11px;letter-spacing:.12em;text-transform:uppercase}
+  .w4 b{font-size:16px;font-weight:700;color:var(--fg)}
+  .w4 .w4l{font-family:ui-sans-serif,sans-serif}
+  .w4sp{width:120px;height:24px;display:block;background:#0a0f15;border:1px solid var(--line);border-radius:6px}
+  .w4 .w4d{flex-basis:100%;font-size:11px;opacity:.8}
+  .talgo{margin:10px 0 10px;padding:9px 10px;border:1px solid var(--line);border-radius:10px;background:#0a0f15;font:12px/1.45 ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--dim)}
+  .talgo-h{display:flex;justify-content:space-between;align-items:center;gap:8px;color:var(--fg)}
+  .talgo-n{display:flex;flex-wrap:wrap;gap:4px 12px;margin-top:6px}
+  .talgo-n strong,.talgo-h strong{color:var(--fg)}.talgo .up{color:var(--live)}.talgo .down{color:var(--hot)}
+  .talgo-w{margin-top:6px;font-family:ui-sans-serif,sans-serif;font-size:12px}
+  .rbadge{display:inline-block;padding:2px 7px;border-radius:999px;font:11px/1.5 ui-monospace,monospace;letter-spacing:.06em;text-transform:uppercase;border:1px solid var(--line);white-space:nowrap}
+  .rbadge.pass{color:var(--live);border-color:#1c5c3f;background:#0e2018}
+  .rbadge.strike{color:var(--warn);border-color:#5c4a1c;background:#1d180c}
+  .rbadge.retire{color:#fff;border-color:var(--hot);background:#5c231c}
+  .book td.rcell{text-align:left}
+  #algos table.book thead th{white-space:normal;vertical-align:bottom;line-height:1.3}
+  #algos table.book th,#algos table.book td{padding:7px 7px}
+  details.years{margin:8px 18px 0;border:1px solid var(--line);border-radius:10px;background:#0a0f15}
+  details.years summary{cursor:pointer;padding:8px 12px;font:12px/1.4 ui-monospace,monospace;color:var(--fg)}
+  details.years .bookwrap{max-height:none}
+  details.years .note{padding:6px 12px 10px;margin:0}
+  .ytab tr.half td{color:var(--dim);font-size:11px}.ytab tr.half td.up{color:#5fae86}.ytab tr.half td.down{color:#c7786d}
+  .ytab td.smp{font-size:11px;letter-spacing:.06em;color:var(--dim)}
+  #styles .bookwrap{max-height:none}
+  #st-table td:last-child,#st-table th:last-child{white-space:normal;text-align:left;min-width:180px}
+  #st-table td:first-child{white-space:normal;min-width:120px}
+  #st-table td b.up{color:var(--live)}#st-table td b.down{color:var(--hot)}
   .thesis{font-size:14px;line-height:1.5;margin:10px 0}
   .res{color:var(--dim);font-size:12.5px;margin:8px 0 10px;border-left:2px solid #1e2430;padding-left:12px}
   .reshead{color:var(--fg);font-size:13px;font-weight:600;margin-bottom:6px}
   .res ul{margin:0;padding-left:16px}
   .res li{margin:6px 0}
   .pkgalert{border-top:1px solid var(--line);padding-top:10px;color:var(--dim);font-size:12.5px}
-  .fired{color:#fff;background:var(--hot);padding:2px 5px;border-radius:4px;font-size:10px;letter-spacing:.08em}
+  .fired{color:#fff;background:var(--hot);padding:2px 5px;border-radius:4px;font-size:11px;letter-spacing:.08em}
   .live-dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--live);margin-right:6px;vertical-align:middle}
   /* ── v6 chrome: a sticky bar, a hero that leads with the number, a footer you can navigate ── */
   html{scroll-behavior:smooth}
@@ -135,7 +168,7 @@
   .top{position:sticky;top:0;z-index:20;background:rgba(10,12,16,.82);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
   .top-in{max-width:760px;margin:0 auto;display:flex;align-items:center;gap:12px;padding:10px 22px;min-width:0}
   .mark{display:flex;align-items:baseline;gap:8px;color:var(--fg);text-decoration:none;font:11px/1 ui-monospace,monospace;letter-spacing:.16em;white-space:nowrap}
-  .mark span{color:var(--dim);letter-spacing:.1em}
+  .mark span{color:var(--brass);letter-spacing:.1em}
   .nav{display:flex;gap:2px;margin-left:auto;overflow-x:auto;scrollbar-width:none;min-width:0;flex:0 1 auto}
   .nav::-webkit-scrollbar{display:none}
   .nav a{color:var(--dim);text-decoration:none;font:12px/1 ui-sans-serif,sans-serif;padding:8px 9px;border-radius:8px;white-space:nowrap}
@@ -152,7 +185,7 @@
   .btnghost{display:inline-block;border:1px solid var(--line);color:var(--fg);text-decoration:none;font-weight:600;padding:13px 18px;border-radius:10px;font-size:15px}
   .btnghost:hover{border-color:#2d3542;background:#10161e}
   section[id],h3[id]{scroll-margin-top:64px}
-  .card h2 .n{color:#3f4a5a;margin-right:8px}
+  .card h2 .n{color:var(--brass-dim);margin-right:8px}
   .signin-grid{display:grid;grid-template-columns:1.05fr 1fr}
   @media(max-width:720px){.signin-grid{grid-template-columns:1fr}}
   .li{padding:16px 18px;margin:0;border-right:1px solid var(--line)}
@@ -167,12 +200,12 @@
   .li-status.bad{color:var(--warn);border-color:#5c4a1c}
   .li-panel{padding:16px 18px;background:#0b0f15}
   .who{display:flex;align-items:center;gap:10px;font-size:15px;margin:0 0 10px}
-  .tierpill{font:10px/1 ui-monospace,monospace;letter-spacing:.1em;text-transform:uppercase;border:1px solid #1c5c3f;color:var(--live);background:#0e2018;padding:5px 8px;border-radius:999px}
+  .tierpill{font:11px/1 ui-monospace,monospace;letter-spacing:.1em;text-transform:uppercase;border:1px solid #1c5c3f;color:var(--live);background:#0e2018;padding:5px 8px;border-radius:999px}
   .tierpill.off{color:var(--warn);border-color:#5c4a1c;background:#1d1808}
   .wholines{list-style:none;margin:0;padding:0}
   .wholines li{display:grid;grid-template-columns:118px 1fr;gap:10px;padding:7px 0;border-bottom:1px solid #131922;font-size:12.5px}
   .wholines li:last-child{border-bottom:0}
-  .wholines span{color:var(--dim);font:10px/1.6 ui-monospace,monospace;letter-spacing:.08em;text-transform:uppercase}
+  .wholines span{color:var(--dim);font:11px/1.6 ui-monospace,monospace;letter-spacing:.08em;text-transform:uppercase}
   .wholines b{color:var(--fg);font-weight:500}
   .pad{padding:0 18px 16px}
   .two{display:grid;grid-template-columns:1fr 1fr;gap:0}
@@ -182,7 +215,7 @@
   @media(max-width:720px){.two>div+div{border-left:0;border-top:1px solid var(--line)}}
   .foot{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:18px;margin-top:40px;border-top:1px solid var(--line);padding-top:18px;color:var(--dim);font-size:12px}
   @media(max-width:720px){.foot{grid-template-columns:1fr}}
-  .foot b{display:block;color:var(--fg);font:10px/1.6 ui-monospace,monospace;letter-spacing:.14em;text-transform:uppercase;margin-bottom:6px}
+  .foot b{display:block;color:var(--fg);font:11px/1.6 ui-monospace,monospace;letter-spacing:.14em;text-transform:uppercase;margin-bottom:6px}
   .foot a{display:block;color:var(--dim);text-decoration:none;padding:2px 0}
   .foot a:hover{color:var(--fg)}
   .foot .fine{grid-column:1/-1;border-top:1px solid var(--line);padding-top:12px;margin-top:2px;line-height:1.6}
@@ -190,13 +223,16 @@
   .bookwrap{max-height:430px;overflow:auto}
   .book thead th{position:sticky;top:0;background:#0d1117;z-index:1}
   .book tbody tr:nth-child(even){background:#0a0e14}
+  /* v7 — the distance ruler: engraved scale, brass notch at the threshold, needle at the live value */
+  .ruler{margin:10px 0 6px}
+  .ruler svg{display:block;width:100%;height:44px}
 </style></head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
   <header class="top"><div class="top-in">
     <a class="mark" href="#top">🦞 WEALTHCLAW<span>Tripwire</span></a>
     <nav class="nav" aria-label="Sections">
-      <a href="#packages">Packages</a><a href="#desk-book">Desk book</a><a href="#algos">Algorithms</a><a href="#styles">Styles</a><a href="#tiers">Tiers</a><a href="#markets">Markets</a><a href="#mine">Board</a><a href="#signin">Sign in</a>
+      <a href="#packages">Baskets</a><a href="#desk-book">Desk book</a><a href="#algos">Algorithms</a><a href="#styles">Styles</a><a href="#tiers">Tiers</a><a href="#markets">Markets</a><a href="#mine">Board</a><a href="#signin">Sign in</a>
     </nav>
     <a class="signin-btn" id="nav-signin" href="#signin">Sign in</a>
   </div></header>
@@ -208,10 +244,10 @@
     <div class="strip">
       <span class="pill live"><span class="live-dot"></span>31 markets live</span>
       <span class="pill">none stale</span>
-      <span class="pill live">chain verified · 0 alerts</span>
+      <span class="pill live">chain verified · 15 alerts</span>
       <span class="pill">3 baskets · 15 desk positions</span>
       <span class="pill">6 sectors · 31 market tokens</span>
-      <span class="pill">built 23:02Z</span>
+      <span class="pill">built 04:35Z</span>
     </div>
     <div class="ctarow">
       <a class="btn" href="mailto:andrew098710@gmail.com?subject=Tripwire%20signup%20%E2%80%94%20which%20number%20do%20you%20want%20watched%3F">Get the tripwire — A$9/mo</a>
@@ -250,7 +286,7 @@
 
 
 <main id="main">
-  <h3 id="packages">Signal packages — a basket, a live graph, and the alerts that watch it</h3>
+  <span id="baskets"></span><h3 id="packages">Baskets — a weighted set of legs, a live graph, and the alerts that watch it</h3>
   <p class="sub">Weights add to 100% by construction, so "combined" is arithmetic, not a claim. You get the basket, its live combined metric, the research note behind the weights, and a tripwire on the basket itself. The graph is drawn from our own hourly reads — no backtest, because a backtest is a history someone could have written after the fact.</p>
   <div class="pkg">
       <article class="pkgcard">
@@ -260,30 +296,35 @@
         </div>
         <div class="pkgmeta">4 holdings · weights total 100% · 2 sector(s) · rebalanced daily, back to these weights · risk lower · horizon 6–12 months</div>
         <div class="mixrow"><span class="chip2">ASX equities <b>75%</b></span><span class="chip2">Indices <b>25%</b></span></div>
-        <div class="pkgbig up">+0.37%<span class="pkglab">combined, today — the weighted sum of the legs below</span></div>
-        <div class="sparkwrap"><svg class="spark" viewBox="0 0 300 56" preserveAspectRatio="none" role="img" aria-label="ASX Steady index level, 24 reads"><polyline points="5.0,47.1 17.6,50.0 30.2,47.2 42.8,51.0 55.4,28.1 68.0,22.7 80.7,5.0 93.3,5.0 105.9,5.0 118.5,5.0 131.1,5.0 143.7,5.0 156.3,5.0 168.9,5.0 181.5,5.0 194.1,5.0 206.7,5.0 219.3,5.0 232.0,5.0 244.6,5.0 257.2,5.0 269.8,5.0 282.4,5.0 295.0,5.0" fill="none" stroke="var(--live)" stroke-width="2" vector-effect="non-scaling-stroke"/></svg></div>
+        <div class="pkgbig down">-0.74%<span class="pkglab">combined, today — the weighted sum of the legs below</span></div>
+        <div class="w4"><span class="w4k">Past 4 weeks</span><b class="up">+5.48%</b><span class="w4l">the weighted sum of the legs below</span><svg class="w4sp" viewBox="0 0 120 24" role="img" aria-label="ASX Steady, past 4 weeks, weighted sum +5.48%"><line x1="3" y1="19.9" x2="117" y2="19.9" stroke="#2d3542" stroke-width="1" stroke-dasharray="2 2"/><polyline points="3.0,19.9 7.1,19.9 11.1,18.2 15.2,19.8 19.3,19.4 23.4,21.0 27.4,18.0 31.5,18.0 35.6,18.0 39.6,18.1 43.7,16.3 47.8,15.2 51.9,12.6 55.9,12.9 60.0,12.9 64.1,12.9 68.1,14.5 72.2,14.0 76.3,15.6 80.4,9.3 84.4,10.0 88.5,10.0 92.6,10.0 96.6,9.3 100.7,5.5 104.8,5.7 108.9,3.0 112.9,5.1 117.0,5.1" fill="none" stroke="var(--live)" stroke-width="1.6"/></svg><span class="w4d">28 days to each leg's last cached close (2026-11-13)</span></div>
+        <div class="sparkwrap"><svg class="spark" viewBox="0 0 300 56" preserveAspectRatio="none" role="img" aria-label="ASX Steady index level, 27 reads"><polyline points="5.0,50.3 16.2,50.8 27.3,50.3 38.5,51.0 49.6,46.9 60.8,46.0 71.9,42.9 83.1,42.9 94.2,42.9 105.4,42.9 116.5,42.9 127.7,42.9 138.8,42.9 150.0,42.9 161.2,42.9 172.3,42.9 183.5,42.9 194.6,42.9 205.8,42.9 216.9,42.9 228.1,42.9 239.2,42.9 250.4,42.9 261.5,42.9 272.7,36.1 283.8,36.1 295.0,5.0" fill="none" stroke="var(--live)" stroke-width="2" vector-effect="non-scaling-stroke"/></svg></div>
         <div class="wbar"><span class="wseg" style="width:30%;background:#31d68a" title="CommBank 30%"></span><span class="wseg" style="width:20%;background:#4a9eff" title="Westpac 20%"></span><span class="wseg" style="width:25%;background:#e3b341" title="BHP Group 25%"></span><span class="wseg" style="width:25%;background:#c084fc" title="ASX 200 25%"></span></div>
         <ul class="holds">
           <li><span class="dot" style="background:#31d68a"></span>
             <span class="hlbl">CommBank</span><span class="hw">30%</span>
-            <span class="hv">167.51 <span class="hu">A$</span></span>
-            <span class="hc up">+0.73%</span>
-            <span class="hk">+0.22pp</span></li>
+            <span class="hv">170.87 <span class="hu">A$</span></span>
+            <span class="hc down">-0.52%</span>
+            <span class="hk">-0.16pp</span>
+            <span class="h4 up" title="CommBank, past 4 weeks">4w +10.68%</span></li>
           <li><span class="dot" style="background:#4a9eff"></span>
             <span class="hlbl">Westpac</span><span class="hw">20%</span>
-            <span class="hv">37.03 <span class="hu">A$</span></span>
-            <span class="hc up">+1.06%</span>
-            <span class="hk">+0.21pp</span></li>
+            <span class="hv">37.83 <span class="hu">A$</span></span>
+            <span class="hc down">-0.47%</span>
+            <span class="hk">-0.09pp</span>
+            <span class="h4 up" title="Westpac, past 4 weeks">4w +9.91%</span></li>
           <li><span class="dot" style="background:#e3b341"></span>
             <span class="hlbl">BHP Group</span><span class="hw">25%</span>
-            <span class="hv">57.62 <span class="hu">A$</span></span>
-            <span class="hc down">-2.34%</span>
-            <span class="hk">-0.58pp</span></li>
+            <span class="hv">58.86 <span class="hu">A$</span></span>
+            <span class="hc down">-1.26%</span>
+            <span class="hk">-0.32pp</span>
+            <span class="h4 down" title="BHP Group, past 4 weeks">4w -1.95%</span></li>
           <li><span class="dot" style="background:#c084fc"></span>
             <span class="hlbl">ASX 200</span><span class="hw">25%</span>
-            <span class="hv">9,020.8 <span class="hu">pts</span></span>
-            <span class="hc up">+2.11%</span>
-            <span class="hk">+0.53pp</span></li>
+            <span class="hv">9,082.2 <span class="hu">pts</span></span>
+            <span class="hc down">-0.71%</span>
+            <span class="hk">-0.18pp</span>
+            <span class="h4 up" title="ASX 200, past 4 weeks">4w +3.13%</span></li>
         </ul>
         <p class="thesis">The four things an Australian already owns, in the weights an Australian already owns them: two banks for the earnings that pay the dividend, BHP for the commodity cycle, and the index for everything else.</p>
         <div class="res">
@@ -296,8 +337,8 @@
           </ul>
           <p class="note"><b>What would invalidate it:</b> A sustained fall in the cash rate that compresses bank net interest margins at the same time the iron ore price falls — both legs down for one macro reason, which is exactly when a 50-point bank weight stops diversifying.</p>
         </div>
-        <div class="pkgalert"><span class="live-dot"></span>Armed at ±2.5% / 24h — <b>warming up</b>: it needs 24h of hourly reads before a basket move means anything.<br>
-          <span class="note">Index 100.35 · 24 hourly read(s) since 2026-11-06 · +0.35% measured from our own recorded reads, not a backtest.</span></div>
+        <div class="pkgalert"><span class="live-dot"></span>Armed at ±2.5% / 24h — currently +1.44% against a base of 100.6646 from 2026-11-09 10:03Z.<br>
+          <span class="note">Index 102.12 · 27 hourly read(s) since 2026-11-06 · +2.12% measured from our own recorded reads, not a backtest.</span></div>
         <a class="btn" href="mailto:andrew098710@gmail.com?subject=Tripwire%20package%3A%20ASX%20Steady">Take ASX Steady — A$29/mo</a>
       </article>
       <article class="pkgcard">
@@ -307,35 +348,41 @@
         </div>
         <div class="pkgmeta">5 holdings · weights total 100% · 3 sector(s) · rebalanced daily, back to these weights · risk moderate · horizon 12–24 months</div>
         <div class="mixrow"><span class="chip2">Indices <b>50%</b></span><span class="chip2">US equities <b>30%</b></span><span class="chip2">Commodities <b>20%</b></span></div>
-        <div class="pkgbig down">-0.08%<span class="pkglab">combined, today — the weighted sum of the legs below</span></div>
-        <div class="sparkwrap"><svg class="spark" viewBox="0 0 300 56" preserveAspectRatio="none" role="img" aria-label="Global Core index level, 24 reads"><polyline points="5.0,43.5 17.6,43.8 30.2,48.1 42.8,49.8 55.4,50.8 68.0,51.0 80.7,50.4 93.3,49.1 105.9,50.7 118.5,42.2 131.1,43.3 143.7,43.9 156.3,48.4 168.9,27.0 181.5,13.5 194.1,5.6 206.7,9.4 219.3,5.0 232.0,25.8 244.6,6.3 257.2,19.1 269.8,36.8 282.4,35.9 295.0,35.1" fill="none" stroke="var(--live)" stroke-width="2" vector-effect="non-scaling-stroke"/></svg></div>
+        <div class="pkgbig down">-0.21%<span class="pkglab">combined, today — the weighted sum of the legs below</span></div>
+        <div class="w4"><span class="w4k">Past 4 weeks</span><b class="down">-2.13%</b><span class="w4l">the weighted sum of the legs below</span><svg class="w4sp" viewBox="0 0 120 24" role="img" aria-label="Global Core, past 4 weeks, weighted sum -2.13%"><line x1="3" y1="6.7" x2="117" y2="6.7" stroke="#2d3542" stroke-width="1" stroke-dasharray="2 2"/><polyline points="3.0,6.7 7.1,6.7 11.1,6.7 15.2,5.1 19.3,6.0 23.4,3.0 27.4,9.9 31.5,11.6 35.6,11.6 39.6,11.6 43.7,8.9 47.8,5.7 51.9,6.3 55.9,7.5 60.0,17.7 64.1,17.7 68.1,17.7 72.2,21.0 76.3,19.9 80.4,5.3 84.4,19.2 88.5,19.8 92.6,19.8 96.6,19.8 100.7,9.8 104.8,14.9 108.9,12.4 112.9,15.7 117.0,16.6" fill="none" stroke="var(--hot)" stroke-width="1.6"/></svg><span class="w4d">28 days to each leg's last cached close (2026-11-13)</span></div>
+        <div class="sparkwrap"><svg class="spark" viewBox="0 0 300 56" preserveAspectRatio="none" role="img" aria-label="Global Core index level, 27 reads"><polyline points="5.0,45.8 16.2,46.0 27.3,49.0 38.5,50.2 49.6,50.8 60.8,51.0 71.9,50.6 83.1,49.7 94.2,50.8 105.4,44.9 116.5,45.6 127.7,46.1 138.8,49.2 150.0,34.3 161.2,24.9 172.3,19.4 183.5,22.1 194.6,19.0 205.8,33.5 216.9,19.9 228.1,28.8 239.2,41.2 250.4,40.5 261.5,40.0 272.7,33.3 283.8,33.1 295.0,5.0" fill="none" stroke="var(--live)" stroke-width="2" vector-effect="non-scaling-stroke"/></svg></div>
         <div class="wbar"><span class="wseg" style="width:30%;background:#31d68a" title="S&amp;P 500 30%"></span><span class="wseg" style="width:20%;background:#4a9eff" title="Nasdaq Composite 20%"></span><span class="wseg" style="width:15%;background:#e3b341" title="Apple 15%"></span><span class="wseg" style="width:15%;background:#c084fc" title="Microsoft 15%"></span><span class="wseg" style="width:20%;background:#ff5c47" title="Gold (front month) 20%"></span></div>
         <ul class="holds">
           <li><span class="dot" style="background:#31d68a"></span>
             <span class="hlbl">S&amp;P 500</span><span class="hw">30%</span>
-            <span class="hv">7,376.9 <span class="hu">pts</span></span>
-            <span class="hc up">+0.31%</span>
-            <span class="hk">+0.09pp</span></li>
+            <span class="hv">7,561.7 <span class="hu">pts</span></span>
+            <span class="hc down">-0.4%</span>
+            <span class="hk">-0.12pp</span>
+            <span class="h4 down" title="S&amp;P 500, past 4 weeks">4w -1.28%</span></li>
           <li><span class="dot" style="background:#4a9eff"></span>
             <span class="hlbl">Nasdaq Composite</span><span class="hw">20%</span>
-            <span class="hv">24,579.4 <span class="hu">pts</span></span>
-            <span class="hc up">+1.09%</span>
-            <span class="hk">+0.22pp</span></li>
+            <span class="hv">25,136.3 <span class="hu">pts</span></span>
+            <span class="hc down">-0.91%</span>
+            <span class="hk">-0.18pp</span>
+            <span class="h4 down" title="Nasdaq Composite, past 4 weeks">4w -3.84%</span></li>
           <li><span class="dot" style="background:#e3b341"></span>
             <span class="hlbl">Apple</span><span class="hw">15%</span>
-            <span class="hv">342.37 <span class="hu">USD</span></span>
-            <span class="hc down">-0.52%</span>
-            <span class="hk">-0.08pp</span></li>
+            <span class="hv">356.27 <span class="hu">USD</span></span>
+            <span class="hc up">+0.39%</span>
+            <span class="hk">+0.06pp</span>
+            <span class="h4 up" title="Apple, past 4 weeks">4w +3.81%</span></li>
           <li><span class="dot" style="background:#c084fc"></span>
             <span class="hlbl">Microsoft</span><span class="hw">15%</span>
-            <span class="hv">530.61 <span class="hu">USD</span></span>
-            <span class="hc down">-0.99%</span>
-            <span class="hk">-0.15pp</span></li>
+            <span class="hv">523.88 <span class="hu">USD</span></span>
+            <span class="hc up">+0.17%</span>
+            <span class="hk">+0.03pp</span>
+            <span class="h4 down" title="Microsoft, past 4 weeks">4w -0.98%</span></li>
           <li><span class="dot" style="background:#ff5c47"></span>
             <span class="hlbl">Gold (front month)</span><span class="hw">20%</span>
-            <span class="hv">4,079.5 <span class="hu">USD/oz</span></span>
-            <span class="hc down">-0.83%</span>
-            <span class="hk">-0.17pp</span></li>
+            <span class="hv">3,886.3 <span class="hu">USD/oz</span></span>
+            <span class="hc up">+0.03%</span>
+            <span class="hk">+0.01pp</span>
+            <span class="h4 down" title="Gold (front month), past 4 weeks">4w -7.02%</span></li>
         </ul>
         <p class="thesis">The two things people actually argue about — US earnings and the price of safety — in one number: 80 points of US equity in three shapes, against 20 points of gold as the thing that is not equity.</p>
         <div class="res">
@@ -348,8 +395,8 @@
           </ul>
           <p class="note"><b>What would invalidate it:</b> A US earnings recession with gold falling at the same time (real yields up, dollar up) — then 80 points of equity and the 20-point hedge go down together.</p>
         </div>
-        <div class="pkgalert"><span class="live-dot"></span>Armed at ±3% / 24h — <b>warming up</b>: it needs 24h of hourly reads before a basket move means anything.<br>
-          <span class="note">Index 100.11 · 24 hourly read(s) since 2026-11-06 · +0.11% measured from our own recorded reads, not a backtest.</span></div>
+        <div class="pkgalert"><span class="live-dot"></span>Armed at ±3% / 24h — currently +0.55% against a base of 100.2487 from 2026-11-09 10:03Z.<br>
+          <span class="note">Index 100.80 · 27 hourly read(s) since 2026-11-06 · +0.80% measured from our own recorded reads, not a backtest.</span></div>
         <a class="btn" href="mailto:andrew098710@gmail.com?subject=Tripwire%20package%3A%20Global%20Core">Take Global Core — A$59/mo</a>
       </article>
       <article class="pkgcard">
@@ -359,40 +406,47 @@
         </div>
         <div class="pkgmeta">6 holdings · weights total 100% · 3 sector(s) · rebalanced daily, back to these weights · risk higher · horizon 1–6 months</div>
         <div class="mixrow"><span class="chip2">Crypto <b>60%</b></span><span class="chip2">US equities <b>30%</b></span><span class="chip2">Commodities <b>10%</b></span></div>
-        <div class="pkgbig up">+1.71%<span class="pkglab">combined, today — the weighted sum of the legs below</span></div>
-        <div class="sparkwrap"><svg class="spark" viewBox="0 0 300 56" preserveAspectRatio="none" role="img" aria-label="Momentum index level, 24 reads"><polyline points="5.0,44.2 17.6,44.2 30.2,46.5 42.8,47.8 55.4,47.8 68.0,51.0 80.7,50.3 93.3,49.8 105.9,50.7 118.5,36.8 131.1,36.3 143.7,43.0 156.3,39.6 168.9,5.5 181.5,7.8 194.1,10.6 206.7,22.5 219.3,8.2 232.0,21.0 244.6,14.3 257.2,5.0 269.8,14.9 282.4,11.0 295.0,15.4" fill="none" stroke="var(--live)" stroke-width="2" vector-effect="non-scaling-stroke"/></svg></div>
+        <div class="pkgbig down">-2.14%<span class="pkglab">combined, today — the weighted sum of the legs below</span></div>
+        <div class="w4"><span class="w4k">Past 4 weeks</span><b class="down">-16.15%</b><span class="w4l">the weighted sum of the legs below</span><svg class="w4sp" viewBox="0 0 120 24" role="img" aria-label="Momentum, past 4 weeks, weighted sum -16.15%"><line x1="3" y1="4.9" x2="117" y2="4.9" stroke="#2d3542" stroke-width="1" stroke-dasharray="2 2"/><polyline points="3.0,4.9 7.1,4.8 11.1,4.9 15.2,3.3 19.3,3.0 23.4,4.5 27.4,5.8 31.5,5.9 35.6,6.6 39.6,6.6 43.7,5.2 47.8,4.7 51.9,7.3 55.9,7.8 60.0,8.4 64.1,8.0 68.1,8.8 72.2,8.9 76.3,6.3 80.4,11.3 84.4,13.5 88.5,12.6 92.6,14.3 96.6,14.3 100.7,16.1 104.8,16.7 108.9,17.0 112.9,17.3 117.0,21.0" fill="none" stroke="var(--hot)" stroke-width="1.6"/></svg><span class="w4d">28 days to each leg's last cached close (2026-11-13–11-14)</span></div>
+        <div class="sparkwrap"><svg class="spark" viewBox="0 0 300 56" preserveAspectRatio="none" role="img" aria-label="Momentum index level, 27 reads"><polyline points="5.0,11.6 16.2,11.6 27.3,12.0 38.5,12.2 49.6,12.2 60.8,12.8 71.9,12.7 83.1,12.6 94.2,12.7 105.4,10.4 116.5,10.3 127.7,11.4 138.8,10.8 150.0,5.1 161.2,5.5 172.3,5.9 183.5,8.0 194.6,5.5 205.8,7.7 216.9,6.6 228.1,5.0 239.2,6.7 250.4,6.0 261.5,6.8 272.7,17.8 283.8,18.3 295.0,51.0" fill="none" stroke="var(--hot)" stroke-width="2" vector-effect="non-scaling-stroke"/></svg></div>
         <div class="wbar"><span class="wseg" style="width:30%;background:#31d68a" title="Bitcoin 30%"></span><span class="wseg" style="width:20%;background:#4a9eff" title="Ethereum 20%"></span><span class="wseg" style="width:20%;background:#e3b341" title="Nvidia 20%"></span><span class="wseg" style="width:10%;background:#c084fc" title="Solana 10%"></span><span class="wseg" style="width:10%;background:#ff5c47" title="Tesla 10%"></span><span class="wseg" style="width:10%;background:#22d3ee" title="WTI crude 10%"></span></div>
         <ul class="holds">
           <li><span class="dot" style="background:#31d68a"></span>
             <span class="hlbl">Bitcoin</span><span class="hw">30%</span>
-            <span class="hv">110,346 <span class="hu">A$</span></span>
-            <span class="hc up">+1.34%</span>
-            <span class="hk">+0.40pp</span></li>
+            <span class="hv">98,523 <span class="hu">A$</span></span>
+            <span class="hc down">-2.77%</span>
+            <span class="hk">-0.83pp</span>
+            <span class="h4 down" title="Bitcoin, past 4 weeks">4w -15.89%</span></li>
           <li><span class="dot" style="background:#4a9eff"></span>
             <span class="hlbl">Ethereum</span><span class="hw">20%</span>
-            <span class="hv">3,252.25 <span class="hu">A$</span></span>
-            <span class="hc up">+1.13%</span>
-            <span class="hk">+0.23pp</span></li>
+            <span class="hv">2,789.49 <span class="hu">A$</span></span>
+            <span class="hc down">-1.7%</span>
+            <span class="hk">-0.34pp</span>
+            <span class="h4 down" title="Ethereum, past 4 weeks">4w -19.22%</span></li>
           <li><span class="dot" style="background:#e3b341"></span>
             <span class="hlbl">Nvidia</span><span class="hw">20%</span>
-            <span class="hv">186.64 <span class="hu">USD</span></span>
-            <span class="hc up">+2.78%</span>
-            <span class="hk">+0.56pp</span></li>
+            <span class="hv">162.85 <span class="hu">USD</span></span>
+            <span class="hc down">-2.01%</span>
+            <span class="hk">-0.40pp</span>
+            <span class="h4 down" title="Nvidia, past 4 weeks">4w -23.95%</span></li>
           <li><span class="dot" style="background:#c084fc"></span>
             <span class="hlbl">Solana</span><span class="hw">10%</span>
-            <span class="hv">130.89 <span class="hu">A$</span></span>
-            <span class="hc up">+1.22%</span>
-            <span class="hk">+0.12pp</span></li>
+            <span class="hv">111.07 <span class="hu">A$</span></span>
+            <span class="hc down">-3.68%</span>
+            <span class="hk">-0.37pp</span>
+            <span class="h4 down" title="Solana, past 4 weeks">4w -25.18%</span></li>
           <li><span class="dot" style="background:#ff5c47"></span>
             <span class="hlbl">Tesla</span><span class="hw">10%</span>
-            <span class="hv">358.22 <span class="hu">USD</span></span>
-            <span class="hc up">+4.23%</span>
-            <span class="hk">+0.42pp</span></li>
+            <span class="hv">390.22 <span class="hu">USD</span></span>
+            <span class="hc down">-1.82%</span>
+            <span class="hk">-0.18pp</span>
+            <span class="h4 up" title="Tesla, past 4 weeks">4w +10.01%</span></li>
           <li><span class="dot" style="background:#22d3ee"></span>
             <span class="hlbl">WTI crude</span><span class="hw">10%</span>
-            <span class="hv">90.34 <span class="hu">USD/bbl</span></span>
+            <span class="hv">88.56 <span class="hu">USD/bbl</span></span>
             <span class="hc down">-0.2%</span>
-            <span class="hk">-0.02pp</span></li>
+            <span class="hk">-0.02pp</span>
+            <span class="h4 down" title="WTI crude, past 4 weeks">4w -12.32%</span></li>
         </ul>
         <p class="thesis">The highest-beta liquid things we can price for free, weighted so no single one can sink the basket: 60 points of crypto, 30 of high-beta US equity, 10 of crude.</p>
         <div class="res">
@@ -405,182 +459,274 @@
           </ul>
           <p class="note"><b>What would invalidate it:</b> A liquidity event where crypto, high-beta equity and crude fall on the same day — the 60-point crypto leg and the 30-point equity leg collapse into one position at the worst possible moment.</p>
         </div>
-        <div class="pkgalert"><span class="live-dot"></span>Armed at ±6% / 24h — <b>warming up</b>: it needs 24h of hourly reads before a basket move means anything.<br>
-          <span class="note">Index 101.05 · 24 hourly read(s) since 2026-11-06 · +1.05% measured from our own recorded reads, not a backtest.</span></div>
+        <div class="pkgalert"><span class="live-dot"></span><b class="fired">TRIPPED</b> Momentum moved -7.17% in 24h — committed to the chain (<span class="mono">3c2ead9553c84b48</span>) and mailed with the leg that did it.<br>
+          <span class="note">Index 91.48 · 27 hourly read(s) since 2026-11-06 · -8.52% measured from our own recorded reads, not a backtest.</span></div>
         <a class="btn" href="mailto:andrew098710@gmail.com?subject=Tripwire%20package%3A%20Momentum">Take Momentum — A$99/mo</a>
       </article>
   </div>
-  <p class="stamp">A basket is a set of weights, not a promise: nothing here forecasts a return. The combined % is each leg's own last-day change (prior close for equities, indices, futures and metals; trailing 24h for crypto; prior ECB business day for FX) times its weight. Every leg is live at this build.</p>
+  <p class="stamp">A basket is a set of weights, not a promise: nothing here forecasts a return. The combined % is each leg's own last-day change (prior close for equities, indices, futures and metals; trailing 24h for crypto; prior ECB business day for FX) times its weight. Every leg is live at this build. The <b>past 4 weeks</b> line is Σ weight × each leg's own return from its last close on or before 28 calendar days before its last cached daily close, to that close — the same cached, sha-pinned daily closes the backtest reads (<span class="mono">algos/history</span>), so it is a measurement, not a fetch; a leg with no cached series is shown n/a and left out of the sum, never filled. The small line is that same weighted sum on each day of the window.</p>
 
 
   <section class="card" id="desk-book">
     <h2><span class="n">02</span><span class="live-dot"></span>Live trade updates — the desk book, 15 position(s)</h2>
+    <div class="pad" style="padding-top:12px;padding-bottom:4px"><div class="w4"><span class="w4k">Past 4 weeks</span><b class="down">-4.27%</b><span class="w4l">the weighted sum of the 15 positions below — size × 4-week move, ÷ total size, so each of the 3 baskets counts once at its own weights</span><svg class="w4sp" viewBox="0 0 120 24" role="img" aria-label="Desk book, past 4 weeks, weighted sum -4.27%"><line x1="3" y1="5.7" x2="117" y2="5.7" stroke="#2d3542" stroke-width="1" stroke-dasharray="2 2"/><polyline points="3.0,5.7 7.1,5.5 11.1,4.9 15.2,3.3 19.3,3.0 23.4,4.7 27.4,6.7 31.5,7.4 35.6,8.1 39.6,8.1 43.7,5.0 47.8,3.0 51.9,5.2 55.9,6.2 60.0,9.5 64.1,9.1 68.1,10.8 72.2,11.5 76.3,8.9 80.4,8.3 84.4,14.8 88.5,13.8 92.6,15.9 96.6,15.7 100.7,13.5 104.8,15.6 108.9,14.2 112.9,16.4 117.0,21.0" fill="none" stroke="var(--hot)" stroke-width="1.6"/></svg><span class="w4d">28 days to each leg's last cached close (2026-11-13–11-14)</span></div></div>
     <div class="bookwrap"><table class="book">
-      <thead><tr><th>Position</th><th>Size</th><th>Entry</th><th>Last</th><th>Move</th><th>Contrib</th><th>Band</th><th>State</th></tr></thead>
+      <thead><tr><th>Position</th><th>Size</th><th>Entry</th><th>Last</th><th>Move</th><th>Contrib</th><th>4 wk</th><th>Band</th><th>State</th></tr></thead>
       <tbody>
       <tr class=""><td class="mono">asx-steady:cba</td><td>30%</td>
         <td>167.33</td>
-        <td>167.51</td>
-        <td class="up">+0.11%</td>
-        <td>+0.03pp</td>
+        <td>170.87</td>
+        <td class="up">+2.12%</td>
+        <td>+0.64pp</td>
+        <td class="up">+10.68%</td>
         <td>±2.5%</td>
         <td class="state2">OPEN</td></tr>
       <tr class=""><td class="mono">asx-steady:wbc</td><td>20%</td>
         <td>36.97</td>
-        <td>37.03</td>
-        <td class="up">+0.16%</td>
-        <td>+0.03pp</td>
+        <td>37.83</td>
+        <td class="up">+2.33%</td>
+        <td>+0.47pp</td>
+        <td class="up">+9.91%</td>
         <td>±2.5%</td>
         <td class="state2">OPEN</td></tr>
-      <tr class=""><td class="mono">asx-steady:bhp</td><td>25%</td>
+      <tr class="up"><td class="mono">asx-steady:bhp</td><td>25%</td>
         <td>57.25</td>
-        <td>57.62</td>
-        <td class="up">+0.65%</td>
-        <td>+0.16pp</td>
+        <td>58.86</td>
+        <td class="up">+2.81%</td>
+        <td>+0.70pp</td>
+        <td class="down">-1.95%</td>
         <td>±2.5%</td>
-        <td class="state2">OPEN</td></tr>
+        <td class="state2">TARGET 11-09 09:23</td></tr>
       <tr class=""><td class="mono">asx-steady:asx200</td><td>25%</td>
         <td>8,977.4</td>
-        <td>9,020.8</td>
-        <td class="up">+0.48%</td>
-        <td>+0.12pp</td>
+        <td>9,082.2</td>
+        <td class="up">+1.17%</td>
+        <td>+0.29pp</td>
+        <td class="up">+3.13%</td>
         <td>±2.5%</td>
         <td class="state2">OPEN</td></tr>
       <tr class=""><td class="mono">global-core:sp500</td><td>30%</td>
         <td>7,353.7</td>
-        <td>7,376.9</td>
-        <td class="up">+0.31%</td>
-        <td>+0.09pp</td>
+        <td>7,561.7</td>
+        <td class="up">+2.83%</td>
+        <td>+0.85pp</td>
+        <td class="down">-1.28%</td>
         <td>±3%</td>
         <td class="state2">OPEN</td></tr>
-      <tr class=""><td class="mono">global-core:nasdaq</td><td>20%</td>
+      <tr class="up"><td class="mono">global-core:nasdaq</td><td>20%</td>
         <td>24,315</td>
-        <td>24,579.4</td>
-        <td class="up">+1.09%</td>
-        <td>+0.22pp</td>
+        <td>25,136.3</td>
+        <td class="up">+3.38%</td>
+        <td>+0.68pp</td>
+        <td class="down">-3.84%</td>
         <td>±3%</td>
-        <td class="state2">OPEN</td></tr>
-      <tr class=""><td class="mono">global-core:aapl</td><td>15%</td>
+        <td class="state2">TARGET 11-14 04:35</td></tr>
+      <tr class="up"><td class="mono">global-core:aapl</td><td>15%</td>
         <td>344.17</td>
-        <td>342.37</td>
-        <td class="down">-0.52%</td>
-        <td>-0.08pp</td>
+        <td>356.27</td>
+        <td class="up">+3.52%</td>
+        <td>+0.53pp</td>
+        <td class="up">+3.81%</td>
         <td>±3%</td>
-        <td class="state2">OPEN</td></tr>
+        <td class="state2">TARGET 11-14 04:35</td></tr>
       <tr class=""><td class="mono">global-core:msft</td><td>15%</td>
         <td>535.93</td>
-        <td>530.61</td>
-        <td class="down">-0.99%</td>
-        <td>-0.15pp</td>
+        <td>523.88</td>
+        <td class="down">-2.25%</td>
+        <td>-0.34pp</td>
+        <td class="down">-0.98%</td>
         <td>±3%</td>
         <td class="state2">OPEN</td></tr>
-      <tr class=""><td class="mono">global-core:gold</td><td>20%</td>
+      <tr class="down"><td class="mono">global-core:gold</td><td>20%</td>
         <td>4,074.4</td>
-        <td>4,079.5</td>
-        <td class="up">+0.13%</td>
-        <td>+0.03pp</td>
+        <td>3,886.3</td>
+        <td class="down">-4.62%</td>
+        <td>-0.92pp</td>
+        <td class="down">-7.02%</td>
         <td>±3%</td>
-        <td class="state2">OPEN</td></tr>
-      <tr class=""><td class="mono">momentum:btc</td><td>30%</td>
+        <td class="state2">STOPPED 11-14 04:35</td></tr>
+      <tr class="down"><td class="mono">momentum:btc</td><td>30%</td>
         <td>110,061</td>
-        <td>110,346</td>
-        <td class="up">+0.26%</td>
-        <td>+0.08pp</td>
+        <td>98,523</td>
+        <td class="down">-10.48%</td>
+        <td>-3.14pp</td>
+        <td class="down">-15.89%</td>
         <td>±6%</td>
-        <td class="state2">OPEN</td></tr>
-      <tr class=""><td class="mono">momentum:eth</td><td>20%</td>
+        <td class="state2">STOPPED 11-14 04:35</td></tr>
+      <tr class="down"><td class="mono">momentum:eth</td><td>20%</td>
         <td>3,239.62</td>
-        <td>3,252.25</td>
-        <td class="up">+0.39%</td>
-        <td>+0.08pp</td>
+        <td>2,789.49</td>
+        <td class="down">-13.89%</td>
+        <td>-2.78pp</td>
+        <td class="down">-19.22%</td>
         <td>±6%</td>
-        <td class="state2">OPEN</td></tr>
+        <td class="state2">STOPPED 11-14 04:35</td></tr>
       <tr class="up"><td class="mono">momentum:nvda</td><td>20%</td>
         <td>181.60</td>
-        <td>186.64</td>
-        <td class="up">+2.78%</td>
-        <td>+0.56pp</td>
+        <td>162.85</td>
+        <td class="down">-10.32%</td>
+        <td>-2.06pp</td>
+        <td class="down">-23.95%</td>
         <td>±6%</td>
         <td class="state2">TARGET 11-06 15:02</td></tr>
-      <tr class=""><td class="mono">momentum:sol</td><td>10%</td>
+      <tr class="down"><td class="mono">momentum:sol</td><td>10%</td>
         <td>130.54</td>
-        <td>130.89</td>
-        <td class="up">+0.27%</td>
-        <td>+0.03pp</td>
+        <td>111.07</td>
+        <td class="down">-14.91%</td>
+        <td>-1.49pp</td>
+        <td class="down">-25.18%</td>
         <td>±6%</td>
-        <td class="state2">OPEN</td></tr>
-      <tr class=""><td class="mono">momentum:tsla</td><td>10%</td>
+        <td class="state2">STOPPED 11-14 04:35</td></tr>
+      <tr class="up"><td class="mono">momentum:tsla</td><td>10%</td>
         <td>343.69</td>
-        <td>358.22</td>
-        <td class="up">+4.23%</td>
-        <td>+0.42pp</td>
+        <td>390.22</td>
+        <td class="up">+13.54%</td>
+        <td>+1.35pp</td>
+        <td class="up">+10.01%</td>
         <td>±6%</td>
-        <td class="state2">OPEN</td></tr>
+        <td class="state2">TARGET 11-14 04:35</td></tr>
       <tr class=""><td class="mono">momentum:wti</td><td>10%</td>
         <td>91.67</td>
-        <td>90.34</td>
-        <td class="down">-1.45%</td>
-        <td>-0.14pp</td>
+        <td>88.56</td>
+        <td class="down">-3.39%</td>
+        <td>-0.34pp</td>
+        <td class="down">-12.32%</td>
         <td>±6%</td>
         <td class="state2">OPEN</td></tr>
       </tbody>
     </table></div>
     <p class="note" style="padding:10px 18px 0">Every leg of every basket is a position: entry = our first recorded read for that leg, last = the live sheet, move = the recorded change, band = the basket&#39;s ±alertMove rule applied to the leg. Stops and targets are read off marks we recorded, so a stop cannot be moved after the fact.</p>
     <p class="note" style="padding:4px 18px 0">Model book, no money: entry means the first read, not a fill, and there are no commission or slippage lines because nothing traded. The book updates when the page builds, which is what &quot;live&quot; means here.</p>
-    <p class="note" style="padding:6px 18px 14px"><a class="u mono" href="https://flak3dd.github.io/tripwire/trades.json">trades.json</a> — the same marks for a script. Marked 2026-11-06 23:02Z, hourly, with the page build — the same sheet the board renders.</p>
+    <p class="note" style="padding:6px 18px 14px"><a class="u mono" href="https://flak3dd.github.io/tripwire/trades.json">trades.json</a> — the same marks for a script. Marked 2026-11-14 04:35Z, hourly, with the page build — the same sheet the board renders.</p>
   </section>
-  <p class="stamp">14 open · 0 stopped · 1 at target · 0 awaiting a first read. The band is each basket's own ±% rule applied to the leg: a stop the desk cannot move after the fact, because the marks it is read from are already on disk.</p>
+  <p class="stamp">6 open · 4 stopped · 5 at target · 0 awaiting a first read. The band is each basket's own ±% rule applied to the leg: a stop the desk cannot move after the fact, because the marks it is read from are already on disk.</p>
 
 
   <section class="card" id="algos">
     <h2><span class="n">03</span>What each tier's algorithm does — and what it measured</h2>
     <div class="bookwrap"><table class="book">
-      <thead><tr><th>Tier</th><th>Algorithm</th><th>2020–26</th><th>Sharpe</th><th>Max DD</th><th>2023–26</th><th>Same tier, no algo</th></tr></thead>
+      <thead><tr><th>Tier · algorithm</th><th>2020–26</th><th>Sharpe</th><th>Max DD</th><th>Jul 2023–26</th><th>Buy &amp; hold (OOS)</th><th>Ungated baseline (OOS)</th><th>Retirement</th></tr></thead>
       <tbody>
-        <tr><td><b>Digest</b><div class="note" style="padding:2px 0 0">A$0</div></td><td>Gauge</td><td>+20.0%</td><td>1.28</td><td>-20.0%</td><td>+9.6%</td><td>+11.6%</td></tr>
-        <tr><td><b>Tripwire</b><div class="note" style="padding:2px 0 0">A$9/mo</div></td><td>Band</td><td>+32.3%</td><td>1.01</td><td>-50.8%</td><td>+6.6%</td><td>+19.7%</td></tr>
-        <tr><td><b>Package</b><div class="note" style="padding:2px 0 0">A$29-99/mo</div></td><td>Scale</td><td>+15.1%</td><td>1.27</td><td>-21.2%</td><td>+9.5%</td><td>+13.5%</td></tr>
-        <tr><td><b>Package · high yield</b><div class="note" style="padding:2px 0 0">A$99/mo</div></td><td>Gear</td><td>+15.5%</td><td>0.74</td><td>-28.5%</td><td>+10.4%</td><td>+19.4%</td></tr>
+        <tr><td><b>Digest</b><div class="note" style="padding:2px 0 0">Gauge · A$0</div></td><td>+31.5%</td><td>1.43</td><td>-19.0%</td><td>+17.9%</td><td>+17.7%</td><td>+17.7%</td><td class="rcell"><span class="rbadge retire" title="fails: out-of-sample max drawdown within 5pp of the ungated equal-weight book — this rule has no grace period">retires</span></td></tr>
+        <tr><td><b>Tripwire</b><div class="note" style="padding:2px 0 0">Band · A$9/mo</div></td><td>+26.1%</td><td>0.82</td><td>-42.6%</td><td>+14.7%</td><td>+19.4%</td><td>+25.6%</td><td class="rcell"><span class="rbadge strike" title="fails: out-of-sample CAGR behind the tier&#39;s ungated buy &amp; hold by more than 2pp — retires if it fails again at the next regeneration">one strike</span></td></tr>
+        <tr><td><b>Package</b><div class="note" style="padding:2px 0 0">Scale · A$29–99/mo</div></td><td>+24.9%</td><td>1.42</td><td>-20.7%</td><td>+16.8%</td><td>+18.0%</td><td>+23.4%</td><td class="rcell"><span class="rbadge pass" title="none of the three retirement rules is failed out of sample">passes all three</span></td></tr>
+        <tr><td><b>Gear</b><div class="note" style="padding:2px 0 0">Gear · A$99/mo</div></td><td>+18.0%</td><td>0.67</td><td>-35.6%</td><td>+24.6%</td><td>+15.8%</td><td>+28.8%</td><td class="rcell"><span class="rbadge pass" title="none of the three retirement rules is failed out of sample">passes all three</span></td></tr>
       </tbody>
     </table></div>
-    <p class="note" style="padding:10px 18px 0"><b>Digest — Gauge.</b> Hold every market with 273 daily closes, equal weight — 1/31 each once all 31 are live. Long while breadth (% of those markets above their 200-day average) is at least 55%; exit below 45% — a band, not a cliff. Between the two: hold what you hold. Below 45% breadth: cash. No shorts, no leverage, at most one switch a month. Rebalance the first trading day of each month, and only through a 2-point no-trade band; 10bps per unit of turnover (25 crypto, 3 FX).</p>
-    <p class="note" style="padding:4px 18px 0;color:#8b96a5">Now (2026-11-06): cash · cash 100%</p>
-    <p class="note" style="padding:10px 18px 0"><b>Tripwire — Band.</b> Universe is the 4 markets a subscriber arms first: BTC, ETH, SOL, AUD/USD — any 4 of the 31. A leg is held while it is above its 200-day average and its 12-1 momentum is positive; otherwise that leg is cash. Held legs are sized 1/volatility (63-day, annualised) with a 40% cap each; the rest is cash. Rebalance monthly through the 2-point band; the tripwire is the exit you already have, so the algorithm needs no stop it cannot see.</p>
-    <p class="note" style="padding:4px 18px 0;color:#8b96a5">Now (2026-11-06): Bitcoin 40%, Ethereum 33%, Solana 27%</p>
-    <p class="note" style="padding:10px 18px 0"><b>Package — Scale.</b> Weights stay exactly as published — the basket is rebalanced back to them, never re-shaped. Each basket&#39;s exposure is 1, 0.5 or 0, read off its own index vs its 200-day average and 12-1 momentum. Capital is split equally across the three baskets; whatever a scale leaves unspent is cash at 0%. A 10% portfolio drawdown halves every exposure until equity recovers to within 5% of the peak.</p>
-    <p class="note" style="padding:4px 18px 0;color:#8b96a5">Now (2026-11-06): S&amp;P 500 10%, Bitcoin 10%, Nasdaq Composite 7%, Gold (front month) 7% +11 more · cash 17%</p>
-    <p class="note" style="padding:10px 18px 0"><b>Package · high yield — Gear.</b> One sleeve over both kinds of market: the owned ones (BTC, ETH, WTI crude) and the bought leverage (S&amp;P 500 3x, Nasdaq-100 3x, semis 3x, 20y Treasuries 3x, gold 2x) — eight instruments in five clusters: US index leverage, Treasuries, gold, crypto, crude. The leverage is a holding, not a weight above 1: a 3x fund&#39;s price already carries its financing and its daily rebalance, so the drag is measured instead of promised. A leg is bought only while it is above its own 200-day average with positive 12-1 momentum; inside a cluster only the strongest momentum leg is held, so three 3x equity funds are one position and a choice — never three bets. The risk budget is split 1/vol across the clusters that are in, capped at 40% a leg, then the sleeve is scaled so its ex-ante vol is the tier&#39;s target — 15% core, 22% balanced, 30% high yield; a 20% drawdown halves the sleeve until equity is back within 6% of the peak. Monthly rebalance through the 2-point band, 20bps per unit of turnover on a levered fund, 25bps crypto, 10bps crude; cash earns 0% and an empty sleeve holds cash.</p>
-    <p class="note" style="padding:4px 18px 0;color:#8b96a5">Now (2026-11-06): Ethereum 40%, WTI crude 40% · cash 20%</p>
+    <p class="note" style="padding:10px 18px 0"><b>Digest — Gauge.</b> Hold every market with 273 of its own trading closes (395 days for crypto), equal weight — 1/31 each once all 31 are live. Long while breadth (% of those markets above their 200-day average) is at least 55%; exit below 45% — a band, not a cliff. Between the two: hold what you hold. Below 45% breadth: cash. No shorts, no leverage, at most one switch a month. Rebalance the first trading day of each month, and only through a 2-point no-trade band; 10bps per unit of turnover (25 crypto, 3 FX).</p>
+    <div class="note" style="padding:4px 18px 0"><div class="w4"><span class="w4k">Past 4 weeks</span><b class="down">-5.84%</b><span class="w4l">the weighted sum of the 31 legs it holds now — today's weights on the past 4 weeks' closes, not a backtest</span><svg class="w4sp" viewBox="0 0 120 24" role="img" aria-label="Digest, past 4 weeks, weighted sum -5.84%"><line x1="3" y1="4.6" x2="117" y2="4.6" stroke="#2d3542" stroke-width="1" stroke-dasharray="2 2"/><polyline points="3.0,4.6 7.1,4.5 11.1,4.4 15.2,3.0 19.3,3.1 23.4,5.2 27.4,7.2 31.5,8.0 35.6,8.6 39.6,8.3 43.7,6.9 47.8,5.8 51.9,7.8 55.9,7.8 60.0,10.4 64.1,10.3 68.1,11.2 72.2,12.1 76.3,11.2 80.4,12.7 84.4,15.2 88.5,16.1 92.6,18.0 96.6,18.0 100.7,16.8 104.8,17.6 108.9,16.9 112.9,17.4 117.0,21.0" fill="none" stroke="var(--hot)" stroke-width="1.6"/></svg><span class="w4d">28 days to each leg's last cached close (2026-11-13–11-14)</span></div></div>
+    <p class="note" style="padding:4px 18px 0;color:#8b96a5">Now (2026-11-14): Bitcoin 3% <span class="down">(4w -15.89%)</span>, Ethereum 3% <span class="down">(4w -19.22%)</span>, Solana 3% <span class="down">(4w -25.18%)</span>, XRP 3% <span class="down">(4w -21.30%)</span> +27 more</p>
+    <details class="years" id="years-digest">
+      <summary>Digest — year by year: the Gauge rule against buy &amp; hold</summary>
+      <div class="bookwrap"><table class="book ytab">
+        <thead><tr><th>Year</th><th>Sample</th><th>Gauge</th><th>Buy &amp; hold</th><th>Gap</th><th>Max DD</th><th>B&amp;H max DD</th><th>Cash</th></tr></thead>
+        <tbody>
+          <tr class=""><td>2020</td><td class="smp">IS</td><td class="up">+49.1%</td><td>+60.0%</td><td class="down">-10.9pp</td><td>-13.5%</td><td>-31.4%</td><td>27%</td></tr>
+          <tr class=""><td>2021</td><td class="smp">IS</td><td class="up">+160.6%</td><td>+170.2%</td><td class="down">-9.5pp</td><td>-11.8%</td><td>-11.3%</td><td>30%</td></tr>
+          <tr class=""><td>2022</td><td class="smp">IS</td><td class="down">-10.0%</td><td>-17.1%</td><td class="up">+7.1pp</td><td>-12.0%</td><td>-20.2%</td><td>83%</td></tr>
+          <tr class=""><td>2023</td><td class="smp">IS + OOS</td><td class="up">+26.7%</td><td>+37.5%</td><td class="down">-10.9pp</td><td>-6.8%</td><td>-5.6%</td><td>11%</td></tr>
+          <tr class="half"><td>2023 H1</td><td class="smp">IS</td><td class="up">+7.6%</td><td>+18.7%</td><td class="down">-11.0pp</td><td>-5.8%</td><td>-5.0%</td><td>18%</td></tr>
+          <tr class="half"><td>2023 H2</td><td class="smp">OOS</td><td class="up">+17.7%</td><td>+15.9%</td><td class="up">+1.8pp</td><td>-6.8%</td><td>-5.6%</td><td>5%</td></tr>
+          <tr class=""><td>2024</td><td class="smp">OOS</td><td class="up">+43.1%</td><td>+39.9%</td><td class="up">+3.3pp</td><td>-9.5%</td><td>-8.7%</td><td>17%</td></tr>
+          <tr class=""><td>2025</td><td class="smp">OOS</td><td class="up">+4.1%</td><td>+6.1%</td><td class="down">-2.0pp</td><td>-13.8%</td><td>-17.1%</td><td>32%</td></tr>
+          <tr class=""><td>2026 <span class="note">YTD to 11-14</span></td><td class="smp">OOS</td><td class="down">-0.7%</td><td>+0.7%</td><td class="down">-1.3pp</td><td>-12.1%</td><td>-11.1%</td><td>3%</td></tr>
+        </tbody>
+      </table></div>
+      <p class="note">Calendar years from the backtest's own daily rows (idle cash at the RBA rate, costs in). Gap = Gauge − buy &amp; hold. Max DD is peak-to-trough inside the year; cash is the average daily share not invested. 2023 is shown whole and as H1 (in-sample) and H2 (out-of-sample, from 2023-07-01).</p>
+    </details>
+    <p class="note" style="padding:10px 18px 0"><b>Tripwire — Band.</b> Universe is the 4 markets a subscriber arms first: BTC, ETH, SOL, AUD/USD — any 4 of the 31. A leg is held while it is above its 200-day average and its 12-1 momentum is positive; otherwise that leg is cash. Held legs are sized 1/volatility (63-day, annualised) with a 40% cap each, and the crypto legs together are capped at 60% of the book; what the crypto cap takes goes to a non-crypto leg in the gate with room under its own cap, otherwise to cash. Rebalance monthly through the 2-point band; the tripwire is the exit you already have, so the algorithm needs no stop it cannot see.</p>
+    <div class="note" style="padding:4px 18px 0"><div class="w4"><span class="w4k">Past 4 weeks</span><b class="up">+0.36%</b><span class="w4l">all cash — the RBA cash rate over the 4 weeks</span><svg class="w4sp" viewBox="0 0 120 24" role="img" aria-label="Tripwire, past 4 weeks, weighted sum +0.36%"><line x1="3" y1="21.0" x2="117" y2="21.0" stroke="#2d3542" stroke-width="1" stroke-dasharray="2 2"/><polyline points="3.0,21.0 7.1,20.4 11.1,19.8 15.2,19.1 19.3,18.5 23.4,17.9 27.4,17.2 31.5,16.6 35.6,15.9 39.6,15.3 43.7,14.7 47.8,14.0 51.9,13.4 55.9,12.8 60.0,12.2 64.1,11.5 68.1,10.9 72.2,10.3 76.3,9.6 80.4,9.0 84.4,8.3 88.5,7.6 92.6,7.0 96.6,6.3 100.7,5.7 104.8,5.0 108.9,4.3 112.9,3.6 117.0,3.0" fill="none" stroke="var(--live)" stroke-width="1.6"/></svg><span class="w4d">28 days to 2026-11-14 · cash 100% earns the RBA cash rate (4.85%), +0.36% over the 28 days</span></div></div>
+    <p class="note" style="padding:4px 18px 0;color:#8b96a5">Now (2026-11-14): cash · cash 100%</p>
+    <details class="years" id="years-tripwire">
+      <summary>Tripwire — year by year: the Band rule against buy &amp; hold</summary>
+      <div class="bookwrap"><table class="book ytab">
+        <thead><tr><th>Year</th><th>Sample</th><th>Band</th><th>Buy &amp; hold</th><th>Gap</th><th>Max DD</th><th>B&amp;H max DD</th><th>Cash</th></tr></thead>
+        <tbody>
+          <tr class=""><td>2020</td><td class="smp">IS</td><td class="up">+38.6%</td><td>+176.9%</td><td class="down">-138.3pp</td><td>-24.6%</td><td>-36.7%</td><td>47%</td></tr>
+          <tr class=""><td>2021</td><td class="smp">IS</td><td class="up">+188.3%</td><td>+204.8%</td><td class="down">-16.5pp</td><td>-35.3%</td><td>-34.1%</td><td>20%</td></tr>
+          <tr class=""><td>2022</td><td class="smp">IS</td><td class="down">-26.7%</td><td>-54.3%</td><td class="up">+27.7pp</td><td>-30.3%</td><td>-55.3%</td><td>88%</td></tr>
+          <tr class=""><td>2023</td><td class="smp">IS + OOS</td><td class="up">+31.8%</td><td>+125.2%</td><td class="down">-93.3pp</td><td>-9.9%</td><td>-17.4%</td><td>65%</td></tr>
+          <tr class="half"><td>2023 H1</td><td class="smp">IS</td><td class="up">+5.9%</td><td>+48.2%</td><td class="down">-42.4pp</td><td>-7.8%</td><td>-17.4%</td><td>90%</td></tr>
+          <tr class="half"><td>2023 H2</td><td class="smp">OOS</td><td class="up">+24.5%</td><td>+51.9%</td><td class="down">-27.4pp</td><td>-9.9%</td><td>-13.6%</td><td>40%</td></tr>
+          <tr class=""><td>2024</td><td class="smp">OOS</td><td class="up">+52.5%</td><td>+58.4%</td><td class="down">-5.9pp</td><td>-20.3%</td><td>-20.0%</td><td>40%</td></tr>
+          <tr class=""><td>2025</td><td class="smp">OOS</td><td class="down">-19.7%</td><td>-8.4%</td><td class="down">-11.3pp</td><td>-26.8%</td><td>-30.3%</td><td>49%</td></tr>
+          <tr class=""><td>2026 <span class="note">YTD to 11-14</span></td><td class="smp">OOS</td><td class="up">+4.1%</td><td>-17.6%</td><td class="up">+21.7pp</td><td>-1.8%</td><td>-32.0%</td><td>65%</td></tr>
+        </tbody>
+      </table></div>
+      <p class="note">Calendar years from the backtest's own daily rows (idle cash at the RBA rate, costs in). Gap = Band − buy &amp; hold. Max DD is peak-to-trough inside the year; cash is the average daily share not invested. 2023 is shown whole and as H1 (in-sample) and H2 (out-of-sample, from 2023-07-01).</p>
+    </details>
+    <p class="note" style="padding:10px 18px 0"><b>Package — Scale.</b> Weights stay exactly as published — the basket is rebalanced back to them, never re-shaped. Each basket&#39;s exposure is 1, 0.5 or 0, read off its own index vs its 200-day average and 12-1 momentum. Capital is split equally across the three baskets; whatever a scale leaves unspent is cash, earning the RBA cash rate. A 10% portfolio drawdown halves every exposure until equity recovers to within 5% of the peak.</p>
+    <div class="note" style="padding:4px 18px 0"><div class="w4"><span class="w4k">Past 4 weeks</span><b class="up">+1.24%</b><span class="w4l">the weighted sum of the 15 legs it holds now and its cash — today's weights on the past 4 weeks' closes, not a backtest</span><svg class="w4sp" viewBox="0 0 120 24" role="img" aria-label="Package, past 4 weeks, weighted sum +1.24%"><line x1="3" y1="18.1" x2="117" y2="18.1" stroke="#2d3542" stroke-width="1" stroke-dasharray="2 2"/><polyline points="3.0,18.1 7.1,18.1 11.1,16.3 15.2,16.9 19.3,17.1 23.4,16.8 27.4,17.9 31.5,18.9 35.6,18.9 39.6,18.9 43.7,15.3 47.8,12.2 51.9,9.8 55.9,10.8 60.0,16.9 64.1,16.9 68.1,18.5 72.2,20.1 76.3,21.0 80.4,5.5 84.4,14.6 88.5,14.9 92.6,14.9 96.6,14.2 100.7,4.0 104.8,7.4 108.9,3.0 112.9,7.1 117.0,7.7" fill="none" stroke="var(--live)" stroke-width="1.6"/></svg><span class="w4d">28 days to each leg's last cached close (2026-11-13) · cash 33% earns the RBA cash rate (4.85%), +0.36% over the 28 days</span></div></div>
+    <p class="note" style="padding:4px 18px 0;color:#8b96a5">Now (2026-11-14): CommBank 10% <span class="up">(4w +10.68%)</span>, S&amp;P 500 10% <span class="down">(4w -1.28%)</span>, BHP Group 8% <span class="down">(4w -1.95%)</span>, ASX 200 8% <span class="up">(4w +3.13%)</span> +11 more · cash 33%</p>
+    <details class="years" id="years-package">
+      <summary>Package — year by year: the Scale rule against buy &amp; hold</summary>
+      <div class="bookwrap"><table class="book ytab">
+        <thead><tr><th>Year</th><th>Sample</th><th>Scale</th><th>Buy &amp; hold</th><th>Gap</th><th>Max DD</th><th>B&amp;H max DD</th><th>Cash</th></tr></thead>
+        <tbody>
+          <tr class=""><td>2020</td><td class="smp">IS</td><td class="up">+51.7%</td><td>+63.6%</td><td class="down">-11.8pp</td><td>-20.7%</td><td>-22.8%</td><td>42%</td></tr>
+          <tr class=""><td>2021</td><td class="smp">IS</td><td class="up">+88.0%</td><td>+90.7%</td><td class="down">-2.6pp</td><td>-9.5%</td><td>-9.5%</td><td>14%</td></tr>
+          <tr class=""><td>2022</td><td class="smp">IS</td><td class="down">-9.6%</td><td>-16.6%</td><td class="up">+6.9pp</td><td>-15.3%</td><td>-18.9%</td><td>69%</td></tr>
+          <tr class=""><td>2023</td><td class="smp">IS + OOS</td><td class="up">+15.2%</td><td>+30.2%</td><td class="down">-15.0pp</td><td>-2.5%</td><td>-3.4%</td><td>66%</td></tr>
+          <tr class="half"><td>2023 H1</td><td class="smp">IS</td><td class="up">+5.7%</td><td>+15.6%</td><td class="down">-9.9pp</td><td>-1.9%</td><td>-3.3%</td><td>73%</td></tr>
+          <tr class="half"><td>2023 H2</td><td class="smp">OOS</td><td class="up">+9.0%</td><td>+12.6%</td><td class="down">-3.6pp</td><td>-2.5%</td><td>-3.4%</td><td>60%</td></tr>
+          <tr class=""><td>2024</td><td class="smp">OOS</td><td class="up">+46.3%</td><td>+48.4%</td><td class="down">-2.1pp</td><td>-9.8%</td><td>-9.8%</td><td>5%</td></tr>
+          <tr class=""><td>2025</td><td class="smp">OOS</td><td class="up">+3.6%</td><td>+4.9%</td><td class="down">-1.3pp</td><td>-15.6%</td><td>-16.7%</td><td>27%</td></tr>
+          <tr class=""><td>2026 <span class="note">YTD to 11-14</span></td><td class="smp">OOS</td><td class="up">+2.3%</td><td>-0.3%</td><td class="up">+2.7pp</td><td>-3.9%</td><td>-6.6%</td><td>42%</td></tr>
+        </tbody>
+      </table></div>
+      <p class="note">Calendar years from the backtest's own daily rows (idle cash at the RBA rate, costs in). Gap = Scale − buy &amp; hold. Max DD is peak-to-trough inside the year; cash is the average daily share not invested. 2023 is shown whole and as H1 (in-sample) and H2 (out-of-sample, from 2023-07-01).</p>
+    </details>
+    <p class="note" style="padding:10px 18px 0"><b>Gear — Gear.</b> One sleeve over both kinds of market: the owned ones (BTC, ETH, WTI crude) and the bought leverage (S&amp;P 500 3x, Nasdaq-100 3x, semis 3x, 20y Treasuries 3x, gold 2x) — eight instruments in five clusters: US index leverage, Treasuries, gold, crypto, crude. The leverage is a holding, not a weight above 1: a 3x fund&#39;s price already carries its financing and its daily rebalance, so the drag is measured instead of promised. A leg is bought only while it is above its own 200-day average with positive 12-1 momentum; inside a cluster only the strongest momentum leg is held, so three 3x equity funds are one position and a choice — never three bets. The risk budget is split 1/vol across the clusters that are in, capped at 40% a leg, then the sleeve is scaled so its ex-ante vol is the tier&#39;s target — 15% core, 22% balanced, 30% high yield; a 20% drawdown halves the sleeve until equity is back within 6% of the peak. Monthly rebalance through the 2-point band, 20bps per unit of turnover on a levered fund, 25bps crypto, 10bps crude; idle cash earns the RBA cash rate and an empty sleeve holds cash.</p>
+    <div class="note" style="padding:4px 18px 0"><div class="w4"><span class="w4k">Past 4 weeks</span><b class="down">-7.02%</b><span class="w4l">the weighted sum of the 2 legs it holds now and its cash — today's weights on the past 4 weeks' closes, not a backtest</span><svg class="w4sp" viewBox="0 0 120 24" role="img" aria-label="Gear, past 4 weeks, weighted sum -7.02%"><line x1="3" y1="6.0" x2="117" y2="6.0" stroke="#2d3542" stroke-width="1" stroke-dasharray="2 2"/><polyline points="3.0,6.0 7.1,6.0 11.1,6.0 15.2,3.7 19.3,4.3 23.4,6.2 27.4,7.2 31.5,5.8 35.6,5.8 39.6,5.8 43.7,5.5 47.8,5.5 51.9,3.0 55.9,4.3 60.0,6.5 64.1,6.5 68.1,6.5 72.2,12.3 76.3,11.9 80.4,14.0 84.4,21.0 88.5,20.3 92.6,20.3 96.6,20.3 100.7,18.9 104.8,20.1 108.9,17.4 112.9,16.7 117.0,17.3" fill="none" stroke="var(--hot)" stroke-width="1.6"/></svg><span class="w4d">28 days to each leg's last cached close (2026-11-13) · cash 20% earns the RBA cash rate (4.85%), +0.36% over the 28 days</span></div></div>
+    <p class="note" style="padding:4px 18px 0;color:#8b96a5">Now (2026-11-14): S&amp;P 500 3x 40% <span class="down">(4w -5.42%)</span>, WTI crude 40% <span class="down">(4w -12.32%)</span> · cash 20%</p>
+    <details class="years" id="years-gear">
+      <summary>Gear — year by year: the Gear rule against buy &amp; hold</summary>
+      <div class="bookwrap"><table class="book ytab">
+        <thead><tr><th>Year</th><th>Sample</th><th>Gear</th><th>Buy &amp; hold</th><th>Gap</th><th>Max DD</th><th>B&amp;H max DD</th><th>Cash</th></tr></thead>
+        <tbody>
+          <tr class=""><td>2020</td><td class="smp">IS</td><td class="up">+1.3%</td><td>+3.9%</td><td class="down">-2.6pp</td><td>-35.6%</td><td>-48.1%</td><td>47%</td></tr>
+          <tr class=""><td>2021</td><td class="smp">IS</td><td class="up">+77.8%</td><td>+49.9%</td><td class="up">+27.9pp</td><td>-12.0%</td><td>-11.2%</td><td>35%</td></tr>
+          <tr class=""><td>2022</td><td class="smp">IS</td><td class="down">-17.9%</td><td>-32.8%</td><td class="up">+14.9pp</td><td>-22.5%</td><td>-34.3%</td><td>67%</td></tr>
+          <tr class=""><td>2023</td><td class="smp">IS + OOS</td><td class="up">+5.4%</td><td>+25.0%</td><td class="down">-19.5pp</td><td>-8.1%</td><td>-8.1%</td><td>73%</td></tr>
+          <tr class="half"><td>2023 H1</td><td class="smp">IS</td><td class="up">+0.5%</td><td>+15.7%</td><td class="down">-15.3pp</td><td>-4.8%</td><td>-4.2%</td><td>90%</td></tr>
+          <tr class="half"><td>2023 H2</td><td class="smp">OOS</td><td class="up">+4.9%</td><td>+8.0%</td><td class="down">-3.0pp</td><td>-8.1%</td><td>-8.1%</td><td>56%</td></tr>
+          <tr class=""><td>2024</td><td class="smp">OOS</td><td class="up">+13.8%</td><td>+24.2%</td><td class="down">-10.4pp</td><td>-19.8%</td><td>-17.2%</td><td>36%</td></tr>
+          <tr class=""><td>2025</td><td class="smp">OOS</td><td class="up">+44.6%</td><td>+10.1%</td><td class="up">+34.5pp</td><td>-15.7%</td><td>-28.1%</td><td>11%</td></tr>
+          <tr class=""><td>2026 <span class="note">YTD to 11-14</span></td><td class="smp">OOS</td><td class="up">+21.5%</td><td>+11.3%</td><td class="up">+10.2pp</td><td>-25.4%</td><td>-17.1%</td><td>60%</td></tr>
+        </tbody>
+      </table></div>
+      <p class="note">Calendar years from the backtest's own daily rows (idle cash at the RBA rate, costs in). Gap = Gear − buy &amp; hold. Max DD is peak-to-trough inside the year; cash is the average daily share not invested. 2023 is shown whole and as H1 (in-sample) and H2 (out-of-sample, from 2023-07-01).</p>
+    </details>
     <p class="note" style="padding:10px 18px 0">Backtest, not track record: closes from public keyless APIs, costs charged on turnover, no slippage model beyond the cost line, nothing larger than the tier allows. The desk book is still the only thing marked live.</p>
     <p class="note" style="padding:6px 18px 14px"><a class="u mono" href="https://flak3dd.github.io/tripwire/algos.json">algos.json</a> — rules, costs, both halves of the window, and the sha256 of every price series used. Rebuilt by <span class="mono">wealthclaw algo</span>.</p>
   </section>
-  <p class="stamp">Backtest 2020-01-01 -&gt; 2026-11-06 · split 2023-07-01 (in-sample before, out-of-sample after) · costs per unit turnover: 25bps crypto, 20bps leveraged ETFs, 10bps stocks/indices/metals/energy, 3bps FX · cash 0% return, no T-bill. Measured, not promised — the desk book is the only thing marked live.</p>
+  <p class="stamp">Backtest 2020-01-01 -&gt; 2026-11-14 · split 2023-07-01 (in-sample before, out-of-sample after) · costs per unit turnover: 25bps crypto, 20bps leveraged ETFs, 10bps stocks/indices/metals/energy, 3bps FX · cash idle cash earns the RBA cash rate target (statistical table F1, series FIRMMCRTD), the rate in effect at the prior close, accrued act/365 per calendar day. Measured, not promised — the desk book is the only thing marked live.</p>
 
 
   <section class="card" id="styles">
     <h2><span class="n">04</span>Pick a trading style — five stacks inside each tier</h2>
     <div class="pickrow">
       <label for="st-tier">Your tier</label>
-      <select id="st-tier"><option value="digest">Digest · A$0</option><option value="tripwire">Tripwire · A$9/mo</option><option value="package">Package · A$29-99/mo</option><option value="gear">Package · high yield · A$99/mo</option></select>
+      <select id="st-tier"><option value="digest">Digest · A$0</option><option value="tripwire">Tripwire · A$9/mo</option><option value="package">Package · A$29–99/mo</option><option value="gear">Gear · A$99/mo</option></select>
       <span class="note">Same universe, same costs, same window — the style changes the gate, not the weather.</span>
     </div>
     <div class="bookwrap"><table class="book" id="st-table">
-      <thead><tr><th>Style</th><th>2020–26</th><th>Sharpe</th><th>Max DD</th><th>2023–26</th><th>vs shipped</th><th>Holds today</th></tr></thead>
+      <thead><tr><th>Style</th><th>2020–26</th><th>Sharpe</th><th>Max DD</th><th>2023–26</th><th>vs shipped</th><th>Holds today · past 4 wks</th></tr></thead>
       <tbody>
-        <tr><td><b>Momentum</b><div class="note" style="padding:2px 0 0">the shipped rule · shipped</div></td><td>+20.0%</td><td>1.28</td><td>-20.0%</td><td>+9.6%</td><td>+0.0pp</td><td style="font:12px ui-monospace,monospace">cash</td></tr>
-        <tr><td><b>Trend &amp; breakout</b><div class="note" style="padding:2px 0 0">fewer, bigger, later</div></td><td>+22.2%</td><td>1.12</td><td>-31.0%</td><td>+12.5%</td><td>+2.9pp</td><td style="font:12px ui-monospace,monospace">AUD/EUR 14%, ASX 200 14%, FTSE 100 14%, CommBank 14% +2</td></tr>
-        <tr><td><b>Mean reversion</b><div class="note" style="padding:2px 0 0">buy what just hurt</div></td><td>+2.7%</td><td>0.23</td><td>-49.7%</td><td>+6.3%</td><td>-3.3pp</td><td style="font:12px ui-monospace,monospace">Brent crude 25%, WTI crude 22%, Solana 20%, Bitcoin 14% +2</td></tr>
-        <tr><td><b>Low volatility</b><div class="note" style="padding:2px 0 0">the quietest half</div></td><td>+4.4%</td><td>0.61</td><td>-19.9%</td><td>+3.5%</td><td>-6.2pp</td><td style="font:12px ui-monospace,monospace">AUD/EUR 25%, FTSE 100 18%, ASX 200 18%, Westpac 11% +2</td></tr>
-        <tr><td><b>Risk parity</b><div class="note" style="padding:2px 0 0">no momentum screen</div></td><td>+9.7%</td><td>0.91</td><td>-23.7%</td><td>+6.9%</td><td>-2.7pp</td><td style="font:12px ui-monospace,monospace">AUD/EUR 25%, FTSE 100 14%, ASX 200 13%, Westpac 7% +2</td></tr>
+        <tr><td><b>Momentum</b><div class="note" style="padding:2px 0 0">the shipped rule · shipped</div></td><td>+31.5%</td><td>1.43</td><td>-19.0%</td><td>+17.9%</td><td>+0.0pp</td><td style="font:12px ui-monospace,monospace"><b class="down">4w -5.84%</b> · Bitcoin 3%, Ethereum 3%, Solana 3%, XRP 3% +2</td></tr>
+        <tr><td><b>Trend &amp; breakout</b><div class="note" style="padding:2px 0 0">fewer, bigger, later</div></td><td>+30.3%</td><td>1.13</td><td>-29.7%</td><td>+18.9%</td><td>+1.1pp</td><td style="font:12px ui-monospace,monospace"><b class="up">4w +4.67%</b> · USD/JPY 11%, ASX 200 11%, FTSE 100 11%, Natural gas 11% +2</td></tr>
+        <tr><td><b>Mean reversion</b><div class="note" style="padding:2px 0 0">buy what just hurt</div></td><td>+0.7%</td><td>0.07</td><td>-46.9%</td><td>+1.3%</td><td>-16.6pp</td><td style="font:12px ui-monospace,monospace"><b class="down">4w -6.59%</b> · AUD/EUR 25%, Brent crude 25%, WTI crude 24%, S&amp;P 500 13% +1</td></tr>
+        <tr><td><b>Low volatility</b><div class="note" style="padding:2px 0 0">the quietest half</div></td><td>+6.5%</td><td>0.46</td><td>-20.4%</td><td>+8.1%</td><td>-9.8pp</td><td style="font:12px ui-monospace,monospace"><b class="up">4w +1.85%</b> · AUD/EUR 22%, USD/JPY 18%, FTSE 100 13%, ASX 200 13% +2</td></tr>
+        <tr><td><b>Risk parity</b><div class="note" style="padding:2px 0 0">no momentum screen</div></td><td>+14.9%</td><td>0.93</td><td>-22.2%</td><td>+10.5%</td><td>-7.4pp</td><td style="font:12px ui-monospace,monospace"><b class="up">4w +1.26%</b> · AUD/EUR 18%, USD/JPY 14%, FTSE 100 10%, ASX 200 10% +2</td></tr>
       </tbody>
     </table></div>
     <div id="st-detail" class="note pad"><p style="padding:7px 0;border-bottom:1px solid #161c26"><b>Momentum</b> — Own a leg while it is above its 200-day average with positive 12-1 momentum; size 1/vol, 40% cap. <span style="color:#6fbd92">Wins in:</span> long, one-way trends — 2020-21, 2023-24. <span style="color:#e08a80">Loses in:</span> whipsaw: a market that crosses its average six times a year pays six round trips.</p><p style="padding:7px 0;border-bottom:1px solid #161c26"><b>Trend &amp; breakout</b> — Enter a leg above its 200-day and 50-day averages when within 2% (or 5 days) of a 63-day high, and hold while above both averages; equal weight. <span style="color:#6fbd92">Wins in:</span> breakouts that keep going, and quiet starts to big moves. <span style="color:#e08a80">Loses in:</span> a market grinding sideways just under its high — the entry is always a little late and the exit a little early.</p><p style="padding:7px 0;border-bottom:1px solid #161c26"><b>Mean reversion</b> — Own a leg while it is above its 200-day average but below its 20-day average (a pullback inside an uptrend), sized by depth of the dip over its own volatility. <span style="color:#6fbd92">Wins in:</span> choppy bull markets where every dip gets bought. <span style="color:#e08a80">Loses in:</span> a real trend change: the 200-day average turns last, so the first three dips are the whole drawdown.</p><p style="padding:7px 0;border-bottom:1px solid #161c26"><b>Low volatility</b> — Of the legs above their 200-day average, keep the calmest half by 63-day volatility; 1/vol inside that half. <span style="color:#6fbd92">Wins in:</span> risk-off years, and any client who measures the ride and not only the return. <span style="color:#e08a80">Loses in:</span> a melt-up led by the loudest names — this style is structurally underweight what runs.</p><p style="padding:7px 0;border-bottom:1px solid #161c26"><b>Risk parity</b> — Own every leg above its 200-day average, with no momentum filter at all, and split the risk 1/vol — one leg per cluster where the tier has clusters. <span style="color:#6fbd92">Wins in:</span> broad participation: the least opinionated way to be invested. <span style="color:#e08a80">Loses in:</span> a market that is above its average and falling — it holds the leg the other four styles have already sold.</p></div>
-    <p class="note pad" style="color:#8b96a5">These are <b>backtests</b> of the rule over the same closes, split 2023-07-01 (in-sample before, out-of-sample after) — not a track record, and not a forecast. Pick a row to remember it in this browser; to record it on your member row (the weekly review is then measured against it): <span class="mono">wealthclaw stack set --email you@example.com --stack &lt;style&gt;</span>. Nothing is posted from this page.</p>
+    <p class="note pad" style="color:#8b96a5">These are <b>backtests</b> of the rule over the same closes, split 2023-07-01 (in-sample before, out-of-sample after) — not a track record, and not a forecast. <b>4w</b> (past 4 weeks) is different: it is not a backtest but each style's holdings today, at today's weights, times each leg's real return over the last 28 calendar days of cached closes (cash at the RBA cash rate). Pick a row to remember it in this browser; to record it on your member row (the weekly review is then measured against it): <span class="mono">wealthclaw stack set --email you@example.com --stack &lt;style&gt;</span>. Nothing is posted from this page.</p>
   </section>
 
 <script>
 (function(){
-  var DATA = {"builtAt":"2026-11-06T12:11:20.939Z","window":"2023-07-01 (in-sample before, out-of-sample after)","tiers":[{"id":"digest","name":"Digest","price":"A$0","algo":"Gauge","stacks":[{"id":"momentum","name":"Momentum","tag":"the shipped rule","def":true,"what":"Own a leg while it is above its 200-day average with positive 12-1 momentum; size 1/vol, 40% cap.","wins":"long, one-way trends — 2020-21, 2023-24","loses":"whipsaw: a market that crosses its average six times a year pays six round trips","cagr":0.19971613226490148,"vol":0.15042870088167726,"sharpe":1.2845341854059145,"maxDD":0.19987678881689308,"oos":0.09636605133822918,"vs":0,"holds":[],"cash":1,"paid":0.0174},{"id":"trend","name":"Trend & breakout","tag":"fewer, bigger, later","def":false,"what":"Enter a leg above its 200-day and 50-day averages when within 2% (or 5 days) of a 63-day high, and hold while above both averages; equal weight.","wins":"breakouts that keep going, and quiet starts to big moves","loses":"a market grinding sideways just under its high — the entry is always a little late and the exit a little early","cagr":0.222206774681609,"vol":0.1957468781555173,"sharpe":1.122252710224559,"maxDD":0.3096800093046389,"oos":0.12486940865109464,"vs":0.0285,"holds":[{"label":"AUD/EUR","w":0.1429},{"label":"ASX 200","w":0.1429},{"label":"FTSE 100","w":0.1429},{"label":"CommBank","w":0.1429},{"label":"Westpac","w":0.1429},{"label":"Apple","w":0.1429}],"cash":0,"paid":0.082},{"id":"dip","name":"Mean reversion","tag":"buy what just hurt","def":false,"what":"Own a leg while it is above its 200-day average but below its 20-day average (a pullback inside an uptrend), sized by depth of the dip over its own volatility.","wins":"choppy bull markets where every dip gets bought","loses":"a real trend change: the 200-day average turns last, so the first three dips are the whole drawdown","cagr":0.026556649202890137,"vol":0.22186556709590516,"sharpe":0.23060774821690713,"maxDD":0.4969121705938725,"oos":0.06318816242635017,"vs":-0.0332,"holds":[{"label":"Brent crude","w":0.25},{"label":"WTI crude","w":0.2166},{"label":"Solana","w":0.2029},{"label":"Bitcoin","w":0.1362},{"label":"Ethereum","w":0.1019},{"label":"AUD/EUR","w":0.0882}],"cash":0,"paid":0.1302},{"id":"lowvol","name":"Low volatility","tag":"the quietest half","def":false,"what":"Of the legs above their 200-day average, keep the calmest half by 63-day volatility; 1/vol inside that half.","wins":"risk-off years, and any client who measures the ride and not only the return","loses":"a melt-up led by the loudest names — this style is structurally underweight what runs","cagr":0.04442281116187852,"vol":0.07528858754721023,"sharpe":0.614979192463409,"maxDD":0.19876094789016974,"oos":0.0348462320772962,"vs":-0.0615,"holds":[{"label":"AUD/EUR","w":0.25},{"label":"FTSE 100","w":0.1769},{"label":"ASX 200","w":0.1764},{"label":"Westpac","w":0.1056},{"label":"CommBank","w":0.1045},{"label":"Apple","w":0.1012}],"cash":0,"paid":0.0357},{"id":"balanced","name":"Risk parity","tag":"no momentum screen","def":false,"what":"Own every leg above its 200-day average, with no momentum filter at all, and split the risk 1/vol — one leg per cluster where the tier has clusters.","wins":"broad participation: the least opinionated way to be invested","loses":"a market that is above its average and falling — it holds the leg the other four styles have already sold","cagr":0.09657283929452776,"vol":0.10762496254456969,"sharpe":0.9106598077340895,"maxDD":0.23695061692195774,"oos":0.06902467489633368,"vs":-0.0273,"holds":[{"label":"AUD/EUR","w":0.25},{"label":"FTSE 100","w":0.1351},{"label":"ASX 200","w":0.1346},{"label":"Westpac","w":0.0729},{"label":"CommBank","w":0.0719},{"label":"Apple","w":0.069}],"cash":0,"paid":0.0365}]},{"id":"tripwire","name":"Tripwire","price":"A$9/mo","algo":"Band","stacks":[{"id":"momentum","name":"Momentum","tag":"the shipped rule","def":true,"what":"Own a leg while it is above its 200-day average with positive 12-1 momentum; size 1/vol, 40% cap.","wins":"long, one-way trends — 2020-21, 2023-24","loses":"whipsaw: a market that crosses its average six times a year pays six round trips","cagr":0.32324818598285177,"vol":0.3302359183463238,"sharpe":1.013631319518413,"maxDD":0.5081284939461452,"oos":0.0661005821403644,"vs":0,"holds":[{"label":"Bitcoin","w":0.4},{"label":"Ethereum","w":0.331},{"label":"Solana","w":0.269}],"cash":0,"paid":0.0418},{"id":"trend","name":"Trend & breakout","tag":"fewer, bigger, later","def":false,"what":"Enter a leg above its 200-day and 50-day averages when within 2% (or 5 days) of a 63-day high, and hold while above both averages; equal weight.","wins":"breakouts that keep going, and quiet starts to big moves","loses":"a market grinding sideways just under its high — the entry is always a little late and the exit a little early","cagr":0.3075977471188023,"vol":0.3174282947325863,"sharpe":1.0039267835128662,"maxDD":0.354687466530643,"oos":0.12826628725110756,"vs":0.0622,"holds":[],"cash":1,"paid":0.0576},{"id":"dip","name":"Mean reversion","tag":"buy what just hurt","def":false,"what":"Own a leg while it is above its 200-day average but below its 20-day average (a pullback inside an uptrend), sized by depth of the dip over its own volatility.","wins":"choppy bull markets where every dip gets bought","loses":"a real trend change: the 200-day average turns last, so the first three dips are the whole drawdown","cagr":-0.0275040850710897,"vol":0.24013364221910136,"sharpe":0.00907096430964138,"maxDD":0.6076118089608282,"oos":-0.09956872140779449,"vs":-0.1657,"holds":[{"label":"Solana","w":0.4},{"label":"Bitcoin","w":0.3301},{"label":"Ethereum","w":0.2699}],"cash":0,"paid":0.0641},{"id":"lowvol","name":"Low volatility","tag":"the quietest half","def":false,"what":"Of the legs above their 200-day average, keep the calmest half by 63-day volatility; 1/vol inside that half.","wins":"risk-off years, and any client who measures the ride and not only the return","loses":"a melt-up led by the loudest names — this style is structurally underweight what runs","cagr":0.05848624114413914,"vol":0.22626517890722128,"sharpe":0.36464913694906353,"maxDD":0.4349316266650076,"oos":0.012898530378302242,"vs":-0.0532,"holds":[{"label":"Bitcoin","w":0.4},{"label":"Ethereum","w":0.4}],"cash":0.2,"paid":0.0426},{"id":"balanced","name":"Risk parity","tag":"no momentum screen","def":false,"what":"Own every leg above its 200-day average, with no momentum filter at all, and split the risk 1/vol — one leg per cluster where the tier has clusters.","wins":"broad participation: the least opinionated way to be invested","loses":"a market that is above its average and falling — it holds the leg the other four styles have already sold","cagr":0.30487943094986636,"vol":0.3695398864015548,"sharpe":0.9079528421408323,"maxDD":0.5257818303861894,"oos":0.10462072791871524,"vs":0.0385,"holds":[{"label":"Bitcoin","w":0.4},{"label":"Ethereum","w":0.331},{"label":"Solana","w":0.269}],"cash":0,"paid":0.0532}]},{"id":"package","name":"Package","price":"A$29-99/mo","algo":"Scale","stacks":[{"id":"momentum","name":"Momentum","tag":"the shipped rule","def":true,"what":"Own a leg while it is above its 200-day average with positive 12-1 momentum; size 1/vol, 40% cap.","wins":"long, one-way trends — 2020-21, 2023-24","loses":"whipsaw: a market that crosses its average six times a year pays six round trips","cagr":0.1509585657831154,"vol":0.11622912623842388,"sharpe":1.2682104393059084,"maxDD":0.2124819702375087,"oos":0.09522286045788819,"vs":0,"holds":[{"label":"S&P 500","w":0.1},{"label":"Bitcoin","w":0.1},{"label":"Nasdaq Composite","w":0.0667},{"label":"Gold (front month)","w":0.0667},{"label":"Ethereum","w":0.0667},{"label":"Nvidia","w":0.0667}],"cash":0.1666,"paid":0.0112},{"id":"trend","name":"Trend & breakout","tag":"fewer, bigger, later","def":false,"what":"Enter a leg above its 200-day and 50-day averages when within 2% (or 5 days) of a 63-day high, and hold while above both averages; equal weight.","wins":"breakouts that keep going, and quiet starts to big moves","loses":"a market grinding sideways just under its high — the entry is always a little late and the exit a little early","cagr":0.1450927895241354,"vol":0.13865029377516389,"sharpe":1.0470832237596537,"maxDD":0.2533876833197847,"oos":0.11285457650334552,"vs":0.0176,"holds":[{"label":"CommBank","w":0.3},{"label":"BHP Group","w":0.25},{"label":"ASX 200","w":0.25},{"label":"Westpac","w":0.2}],"cash":0,"paid":0.0546},{"id":"dip","name":"Mean reversion","tag":"buy what just hurt","def":false,"what":"Own a leg while it is above its 200-day average but below its 20-day average (a pullback inside an uptrend), sized by depth of the dip over its own volatility.","wins":"choppy bull markets where every dip gets bought","loses":"a real trend change: the 200-day average turns last, so the first three dips are the whole drawdown","cagr":-0.006783831793949924,"vol":0.0865854713980326,"sharpe":-0.0347893017352149,"maxDD":0.27053815821395144,"oos":0.012359761292926041,"vs":-0.0829,"holds":[{"label":"S&P 500","w":0.15},{"label":"Bitcoin","w":0.15},{"label":"Nasdaq Composite","w":0.1},{"label":"Gold (front month)","w":0.1},{"label":"Ethereum","w":0.1},{"label":"Nvidia","w":0.1}],"cash":0,"paid":0.0422},{"id":"lowvol","name":"Low volatility","tag":"the quietest half","def":false,"what":"Of the legs above their 200-day average, keep the calmest half by 63-day volatility; 1/vol inside that half.","wins":"risk-off years, and any client who measures the ride and not only the return","loses":"a melt-up led by the loudest names — this style is structurally underweight what runs","cagr":0.09994384464166073,"vol":0.09641342790491222,"sharpe":1.0364593681801992,"maxDD":0.20982991893311487,"oos":0.12567269423479455,"vs":0.0304,"holds":[{"label":"CommBank","w":0.15},{"label":"S&P 500","w":0.15},{"label":"BHP Group","w":0.125},{"label":"ASX 200","w":0.125},{"label":"Westpac","w":0.1},{"label":"Nasdaq Composite","w":0.1}],"cash":0,"paid":0.0035},{"id":"balanced","name":"Risk parity","tag":"no momentum screen","def":false,"what":"Own every leg above its 200-day average, with no momentum filter at all, and split the risk 1/vol — one leg per cluster where the tier has clusters.","wins":"broad participation: the least opinionated way to be invested","loses":"a market that is above its average and falling — it holds the leg the other four styles have already sold","cagr":0.14664747170817471,"vol":0.10856762804543788,"sharpe":1.3151420815399333,"maxDD":0.23320356101508333,"oos":0.1417867581036738,"vs":0.0466,"holds":[{"label":"CommBank","w":0.1241},{"label":"S&P 500","w":0.1091},{"label":"BHP Group","w":0.1034},{"label":"ASX 200","w":0.1034},{"label":"Westpac","w":0.0827},{"label":"Nasdaq Composite","w":0.0728}],"cash":0,"paid":0.007}]},{"id":"gear","name":"Package · high yield","price":"A$99/mo","algo":"Gear","stacks":[{"id":"momentum","name":"Momentum","tag":"the shipped rule","def":true,"what":"Own a leg while it is above its 200-day average with positive 12-1 momentum; size 1/vol, 40% cap.","wins":"long, one-way trends — 2020-21, 2023-24","loses":"whipsaw: a market that crosses its average six times a year pays six round trips","cagr":0.15524926898234281,"vol":0.23201795185917928,"sharpe":0.7390818126461012,"maxDD":0.2848376050314837,"oos":0.10423062793585669,"vs":0,"holds":[{"label":"Ethereum","w":0.4},{"label":"WTI crude","w":0.4}],"cash":0.2,"paid":0.0569},{"id":"trend","name":"Trend & breakout","tag":"fewer, bigger, later","def":false,"what":"Enter a leg above its 200-day and 50-day averages when within 2% (or 5 days) of a 63-day high, and hold while above both averages; equal weight.","wins":"breakouts that keep going, and quiet starts to big moves","loses":"a market grinding sideways just under its high — the entry is always a little late and the exit a little early","cagr":0.12646609908863216,"vol":0.20814978286751462,"sharpe":0.6770964117728515,"maxDD":0.2893063541328158,"oos":0.13399353001317849,"vs":0.0298,"holds":[],"cash":1,"paid":0.0579},{"id":"dip","name":"Mean reversion","tag":"buy what just hurt","def":false,"what":"Own a leg while it is above its 200-day average but below its 20-day average (a pullback inside an uptrend), sized by depth of the dip over its own volatility.","wins":"choppy bull markets where every dip gets bought","loses":"a real trend change: the 200-day average turns last, so the first three dips are the whole drawdown","cagr":0.009449407660730769,"vol":0.1490363710287327,"sharpe":0.1394623287978227,"maxDD":0.3613937949026712,"oos":0.01060530389444203,"vs":-0.0936,"holds":[{"label":"Bitcoin","w":0.4},{"label":"WTI crude","w":0.4}],"cash":0.2,"paid":0.0647},{"id":"lowvol","name":"Low volatility","tag":"the quietest half","def":false,"what":"Of the legs above their 200-day average, keep the calmest half by 63-day volatility; 1/vol inside that half.","wins":"risk-off years, and any client who measures the ride and not only the return","loses":"a melt-up led by the loudest names — this style is structurally underweight what runs","cagr":0.13025407736246275,"vol":0.18133996347442097,"sharpe":0.7663980924275972,"maxDD":0.27955436946437795,"oos":0.14857524991010607,"vs":0.0443,"holds":[{"label":"Bitcoin","w":0.4}],"cash":0.6,"paid":0.0641},{"id":"balanced","name":"Risk parity","tag":"no momentum screen","def":false,"what":"Own every leg above its 200-day average, with no momentum filter at all, and split the risk 1/vol — one leg per cluster where the tier has clusters.","wins":"broad participation: the least opinionated way to be invested","loses":"a market that is above its average and falling — it holds the leg the other four styles have already sold","cagr":0.14978910195913264,"vol":0.20052835307269756,"sharpe":0.7970043080873628,"maxDD":0.3099872085819416,"oos":0.16090402349201272,"vs":0.0567,"holds":[{"label":"Bitcoin","w":0.4},{"label":"WTI crude","w":0.4}],"cash":0.2,"paid":0.0637}]}]};
+  var DATA = {"builtAt":"2026-11-14T04:34:56.865Z","window":"2023-07-01 (in-sample before, out-of-sample after)","tiers":[{"id":"digest","name":"Digest","price":"A$0","algo":"Gauge","stacks":[{"id":"momentum","name":"Momentum","tag":"the shipped rule","def":true,"what":"Own a leg while it is above its 200-day average with positive 12-1 momentum; size 1/vol, 40% cap.","wins":"long, one-way trends — 2020-21, 2023-24","loses":"whipsaw: a market that crosses its average six times a year pays six round trips","cagr":0.3151405333516768,"vol":0.18624736618171536,"sharpe":1.4256327910211197,"maxDD":0.19030305037497364,"oos":0.1787344868506322,"vs":0,"holds":[{"label":"Bitcoin","w":0.0323},{"label":"Ethereum","w":0.0323},{"label":"Solana","w":0.0323},{"label":"XRP","w":0.0323},{"label":"Cardano","w":0.0323},{"label":"Dogecoin","w":0.0323}],"cash":0,"paid":0.0153,"w4":-5.84},{"id":"trend","name":"Trend & breakout","tag":"fewer, bigger, later","def":false,"what":"Enter a leg above its 200-day and 50-day averages when within 2% (or 5 days) of a 63-day high, and hold while above both averages; equal weight.","wins":"breakouts that keep going, and quiet starts to big moves","loses":"a market grinding sideways just under its high — the entry is always a little late and the exit a little early","cagr":0.30282627626960457,"vol":0.23691601049641728,"sharpe":1.1260433490291093,"maxDD":0.29737819683876443,"oos":0.18934842594364598,"vs":0.0106,"holds":[{"label":"USD/JPY","w":0.1111},{"label":"ASX 200","w":0.1111},{"label":"FTSE 100","w":0.1111},{"label":"Natural gas","w":0.1111},{"label":"CommBank","w":0.1111},{"label":"Westpac","w":0.1111}],"cash":0.0001,"paid":0.0675,"w4":4.67},{"id":"dip","name":"Mean reversion","tag":"buy what just hurt","def":false,"what":"Own a leg while it is above its 200-day average but below its 20-day average (a pullback inside an uptrend), sized by depth of the dip over its own volatility.","wins":"choppy bull markets where every dip gets bought","loses":"a real trend change: the 200-day average turns last, so the first three dips are the whole drawdown","cagr":0.006883634587681264,"vol":0.2779146896148648,"sharpe":0.07326750690841251,"maxDD":0.4688674330262178,"oos":0.013093064239450891,"vs":-0.1656,"holds":[{"label":"AUD/EUR","w":0.25},{"label":"Brent crude","w":0.25},{"label":"WTI crude","w":0.2421},{"label":"S&P 500","w":0.1328},{"label":"Microsoft","w":0.1251}],"cash":0,"paid":0.1336,"w4":-6.59},{"id":"lowvol","name":"Low volatility","tag":"the quietest half","def":false,"what":"Of the legs above their 200-day average, keep the calmest half by 63-day volatility; 1/vol inside that half.","wins":"risk-off years, and any client who measures the ride and not only the return","loses":"a melt-up led by the loudest names — this style is structurally underweight what runs","cagr":0.06494263475632933,"vol":0.09034110938490457,"sharpe":0.46007647997734163,"maxDD":0.20398470188379714,"oos":0.08071753227613399,"vs":-0.098,"holds":[{"label":"AUD/EUR","w":0.2235},{"label":"USD/JPY","w":0.1841},{"label":"FTSE 100","w":0.1319},{"label":"ASX 200","w":0.1304},{"label":"Dow Jones","w":0.0981},{"label":"S&P 500","w":0.0952}],"cash":0,"paid":0.0305,"w4":1.85},{"id":"balanced","name":"Risk parity","tag":"no momentum screen","def":false,"what":"Own every leg above its 200-day average, with no momentum filter at all, and split the risk 1/vol — one leg per cluster where the tier has clusters.","wins":"broad participation: the least opinionated way to be invested","loses":"a market that is above its average and falling — it holds the leg the other four styles have already sold","cagr":0.1494159884155719,"vol":0.13198993672559475,"sharpe":0.9281059895481687,"maxDD":0.2219303179800397,"oos":0.10482669027067448,"vs":-0.0739,"holds":[{"label":"AUD/EUR","w":0.1751},{"label":"USD/JPY","w":0.1442},{"label":"FTSE 100","w":0.1033},{"label":"ASX 200","w":0.1022},{"label":"Dow Jones","w":0.0769},{"label":"S&P 500","w":0.0746}],"cash":0,"paid":0.0302,"w4":1.26}]},{"id":"tripwire","name":"Tripwire","price":"A$9/mo","algo":"Band","stacks":[{"id":"momentum","name":"Momentum","tag":"the shipped rule","def":true,"what":"Own a leg while it is above its 200-day average with positive 12-1 momentum; size 1/vol, 40% cap.","wins":"long, one-way trends — 2020-21, 2023-24","loses":"whipsaw: a market that crosses its average six times a year pays six round trips","cagr":0.26111802059078304,"vol":0.3097111534826736,"sharpe":0.8228021426593535,"maxDD":0.4261542574359549,"oos":0.1466922023838697,"vs":0,"holds":[],"cash":1,"paid":0.0319,"w4":0.36},{"id":"trend","name":"Trend & breakout","tag":"fewer, bigger, later","def":false,"what":"Enter a leg above its 200-day and 50-day averages when within 2% (or 5 days) of a 63-day high, and hold while above both averages; equal weight.","wins":"breakouts that keep going, and quiet starts to big moves","loses":"a market grinding sideways just under its high — the entry is always a little late and the exit a little early","cagr":0.2719473017455196,"vol":0.2802844024177062,"sharpe":0.9076883391739239,"maxDD":0.32479476927669426,"oos":0.15902214748114418,"vs":0.0123,"holds":[],"cash":1,"paid":0.0417,"w4":0.36},{"id":"dip","name":"Mean reversion","tag":"buy what just hurt","def":false,"what":"Own a leg while it is above its 200-day average but below its 20-day average (a pullback inside an uptrend), sized by depth of the dip over its own volatility.","wins":"choppy bull markets where every dip gets bought","loses":"a real trend change: the 200-day average turns last, so the first three dips are the whole drawdown","cagr":0.023560804239418864,"vol":0.19613682399484467,"sharpe":0.08816190875707954,"maxDD":0.4139857317083734,"oos":-0.022334765561949355,"vs":-0.169,"holds":[],"cash":1,"paid":0.0516,"w4":0.36},{"id":"lowvol","name":"Low volatility","tag":"the quietest half","def":false,"what":"Of the legs above their 200-day average, keep the calmest half by 63-day volatility; 1/vol inside that half.","wins":"risk-off years, and any client who measures the ride and not only the return","loses":"a melt-up led by the loudest names — this style is structurally underweight what runs","cagr":0.1275525510992359,"vol":0.24358204276768694,"sharpe":0.5107051839190176,"maxDD":0.36398621247760643,"oos":0.06500498530659149,"vs":-0.0817,"holds":[],"cash":1,"paid":0.0377,"w4":0.36},{"id":"balanced","name":"Risk parity","tag":"no momentum screen","def":false,"what":"Own every leg above its 200-day average, with no momentum filter at all, and split the risk 1/vol — one leg per cluster where the tier has clusters.","wins":"broad participation: the least opinionated way to be invested","loses":"a market that is above its average and falling — it holds the leg the other four styles have already sold","cagr":0.3327839367072638,"vol":0.32826801989615895,"sharpe":0.9627245940301183,"maxDD":0.43451221126196093,"oos":0.17688716682767236,"vs":0.0302,"holds":[],"cash":1,"paid":0.0336,"w4":0.36}]},{"id":"package","name":"Package","price":"A$29–99/mo","algo":"Scale","stacks":[{"id":"momentum","name":"Momentum","tag":"the shipped rule","def":true,"what":"Own a leg while it is above its 200-day average with positive 12-1 momentum; size 1/vol, 40% cap.","wins":"long, one-way trends — 2020-21, 2023-24","loses":"whipsaw: a market that crosses its average six times a year pays six round trips","cagr":0.2492169882076707,"vol":0.14600397598588138,"sharpe":1.4230138574264783,"maxDD":0.20706414845531862,"oos":0.1683185728367418,"vs":0,"holds":[{"label":"CommBank","w":0.1},{"label":"S&P 500","w":0.1},{"label":"BHP Group","w":0.0833},{"label":"ASX 200","w":0.0833},{"label":"Westpac","w":0.0667},{"label":"Nasdaq Composite","w":0.0667}],"cash":0.3333,"paid":0.0109,"w4":1.24},{"id":"trend","name":"Trend & breakout","tag":"fewer, bigger, later","def":false,"what":"Enter a leg above its 200-day and 50-day averages when within 2% (or 5 days) of a 63-day high, and hold while above both averages; equal weight.","wins":"breakouts that keep going, and quiet starts to big moves","loses":"a market grinding sideways just under its high — the entry is always a little late and the exit a little early","cagr":0.25034569474851365,"vol":0.1729129864465503,"sharpe":1.2319392076332065,"maxDD":0.2532790942072144,"oos":0.13431801510324926,"vs":-0.034,"holds":[{"label":"CommBank","w":0.3},{"label":"BHP Group","w":0.25},{"label":"ASX 200","w":0.25},{"label":"Westpac","w":0.2}],"cash":0,"paid":0.0446,"w4":5.48},{"id":"dip","name":"Mean reversion","tag":"buy what just hurt","def":false,"what":"Own a leg while it is above its 200-day average but below its 20-day average (a pullback inside an uptrend), sized by depth of the dip over its own volatility.","wins":"choppy bull markets where every dip gets bought","loses":"a real trend change: the 200-day average turns last, so the first three dips are the whole drawdown","cagr":0.020810678503575097,"vol":0.14590755898885965,"sharpe":0.041251143100079254,"maxDD":0.27191774404136115,"oos":0.00943176675722368,"vs":-0.1589,"holds":[{"label":"S&P 500","w":0.3},{"label":"Nasdaq Composite","w":0.2},{"label":"Gold (front month)","w":0.2},{"label":"Apple","w":0.15},{"label":"Microsoft","w":0.15}],"cash":0,"paid":0.0529,"w4":-2.13},{"id":"lowvol","name":"Low volatility","tag":"the quietest half","def":false,"what":"Of the legs above their 200-day average, keep the calmest half by 63-day volatility; 1/vol inside that half.","wins":"risk-off years, and any client who measures the ride and not only the return","loses":"a melt-up led by the loudest names — this style is structurally underweight what runs","cagr":0.15128656457168632,"vol":0.11601178355496597,"sharpe":1.0533951080734305,"maxDD":0.20969877223939315,"oos":0.1908805809596852,"vs":0.0226,"holds":[{"label":"CommBank","w":0.15},{"label":"S&P 500","w":0.15},{"label":"BHP Group","w":0.125},{"label":"ASX 200","w":0.125},{"label":"Westpac","w":0.1},{"label":"Nasdaq Composite","w":0.1}],"cash":0,"paid":0.0036,"w4":1.68},{"id":"balanced","name":"Risk parity","tag":"no momentum screen","def":false,"what":"Own every leg above its 200-day average, with no momentum filter at all, and split the risk 1/vol — one leg per cluster where the tier has clusters.","wins":"broad participation: the least opinionated way to be invested","loses":"a market that is above its average and falling — it holds the leg the other four styles have already sold","cagr":0.2121433109936839,"vol":0.13138431320452257,"sharpe":1.3366886221617202,"maxDD":0.22418098053510005,"oos":0.19938279944665283,"vs":0.0311,"holds":[{"label":"CommBank","w":0.1345},{"label":"S&P 500","w":0.1137},{"label":"BHP Group","w":0.1121},{"label":"ASX 200","w":0.1121},{"label":"Westpac","w":0.0897},{"label":"Nasdaq Composite","w":0.0758}],"cash":0,"paid":0.007,"w4":-1.14}]},{"id":"gear","name":"Gear","price":"A$99/mo","algo":"Gear","stacks":[{"id":"momentum","name":"Momentum","tag":"the shipped rule","def":true,"what":"Own a leg while it is above its 200-day average with positive 12-1 momentum; size 1/vol, 40% cap.","wins":"long, one-way trends — 2020-21, 2023-24","loses":"whipsaw: a market that crosses its average six times a year pays six round trips","cagr":0.18009974366072123,"vol":0.2575809890311968,"sharpe":0.6740569685252128,"maxDD":0.3556645554841561,"oos":0.24581593088649223,"vs":0,"holds":[{"label":"S&P 500 3x","w":0.4},{"label":"WTI crude","w":0.4}],"cash":0.2,"paid":0.0448,"w4":-7.02},{"id":"trend","name":"Trend & breakout","tag":"fewer, bigger, later","def":false,"what":"Enter a leg above its 200-day and 50-day averages when within 2% (or 5 days) of a 63-day high, and hold while above both averages; equal weight.","wins":"breakouts that keep going, and quiet starts to big moves","loses":"a market grinding sideways just under its high — the entry is always a little late and the exit a little early","cagr":0.26087117959635875,"vol":0.2647817125059973,"sharpe":0.9126685101803779,"maxDD":0.2795277224120478,"oos":0.3044737283240473,"vs":0.0587,"holds":[],"cash":1,"paid":0.0648,"w4":0.36},{"id":"dip","name":"Mean reversion","tag":"buy what just hurt","def":false,"what":"Own a leg while it is above its 200-day average but below its 20-day average (a pullback inside an uptrend), sized by depth of the dip over its own volatility.","wins":"choppy bull markets where every dip gets bought","loses":"a real trend change: the 200-day average turns last, so the first three dips are the whole drawdown","cagr":-0.014986074653623449,"vol":0.19899915430085088,"sharpe":-0.10034552840663981,"maxDD":0.4601809462434263,"oos":0.0030444620389649124,"vs":-0.2428,"holds":[{"label":"S&P 500 3x","w":0.4},{"label":"WTI crude","w":0.4}],"cash":0.2,"paid":0.0615,"w4":-7.02},{"id":"lowvol","name":"Low volatility","tag":"the quietest half","def":false,"what":"Of the legs above their 200-day average, keep the calmest half by 63-day volatility; 1/vol inside that half.","wins":"risk-off years, and any client who measures the ride and not only the return","loses":"a melt-up led by the loudest names — this style is structurally underweight what runs","cagr":0.1848639090876696,"vol":0.22334808336402348,"sharpe":0.757815540819513,"maxDD":0.2795277224120477,"oos":0.24063212034881243,"vs":-0.0052,"holds":[{"label":"S&P 500 3x","w":0.4}],"cash":0.6,"paid":0.0604,"w4":-1.95},{"id":"balanced","name":"Risk parity","tag":"no momentum screen","def":false,"what":"Own every leg above its 200-day average, with no momentum filter at all, and split the risk 1/vol — one leg per cluster where the tier has clusters.","wins":"broad participation: the least opinionated way to be invested","loses":"a market that is above its average and falling — it holds the leg the other four styles have already sold","cagr":0.2545850233248066,"vol":0.2221036448903123,"sharpe":1.018785617009308,"maxDD":0.34523993174904677,"oos":0.3441913275500854,"vs":0.0984,"holds":[{"label":"S&P 500 3x","w":0.4},{"label":"WTI crude","w":0.4}],"cash":0.2,"paid":0.057,"w4":-7.02}]}]};
   var sel = document.getElementById("st-tier"), tbody = document.querySelector("#st-table tbody"), det = document.getElementById("st-detail");
   if (!sel || !tbody || !det) return;
   function tierById(id) { for (var i = 0; i < DATA.tiers.length; i++) if (DATA.tiers[i].id === id) return DATA.tiers[i]; return null; }
@@ -598,7 +744,7 @@
     tbody.innerHTML = t.stacks.map(function (s) {
       var vs = s.vs == null ? "—" : (s.vs >= 0 ? "+" : "") + (s.vs * 100).toFixed(1) + "pp";
       var row = mine === s.id ? '<tr style="background:#101a14">' : "<tr>";
-      return row + "<td><b>" + s.name + "</b><div class=\"note\" style=\"padding:2px 0 0\">" + s.tag + (s.def ? " · shipped" : "") + "</div></td><td>" + pct(s.cagr) + "</td><td>" + (s.sharpe == null ? "—" : s.sharpe.toFixed(2)) + "</td><td>" + pct(s.maxDD == null ? null : -s.maxDD) + "</td><td>" + pct(s.oos) + "</td><td>" + vs + "</td><td style=\"font:12px ui-monospace,monospace\">" + holds(s) + "</td></tr>";
+      return row + "<td><b>" + s.name + "</b><div class=\"note\" style=\"padding:2px 0 0\">" + s.tag + (s.def ? " · shipped" : "") + "</div></td><td>" + pct(s.cagr) + "</td><td>" + (s.sharpe == null ? "—" : s.sharpe.toFixed(2)) + "</td><td>" + pct(s.maxDD == null ? null : -s.maxDD) + "</td><td>" + pct(s.oos) + "</td><td>" + vs + "</td><td style=\"font:12px ui-monospace,monospace\"><b class=\"" + (s.w4 == null ? "" : s.w4 >= 0 ? "up" : "down") + "\">4w " + (s.w4 == null ? "n/a" : (s.w4 > 0 ? "+" : "") + s.w4.toFixed(2) + "%") + "</b> · " + holds(s) + "</td></tr>";
     }).join("");
     det.innerHTML = t.stacks.map(function (s) {
       return "<p style=\"padding:7px 0;border-bottom:1px solid #161c26\"><b>" + s.name + "</b> — " + s.what + " <span style=\"color:#6fbd92\">Wins in:</span> " + s.wins + ". <span style=\"color:#e08a80\">Loses in:</span> " + s.loses + ".</p>";
@@ -624,206 +770,206 @@
   <section class="card">
     <h2><span class="n">05</span>Live right now — the board you'd get mailed</h2>
     <ul>
-      <li class="row armed">
+      <li class="row tripped">
         <div class="row-top"><span class="lbl">Bitcoin below A$100k</span>
-          <span class="state">ARMED</span></div>
-        <div class="nums"><span class="now">110,350</span> <span class="vs">vs 100,000 · lt</span></div>
-        <div class="bar"><i style="width:62.48300860897145%"></i></div>
-        <div class="hint">9.4% away — trips when it falls to 100,000</div>
-        <div class="hint sub2">trend over 21 reads: 0.47pp further · closest 8.67% · 02:05–23:02Z</div>
+          <span class="state">TRIPPED</span></div>
+        <div class="nums"><span class="now">98,595</span> <span class="vs">vs 100,000 · lt</span></div>
+        <div class="ruler"><svg viewBox="0 0 300 46" role="img" aria-label="Bitcoin below A$100k — crossed — alert fires: Bitcoin below A$100k"><rect x="39.062499999999645" y="19" width="221.87500000000068" height="6" rx="3" fill="#141a23"/><line x1="8" y1="10" x2="8" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="36.4" y1="13" x2="36.4" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="64.8" y1="13" x2="64.8" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="93.19999999999999" y1="13" x2="93.19999999999999" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="121.6" y1="13" x2="121.6" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="150" y1="10" x2="150" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="178.39999999999998" y1="13" x2="178.39999999999998" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="206.79999999999998" y1="13" x2="206.79999999999998" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="235.2" y1="13" x2="235.2" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="263.6" y1="13" x2="263.6" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="292" y1="10" x2="292" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="6" y1="22" x2="294" y2="22" stroke="#2d3542" stroke-width="2"/><path d="M255.93750000000034 8 L265.93750000000034 8 L260.93750000000034 16 Z" fill="#c9a227"/><text x="260.93750000000034" y="6" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" fill="#9c8434">100,000</text><line x1="39.062499999999645" y1="12" x2="39.062499999999645" y2="32" stroke="#e8edf5" stroke-width="2"/><circle cx="39.062499999999645" cy="22" r="3.5" fill="#e8edf5"/><text x="39.062499999999645" y="43" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" fill="#8b96a8">98,595</text></svg></div>
+        <div class="hint">crossed — alert fires: Bitcoin below A$100k</div>
+        <div class="hint sub2">trend over 58 reads: 8.1pp closer · closest 1.01% · 11:10–04:35Z</div>
       </li>
-      <li class="row armed">
+      <li class="row tripped">
         <div class="row-top"><span class="lbl">Ethereum below A$3k</span>
-          <span class="state">ARMED</span></div>
-        <div class="nums"><span class="now">3,252</span> <span class="vs">vs 3,000 · lt</span></div>
-        <div class="bar"><i style="width:68.97532477515566%"></i></div>
-        <div class="hint">7.8% away — trips when it falls to 3,000</div>
-        <div class="hint sub2">trend over 21 reads: 0.66pp further · closest 7.07% · 02:05–23:02Z</div>
+          <span class="state">TRIPPED</span></div>
+        <div class="nums"><span class="now">2,791</span> <span class="vs">vs 3,000 · lt</span></div>
+        <div class="ruler"><svg viewBox="0 0 300 46" role="img" aria-label="Ethereum below A$3k — crossed — alert fires: Ethereum below A$3k"><rect x="39.062500000000085" y="19" width="221.87499999999986" height="6" rx="3" fill="#141a23"/><line x1="8" y1="10" x2="8" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="36.4" y1="13" x2="36.4" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="64.8" y1="13" x2="64.8" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="93.19999999999999" y1="13" x2="93.19999999999999" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="121.6" y1="13" x2="121.6" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="150" y1="10" x2="150" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="178.39999999999998" y1="13" x2="178.39999999999998" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="206.79999999999998" y1="13" x2="206.79999999999998" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="235.2" y1="13" x2="235.2" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="263.6" y1="13" x2="263.6" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="292" y1="10" x2="292" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="6" y1="22" x2="294" y2="22" stroke="#2d3542" stroke-width="2"/><path d="M255.93749999999994 8 L265.93749999999994 8 L260.93749999999994 16 Z" fill="#c9a227"/><text x="260.93749999999994" y="6" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" fill="#9c8434">3,000</text><line x1="39.062500000000085" y1="12" x2="39.062500000000085" y2="32" stroke="#e8edf5" stroke-width="2"/><circle cx="39.062500000000085" cy="22" r="3.5" fill="#e8edf5"/><text x="39.062500000000085" y="43" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" fill="#8b96a8">2,791</text></svg></div>
+        <div class="hint">crossed — alert fires: Ethereum below A$3k</div>
+        <div class="hint sub2">trend over 58 reads: 0.66pp closer · closest 0.67% · 11:10–04:35Z</div>
       </li>
-      <li class="row armed">
+      <li class="row tripped">
         <div class="row-top"><span class="lbl">Solana below A$120</span>
-          <span class="state">ARMED</span></div>
-        <div class="nums"><span class="now">131</span> <span class="vs">vs 120 · lt</span></div>
-        <div class="bar"><i style="width:66.72014668805872%"></i></div>
-        <div class="hint">8.3% away — trips when it falls to 120</div>
-        <div class="hint sub2">trend over 20 reads: 0.63pp further · closest 7.4% · 02:05–23:02Z</div>
+          <span class="state">TRIPPED</span></div>
+        <div class="nums"><span class="now">111</span> <span class="vs">vs 120 · lt</span></div>
+        <div class="ruler"><svg viewBox="0 0 300 46" role="img" aria-label="Solana below A$120 — crossed — alert fires: Solana below A$120"><rect x="39.06249999999994" y="19" width="221.8750000000001" height="6" rx="3" fill="#141a23"/><line x1="8" y1="10" x2="8" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="36.4" y1="13" x2="36.4" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="64.8" y1="13" x2="64.8" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="93.19999999999999" y1="13" x2="93.19999999999999" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="121.6" y1="13" x2="121.6" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="150" y1="10" x2="150" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="178.39999999999998" y1="13" x2="178.39999999999998" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="206.79999999999998" y1="13" x2="206.79999999999998" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="235.2" y1="13" x2="235.2" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="263.6" y1="13" x2="263.6" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="292" y1="10" x2="292" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="6" y1="22" x2="294" y2="22" stroke="#2d3542" stroke-width="2"/><path d="M255.93750000000006 8 L265.93750000000006 8 L260.93750000000006 16 Z" fill="#c9a227"/><text x="260.93750000000006" y="6" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" fill="#9c8434">120</text><line x1="39.06249999999994" y1="12" x2="39.06249999999994" y2="32" stroke="#e8edf5" stroke-width="2"/><circle cx="39.06249999999994" cy="22" r="3.5" fill="#e8edf5"/><text x="39.06249999999994" y="43" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" fill="#8b96a8">111</text></svg></div>
+        <div class="hint">crossed — alert fires: Solana below A$120</div>
+        <div class="hint sub2">trend over 58 reads: 0.22pp closer · closest 0.08% · 11:10–04:35Z</div>
       </li>
       <li class="row armed">
         <div class="row-top"><span class="lbl">AUD above 0.72 USD</span>
           <span class="state">ARMED</span></div>
-        <div class="nums"><span class="now">0.6871</span> <span class="vs">vs 0.72 · gt</span></div>
-        <div class="bar"><i style="width:80.83483728241256%"></i></div>
-        <div class="hint">4.8% away — trips when it rises to 0.72</div>
-        <div class="hint sub2">trend over 21 reads: 1.94pp further · closest 2.85% · 02:05–23:02Z</div>
+        <div class="nums"><span class="now">0.6785</span> <span class="vs">vs 0.72 · gt</span></div>
+        <div class="ruler"><svg viewBox="0 0 300 46" role="img" aria-label="AUD above 0.72 USD — 6.1% away — trips when it rises to 0.72"><rect x="39.06250000000021" y="19" width="221.87499999999955" height="6" rx="3" fill="#141a23"/><line x1="8" y1="10" x2="8" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="36.4" y1="13" x2="36.4" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="64.8" y1="13" x2="64.8" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="93.19999999999999" y1="13" x2="93.19999999999999" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="121.6" y1="13" x2="121.6" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="150" y1="10" x2="150" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="178.39999999999998" y1="13" x2="178.39999999999998" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="206.79999999999998" y1="13" x2="206.79999999999998" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="235.2" y1="13" x2="235.2" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="263.6" y1="13" x2="263.6" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="292" y1="10" x2="292" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="6" y1="22" x2="294" y2="22" stroke="#2d3542" stroke-width="2"/><path d="M255.93749999999977 8 L265.9374999999998 8 L260.9374999999998 16 Z" fill="#c9a227"/><text x="260.9374999999998" y="6" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" fill="#9c8434">0.72</text><line x1="39.06250000000021" y1="12" x2="39.06250000000021" y2="32" stroke="#e8edf5" stroke-width="2"/><circle cx="39.06250000000021" cy="22" r="3.5" fill="#e8edf5"/><text x="39.06250000000021" y="43" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" fill="#8b96a8">0.6785</text></svg></div>
+        <div class="hint">6.1% away — trips when it rises to 0.72</div>
+        <div class="hint sub2">trend over 58 reads: 1.32pp further · closest 4.29% · 11:10–04:35Z</div>
       </li>
       <li class="row armed">
         <div class="row-top"><span class="lbl">Gold above 4200 USD/oz</span>
           <span class="state">ARMED</span></div>
-        <div class="nums"><span class="now">4,080</span> <span class="vs">vs 4,200 · gt</span></div>
-        <div class="bar"><i style="width:88.1848265718838%"></i></div>
-        <div class="hint">3.0% away — trips when it rises to 4,200</div>
-        <div class="hint sub2">trend over 18 reads: 0.28pp closer · closest 2.87% · 02:35–23:02Z</div>
+        <div class="nums"><span class="now">3,888</span> <span class="vs">vs 4,200 · gt</span></div>
+        <div class="ruler"><svg viewBox="0 0 300 46" role="img" aria-label="Gold above 4200 USD/oz — 8.0% away — trips when it rises to 4,200"><rect x="39.06249999999993" y="19" width="221.87500000000017" height="6" rx="3" fill="#141a23"/><line x1="8" y1="10" x2="8" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="36.4" y1="13" x2="36.4" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="64.8" y1="13" x2="64.8" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="93.19999999999999" y1="13" x2="93.19999999999999" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="121.6" y1="13" x2="121.6" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="150" y1="10" x2="150" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="178.39999999999998" y1="13" x2="178.39999999999998" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="206.79999999999998" y1="13" x2="206.79999999999998" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="235.2" y1="13" x2="235.2" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="263.6" y1="13" x2="263.6" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="292" y1="10" x2="292" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="6" y1="22" x2="294" y2="22" stroke="#2d3542" stroke-width="2"/><path d="M255.9375000000001 8 L265.9375000000001 8 L260.9375000000001 16 Z" fill="#c9a227"/><text x="260.9375000000001" y="6" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" fill="#9c8434">4,200</text><line x1="39.06249999999993" y1="12" x2="39.06249999999993" y2="32" stroke="#e8edf5" stroke-width="2"/><circle cx="39.06249999999993" cy="22" r="3.5" fill="#e8edf5"/><text x="39.06249999999993" y="43" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" fill="#8b96a8">3,888</text></svg></div>
+        <div class="hint">8.0% away — trips when it rises to 4,200</div>
+        <div class="hint sub2">trend over 58 reads: 4.97pp further · closest 1.63% · 11:10–04:35Z</div>
       </li>
       <li class="row armed">
         <div class="row-top"><span class="lbl">ASX 200 below 8500 pts</span>
           <span class="state">ARMED</span></div>
-        <div class="nums"><span class="now">9,021</span> <span class="vs">vs 8,500 · lt</span></div>
-        <div class="bar"><i style="width:76.9067045051437%"></i></div>
-        <div class="hint">5.8% away — trips when it falls to 8,500</div>
-        <div class="hint sub2">trend over 18 reads: 0.53pp further · closest 5.21% · 02:35–23:02Z</div>
+        <div class="nums"><span class="now">9,082</span> <span class="vs">vs 8,500 · lt</span></div>
+        <div class="ruler"><svg viewBox="0 0 300 46" role="img" aria-label="ASX 200 below 8500 pts — 6.4% away — trips when it falls to 8,500"><rect x="39.062499999999915" y="19" width="221.8750000000002" height="6" rx="3" fill="#141a23"/><line x1="8" y1="10" x2="8" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="36.4" y1="13" x2="36.4" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="64.8" y1="13" x2="64.8" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="93.19999999999999" y1="13" x2="93.19999999999999" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="121.6" y1="13" x2="121.6" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="150" y1="10" x2="150" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="178.39999999999998" y1="13" x2="178.39999999999998" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="206.79999999999998" y1="13" x2="206.79999999999998" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="235.2" y1="13" x2="235.2" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="263.6" y1="13" x2="263.6" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="292" y1="10" x2="292" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="6" y1="22" x2="294" y2="22" stroke="#2d3542" stroke-width="2"/><path d="M34.062499999999915 8 L44.062499999999915 8 L39.062499999999915 16 Z" fill="#c9a227"/><text x="39.062499999999915" y="6" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" fill="#9c8434">8,500</text><line x1="260.9375000000001" y1="12" x2="260.9375000000001" y2="32" stroke="#e8edf5" stroke-width="2"/><circle cx="260.9375000000001" cy="22" r="3.5" fill="#e8edf5"/><text x="260.9375000000001" y="43" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" fill="#8b96a8">9,082</text></svg></div>
+        <div class="hint">6.4% away — trips when it falls to 8,500</div>
+        <div class="hint sub2">trend over 58 reads: 0.64pp further · closest 5.31% · 11:10–04:35Z</div>
       </li>
       <li class="row armed">
         <div class="row-top"><span class="lbl">CommBank below 160 A$</span>
           <span class="state">ARMED</span></div>
-        <div class="nums"><span class="now">168</span> <span class="vs">vs 160 · lt</span></div>
-        <div class="bar"><i style="width:82.06674228404276%"></i></div>
-        <div class="hint">4.5% away — trips when it falls to 160</div>
-        <div class="hint sub2">trend over 18 reads: 0.06pp further · closest 4.28% · 02:35–23:02Z</div>
+        <div class="nums"><span class="now">171</span> <span class="vs">vs 160 · lt</span></div>
+        <div class="ruler"><svg viewBox="0 0 300 46" role="img" aria-label="CommBank below 160 A$ — 6.4% away — trips when it falls to 160"><rect x="39.0625000000002" y="19" width="221.87499999999957" height="6" rx="3" fill="#141a23"/><line x1="8" y1="10" x2="8" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="36.4" y1="13" x2="36.4" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="64.8" y1="13" x2="64.8" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="93.19999999999999" y1="13" x2="93.19999999999999" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="121.6" y1="13" x2="121.6" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="150" y1="10" x2="150" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="178.39999999999998" y1="13" x2="178.39999999999998" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="206.79999999999998" y1="13" x2="206.79999999999998" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="235.2" y1="13" x2="235.2" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="263.6" y1="13" x2="263.6" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="292" y1="10" x2="292" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="6" y1="22" x2="294" y2="22" stroke="#2d3542" stroke-width="2"/><path d="M34.0625000000002 8 L44.0625000000002 8 L39.0625000000002 16 Z" fill="#c9a227"/><text x="39.0625000000002" y="6" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" fill="#9c8434">160</text><line x1="260.9374999999998" y1="12" x2="260.9374999999998" y2="32" stroke="#e8edf5" stroke-width="2"/><circle cx="260.9374999999998" cy="22" r="3.5" fill="#e8edf5"/><text x="260.9374999999998" y="43" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" fill="#8b96a8">171</text></svg></div>
+        <div class="hint">6.4% away — trips when it falls to 160</div>
+        <div class="hint sub2">trend over 58 reads: 1.88pp further · closest 3.18% · 11:10–04:35Z</div>
       </li>
       <li class="row armed">
         <div class="row-top"><span class="lbl">Bitcoin moves 5% in 24h</span>
           <span class="state">ARMED</span></div>
-        <div class="nums"><span class="now">110,350</span> <span class="vs">vs ±5% over 24h</span></div>
-        <div class="bar"><i style="width:0%"></i></div>
-        <div class="hint">warming up — needs 24h of hourly reads before this can fire</div>
+        <div class="nums"><span class="now">98,595</span> <span class="vs">vs ±5% over 24h</span></div>
+        <div class="bar"><i style="width:48%"></i></div>
+        <div class="hint">-2.4% in 24h — fires at ±5%</div>
         <div class="hint sub2">moves, not levels — computed from our own hourly readings, never predicted</div>
       </li>
     </ul>
   </section>
-  <p class="stamp">Read 2026-11-06T23:02:43.030Z · 8 tripwires · 8 from ≤60s cache · sources: public keyless APIs (CoinGecko, ECB via Frankfurter, Yahoo Finance) · refreshed hourly.</p>
+  <p class="stamp">Read 2026-11-14T04:35:55.649Z · 8 tripwires · 8 from ≤60s cache · sources: public keyless APIs (CoinGecko, ECB via Frankfurter, Yahoo Finance) · refreshed hourly.</p>
 
   <section class="card" id="markets">
     <h2><span class="n">06</span><span class="live-dot"></span>Every market we can read — 31 of them, six classes</h2>
     <ul>
       <li class="row grp"><span class="kick2">Crypto</span></li>
       <li class="row mkt ">
-        <div class="mkt-top"><span class="lbl">Bitcoin</span><span class="chg up">▲ 1.34%</span></div>
-        <div class="mkt-bot"><span class="mono2">110,346</span> <span class="vs">A$</span></div>
+        <div class="mkt-top"><span class="lbl">Bitcoin</span><span class="chg down">▼ 2.77%</span></div>
+        <div class="mkt-bot"><span class="mono2">98,523</span> <span class="vs">A$</span></div>
       </li>
       <li class="row mkt ">
-        <div class="mkt-top"><span class="lbl">Ethereum</span><span class="chg up">▲ 1.13%</span></div>
-        <div class="mkt-bot"><span class="mono2">3,252.25</span> <span class="vs">A$</span></div>
+        <div class="mkt-top"><span class="lbl">Ethereum</span><span class="chg down">▼ 1.7%</span></div>
+        <div class="mkt-bot"><span class="mono2">2,789.49</span> <span class="vs">A$</span></div>
       </li>
       <li class="row mkt ">
-        <div class="mkt-top"><span class="lbl">Solana</span><span class="chg up">▲ 1.22%</span></div>
-        <div class="mkt-bot"><span class="mono2">130.89</span> <span class="vs">A$</span></div>
+        <div class="mkt-top"><span class="lbl">Solana</span><span class="chg down">▼ 3.68%</span></div>
+        <div class="mkt-bot"><span class="mono2">111.07</span> <span class="vs">A$</span></div>
       </li>
       <li class="row mkt ">
-        <div class="mkt-top"><span class="lbl">XRP</span><span class="chg down">▼ 2.7%</span></div>
-        <div class="mkt-bot"><span class="mono2">1.710</span> <span class="vs">A$</span></div>
+        <div class="mkt-top"><span class="lbl">XRP</span><span class="chg down">▼ 1.24%</span></div>
+        <div class="mkt-bot"><span class="mono2">1.460</span> <span class="vs">A$</span></div>
       </li>
       <li class="row mkt ">
-        <div class="mkt-top"><span class="lbl">Cardano</span><span class="chg up">▲ 3.01%</span></div>
-        <div class="mkt-bot"><span class="mono2">0.2687</span> <span class="vs">A$</span></div>
+        <div class="mkt-top"><span class="lbl">Cardano</span><span class="chg down">▼ 2.24%</span></div>
+        <div class="mkt-bot"><span class="mono2">0.2416</span> <span class="vs">A$</span></div>
       </li>
       <li class="row mkt ">
-        <div class="mkt-top"><span class="lbl">Dogecoin</span><span class="chg up">▲ 1.93%</span></div>
-        <div class="mkt-bot"><span class="mono2">0.1052</span> <span class="vs">A$</span></div>
+        <div class="mkt-top"><span class="lbl">Dogecoin</span><span class="chg down">▼ 0.82%</span></div>
+        <div class="mkt-bot"><span class="mono2">0.0926</span> <span class="vs">A$</span></div>
       </li>
       <li class="row grp"><span class="kick2">Exchange rates</span></li>
       <li class="row mkt ">
-        <div class="mkt-top"><span class="lbl">AUD/USD</span><span class="chg down">▼ 1.85%</span></div>
-        <div class="mkt-bot"><span class="mono2">0.6871</span> <span class="vs">USD</span></div>
+        <div class="mkt-top"><span class="lbl">AUD/USD</span><span class="chg down">▼ 0.52%</span></div>
+        <div class="mkt-bot"><span class="mono2">0.6785</span> <span class="vs">USD</span></div>
       </li>
       <li class="row mkt ">
-        <div class="mkt-top"><span class="lbl">AUD/EUR</span><span class="chg down">▼ 1.34%</span></div>
-        <div class="mkt-bot"><span class="mono2">0.6154</span> <span class="vs">EUR</span></div>
+        <div class="mkt-top"><span class="lbl">AUD/EUR</span><span class="chg down">▼ 0.26%</span></div>
+        <div class="mkt-bot"><span class="mono2">0.6139</span> <span class="vs">EUR</span></div>
       </li>
       <li class="row mkt ">
-        <div class="mkt-top"><span class="lbl">AUD/GBP</span><span class="chg down">▼ 1.31%</span></div>
-        <div class="mkt-bot"><span class="mono2">0.5133</span> <span class="vs">GBP</span></div>
+        <div class="mkt-top"><span class="lbl">AUD/GBP</span><span class="chg down">▼ 0.3%</span></div>
+        <div class="mkt-bot"><span class="mono2">0.5130</span> <span class="vs">GBP</span></div>
       </li>
       <li class="row mkt ">
-        <div class="mkt-top"><span class="lbl">AUD/JPY</span><span class="chg down">▼ 1.94%</span></div>
-        <div class="mkt-bot"><span class="mono2">108.78</span> <span class="vs">JPY</span></div>
+        <div class="mkt-top"><span class="lbl">AUD/JPY</span><span class="chg down">▼ 0.34%</span></div>
+        <div class="mkt-bot"><span class="mono2">108.56</span> <span class="vs">JPY</span></div>
       </li>
       <li class="row mkt ">
-        <div class="mkt-top"><span class="lbl">USD/JPY</span><span class="chg down">▼ 0.08%</span></div>
-        <div class="mkt-bot"><span class="mono2">158.33</span> <span class="vs">JPY</span></div>
+        <div class="mkt-top"><span class="lbl">USD/JPY</span><span class="chg up">▲ 0.19%</span></div>
+        <div class="mkt-bot"><span class="mono2">160.00</span> <span class="vs">JPY</span></div>
       </li>
       <li class="row mkt ">
-        <div class="mkt-top"><span class="lbl">EUR/USD</span><span class="chg down">▼ 0.53%</span></div>
-        <div class="mkt-bot"><span class="mono2">1.1165</span> <span class="vs">USD</span></div>
+        <div class="mkt-top"><span class="lbl">EUR/USD</span><span class="chg down">▼ 0.26%</span></div>
+        <div class="mkt-bot"><span class="mono2">1.1052</span> <span class="vs">USD</span></div>
       </li>
       <li class="row grp"><span class="kick2">Indices</span></li>
       <li class="row mkt ">
-        <div class="mkt-top"><span class="lbl">ASX 200</span><span class="chg up">▲ 2.11%</span></div>
-        <div class="mkt-bot"><span class="mono2">9,020.8</span> <span class="vs">pts</span></div>
+        <div class="mkt-top"><span class="lbl">ASX 200</span><span class="chg down">▼ 0.71%</span></div>
+        <div class="mkt-bot"><span class="mono2">9,082.2</span> <span class="vs">pts</span></div>
       </li>
       <li class="row mkt ">
-        <div class="mkt-top"><span class="lbl">S&amp;P 500</span><span class="chg up">▲ 0.31%</span></div>
-        <div class="mkt-bot"><span class="mono2">7,376.9</span> <span class="vs">pts</span></div>
+        <div class="mkt-top"><span class="lbl">S&amp;P 500</span><span class="chg down">▼ 0.4%</span></div>
+        <div class="mkt-bot"><span class="mono2">7,561.7</span> <span class="vs">pts</span></div>
       </li>
       <li class="row mkt ">
-        <div class="mkt-top"><span class="lbl">Nasdaq Composite</span><span class="chg up">▲ 1.09%</span></div>
-        <div class="mkt-bot"><span class="mono2">24,579.4</span> <span class="vs">pts</span></div>
+        <div class="mkt-top"><span class="lbl">Nasdaq Composite</span><span class="chg down">▼ 0.91%</span></div>
+        <div class="mkt-bot"><span class="mono2">25,136.3</span> <span class="vs">pts</span></div>
       </li>
       <li class="row mkt ">
-        <div class="mkt-top"><span class="lbl">Dow Jones</span><span class="chg down">▼ 0.46%</span></div>
-        <div class="mkt-bot"><span class="mono2">51,285.7</span> <span class="vs">pts</span></div>
+        <div class="mkt-top"><span class="lbl">Dow Jones</span><span class="chg up">▲ 0.1%</span></div>
+        <div class="mkt-bot"><span class="mono2">52,347.6</span> <span class="vs">pts</span></div>
       </li>
       <li class="row mkt ">
-        <div class="mkt-top"><span class="lbl">FTSE 100</span><span class="chg down">▼ 1.01%</span></div>
-        <div class="mkt-bot"><span class="mono2">10,673.9</span> <span class="vs">pts</span></div>
+        <div class="mkt-top"><span class="lbl">FTSE 100</span><span class="chg up">▲ 0.36%</span></div>
+        <div class="mkt-bot"><span class="mono2">10,902.6</span> <span class="vs">pts</span></div>
       </li>
       <li class="row mkt ">
-        <div class="mkt-top"><span class="lbl">Nikkei 225</span><span class="chg down">▼ 5.96%</span></div>
-        <div class="mkt-bot"><span class="mono2">57,434.8</span> <span class="vs">pts</span></div>
+        <div class="mkt-top"><span class="lbl">Nikkei 225</span><span class="chg up">▲ 0.53%</span></div>
+        <div class="mkt-bot"><span class="mono2">61,142.4</span> <span class="vs">pts</span></div>
       </li>
       <li class="row grp"><span class="kick2">Metals</span></li>
       <li class="row mkt ">
-        <div class="mkt-top"><span class="lbl">Gold (front month)</span><span class="chg down">▼ 0.83%</span></div>
-        <div class="mkt-bot"><span class="mono2">4,079.5</span> <span class="vs">USD/oz</span></div>
+        <div class="mkt-top"><span class="lbl">Gold (front month)</span><span class="chg up">▲ 0.03%</span></div>
+        <div class="mkt-bot"><span class="mono2">3,886.3</span> <span class="vs">USD/oz</span></div>
       </li>
       <li class="row mkt ">
-        <div class="mkt-top"><span class="lbl">Silver (front month)</span><span class="chg down">▼ 0.78%</span></div>
-        <div class="mkt-bot"><span class="mono2">51.965</span> <span class="vs">USD/oz</span></div>
+        <div class="mkt-top"><span class="lbl">Silver (front month)</span><span class="chg down">▼ 1.89%</span></div>
+        <div class="mkt-bot"><span class="mono2">49.121</span> <span class="vs">USD/oz</span></div>
       </li>
       <li class="row mkt ">
-        <div class="mkt-top"><span class="lbl">Platinum (front month)</span><span class="chg up">▲ 0.96%</span></div>
-        <div class="mkt-bot"><span class="mono2">1,537</span> <span class="vs">USD/oz</span></div>
+        <div class="mkt-top"><span class="lbl">Platinum (front month)</span><span class="chg down">▼ 1.85%</span></div>
+        <div class="mkt-bot"><span class="mono2">1,492.2</span> <span class="vs">USD/oz</span></div>
       </li>
       <li class="row grp"><span class="kick2">Energy</span></li>
       <li class="row mkt ">
         <div class="mkt-top"><span class="lbl">WTI crude</span><span class="chg down">▼ 0.2%</span></div>
-        <div class="mkt-bot"><span class="mono2">90.34</span> <span class="vs">USD/bbl</span></div>
+        <div class="mkt-bot"><span class="mono2">88.56</span> <span class="vs">USD/bbl</span></div>
       </li>
       <li class="row mkt ">
-        <div class="mkt-top"><span class="lbl">Brent crude</span><span class="chg down">▼ 0.54%</span></div>
-        <div class="mkt-bot"><span class="mono2">97.76</span> <span class="vs">USD/bbl</span></div>
+        <div class="mkt-top"><span class="lbl">Brent crude</span><span class="chg up">▲ 0.02%</span></div>
+        <div class="mkt-bot"><span class="mono2">95.84</span> <span class="vs">USD/bbl</span></div>
       </li>
       <li class="row mkt ">
-        <div class="mkt-top"><span class="lbl">Natural gas</span><span class="chg up">▲ 1.9%</span></div>
-        <div class="mkt-bot"><span class="mono2">3.003</span> <span class="vs">USD</span></div>
+        <div class="mkt-top"><span class="lbl">Natural gas</span><span class="chg down">▼ 2.93%</span></div>
+        <div class="mkt-bot"><span class="mono2">3.242</span> <span class="vs">USD</span></div>
       </li>
       <li class="row grp"><span class="kick2">Stocks</span></li>
       <li class="row mkt ">
-        <div class="mkt-top"><span class="lbl">BHP Group</span><span class="chg down">▼ 2.34%</span></div>
-        <div class="mkt-bot"><span class="mono2">57.62</span> <span class="vs">A$</span></div>
+        <div class="mkt-top"><span class="lbl">BHP Group</span><span class="chg down">▼ 1.26%</span></div>
+        <div class="mkt-bot"><span class="mono2">58.86</span> <span class="vs">A$</span></div>
       </li>
       <li class="row mkt ">
-        <div class="mkt-top"><span class="lbl">CommBank</span><span class="chg up">▲ 0.73%</span></div>
-        <div class="mkt-bot"><span class="mono2">167.51</span> <span class="vs">A$</span></div>
+        <div class="mkt-top"><span class="lbl">CommBank</span><span class="chg down">▼ 0.52%</span></div>
+        <div class="mkt-bot"><span class="mono2">170.87</span> <span class="vs">A$</span></div>
       </li>
       <li class="row mkt ">
-        <div class="mkt-top"><span class="lbl">Westpac</span><span class="chg up">▲ 1.06%</span></div>
-        <div class="mkt-bot"><span class="mono2">37.03</span> <span class="vs">A$</span></div>
+        <div class="mkt-top"><span class="lbl">Westpac</span><span class="chg down">▼ 0.47%</span></div>
+        <div class="mkt-bot"><span class="mono2">37.83</span> <span class="vs">A$</span></div>
       </li>
       <li class="row mkt ">
-        <div class="mkt-top"><span class="lbl">Apple</span><span class="chg down">▼ 0.52%</span></div>
-        <div class="mkt-bot"><span class="mono2">342.37</span> <span class="vs">USD</span></div>
+        <div class="mkt-top"><span class="lbl">Apple</span><span class="chg up">▲ 0.39%</span></div>
+        <div class="mkt-bot"><span class="mono2">356.27</span> <span class="vs">USD</span></div>
       </li>
       <li class="row mkt ">
-        <div class="mkt-top"><span class="lbl">Microsoft</span><span class="chg down">▼ 0.99%</span></div>
-        <div class="mkt-bot"><span class="mono2">530.61</span> <span class="vs">USD</span></div>
+        <div class="mkt-top"><span class="lbl">Microsoft</span><span class="chg up">▲ 0.17%</span></div>
+        <div class="mkt-bot"><span class="mono2">523.88</span> <span class="vs">USD</span></div>
       </li>
       <li class="row mkt ">
-        <div class="mkt-top"><span class="lbl">Nvidia</span><span class="chg up">▲ 2.78%</span></div>
-        <div class="mkt-bot"><span class="mono2">186.64</span> <span class="vs">USD</span></div>
+        <div class="mkt-top"><span class="lbl">Nvidia</span><span class="chg down">▼ 2.01%</span></div>
+        <div class="mkt-bot"><span class="mono2">162.85</span> <span class="vs">USD</span></div>
       </li>
       <li class="row mkt ">
-        <div class="mkt-top"><span class="lbl">Tesla</span><span class="chg up">▲ 4.23%</span></div>
-        <div class="mkt-bot"><span class="mono2">358.22</span> <span class="vs">USD</span></div>
+        <div class="mkt-top"><span class="lbl">Tesla</span><span class="chg down">▼ 1.82%</span></div>
+        <div class="mkt-bot"><span class="mono2">390.22</span> <span class="vs">USD</span></div>
       </li>
     </ul>
   </section>
@@ -838,12 +984,12 @@
       <div><button class="btn2" id="w-add" type="button">Add to my board</button><button class="btn3" id="w-clear" type="button">Clear</button></div>
     </div>
     <div class="presets">Or start from one of these — the numbers are computed fresh from today's quotes:
-      <a class="chip" href="?w=gold:above:4250">Gold (front month) above 4250</a>
-      <a class="chip" href="?w=asx200:below:8650">ASX 200 below 8650</a>
-      <a class="chip" href="?w=cba:below:161">CommBank below 161</a>
+      <a class="chip" href="?w=gold:above:4050">Gold (front month) above 4050</a>
+      <a class="chip" href="?w=asx200:below:8700">ASX 200 below 8700</a>
+      <a class="chip" href="?w=cba:below:164">CommBank below 164</a>
       <a class="chip" href="?w=btc:move:5">Bitcoin moves ±5%</a>
-      <a class="chip" href="?w=audusd:above:0.715">AUD/USD above 0.715</a>
-      <a class="chip" href="?w=aapl:above:356">Apple above 356</a>
+      <a class="chip" href="?w=audusd:above:0.706">AUD/USD above 0.706</a>
+      <a class="chip" href="?w=aapl:above:371">Apple above 371</a>
     </div>
     <ul id="w-out"></ul>
     <p class="note">The board lives in your URL (<a class="u mono" id="w-link" href="#mine">this page</a>), so it bookmarks and shares with no account and nothing stored on our side. It is computed in your browser from <code>quotes.json</code> — the same published numbers as the sheet above.
@@ -856,24 +1002,24 @@
       <li class="row armed">
         <div class="row-top"><span class="lbl">Chain head</span>
           <span class="state">VERIFIED</span></div>
-        <div class="nums"><span class="now mono">11e24f5192254d97</span> <span class="vs">· 0 alerts on the chain</span></div>
-        <div class="hint">Nothing has crossed yet, so the chain holds one fact: the empty set. The head above is the genesis hash — <code>sha256("tripwire:genesis:v1")</code> — and it verifies just as strictly as a full log.</div>
+        <div class="nums"><span class="now mono">3c2ead9553c84b48</span> <span class="vs">· 15 alerts on the chain</span></div>
+        <div class="hint">Every alert commits to the sha256 of the one before it, so deleting or editing one breaks every hash after it.</div>
         <div class="hint sub2">Check it yourself — <code>wealthclaw chain verify</code> · <a class="u" href="https://flak3dd.github.io/tripwire/log.json">log.json</a> · the hash travels with every alert (feed item, JSON, email).</div>
       </li>
     </ul>
   </section>
 
   <h3 id="tiers">What each tier covers — sectors, market tokens, and the live trade feed</h3>
-  <p class="sub">Every count below is read from the asset registry at build time: 31 markets in 6 investment types. A <b>market token</b> is one market you can arm; a <b>sector</b> is the kind of investment it is. The package tier is priced on baskets, not tokens, so its cells show the <b>legs it actually holds</b>, not the markets that exist.</p>
+  <p class="sub">Every count below is read from the asset registry at build time: 31 markets in 6 investment types. A <b>market token</b> is one market you can arm; a <b>sector</b> is the kind of investment it is. Package is priced on baskets and Gear on one model sleeve, not tokens, so their cells show the <b>legs they actually hold</b>, not the markets that exist. Each card also carries its tier's measured rule from <a class="u mono" href="https://flak3dd.github.io/tripwire/algos.json">algos.json</a>: out-of-sample CAGR (after 2023-07-01) against the same tier held without the gate, its out-of-sample drawdown, and where it stands on the three retirement rules.</p>
   <div class="sectabwrap"><table class="sectab">
-    <thead><tr><th>Sector</th><th>Digest<span class="thn">A$0</span></th><th>Tripwire<span class="thn">A$9/mo</span></th><th>Package<span class="thn">A$29–99/mo</span></th></tr></thead>
+    <thead><tr><th>Sector</th><th>Digest<span class="thn">A$0</span></th><th>Tripwire<span class="thn">A$9/mo</span></th><th>Package<span class="thn">A$29–99/mo</span></th><th>Gear<span class="thn">A$99/mo</span></th></tr></thead>
     <tbody>
-      <tr><th scope="row">Crypto<span class="thn">btc, eth, sol, xrp, ada, doge</span></th><td class="yes"><b>6</b><span class="thn">markets</span></td><td class="yes"><b>6</b><span class="thn">markets</span></td><td class="yes"><b>3</b><span class="thn">legs held</span></td></tr>
-      <tr><th scope="row">US equities<span class="thn">aapl, msft, nvda, tsla</span></th><td class="yes"><b>4</b><span class="thn">markets</span></td><td class="yes"><b>4</b><span class="thn">markets</span></td><td class="yes"><b>4</b><span class="thn">legs held</span></td></tr>
-      <tr><th scope="row">ASX equities<span class="thn">bhp, cba, wbc</span></th><td class="yes"><b>3</b><span class="thn">markets</span></td><td class="yes"><b>3</b><span class="thn">markets</span></td><td class="yes"><b>3</b><span class="thn">legs held</span></td></tr>
-      <tr><th scope="row">Indices<span class="thn">asx200, sp500, nasdaq, dow, ftse, nikkei</span></th><td class="yes"><b>6</b><span class="thn">markets</span></td><td class="yes"><b>6</b><span class="thn">markets</span></td><td class="yes"><b>3</b><span class="thn">legs held</span></td></tr>
-      <tr><th scope="row">Commodities<span class="thn">gold, silver, platinum, wti, brent, natgas</span></th><td class="yes"><b>6</b><span class="thn">markets</span></td><td class="yes"><b>6</b><span class="thn">markets</span></td><td class="yes"><b>2</b><span class="thn">legs held</span></td></tr>
-      <tr><th scope="row">FX<span class="thn">audusd, audeur, audgbp, audjpy, usdjpy, eurusd</span></th><td class="yes"><b>6</b><span class="thn">markets</span></td><td class="yes"><b>6</b><span class="thn">markets</span></td><td class="no">—</td></tr>
+      <tr><th scope="row">Crypto<span class="thn">btc, eth, sol, xrp, ada, doge</span></th><td class="yes"><b>6</b><span class="thn">markets</span></td><td class="yes"><b>6</b><span class="thn">markets</span></td><td class="yes"><b>3</b><span class="thn">legs held</span></td><td class="yes"><b>2</b><span class="thn">legs held</span></td></tr>
+      <tr><th scope="row">US equities<span class="thn">aapl, msft, nvda, tsla</span></th><td class="yes"><b>4</b><span class="thn">markets</span></td><td class="yes"><b>4</b><span class="thn">markets</span></td><td class="yes"><b>4</b><span class="thn">legs held</span></td><td class="no">—</td></tr>
+      <tr><th scope="row">ASX equities<span class="thn">bhp, cba, wbc</span></th><td class="yes"><b>3</b><span class="thn">markets</span></td><td class="yes"><b>3</b><span class="thn">markets</span></td><td class="yes"><b>3</b><span class="thn">legs held</span></td><td class="no">—</td></tr>
+      <tr><th scope="row">Indices<span class="thn">asx200, sp500, nasdaq, dow, ftse, nikkei</span></th><td class="yes"><b>6</b><span class="thn">markets</span></td><td class="yes"><b>6</b><span class="thn">markets</span></td><td class="yes"><b>3</b><span class="thn">legs held</span></td><td class="yes"><b>3</b><span class="thn">legs held</span></td></tr>
+      <tr><th scope="row">Commodities<span class="thn">gold, silver, platinum, wti, brent, natgas</span></th><td class="yes"><b>6</b><span class="thn">markets</span></td><td class="yes"><b>6</b><span class="thn">markets</span></td><td class="yes"><b>2</b><span class="thn">legs held</span></td><td class="yes"><b>2</b><span class="thn">legs held</span></td></tr>
+      <tr><th scope="row">FX<span class="thn">audusd, audeur, audgbp, audjpy, usdjpy, eurusd</span></th><td class="yes"><b>6</b><span class="thn">markets</span></td><td class="yes"><b>6</b><span class="thn">markets</span></td><td class="no">—</td><td class="no">—</td></tr>
     </tbody>
   </table></div>
   <div class="cols">
@@ -881,28 +1027,64 @@
         <b>Digest</b><div class="price">A$0</div>
         <div class="trowse">browse all 31 — nothing armed</div>
         <div class="mixrow"><span class="chip2">Crypto <b>6</b></span><span class="chip2">US equities <b>4</b></span><span class="chip2">ASX equities <b>3</b></span><span class="chip2">Indices <b>6</b></span><span class="chip2">Commodities <b>6</b></span><span class="chip2">FX <b>6</b></span></div>
-        <p class="tradeline"><span class="live-dot"></span><b>Live trade updates</b> — The desk book (trades.json) and the RSS feed: every position marked, every alert as an item. Read-only and pushed to nobody. <span class="note">hourly, on the page</span></p>
+        <div class="talgo">
+          <div class="talgo-h"><span>Algorithm <strong>Gauge</strong></span><span class="rbadge retire" title="fails: out-of-sample max drawdown within 5pp of the ungated equal-weight book — this rule has no grace period">retires</span></div>
+          <div class="talgo-n"><span>OOS <strong class="up">+17.9%</strong>/yr</span><span>buy &amp; hold <strong>+17.7%</strong></span><span>OOS max DD <strong>-13.8%</strong></span></div>
+          <div class="talgo-w">fails: out-of-sample max drawdown within 5pp of the ungated equal-weight book — this rule has no grace period</div>
+          <div class="talgo-w">Holds today (2026-11-14): Bitcoin 3%, Ethereum 3%, Solana 3%, XRP 3%, Cardano 3% +26 more</div>
+        </div>
+        <p class="tradeline"><span class="live-dot"></span><strong>Trade updates</strong> — The desk book (trades.json) and the RSS feed: every position marked, every alert as an item. Read-only and pushed to nobody. <span class="note">hourly, on the page</span></p>
         <p>31 live quotes across six sectors, the RSS feed, board.json, packages.json, quotes.json and the desk book, refreshed hourly. Build your own board in the URL — no account, no card, no email address.</p>
+        
         <p class="note">Browse all 31 markets in six sectors, the desk book and the alert feed — nothing armed, nothing mailed, no account.</p>
       </div>
       <div class="tier">
         <b>Tripwire</b><div class="price">A$9/mo</div>
         <div class="trowse">4 of 31 markets</div>
         <div class="mixrow"><span class="chip2">Crypto <b>6</b></span><span class="chip2">US equities <b>4</b></span><span class="chip2">ASX equities <b>3</b></span><span class="chip2">Indices <b>6</b></span><span class="chip2">Commodities <b>6</b></span><span class="chip2">FX <b>6</b></span></div>
-        <p class="tradeline"><span class="live-dot"></span><b>Live trade updates</b> — Your 4 positions marked hourly like a desk blotter: entry, last, move since entry, distance to your number, and the chain hash the moment one crosses. <span class="note">hourly, emailed within the hour of a cross</span></p>
+        <div class="talgo">
+          <div class="talgo-h"><span>Algorithm <strong>Band</strong></span><span class="rbadge strike" title="fails: out-of-sample CAGR behind the tier&#39;s ungated buy &amp; hold by more than 2pp — retires if it fails again at the next regeneration">one strike</span></div>
+          <div class="talgo-n"><span>OOS <strong class="up">+14.7%</strong>/yr</span><span>buy &amp; hold <strong>+19.4%</strong></span><span>OOS max DD <strong>-26.8%</strong></span></div>
+          <div class="talgo-w">fails: out-of-sample CAGR behind the tier&#39;s ungated buy &amp; hold by more than 2pp — retires if it fails again at the next regeneration</div>
+          <div class="talgo-w">Holds today (2026-11-14): all cash</div>
+        </div>
+        <p class="tradeline"><span class="live-dot"></span><strong>Live trade updates</strong> — Your 4 positions marked hourly like a desk blotter: entry, last, move since entry, distance to your number, and the chain hash the moment one crosses. <span class="note">hourly, emailed within the hour of a cross</span></p>
         <p>Pick any four markets across the sectors — crypto, ASX, US, indices, commodities, FX — checked hourly and emailed within the hour of a cross, with the timestamped value and the chain hash as evidence. The do-it-yourself version of a package.</p>
+        
         <p class="note">4 tokens: any 4 of the 31 markets, in any sector — crypto, an index, gas, an FX pair — swapped whenever you like. 5 or more is the next tier up, not an upsell call.</p>
       </div>
       <div class="tier">
         <b>Package</b><div class="price">A$29–99/mo</div>
         <div class="trowse">the whole book — every leg of the basket, no token count</div>
         <div class="mixrow"><span class="chip2">Crypto <b>3</b></span><span class="chip2">US equities <b>4</b></span><span class="chip2">ASX equities <b>3</b></span><span class="chip2">Indices <b>3</b></span><span class="chip2">Commodities <b>2</b></span></div>
-        <p class="tradeline"><span class="live-dot"></span><b>Live trade updates</b> — Professional-style trade sheet per basket: each leg&#39;s entry, last, contribution in pp and the ±% band; stops and targets are read off the marks we recorded, and a basket move past its rule is chained and mailed. <span class="note">hourly marks; a crossing is written to the chain and mailed</span></p>
-        <p>A weighted basket (ASX Steady, Global Core, Momentum) with its live combined metric, its live graph, the research note behind the weights, the sector mix of its legs, and a basket-level ±% tripwire on the desk book. Choose the weights for you and stop naming numbers. The A$99 end of the band adds the high-yield sleeve: one book across owned markets and 2x/3x funds, run to a 30% vol target with a 40% cap a leg — its rules and both halves of its backtest are on the page under Algorithms.</p>
+        <div class="talgo">
+          <div class="talgo-h"><span>Algorithm <strong>Scale</strong></span><span class="rbadge pass" title="none of the three retirement rules is failed out of sample">passes all three</span></div>
+          <div class="talgo-n"><span>OOS <strong class="up">+16.8%</strong>/yr</span><span>buy &amp; hold <strong>+18.0%</strong></span><span>OOS max DD <strong>-16.0%</strong></span></div>
+          <div class="talgo-w">none of the three retirement rules is failed out of sample</div>
+          <div class="talgo-w">Holds today (2026-11-14): CommBank 10%, S&amp;P 500 10%, BHP Group 8%, ASX 200 8%, Westpac 7% +10 more · cash 33%</div>
+        </div>
+        <p class="tradeline"><span class="live-dot"></span><strong>Live trade updates</strong> — Professional-style trade sheet per basket: each leg&#39;s entry, last, contribution in pp and the ±% band; stops and targets are read off the marks we recorded, and a basket move past its rule is chained and mailed. <span class="note">hourly marks; a crossing is written to the chain and mailed</span></p>
+        <p>A weighted basket (ASX Steady A$29, Global Core A$59, Momentum A$99 a month) with its live combined metric, its live graph, the research note behind the weights, the sector mix of its legs, and a basket-level ±% tripwire on the desk book. Choose the weights for you and stop naming numbers. The price band is the three baskets&#39; own prices; the leveraged high-yield sleeve is its own tier, Gear.</p>
+        
         <p class="note">The whole book: every leg of the basket you buy (4–6 positions), in every sector that basket holds. Weights are the only opinion in the file.</p>
       </div>
+      <div class="tier">
+        <b>Gear</b><div class="price">A$99/mo</div>
+        <div class="trowse">the whole book — every leg of the basket, no token count</div>
+        <div class="mixrow"><span class="chip2">Crypto <b>2</b></span><span class="chip2">Indices <b>3</b></span><span class="chip2">Commodities <b>2</b></span></div>
+        <div class="talgo">
+          <div class="talgo-h"><span>Algorithm <strong>Gear</strong></span><span class="rbadge pass" title="none of the three retirement rules is failed out of sample">passes all three</span></div>
+          <div class="talgo-n"><span>OOS <strong class="up">+24.6%</strong>/yr</span><span>buy &amp; hold <strong>+15.8%</strong></span><span>OOS max DD <strong>-25.4%</strong></span></div>
+          <div class="talgo-w">none of the three retirement rules is failed out of sample</div>
+          <div class="talgo-w">Holds today (2026-11-14): S&amp;P 500 3x 40%, WTI crude 40% · cash 20%</div>
+        </div>
+        <p class="tradeline"><span class="live-dot"></span><strong>Trade updates</strong> — The sleeve&#39;s current target weights and the date they were set, with its vol target and drawdown brake — a model book from algos.json, not desk-book positions. <span class="note">target weights reset on the first trading day of each month; marked on every build</span></p>
+        <p>The high-yield tier: one sleeve over owned markets and 2x/3x funds, a leg held only above its 200-day average with positive 12-1 momentum, one leg per cluster, sized 1/vol to a 30% vol target with a 40% cap a leg and a 20% drawdown brake. Leverage cuts both ways — a 3x fund that halves needs to double to get back. Rules, costs and both halves of its backtest are under Algorithms.</p>
+        <p class="note">Treasuries (TMF, 3x 20-year) have no sector on the 31-market sheet, so they are not counted in the table — they are the sleeve&#39;s fifth cluster.</p>
+        <p class="note">No tokens to spend: one model sleeve across eight instruments in five clusters — BTC, ETH and WTI crude from the sheet, plus five 2x/3x daily-reset funds (UPRO, TQQQ, SOXL, TMF, UGL). The rule picks the legs; you do not arm markets.</p>
+      </div>
   </div>
-  <p class="stamp">The <b>—</b> in the Package column is the honest cell: no basket holds FX, so that tier does not sell it. A tier that lists a sector is stating coverage, not a recommendation — weights are the only opinion in <code>packages.json</code>.</p>
+  <p class="stamp">A <b>—</b> is the honest cell: that tier holds nothing in that sector, so it does not sell it — no basket holds FX, and Gear's sleeve holds no single names. A tier that lists a sector is stating coverage, not a recommendation — weights are the only opinion in <code>packages.json</code>, and Gear's are set by its rule each month.</p>
 
 
   <a class="btn" href="mailto:andrew098710@gmail.com?subject=Tripwire%20signup%20%E2%80%94%20which%20number%20do%20you%20want%20watched%3F">Get the tripwire — A$9/mo</a>
@@ -973,15 +1155,15 @@
       <a class="mono" href="#tiers">wealthclaw sectors</a>
     </div>
     <div class="fine">
-      Built 2026-11-06T23:02:43.030Z · Tripwire · <a class="u" href="https://flak3dd.github.io/tripwire/">https://flak3dd.github.io/tripwire/</a> ·
-      chain head <span class="mono">11e24f5192254d97</span> · 0 alert(s) on the chain ·
+      Built 2026-11-14T04:35:55.649Z · Tripwire · <a class="u" href="https://flak3dd.github.io/tripwire/">https://flak3dd.github.io/tripwire/</a> ·
+      chain head <span class="mono">3c2ead9553c84b48</span> · 15 alert(s) on the chain ·
       every quote live at this build.
     </div>
   </footer>
   <script>
 (function(){
   var META = {"btc":{"label":"Bitcoin","unit":"A$","dec":0},"eth":{"label":"Ethereum","unit":"A$","dec":2},"sol":{"label":"Solana","unit":"A$","dec":2},"xrp":{"label":"XRP","unit":"A$","dec":3},"ada":{"label":"Cardano","unit":"A$","dec":4},"doge":{"label":"Dogecoin","unit":"A$","dec":4},"audusd":{"label":"AUD/USD","unit":"USD","dec":4},"audeur":{"label":"AUD/EUR","unit":"EUR","dec":4},"audgbp":{"label":"AUD/GBP","unit":"GBP","dec":4},"audjpy":{"label":"AUD/JPY","unit":"JPY","dec":2},"usdjpy":{"label":"USD/JPY","unit":"JPY","dec":2},"eurusd":{"label":"EUR/USD","unit":"USD","dec":4},"gold":{"label":"Gold (front month)","unit":"USD/oz","dec":2},"silver":{"label":"Silver (front month)","unit":"USD/oz","dec":3},"platinum":{"label":"Platinum (front month)","unit":"USD/oz","dec":2},"asx200":{"label":"ASX 200","unit":"pts","dec":1},"sp500":{"label":"S&P 500","unit":"pts","dec":1},"nasdaq":{"label":"Nasdaq Composite","unit":"pts","dec":1},"dow":{"label":"Dow Jones","unit":"pts","dec":1},"ftse":{"label":"FTSE 100","unit":"pts","dec":1},"nikkei":{"label":"Nikkei 225","unit":"pts","dec":1},"wti":{"label":"WTI crude","unit":"USD/bbl","dec":2},"brent":{"label":"Brent crude","unit":"USD/bbl","dec":2},"natgas":{"label":"Natural gas","unit":"USD","dec":3},"bhp":{"label":"BHP Group","unit":"A$","dec":2},"cba":{"label":"CommBank","unit":"A$","dec":2},"wbc":{"label":"Westpac","unit":"A$","dec":2},"aapl":{"label":"Apple","unit":"USD","dec":2},"msft":{"label":"Microsoft","unit":"USD","dec":2},"nvda":{"label":"Nvidia","unit":"USD","dec":2},"tsla":{"label":"Tesla","unit":"USD","dec":2}};
-  var MEMBERS = {"rows":[{"id":"m_54ab50c8","tier":"Tripwire","stack":"momentum","label":"a***********@gmail.com","since":"2026-11-06","until":"2026-12-06","email_sha":"435e40a339bb3cfe","token_sha":"7cf5ecf8a6593f36863fe03a","state":"active"}],"tiers":{"Digest":{"price":"A$0","coverage":"browse all 31 — nothing armed","tokens":0,"sectors":6,"trades":"feed","what":"The desk book (trades.json) and the RSS feed: every position marked, every alert as an item. Read-only and pushed to nobody."},"Tripwire":{"price":"A$9/mo","coverage":"4 of 31 markets","tokens":4,"sectors":6,"trades":"live","what":"Your 4 positions marked hourly like a desk blotter: entry, last, move since entry, distance to your number, and the chain hash the moment one crosses."},"Package":{"price":"A$29–99/mo","coverage":"the whole book — every leg of the basket, no token count","tokens":null,"sectors":5,"trades":"live+alerts","what":"Professional-style trade sheet per basket: each leg's entry, last, contribution in pp and the ±% band; stops and targets are read off the marks we recorded, and a basket move past its rule is chained and mailed."}},"count":1,"active":1,"sectors":6,"how":"sha256(\"wc1|email|\" + address.toLowerCase())[0:16] and sha256(\"wc1|token|\" + token)[0:24], both written by `wealthclaw login issue` and checked in the browser by the page's own sha256 (crypto.subtle is HTTPS-only, and this page must also open from disk).","honest":"It proves possession of a token, not identity: whoever holds it gets in. The list is published at build time, so a revoke signs someone out on the next hourly build, not on their next refresh. And there is no server, so signing in can tell you what your tier covers — it cannot arm a tripwire or take a card."};
+  var MEMBERS = {"rows":[{"id":"m_54ab50c8","tier":"Tripwire","stack":"momentum","label":"a***********@gmail.com","since":"2026-11-06","until":"2026-12-06","email_sha":"435e40a339bb3cfe","token_sha":"7cf5ecf8a6593f36863fe03a","state":"active"}],"tiers":{"Digest":{"price":"A$0","coverage":"browse all 31 — nothing armed","tokens":0,"sectors":6,"trades":"feed","what":"The desk book (trades.json) and the RSS feed: every position marked, every alert as an item. Read-only and pushed to nobody."},"Tripwire":{"price":"A$9/mo","coverage":"4 of 31 markets","tokens":4,"sectors":6,"trades":"live","what":"Your 4 positions marked hourly like a desk blotter: entry, last, move since entry, distance to your number, and the chain hash the moment one crosses."},"Package":{"price":"A$29–99/mo","coverage":"the whole book — every leg of the basket, no token count","tokens":null,"sectors":5,"trades":"live+alerts","what":"Professional-style trade sheet per basket: each leg's entry, last, contribution in pp and the ±% band; stops and targets are read off the marks we recorded, and a basket move past its rule is chained and mailed."},"Gear":{"price":"A$99/mo","coverage":"the whole book — every leg of the basket, no token count","tokens":null,"sectors":3,"trades":"monthly","what":"The sleeve's current target weights and the date they were set, with its vol target and drawdown brake — a model book from algos.json, not desk-book positions."}},"count":1,"active":1,"sectors":6,"how":"sha256(\"wc1|email|\" + address.toLowerCase())[0:16] and sha256(\"wc1|token|\" + token)[0:24], both written by `wealthclaw login issue` and checked in the browser by the page's own sha256 (crypto.subtle is HTTPS-only, and this page must also open from disk).","honest":"It proves possession of a token, not identity: whoever holds it gets in. The list is published at build time, so a revoke signs someone out on the next hourly build, not on their next refresh. And there is no server, so signing in can tell you what your tier covers — it cannot arm a tripwire or take a card."};
   var board = [], quotes = null;
   function $(id){ return document.getElementById(id); }
   function esc(s){ return String(s==null?"":s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];}); }

@@ -1,10 +1,176 @@
 {
-  "generatedAt": "2026-11-06T23:02:43.030Z",
+  "generatedAt": "2026-11-14T04:35:55.649Z",
   "name": "Tripwire",
   "genesis": "11e24f5192254d97de70cdb73a44cb80",
-  "head": "11e24f5192254d97de70cdb73a44cb80",
-  "events": 0,
+  "head": "3c2ead9553c84b488bd824ce34d54b7e99aa758165213c4c07a12ced8bde8d5d",
+  "events": 15,
   "verified": true,
-  "verifiedAt": "2026-11-06T23:02:43.030Z",
-  "chain": []
+  "verifiedAt": "2026-11-14T04:35:55.649Z",
+  "chain": [
+    {
+      "seq": 1,
+      "at": "2026-11-10T18:04:34.473Z",
+      "watcher": "eth-aud-floor",
+      "label": "Ethereum below A$3k",
+      "value": 2953.83,
+      "threshold": 3000,
+      "op": "lt",
+      "sha": "1c2a2e001c1050260b2a03a24c1fb316500ba794fa2f3ea2c53e06179d12c08d",
+      "prev": "11e24f5192254d97de70cdb73a44cb80"
+    },
+    {
+      "seq": 2,
+      "at": "2026-11-10T18:04:34.772Z",
+      "watcher": "sol-aud-floor",
+      "label": "Solana below A$120",
+      "value": 119.85,
+      "threshold": 120,
+      "op": "lt",
+      "sha": "1aeef1a4578d75311035db0d4c142694e5594ed3afee571547bc41457ae4a2fd",
+      "prev": "1c2a2e001c1050260b2a03a24c1fb316500ba794fa2f3ea2c53e06179d12c08d"
+    },
+    {
+      "seq": 3,
+      "at": "2026-11-10T18:04:56.881Z",
+      "watcher": "eth-aud-floor",
+      "label": "Ethereum below A$3k",
+      "value": 2953.83,
+      "threshold": 3000,
+      "op": "lt",
+      "sha": "8e383c9a4d152a1f20690da2a39b815476bbe52042d3304c6b5da757e69fdf26",
+      "prev": "1aeef1a4578d75311035db0d4c142694e5594ed3afee571547bc41457ae4a2fd"
+    },
+    {
+      "seq": 4,
+      "at": "2026-11-10T18:04:56.883Z",
+      "watcher": "sol-aud-floor",
+      "label": "Solana below A$120",
+      "value": 119.85,
+      "threshold": 120,
+      "op": "lt",
+      "sha": "33e3a84bc575dab5787b2fecb133fec0f27d9cf438df5f455d3074e523a944ef",
+      "prev": "8e383c9a4d152a1f20690da2a39b815476bbe52042d3304c6b5da757e69fdf26"
+    },
+    {
+      "seq": 5,
+      "at": "2026-11-13T02:05:11.971Z",
+      "watcher": "eth-aud-floor",
+      "label": "Ethereum below A$3k",
+      "value": 2948.88,
+      "threshold": 3000,
+      "op": "lt",
+      "sha": "89dde767493e51aba0f0c0f6e2847b5bdbc6641681b6f2c68c7e7daedb36ef3b",
+      "prev": "33e3a84bc575dab5787b2fecb133fec0f27d9cf438df5f455d3074e523a944ef"
+    },
+    {
+      "seq": 6,
+      "at": "2026-11-13T02:05:12.258Z",
+      "watcher": "sol-aud-floor",
+      "label": "Solana below A$120",
+      "value": 119.03,
+      "threshold": 120,
+      "op": "lt",
+      "sha": "d28b86fbd80dd425231a1f8a4d372df41bec759777531cd574c72858cb3f8b65",
+      "prev": "89dde767493e51aba0f0c0f6e2847b5bdbc6641681b6f2c68c7e7daedb36ef3b"
+    },
+    {
+      "seq": 7,
+      "at": "2026-11-13T04:05:08.490Z",
+      "watcher": "eth-aud-floor",
+      "label": "Ethereum below A$3k",
+      "value": 2845.91,
+      "threshold": 3000,
+      "op": "lt",
+      "sha": "14fff654d44a071fff997122c635cac7dece7403f2bd4fab2ed14afe20e4444a",
+      "prev": "d28b86fbd80dd425231a1f8a4d372df41bec759777531cd574c72858cb3f8b65"
+    },
+    {
+      "seq": 8,
+      "at": "2026-11-13T04:05:08.773Z",
+      "watcher": "sol-aud-floor",
+      "label": "Solana below A$120",
+      "value": 115.48,
+      "threshold": 120,
+      "op": "lt",
+      "sha": "7f54bdc3ebd3ff803d1b5adcfa0f8090f49ba279a1bf7504b1aac6ee91b665a6",
+      "prev": "14fff654d44a071fff997122c635cac7dece7403f2bd4fab2ed14afe20e4444a"
+    },
+    {
+      "seq": 9,
+      "at": "2026-11-13T04:05:09.760Z",
+      "watcher": "btc-move-5",
+      "label": "Bitcoin moves 5% in 24h",
+      "value": 101017,
+      "threshold": 5,
+      "op": "move",
+      "sha": "3024ed8a79a098180dafb430facc32278f9744f376c53daed529841d17bbfea0",
+      "prev": "7f54bdc3ebd3ff803d1b5adcfa0f8090f49ba279a1bf7504b1aac6ee91b665a6"
+    },
+    {
+      "seq": 10,
+      "at": "2026-11-13T14:05:10.775Z",
+      "watcher": "eth-aud-floor",
+      "label": "Ethereum below A$3k",
+      "value": 2891.12,
+      "threshold": 3000,
+      "op": "lt",
+      "sha": "56fabc06a51e2ebde7a0ca70507308b2d63e5a418dbdcde995c0e34fa169bf95",
+      "prev": "3024ed8a79a098180dafb430facc32278f9744f376c53daed529841d17bbfea0"
+    },
+    {
+      "seq": 11,
+      "at": "2026-11-13T14:05:11.320Z",
+      "watcher": "sol-aud-floor",
+      "label": "Solana below A$120",
+      "value": 119.9,
+      "threshold": 120,
+      "op": "lt",
+      "sha": "c188f1c8d10dec480fe1366b8906841efdbdff481b8b03df1663e3c01e05849c",
+      "prev": "56fabc06a51e2ebde7a0ca70507308b2d63e5a418dbdcde995c0e34fa169bf95"
+    },
+    {
+      "seq": 12,
+      "at": "2026-11-14T04:34:57.061Z",
+      "watcher": "btc-aud-floor",
+      "label": "Bitcoin below A$100k",
+      "value": 98595,
+      "threshold": 100000,
+      "op": "lt",
+      "sha": "79ea9586d3426814b9e5882a97dd75759c817e710badec7f47d1c064002335e5",
+      "prev": "c188f1c8d10dec480fe1366b8906841efdbdff481b8b03df1663e3c01e05849c"
+    },
+    {
+      "seq": 13,
+      "at": "2026-11-14T04:34:57.316Z",
+      "watcher": "eth-aud-floor",
+      "label": "Ethereum below A$3k",
+      "value": 2790.7,
+      "threshold": 3000,
+      "op": "lt",
+      "sha": "39d35f96eae684be6cc3e7fa3a7b49032921fb9fd435cda850320369127e70f9",
+      "prev": "79ea9586d3426814b9e5882a97dd75759c817e710badec7f47d1c064002335e5"
+    },
+    {
+      "seq": 14,
+      "at": "2026-11-14T04:34:57.362Z",
+      "watcher": "sol-aud-floor",
+      "label": "Solana below A$120",
+      "value": 111.02,
+      "threshold": 120,
+      "op": "lt",
+      "sha": "f3fadc730957dadd83afc72e956f99209ce3f2b982b90e843b007022c5605660",
+      "prev": "39d35f96eae684be6cc3e7fa3a7b49032921fb9fd435cda850320369127e70f9"
+    },
+    {
+      "seq": 15,
+      "at": "2026-11-14T04:35:50.157Z",
+      "watcher": "momentum",
+      "label": "Momentum basket",
+      "value": 91.4777,
+      "threshold": 6,
+      "op": "move",
+      "sha": "3c2ead9553c84b488bd824ce34d54b7e99aa758165213c4c07a12ced8bde8d5d",
+      "prev": "f3fadc730957dadd83afc72e956f99209ce3f2b982b90e843b007022c5605660"
+    }
+  ]
 }

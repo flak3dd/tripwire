@@ -1,119 +1,140 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0"><channel>
   <title>Tripwire — alerts</title>
-  <link>https://flak3dd.github.io/tripwire/</link>
+  <link>https://tripwire-alert.trade/</link>
   <description>Three signal packages — ASX, global, momentum — where the weights add to 100% by construction, so &quot;combined&quot; is arithmetic and not a promise. Every tier names the sectors it covers — crypto, US equities, ASX equities, indices (S&amp;P 500, Nasdaq), commodities and FX, 31 markets — how many market tokens you can arm, and the live desk book: each leg marked hourly with its entry, last, move and band. Each package ships with its live combined move, a live graph drawn from our own hourly reads, the research note behind the weights, and an hourly alert when the basket itself moves past its ±% — on a hash-chained log you can verify. Paid hourly email; free quotes, feed, board and desk book.</description>
   <language>en-AU</language>
-  <lastBuildDate>Sun, 15 Nov 2026 06:54:16 GMT</lastBuildDate>
+  <lastBuildDate>Sun, 15 Nov 2026 18:00:35 GMT</lastBuildDate>
   <ttl>60</ttl>
     <item>
-      <title>Digest — 15 crossings on the chain</title>
-      <link>https://flak3dd.github.io/tripwire/</link>
-      <guid isPermaLink="false">digest:2026-11-15T06:54</guid>
-      <pubDate>Sun, 15 Nov 2026 06:54:16 GMT</pubDate>
-      <description>Bitcoin below A$100k: 95,081 (TRIPPED) · Ethereum below A$3k: 2,646 (TRIPPED) · Solana below A$120: 104 (TRIPPED) · AUD above 0.72 USD: 0.6785 (6.11% away) · Gold above 4200 USD/oz: 3,886 (8.07% away) · ASX 200 below 8500 pts: 9,082 (6.41% away) · CommBank below 160 A$: 171 (6.36% away) · Bitcoin moves 5% in 24h: 95,081 (-3.56% vs ±5%)</description>
+      <title>Digest — 18 crossings on the chain</title>
+      <link>https://tripwire-alert.trade/</link>
+      <guid isPermaLink="false">digest:2026-11-15T18:00</guid>
+      <pubDate>Sun, 15 Nov 2026 18:00:35 GMT</pubDate>
+      <description>Bitcoin below A$100k: 95,245 (TRIPPED) · Ethereum below A$3k: 2,674 (TRIPPED) · Solana below A$120: 105 (TRIPPED) · AUD above 0.72 USD: 0.6785 (6.11% away) · Gold above 4200 USD/oz: 3,886 (8.07% away) · ASX 200 below 8500 pts: 9,082 (6.41% away) · CommBank below 160 A$: 171 (6.36% away) · Bitcoin moves 5% in 24h: 95,245 (-3.4% vs ±5%)</description>
+    </item>
+    <item>
+      <title>Solana below A$120 — crossed 120</title>
+      <link>https://tripwire-alert.trade/log.json</link>
+      <guid isPermaLink="false">sha256:cd68207b8e878360c3841a6835a68bb953326ae0097ebbdf99f5fce03a6dc7cf</guid>
+      <pubDate>Sun, 15 Nov 2026 09:30:17 GMT</pubDate>
+      <description>sol-aud-floor: 106 lt 120 at 2026-11-15T09:30:17.969Z. Evidence sha256:cd68207b8e878360.</description>
+    </item>
+    <item>
+      <title>Ethereum below A$3k — crossed 3,000</title>
+      <link>https://tripwire-alert.trade/log.json</link>
+      <guid isPermaLink="false">sha256:047e5b60aafa5fa62a6028c2e0f07ffe431f0a77865da7255be9b8b3aaecb5e5</guid>
+      <pubDate>Sun, 15 Nov 2026 09:30:17 GMT</pubDate>
+      <description>eth-aud-floor: 2,702 lt 3,000 at 2026-11-15T09:30:17.711Z. Evidence sha256:047e5b60aafa5fa6.</description>
+    </item>
+    <item>
+      <title>Bitcoin below A$100k — crossed 100,000</title>
+      <link>https://tripwire-alert.trade/log.json</link>
+      <guid isPermaLink="false">sha256:61d7acd06fd6abbbee0096f20e905eb9fc4234296ace9b831b7df6249c3dfcd4</guid>
+      <pubDate>Sun, 15 Nov 2026 09:30:17 GMT</pubDate>
+      <description>btc-aud-floor: 96,850 lt 100,000 at 2026-11-15T09:30:17.678Z. Evidence sha256:61d7acd06fd6abbb.</description>
     </item>
     <item>
       <title>Momentum basket — moved -7.17%</title>
-      <link>https://flak3dd.github.io/tripwire/log.json</link>
+      <link>https://tripwire-alert.trade/log.json</link>
       <guid isPermaLink="false">sha256:3c2ead9553c84b488bd824ce34d54b7e99aa758165213c4c07a12ced8bde8d5d</guid>
       <pubDate>Sat, 14 Nov 2026 04:35:50 GMT</pubDate>
       <description>momentum: 98.55 → 91.48 (-7.17%) over 24h, past ±6% at 2026-11-14T04:35:50.157Z. Evidence sha256:3c2ead9553c84b48.</description>
     </item>
     <item>
       <title>Solana below A$120 — crossed 120</title>
-      <link>https://flak3dd.github.io/tripwire/log.json</link>
+      <link>https://tripwire-alert.trade/log.json</link>
       <guid isPermaLink="false">sha256:f3fadc730957dadd83afc72e956f99209ce3f2b982b90e843b007022c5605660</guid>
       <pubDate>Sat, 14 Nov 2026 04:34:57 GMT</pubDate>
       <description>sol-aud-floor: 111 lt 120 at 2026-11-14T04:34:57.362Z. Evidence sha256:f3fadc730957dadd.</description>
     </item>
     <item>
       <title>Ethereum below A$3k — crossed 3,000</title>
-      <link>https://flak3dd.github.io/tripwire/log.json</link>
+      <link>https://tripwire-alert.trade/log.json</link>
       <guid isPermaLink="false">sha256:39d35f96eae684be6cc3e7fa3a7b49032921fb9fd435cda850320369127e70f9</guid>
       <pubDate>Sat, 14 Nov 2026 04:34:57 GMT</pubDate>
       <description>eth-aud-floor: 2,791 lt 3,000 at 2026-11-14T04:34:57.316Z. Evidence sha256:39d35f96eae684be.</description>
     </item>
     <item>
       <title>Bitcoin below A$100k — crossed 100,000</title>
-      <link>https://flak3dd.github.io/tripwire/log.json</link>
+      <link>https://tripwire-alert.trade/log.json</link>
       <guid isPermaLink="false">sha256:79ea9586d3426814b9e5882a97dd75759c817e710badec7f47d1c064002335e5</guid>
       <pubDate>Sat, 14 Nov 2026 04:34:57 GMT</pubDate>
       <description>btc-aud-floor: 98,595 lt 100,000 at 2026-11-14T04:34:57.061Z. Evidence sha256:79ea9586d3426814.</description>
     </item>
     <item>
       <title>Solana below A$120 — crossed 120</title>
-      <link>https://flak3dd.github.io/tripwire/log.json</link>
+      <link>https://tripwire-alert.trade/log.json</link>
       <guid isPermaLink="false">sha256:c188f1c8d10dec480fe1366b8906841efdbdff481b8b03df1663e3c01e05849c</guid>
       <pubDate>Fri, 13 Nov 2026 14:05:11 GMT</pubDate>
       <description>sol-aud-floor: 120 lt 120 at 2026-11-13T14:05:11.320Z. Evidence sha256:c188f1c8d10dec48.</description>
     </item>
     <item>
       <title>Ethereum below A$3k — crossed 3,000</title>
-      <link>https://flak3dd.github.io/tripwire/log.json</link>
+      <link>https://tripwire-alert.trade/log.json</link>
       <guid isPermaLink="false">sha256:56fabc06a51e2ebde7a0ca70507308b2d63e5a418dbdcde995c0e34fa169bf95</guid>
       <pubDate>Fri, 13 Nov 2026 14:05:10 GMT</pubDate>
       <description>eth-aud-floor: 2,891 lt 3,000 at 2026-11-13T14:05:10.775Z. Evidence sha256:56fabc06a51e2ebd.</description>
     </item>
     <item>
       <title>Bitcoin moves 5% in 24h — moved -5.368%</title>
-      <link>https://flak3dd.github.io/tripwire/log.json</link>
+      <link>https://tripwire-alert.trade/log.json</link>
       <guid isPermaLink="false">sha256:3024ed8a79a098180dafb430facc32278f9744f376c53daed529841d17bbfea0</guid>
       <pubDate>Fri, 13 Nov 2026 04:05:09 GMT</pubDate>
       <description>btc-move-5: 106,747 → 101,017 (-5.368%) over 24h, past ±5% at 2026-11-13T04:05:09.760Z. Evidence sha256:3024ed8a79a09818.</description>
     </item>
     <item>
       <title>Solana below A$120 — crossed 120</title>
-      <link>https://flak3dd.github.io/tripwire/log.json</link>
+      <link>https://tripwire-alert.trade/log.json</link>
       <guid isPermaLink="false">sha256:7f54bdc3ebd3ff803d1b5adcfa0f8090f49ba279a1bf7504b1aac6ee91b665a6</guid>
       <pubDate>Fri, 13 Nov 2026 04:05:08 GMT</pubDate>
       <description>sol-aud-floor: 115 lt 120 at 2026-11-13T04:05:08.773Z. Evidence sha256:7f54bdc3ebd3ff80.</description>
     </item>
     <item>
       <title>Ethereum below A$3k — crossed 3,000</title>
-      <link>https://flak3dd.github.io/tripwire/log.json</link>
+      <link>https://tripwire-alert.trade/log.json</link>
       <guid isPermaLink="false">sha256:14fff654d44a071fff997122c635cac7dece7403f2bd4fab2ed14afe20e4444a</guid>
       <pubDate>Fri, 13 Nov 2026 04:05:08 GMT</pubDate>
       <description>eth-aud-floor: 2,846 lt 3,000 at 2026-11-13T04:05:08.490Z. Evidence sha256:14fff654d44a071f.</description>
     </item>
     <item>
       <title>Solana below A$120 — crossed 120</title>
-      <link>https://flak3dd.github.io/tripwire/log.json</link>
+      <link>https://tripwire-alert.trade/log.json</link>
       <guid isPermaLink="false">sha256:d28b86fbd80dd425231a1f8a4d372df41bec759777531cd574c72858cb3f8b65</guid>
       <pubDate>Fri, 13 Nov 2026 02:05:12 GMT</pubDate>
       <description>sol-aud-floor: 119 lt 120 at 2026-11-13T02:05:12.258Z. Evidence sha256:d28b86fbd80dd425.</description>
     </item>
     <item>
       <title>Ethereum below A$3k — crossed 3,000</title>
-      <link>https://flak3dd.github.io/tripwire/log.json</link>
+      <link>https://tripwire-alert.trade/log.json</link>
       <guid isPermaLink="false">sha256:89dde767493e51aba0f0c0f6e2847b5bdbc6641681b6f2c68c7e7daedb36ef3b</guid>
       <pubDate>Fri, 13 Nov 2026 02:05:11 GMT</pubDate>
       <description>eth-aud-floor: 2,949 lt 3,000 at 2026-11-13T02:05:11.971Z. Evidence sha256:89dde767493e51ab.</description>
     </item>
     <item>
       <title>Solana below A$120 — crossed 120</title>
-      <link>https://flak3dd.github.io/tripwire/log.json</link>
+      <link>https://tripwire-alert.trade/log.json</link>
       <guid isPermaLink="false">sha256:33e3a84bc575dab5787b2fecb133fec0f27d9cf438df5f455d3074e523a944ef</guid>
       <pubDate>Tue, 10 Nov 2026 18:04:56 GMT</pubDate>
       <description>sol-aud-floor: 120 lt 120 at 2026-11-10T18:04:56.883Z. Evidence sha256:33e3a84bc575dab5.</description>
     </item>
     <item>
       <title>Ethereum below A$3k — crossed 3,000</title>
-      <link>https://flak3dd.github.io/tripwire/log.json</link>
+      <link>https://tripwire-alert.trade/log.json</link>
       <guid isPermaLink="false">sha256:8e383c9a4d152a1f20690da2a39b815476bbe52042d3304c6b5da757e69fdf26</guid>
       <pubDate>Tue, 10 Nov 2026 18:04:56 GMT</pubDate>
       <description>eth-aud-floor: 2,954 lt 3,000 at 2026-11-10T18:04:56.881Z. Evidence sha256:8e383c9a4d152a1f.</description>
     </item>
     <item>
       <title>Solana below A$120 — crossed 120</title>
-      <link>https://flak3dd.github.io/tripwire/log.json</link>
+      <link>https://tripwire-alert.trade/log.json</link>
       <guid isPermaLink="false">sha256:1aeef1a4578d75311035db0d4c142694e5594ed3afee571547bc41457ae4a2fd</guid>
       <pubDate>Tue, 10 Nov 2026 18:04:34 GMT</pubDate>
       <description>sol-aud-floor: 120 lt 120 at 2026-11-10T18:04:34.772Z. Evidence sha256:1aeef1a4578d7531.</description>
     </item>
     <item>
       <title>Ethereum below A$3k — crossed 3,000</title>
-      <link>https://flak3dd.github.io/tripwire/log.json</link>
+      <link>https://tripwire-alert.trade/log.json</link>
       <guid isPermaLink="false">sha256:1c2a2e001c1050260b2a03a24c1fb316500ba794fa2f3ea2c53e06179d12c08d</guid>
       <pubDate>Tue, 10 Nov 2026 18:04:34 GMT</pubDate>
       <description>eth-aud-floor: 2,954 lt 3,000 at 2026-11-10T18:04:34.473Z. Evidence sha256:1c2a2e001c105026.</description>

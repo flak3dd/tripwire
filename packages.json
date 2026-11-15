@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-11-15T23:05:24.201Z",
+  "builtAt": "2026-11-15T23:44:41.803Z",
   "name": "Tripwire",
   "rebalance": "daily, back to these weights",
   "note": "A basket is weights, not a promise. dayPct is the weighted mean of each leg's own last-day change; past4w.pct is the weighted mean of each leg's return over the last 28 calendar days of cached daily closes; level is an index that starts at 100 at the first hourly snapshot and compounds from recorded per-leg values. No backtest: the history here was written by our own builds, one point per hour.",
@@ -20,10 +20,10 @@
       "invalidates": "A sustained fall in the cash rate that compresses bank net interest margins at the same time the iron ore price falls — both legs down for one macro reason, which is exactly when a 50-point bank weight stops diversifying.",
       "cadence": "Checked hourly. A ±2.5% basket move in 24h is written to the hash chain and mailed with the constituent that contributed most.",
       "weightsTotal": 100,
-      "dayPct": -0.74,
+      "dayPct": -0.35,
       "coveragePct": 100,
-      "level": 102.1159,
-      "sincePct": 2.12,
+      "level": 101.7626,
+      "sincePct": 1.76,
       "since": "2026-11-06T02:52:23.224Z",
       "series": [
         100,
@@ -58,7 +58,8 @@
         102.1159,
         102.1159,
         102.1159,
-        102.1159
+        102.1159,
+        101.9652
       ],
       "alert": {
         "move": 2.5,
@@ -68,9 +69,9 @@
           "name": "ASX Steady",
           "kind": "package-move",
           "fired": false,
-          "pct": 0,
+          "pct": -0.35,
           "base": 102.1159,
-          "level": 102.1159,
+          "level": 101.7626,
           "threshold": 2.5,
           "windowH": 24,
           "baseAt": "2026-11-14T04:35:50.147Z"
@@ -124,9 +125,9 @@
           "label": "CommBank",
           "w": 30,
           "unit": "A$",
-          "value": 170.87,
-          "changePct": -0.52,
-          "contribPp": -0.156,
+          "value": 171.09,
+          "changePct": 0.13,
+          "contribPp": 0.039,
           "past4wPct": 10.68,
           "past4w": {
             "from": "2026-10-15",
@@ -140,9 +141,9 @@
           "label": "Westpac",
           "w": 20,
           "unit": "A$",
-          "value": 37.83,
-          "changePct": -0.47,
-          "contribPp": -0.094,
+          "value": 37.685,
+          "changePct": -0.38,
+          "contribPp": -0.076,
           "past4wPct": 9.91,
           "past4w": {
             "from": "2026-10-15",
@@ -156,9 +157,9 @@
           "label": "BHP Group",
           "w": 25,
           "unit": "A$",
-          "value": 58.86,
-          "changePct": -1.26,
-          "contribPp": -0.315,
+          "value": 58.25,
+          "changePct": -1.04,
+          "contribPp": -0.26,
           "past4wPct": -1.95,
           "past4w": {
             "from": "2026-10-15",
@@ -172,9 +173,9 @@
           "label": "ASX 200",
           "w": 25,
           "unit": "pts",
-          "value": 9082.2,
-          "changePct": -0.71,
-          "contribPp": -0.177,
+          "value": 9064.3,
+          "changePct": -0.2,
+          "contribPp": -0.05,
           "past4wPct": 3.13,
           "past4w": {
             "from": "2026-10-15",
@@ -203,7 +204,7 @@
       "weightsTotal": 100,
       "dayPct": -0.22,
       "coveragePct": 100,
-      "level": 100.7992,
+      "level": 100.7951,
       "sincePct": 0.8,
       "since": "2026-11-06T02:52:23.226Z",
       "series": [
@@ -239,7 +240,8 @@
         100.7992,
         100.7992,
         100.7992,
-        100.7992
+        100.7992,
+        100.7759
       ],
       "alert": {
         "move": 3,
@@ -251,7 +253,7 @@
           "fired": false,
           "pct": 0,
           "base": 100.7992,
-          "level": 100.7992,
+          "level": 100.7951,
           "threshold": 3,
           "windowH": 24,
           "baseAt": "2026-11-14T04:35:50.151Z"
@@ -369,9 +371,9 @@
           "label": "Gold (front month)",
           "w": 20,
           "unit": "USD/oz",
-          "value": 3886.3,
-          "changePct": 0,
-          "contribPp": 0,
+          "value": 3885.5,
+          "changePct": -0.02,
+          "contribPp": -0.004,
           "past4wPct": -7.02,
           "past4w": {
             "from": "2026-10-16",
@@ -398,10 +400,10 @@
       "invalidates": "A liquidity event where crypto, high-beta equity and crude fall on the same day — the 60-point crypto leg and the 30-point equity leg collapse into one position at the worst possible moment.",
       "cadence": "Checked hourly. A ±6% basket move in 24h is written to the hash chain; because the legs are correlated, the alert fires early in a risk-off move rather than after it.",
       "weightsTotal": 100,
-      "dayPct": 1.87,
+      "dayPct": 1.65,
       "coveragePct": 100,
-      "level": 90.1529,
-      "sincePct": -9.85,
+      "level": 90.0316,
+      "sincePct": -9.97,
       "since": "2026-11-06T02:52:23.227Z",
       "series": [
         100,
@@ -436,7 +438,8 @@
         89.3489,
         89.7438,
         89.8832,
-        90.0788
+        90.0788,
+        89.9071
       ],
       "alert": {
         "move": 6,
@@ -446,9 +449,9 @@
           "name": "Momentum",
           "kind": "package-move",
           "fired": false,
-          "pct": -1.45,
+          "pct": -1.58,
           "base": 91.4777,
-          "level": 90.1529,
+          "level": 90.0316,
           "threshold": 6,
           "windowH": 24,
           "baseAt": "2026-11-14T04:35:50.157Z"
@@ -502,9 +505,9 @@
           "label": "Bitcoin",
           "w": 30,
           "unit": "A$",
-          "value": 96584,
-          "changePct": 2.87,
-          "contribPp": 0.861,
+          "value": 96357,
+          "changePct": 2.65,
+          "contribPp": 0.795,
           "past4wPct": -15.89,
           "past4w": {
             "from": "2026-10-17",
@@ -518,9 +521,9 @@
           "label": "Ethereum",
           "w": 20,
           "unit": "A$",
-          "value": 2711.51,
-          "changePct": 5.27,
-          "contribPp": 1.054,
+          "value": 2708.57,
+          "changePct": 4.94,
+          "contribPp": 0.988,
           "past4wPct": -19.22,
           "past4w": {
             "from": "2026-10-17",
@@ -550,9 +553,9 @@
           "label": "Solana",
           "w": 10,
           "unit": "A$",
-          "value": 107.48,
-          "changePct": 5.34,
-          "contribPp": 0.534,
+          "value": 107.11,
+          "changePct": 4.55,
+          "contribPp": 0.455,
           "past4wPct": -25.18,
           "past4w": {
             "from": "2026-10-17",
@@ -582,9 +585,9 @@
           "label": "WTI crude",
           "w": 10,
           "unit": "USD/bbl",
-          "value": 88.56,
-          "changePct": 0,
-          "contribPp": 0,
+          "value": 88.49,
+          "changePct": -0.08,
+          "contribPp": -0.008,
           "past4wPct": -12.32,
           "past4w": {
             "from": "2026-10-16",

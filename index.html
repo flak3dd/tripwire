@@ -1,12 +1,30 @@
 <!doctype html>
 <html lang="en-AU"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Tripwire — A basket, not a tip: three weighted packages with a live combined metric, a live graph, and a tripwire on the basket itself.</title>
-<meta name="description" content="Three signal packages — ASX, global, momentum — where the weights add to 100% by construction, so &quot;combined&quot; is arithmetic and not a promise. Every tier names the sectors it covers — crypto, US equities, ASX equities, indices (S&amp;P 500, Nasdaq), commodities and FX, 31 markets — how many market tokens you can arm, and the live desk book: each leg marked hourly with its entry, last, move and band. Each package ships with its live combined move, a live graph drawn from our own hourly reads, the research note behind the weights, and an hourly alert when the basket itself moves past its ±% — on a hash-chained log you can verify. Paid hourly email; free quotes, feed, board and desk book.">
+<title>Tripwire — price alerts for crypto, ASX &amp; US shares, gold and FX</title>
+<meta name="description" content="Pick a price, we check it every hour, and you get an email when it crosses. 31 markets including Bitcoin, CommBank, the ASX 200, gold and AUD/USD. A$9/mo with a 7-day free trial, or follow the live board free. Not financial advice.">
+<link rel="canonical" href="https://tripwire-alert.trade/">
+<meta name="theme-color" content="#0a0c10">
+<link rel="icon" href="https://tripwire-alert.trade/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="https://tripwire-alert.trade/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="https://tripwire-alert.trade/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Tripwire">
+<meta property="og:url" content="https://tripwire-alert.trade/">
+<meta property="og:title" content="Tripwire — get an email when a price crosses your number">
+<meta property="og:description" content="Pick a price, we check it every hour, and you get an email when it crosses. 31 markets including Bitcoin, CommBank, the ASX 200, gold and AUD/USD. A$9/mo with a 7-day free trial, or follow the live board free. Not financial advice.">
+<meta property="og:image" content="https://tripwire-alert.trade/og.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Tripwire: pick a price, we check it hourly, you get an email when it crosses. 31 markets, 7-day free trial.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Tripwire — get an email when a price crosses your number">
+<meta name="twitter:description" content="Pick a price, we check it every hour, and you get an email when it crosses. 31 markets including Bitcoin, CommBank, the ASX 200, gold and AUD/USD. A$9/mo with a 7-day free trial, or follow the live board free. Not financial advice.">
+<meta name="twitter:image" content="https://tripwire-alert.trade/og.png">
 <link rel="alternate" type="application/rss+xml" title="Tripwire — alert feed" href="feed.xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif&display=swap">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Instrument+Serif&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif&display=swap"></noscript>
 <style>
   :root{--bg:#0a0c10;--fg:#e8edf5;--dim:#8b96a8;--line:#1e2430;--hot:#ff5c47;--live:#31d68a;--warn:#e3b341;--brass:#c9a227;--brass-dim:#9c8434;--serif:"Instrument Serif",Georgia,serif}
   *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.55 ui-sans-serif,-apple-system,"Segoe UI",Inter,sans-serif}
@@ -226,66 +244,256 @@
   /* v7 — the distance ruler: engraved scale, brass notch at the threshold, needle at the live value */
   .ruler{margin:10px 0 6px}
   .ruler svg{display:block;width:100%;height:44px}
+  /* ── 0023 UX pass: one header, a hero that says what it is, plain pricing, FAQ ── */
+  .btn{background:var(--live);color:#04140c;border:0}
+  .btn:hover{filter:brightness(1.08)}
+  .tier .price{color:var(--fg)}
+  .top-in{max-width:1080px}
+  .brand{display:flex;align-items:center;gap:8px;color:var(--fg);text-decoration:none;font-weight:700;letter-spacing:.01em;font-size:16px;white-space:nowrap}
+  .brand svg{width:22px;height:22px;flex:none}
+  .nav a.on{color:var(--fg)}
+  .navcta{background:var(--live);color:#04140c;text-decoration:none;font:700 13px/1 ui-sans-serif,sans-serif;padding:10px 13px;border-radius:9px;white-space:nowrap}
+  .navcta:hover{filter:brightness(1.08)}
+  @media(max-width:720px){.nav{display:none}.signin-btn{margin-left:auto}}
+  .hero2{padding:40px 0 6px}
+  .hero2 .kick{color:var(--live)}
+  .hero2 h1{font-size:clamp(46px,8vw,76px);margin:12px 0 12px}
+  .lead{font-size:clamp(21px,3.2vw,26px);line-height:1.3;margin:0 0 12px;max-width:30ch;color:var(--fg)}
+  .hero2 .sub{font-size:17px;max-width:60ch;margin:0}
+  .trust{display:flex;flex-wrap:wrap;gap:6px 16px;margin:14px 0 0;padding:0;color:var(--dim);font-size:13px;list-style:none}
+  .trust li::before{content:"✓ ";color:var(--live)}
+  .facts{display:flex;flex-wrap:wrap;gap:8px;margin:20px 0 0}
+  .sect{font-family:var(--serif);font-weight:400;font-size:clamp(30px,4.4vw,40px);line-height:1.1;margin:56px 0 8px;letter-spacing:-.005em}
+  .sectsub{color:var(--dim);margin:0 0 18px;max-width:62ch}
+  .steps{display:grid;gap:12px;grid-template-columns:repeat(3,1fr);margin:18px 0 0;padding:0;list-style:none;counter-reset:st}
+  @media(max-width:720px){.steps{grid-template-columns:1fr}}
+  .steps li{border:1px solid var(--line);border-radius:12px;padding:16px;background:#0d1117;counter-increment:st}
+  .steps li::before{content:counter(st);display:inline-grid;place-items:center;width:26px;height:26px;border-radius:50%;background:#0e2018;color:var(--live);border:1px solid #1c5c3f;font:700 13px/1 ui-monospace,monospace;margin-bottom:10px}
+  .steps b{display:block;margin-bottom:4px}
+  .steps p{margin:0;color:var(--dim);font-size:14px}
+  .plans{display:grid;gap:12px;grid-template-columns:1fr 1fr;margin:18px 0 0}
+  @media(max-width:560px){.plans{grid-template-columns:1fr}}
+  .plan{border:1px solid var(--line);border-radius:14px;padding:18px;background:#0d1117;display:flex;flex-direction:column}
+  .plan.pop{border-color:#1c5c3f;box-shadow:0 0 0 1px #1c5c3f inset}
+  .plan .pname{font-weight:700;font-size:16px;display:flex;justify-content:space-between;align-items:center;gap:8px}
+  .plan .tag{font:600 10.5px/1 ui-monospace,monospace;letter-spacing:.08em;color:var(--live);border:1px solid #1c5c3f;background:#0e2018;border-radius:999px;padding:4px 7px}
+  .plan .pp{font-family:var(--serif);font-size:38px;line-height:1;margin:10px 0 2px}
+  .plan .pp small{font:13px ui-sans-serif,sans-serif;color:var(--dim)}
+  .plan .pfor{color:var(--dim);font-size:13.5px;margin:4px 0 10px}
+  .plan ul{padding:0;margin:0 0 14px;flex:1}
+  .plan li{font-size:14px;padding:5px 0 5px 20px;position:relative;color:#cdd5e2}
+  .plan li::before{content:"✓";position:absolute;left:0;color:var(--live);font-weight:700}
+  .plan .pbtn{display:block;text-align:center;text-decoration:none;font-weight:700;padding:12px 14px;border-radius:10px;border:1px solid var(--line);color:var(--fg);font-size:14.5px}
+  .plan .pbtn:hover{background:#10161e}
+  .plan.pop .pbtn,.plan .pbtn.pri{background:var(--live);border-color:var(--live);color:#04140c}
+  .plan .pnote{font-size:12px;color:var(--dim);margin:8px 0 0;text-align:center}
+  .wide{max-width:1080px}
+  .faq{margin:12px 0 0;border:1px solid var(--line);border-radius:14px;background:#0d1117;overflow:hidden}
+  .faq details{border-bottom:1px solid var(--line)}
+  .faq details:last-child{border-bottom:0}
+  .faq summary{cursor:pointer;padding:15px 18px;font-weight:600;list-style:none;display:flex;justify-content:space-between;gap:12px}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary::after{content:"+";color:var(--dim);font-weight:400}
+  .faq details[open] summary::after{content:"–"}
+  .faq details p{margin:0;padding:0 18px 16px;color:var(--dim);font-size:14.5px}
+  .boardnote{color:var(--dim);font-size:14px;margin:0 0 4px}
+  .deep{margin-top:64px;border-top:1px solid var(--line);padding-top:8px}
+  .endcta{margin:56px 0 0;border:1px solid #1c5c3f;border-radius:16px;padding:26px 22px;background:linear-gradient(180deg,#0e2018,#0d1117);text-align:center}
+  .endcta h2{font-family:var(--serif);font-weight:400;font-size:34px;margin:0 0 6px}
+  .endcta p{color:var(--dim);margin:0 0 6px}
+  .vs,.hint,.stamp,.note,.w4d,.thn{color:#9aa5b8}
+  a:focus-visible,button:focus-visible,summary:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid #4a9eff;outline-offset:2px}
 </style></head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
   <header class="top"><div class="top-in">
-    <a class="mark" href="#top">🦞 WEALTHCLAW<span>Tripwire</span></a>
-    <nav class="nav" aria-label="Sections">
-      <a href="#packages">Baskets</a><a href="#desk-book">Desk book</a><a href="#algos">Algorithms</a><a href="#styles">Styles</a><a href="#tiers">Tiers</a><a href="#markets">Markets</a><a href="#mine">Board</a><a href="#signin">Sign in</a>
+    <a class="brand" href="https://tripwire-alert.trade/" aria-label="Tripwire home"><svg viewBox="0 0 24 24" aria-hidden="true"><rect width="24" height="24" rx="6" fill="#0e2018"/><path d="M3 15h18" stroke="#31d68a" stroke-width="2" stroke-linecap="round"/><path d="M12 5l3.5 6h-7z" fill="#ff5c47"/></svg>Tripwire</a>
+    <nav class="nav" aria-label="Main">
+      <a href="https://tripwire-alert.trade/#how">How it works</a><a href="https://tripwire-alert.trade/#board">Live board</a><a href="https://tripwire-alert.trade/#pricing">Pricing</a><a href="https://tripwire-alert.trade/#faq">FAQ</a><a href="https://tripwire-alert.trade/store/">Data drops</a>
     </nav>
-    <a class="signin-btn" id="nav-signin" href="#signin">Sign in</a>
+    <a class="signin-btn" id="nav-signin" href="/account">Sign in</a>
+    <a class="navcta" href="https://tripwire-alert.trade/subscribe">Start free trial</a>
   </div></header>
 <div class="wrap">
-  <section class="hero" id="top">
-    <p class="kick">🦞 WEALTHCLAW · tripwires on things you already own</p>
+  <section class="hero2" id="top">
+    <p class="kick">Price alerts · crypto · ASX &amp; US shares · gold · oil · FX</p>
     <h1>Tripwire</h1>
-    <p class="sub">A basket, not a tip: three weighted packages with a live combined metric, a live graph, and a tripwire on the basket itself.</p>
-    <div class="strip">
-      <span class="pill live"><span class="live-dot"></span>31 markets live</span>
-      <span class="pill">none stale</span>
-      <span class="pill live">chain verified · 18 alerts</span>
-      <span class="pill">3 baskets · 15 desk positions</span>
-      <span class="pill">6 sectors · 31 market tokens</span>
-      <span class="pill">built 23:05Z</span>
-    </div>
+    <p class="lead">Pick a price. We check it every hour. You get an email when it crosses.</p>
+    <p class="sub">31 markets, from Bitcoin and CommBank to the ASX 200, gold and AUD/USD. No charts to watch, no tips, no predictions — just your number and a message when it's hit. A$9/mo for 4 alerts, with a 7-day free trial.</p>
     <div class="ctarow">
-      <a class="btn" href="https://tripwire-alert.trade/subscribe">Get the tripwire — A$9/mo</a>
-      <a class="btnghost" href="#desk-book">See the desk book</a>
-      <a class="btnghost" href="#signin">Sign in</a>
+      <a class="btn" href="https://tripwire-alert.trade/subscribe?tier=tripwire">Start 7-day free trial</a>
+      <a class="btnghost" href="#board">See the live board</a>
+    </div>
+    <ul class="trust">
+      <li>Cancel any time</li><li>Card handled by Stripe</li><li>Free board &amp; RSS — no account</li><li>Not financial advice</li>
+    </ul>
+    <div class="facts" aria-label="Live status">
+      <span class="pill live"><span class="live-dot"></span>31 of 31 markets live</span>
+      <span class="pill">checked hourly · updated 10:44 am AEDT</span>
+      <span class="pill live">alert log verified · 18 alerts</span>
     </div>
   </section>
-
-  <section class="card signin" id="signin">
-    <h2><span class="n">01</span> Sign in — an address or a token, checked against a published hash</h2>
-    <div class="signin-grid">
-      <form class="li" id="li-form" novalidate>
-        <label for="li-id">Address on record, or the access token you were mailed</label>
-        <input id="li-id" type="text" name="id" autocomplete="username" spellcheck="false" autocapitalize="none"
-               placeholder="you@example.com  ·  wc1.…" aria-describedby="li-note">
-        <div class="li-row">
-          <button class="btn2" type="submit">Sign in</button>
-          <button class="btn3" type="button" id="li-out" hidden>Sign out</button>
-        </div>
-        <p class="li-note" id="li-note">Nothing is sent anywhere — this tab hashes what you type and compares it with
-          <a class="u mono" href="https://tripwire-alert.trade/members.json">members.json</a>, which ships 1 row(s), 1 active.</p>
-        <p class="li-status" id="li-status" role="status" aria-live="polite">Not signed in. The A$0 tier needs no account at all.</p>
-      </form>
-      <div class="li-panel" id="li-panel">
-        <div class="who"><b>No account yet?</b><span class="tierpill">A$0</span></div>
-        <ul class="wholines">
-          <li><span>What signing in shows</span><b>Your tier, the markets it lets you arm, and whether the live trade feed is part of it.</b></li>
-          <li><span>How to pay</span><b>Paid tiers start at <a class="u" href="/subscribe">/subscribe</a>: 7 days free, then card checkout by Stripe (the card never touches this site). This page only shows what you hold.</b></li>
-          <li><span>Where a token comes from</span><b>Shown once when you subscribe at <a class="u" href="/subscribe">/subscribe</a> (Digest is free, no card). Lost it? <a class="u" href="/subscribe#manage">Request a new one</a>. Only its hash is written down.</b></li>
-        </ul>
-      </div>
-    </div>
-    <p class="note pad">Sign-in is a hash comparison, not a password: the page ships members.json (hashes and dates only), hashes what you type in the tab, and looks for the row. Nothing is posted, no cookie is set, and the token itself is never stored — `wealthclaw login issue --email … --tier …` prints it once.
-      It proves possession of a token, not identity: whoever holds it gets in. The list is published at build time, so a revoke signs someone out on the next hourly build, not on their next refresh. Signing in on this page only tells you what your tier covers; paying happens at /subscribe, where Stripe Checkout takes the card (7 days free) and the card never reaches this site.</p>
-  </section>
-
 
 <main id="main">
+  <h2 class="sect" id="how">How it works</h2>
+  <p class="sectsub">Three steps, no app to install and nothing to watch.</p>
+  <ol class="steps">
+    <li><b>Pick a market and your number</b><p>Any of 31 markets — e.g. “email me if CommBank falls below A$163” or “if Gold goes above US$4,100/oz”.</p></li>
+    <li><b>We check it every hour</b><p>Prices come from public sources (CoinGecko, the ECB, Yahoo Finance). If a source fails we show it as stale — we never guess a number.</p></li>
+    <li><b>You get an email when it crosses</b><p>With the price, the time, and a receipt you can look up later. Every alert is also written to a public, tamper-evident log.</p></li>
+  </ol>
+
+  <h2 class="sect" id="board">Live board</h2>
+  <p class="sectsub">Our 8 public tripwires, checked every hour — the same check members get on the markets they choose. Updated 10:44 am AEDT.</p>
+  <section class="card" aria-label="Public tripwires">
+    <ul>
+      <li class="row tripped">
+        <div class="row-top"><span class="lbl">Bitcoin below A$100k</span>
+          <span class="state">TRIPPED</span></div>
+        <div class="nums"><span class="now">96,437</span> <span class="vs">vs 100,000 · lt</span></div>
+        <div class="ruler"><svg viewBox="0 0 300 46" role="img" aria-label="Bitcoin below A$100k — crossed — alert fires: Bitcoin below A$100k"><rect x="39.06250000000034" y="19" width="221.87499999999932" height="6" rx="3" fill="#141a23"/><line x1="8" y1="10" x2="8" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="36.4" y1="13" x2="36.4" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="64.8" y1="13" x2="64.8" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="93.19999999999999" y1="13" x2="93.19999999999999" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="121.6" y1="13" x2="121.6" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="150" y1="10" x2="150" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="178.39999999999998" y1="13" x2="178.39999999999998" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="206.79999999999998" y1="13" x2="206.79999999999998" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="235.2" y1="13" x2="235.2" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="263.6" y1="13" x2="263.6" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="292" y1="10" x2="292" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="6" y1="22" x2="294" y2="22" stroke="#2d3542" stroke-width="2"/><path d="M255.93749999999966 8 L265.93749999999966 8 L260.93749999999966 16 Z" fill="#c9a227"/><text x="260.93749999999966" y="6" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" fill="#9c8434">100,000</text><line x1="39.06250000000034" y1="12" x2="39.06250000000034" y2="32" stroke="#e8edf5" stroke-width="2"/><circle cx="39.06250000000034" cy="22" r="3.5" fill="#e8edf5"/><text x="39.06250000000034" y="43" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" fill="#8b96a8">96,437</text></svg></div>
+        <div class="hint">crossed — alert fires: Bitcoin below A$100k</div>
+        <div class="hint sub2">trend over 26 reads: 3.69pp closer · closest 1.01% · 00:04–23:23Z</div>
+      </li>
+      <li class="row tripped">
+        <div class="row-top"><span class="lbl">Ethereum below A$3k</span>
+          <span class="state">TRIPPED</span></div>
+        <div class="nums"><span class="now">2,709</span> <span class="vs">vs 3,000 · lt</span></div>
+        <div class="ruler"><svg viewBox="0 0 300 46" role="img" aria-label="Ethereum below A$3k — crossed — alert fires: Ethereum below A$3k"><rect x="39.06250000000009" y="19" width="221.8749999999998" height="6" rx="3" fill="#141a23"/><line x1="8" y1="10" x2="8" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="36.4" y1="13" x2="36.4" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="64.8" y1="13" x2="64.8" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="93.19999999999999" y1="13" x2="93.19999999999999" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="121.6" y1="13" x2="121.6" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="150" y1="10" x2="150" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="178.39999999999998" y1="13" x2="178.39999999999998" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="206.79999999999998" y1="13" x2="206.79999999999998" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="235.2" y1="13" x2="235.2" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="263.6" y1="13" x2="263.6" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="292" y1="10" x2="292" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="6" y1="22" x2="294" y2="22" stroke="#2d3542" stroke-width="2"/><path d="M255.9374999999999 8 L265.9374999999999 8 L260.9374999999999 16 Z" fill="#c9a227"/><text x="260.9374999999999" y="6" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" fill="#9c8434">3,000</text><line x1="39.06250000000009" y1="12" x2="39.06250000000009" y2="32" stroke="#e8edf5" stroke-width="2"/><circle cx="39.06250000000009" cy="22" r="3.5" fill="#e8edf5"/><text x="39.06250000000009" y="43" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" fill="#8b96a8">2,709</text></svg></div>
+        <div class="hint">crossed — alert fires: Ethereum below A$3k</div>
+        <div class="hint sub2">trend over 26 reads: 8.58pp further · closest 0.67% · 00:04–23:23Z</div>
+      </li>
+      <li class="row tripped">
+        <div class="row-top"><span class="lbl">Solana below A$120</span>
+          <span class="state">TRIPPED</span></div>
+        <div class="nums"><span class="now">107</span> <span class="vs">vs 120 · lt</span></div>
+        <div class="ruler"><svg viewBox="0 0 300 46" role="img" aria-label="Solana below A$120 — crossed — alert fires: Solana below A$120"><rect x="39.0625" y="19" width="221.875" height="6" rx="3" fill="#141a23"/><line x1="8" y1="10" x2="8" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="36.4" y1="13" x2="36.4" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="64.8" y1="13" x2="64.8" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="93.19999999999999" y1="13" x2="93.19999999999999" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="121.6" y1="13" x2="121.6" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="150" y1="10" x2="150" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="178.39999999999998" y1="13" x2="178.39999999999998" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="206.79999999999998" y1="13" x2="206.79999999999998" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="235.2" y1="13" x2="235.2" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="263.6" y1="13" x2="263.6" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="292" y1="10" x2="292" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="6" y1="22" x2="294" y2="22" stroke="#2d3542" stroke-width="2"/><path d="M255.9375 8 L265.9375 8 L260.9375 16 Z" fill="#c9a227"/><text x="260.9375" y="6" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" fill="#9c8434">120</text><line x1="39.0625" y1="12" x2="39.0625" y2="32" stroke="#e8edf5" stroke-width="2"/><circle cx="39.0625" cy="22" r="3.5" fill="#e8edf5"/><text x="39.0625" y="43" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" fill="#8b96a8">107</text></svg></div>
+        <div class="hint">crossed — alert fires: Solana below A$120</div>
+        <div class="hint sub2">trend over 26 reads: 8.15pp further · closest 0.08% · 00:04–23:23Z</div>
+      </li>
+      <li class="row armed">
+        <div class="row-top"><span class="lbl">AUD above 0.72 USD</span>
+          <span class="state">ARMED</span></div>
+        <div class="nums"><span class="now">0.6785</span> <span class="vs">vs 0.72 · gt</span></div>
+        <div class="ruler"><svg viewBox="0 0 300 46" role="img" aria-label="AUD above 0.72 USD — 6.1% away — trips when it rises to 0.72"><rect x="39.06250000000021" y="19" width="221.87499999999955" height="6" rx="3" fill="#141a23"/><line x1="8" y1="10" x2="8" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="36.4" y1="13" x2="36.4" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="64.8" y1="13" x2="64.8" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="93.19999999999999" y1="13" x2="93.19999999999999" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="121.6" y1="13" x2="121.6" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="150" y1="10" x2="150" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="178.39999999999998" y1="13" x2="178.39999999999998" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="206.79999999999998" y1="13" x2="206.79999999999998" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="235.2" y1="13" x2="235.2" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="263.6" y1="13" x2="263.6" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="292" y1="10" x2="292" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="6" y1="22" x2="294" y2="22" stroke="#2d3542" stroke-width="2"/><path d="M255.93749999999977 8 L265.9374999999998 8 L260.9374999999998 16 Z" fill="#c9a227"/><text x="260.9374999999998" y="6" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" fill="#9c8434">0.72</text><line x1="39.06250000000021" y1="12" x2="39.06250000000021" y2="32" stroke="#e8edf5" stroke-width="2"/><circle cx="39.06250000000021" cy="22" r="3.5" fill="#e8edf5"/><text x="39.06250000000021" y="43" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" fill="#8b96a8">0.6785</text></svg></div>
+        <div class="hint">6.1% away — trips when it rises to 0.72</div>
+        <div class="hint sub2">trend over 26 reads: 1.32pp further · closest 4.29% · 00:04–23:23Z</div>
+      </li>
+      <li class="row armed">
+        <div class="row-top"><span class="lbl">Gold above 4200 USD/oz</span>
+          <span class="state">ARMED</span></div>
+        <div class="nums"><span class="now">3,886</span> <span class="vs">vs 4,200 · gt</span></div>
+        <div class="ruler"><svg viewBox="0 0 300 46" role="img" aria-label="Gold above 4200 USD/oz — 8.1% away — trips when it rises to 4,200"><rect x="39.062499999999886" y="19" width="221.8749999999999" height="6" rx="3" fill="#141a23"/><line x1="8" y1="10" x2="8" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="36.4" y1="13" x2="36.4" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="64.8" y1="13" x2="64.8" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="93.19999999999999" y1="13" x2="93.19999999999999" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="121.6" y1="13" x2="121.6" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="150" y1="10" x2="150" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="178.39999999999998" y1="13" x2="178.39999999999998" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="206.79999999999998" y1="13" x2="206.79999999999998" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="235.2" y1="13" x2="235.2" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="263.6" y1="13" x2="263.6" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="292" y1="10" x2="292" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="6" y1="22" x2="294" y2="22" stroke="#2d3542" stroke-width="2"/><path d="M255.93749999999977 8 L265.9374999999998 8 L260.9374999999998 16 Z" fill="#c9a227"/><text x="260.9374999999998" y="6" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" fill="#9c8434">4,200</text><line x1="39.062499999999886" y1="12" x2="39.062499999999886" y2="32" stroke="#e8edf5" stroke-width="2"/><circle cx="39.062499999999886" cy="22" r="3.5" fill="#e8edf5"/><text x="39.062499999999886" y="43" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" fill="#8b96a8">3,886</text></svg></div>
+        <div class="hint">8.1% away — trips when it rises to 4,200</div>
+        <div class="hint sub2">trend over 26 reads: 4.82pp further · closest 1.63% · 00:04–23:23Z</div>
+      </li>
+      <li class="row armed">
+        <div class="row-top"><span class="lbl">ASX 200 below 8500 pts</span>
+          <span class="state">ARMED</span></div>
+        <div class="nums"><span class="now">9,064</span> <span class="vs">vs 8,500 · lt</span></div>
+        <div class="ruler"><svg viewBox="0 0 300 46" role="img" aria-label="ASX 200 below 8500 pts — 6.2% away — trips when it falls to 8,500"><rect x="39.062500000000156" y="19" width="221.87499999999972" height="6" rx="3" fill="#141a23"/><line x1="8" y1="10" x2="8" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="36.4" y1="13" x2="36.4" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="64.8" y1="13" x2="64.8" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="93.19999999999999" y1="13" x2="93.19999999999999" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="121.6" y1="13" x2="121.6" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="150" y1="10" x2="150" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="178.39999999999998" y1="13" x2="178.39999999999998" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="206.79999999999998" y1="13" x2="206.79999999999998" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="235.2" y1="13" x2="235.2" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="263.6" y1="13" x2="263.6" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="292" y1="10" x2="292" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="6" y1="22" x2="294" y2="22" stroke="#2d3542" stroke-width="2"/><path d="M34.062500000000156 8 L44.062500000000156 8 L39.062500000000156 16 Z" fill="#c9a227"/><text x="39.062500000000156" y="6" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" fill="#9c8434">8,500</text><line x1="260.9374999999999" y1="12" x2="260.9374999999999" y2="32" stroke="#e8edf5" stroke-width="2"/><circle cx="260.9374999999999" cy="22" r="3.5" fill="#e8edf5"/><text x="260.9374999999999" y="43" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" fill="#8b96a8">9,064</text></svg></div>
+        <div class="hint">6.2% away — trips when it falls to 8,500</div>
+        <div class="hint sub2">trend over 26 reads: 0.54pp further · closest 5.31% · 00:04–23:23Z</div>
+      </li>
+      <li class="row armed">
+        <div class="row-top"><span class="lbl">CommBank below 160 A$</span>
+          <span class="state">ARMED</span></div>
+        <div class="nums"><span class="now">171</span> <span class="vs">vs 160 · lt</span></div>
+        <div class="ruler"><svg viewBox="0 0 300 46" role="img" aria-label="CommBank below 160 A$ — 6.5% away — trips when it falls to 160"><rect x="39.062500000000185" y="19" width="221.8749999999996" height="6" rx="3" fill="#141a23"/><line x1="8" y1="10" x2="8" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="36.4" y1="13" x2="36.4" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="64.8" y1="13" x2="64.8" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="93.19999999999999" y1="13" x2="93.19999999999999" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="121.6" y1="13" x2="121.6" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="150" y1="10" x2="150" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="178.39999999999998" y1="13" x2="178.39999999999998" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="206.79999999999998" y1="13" x2="206.79999999999998" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="235.2" y1="13" x2="235.2" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="263.6" y1="13" x2="263.6" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="292" y1="10" x2="292" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="6" y1="22" x2="294" y2="22" stroke="#2d3542" stroke-width="2"/><path d="M34.062500000000185 8 L44.062500000000185 8 L39.062500000000185 16 Z" fill="#c9a227"/><text x="39.062500000000185" y="6" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" fill="#9c8434">160</text><line x1="260.9374999999998" y1="12" x2="260.9374999999998" y2="32" stroke="#e8edf5" stroke-width="2"/><circle cx="260.9374999999998" cy="22" r="3.5" fill="#e8edf5"/><text x="260.9374999999998" y="43" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" fill="#8b96a8">171</text></svg></div>
+        <div class="hint">6.5% away — trips when it falls to 160</div>
+        <div class="hint sub2">trend over 26 reads: 2.12pp further · closest 3.18% · 00:04–23:23Z</div>
+      </li>
+      <li class="row armed">
+        <div class="row-top"><span class="lbl">Bitcoin moves 5% in 24h</span>
+          <span class="state">ARMED</span></div>
+        <div class="nums"><span class="now">96,437</span> <span class="vs">vs ±5% over 24h</span></div>
+        <div class="bar"><i style="width:43.8%"></i></div>
+        <div class="hint">-2.19% in 24h — fires at ±5%</div>
+        <div class="hint sub2">moves, not levels — computed from our own hourly readings, never predicted</div>
+      </li>
+    </ul>
+  </section>
+  <p class="stamp">Read 2026-11-15T23:44:41.803Z · 8 tripwires · 1 from ≤60s cache · sources: public keyless APIs (CoinGecko, ECB via Frankfurter, Yahoo Finance) · refreshed hourly. Prefer a feed? <a class="u" href="feed.xml">RSS</a> · <a class="u" href="https://tripwire-alert.trade/board.json">board.json</a></p>
+
+  <section class="card" id="mine">
+    <h2>Try it free — pick a market, name your number</h2>
+    <div class="mk">
+      <label for="w-asset">Market<select id="w-asset"><option value="btc">Bitcoin — A$</option><option value="eth">Ethereum — A$</option><option value="sol">Solana — A$</option><option value="xrp">XRP — A$</option><option value="ada">Cardano — A$</option><option value="doge">Dogecoin — A$</option><option value="audusd">AUD/USD — USD</option><option value="audeur">AUD/EUR — EUR</option><option value="audgbp">AUD/GBP — GBP</option><option value="audjpy">AUD/JPY — JPY</option><option value="usdjpy">USD/JPY — JPY</option><option value="eurusd">EUR/USD — USD</option><option value="gold">Gold (front month) — USD/oz</option><option value="silver">Silver (front month) — USD/oz</option><option value="platinum">Platinum (front month) — USD/oz</option><option value="asx200">ASX 200 — pts</option><option value="sp500">S&amp;P 500 — pts</option><option value="nasdaq">Nasdaq Composite — pts</option><option value="dow">Dow Jones — pts</option><option value="ftse">FTSE 100 — pts</option><option value="nikkei">Nikkei 225 — pts</option><option value="wti">WTI crude — USD/bbl</option><option value="brent">Brent crude — USD/bbl</option><option value="natgas">Natural gas — USD</option><option value="bhp">BHP Group — A$</option><option value="cba">CommBank — A$</option><option value="wbc">Westpac — A$</option><option value="aapl">Apple — USD</option><option value="msft">Microsoft — USD</option><option value="nvda">Nvidia — USD</option><option value="tsla">Tesla — USD</option></select></label>
+      <label for="w-dir">Fires when it<select id="w-dir"><option value="above">crosses above</option><option value="below">crosses below</option><option value="move">moves by %</option></select></label>
+      <label for="w-val"><span id="w-lab">your number</span><input id="w-val" type="number" step="any" inputmode="decimal" placeholder="0"></label>
+      <div><button class="btn2" id="w-add" type="button">Add to my board</button><button class="btn3" id="w-clear" type="button">Clear</button></div>
+    </div>
+    <div class="presets">Or start from one of these — the numbers are computed fresh from today's quotes:
+      <a class="chip" href="?w=gold:above:4050">Gold (front month) above 4050</a>
+      <a class="chip" href="?w=asx200:below:8700">ASX 200 below 8700</a>
+      <a class="chip" href="?w=cba:below:164">CommBank below 164</a>
+      <a class="chip" href="?w=btc:move:5">Bitcoin moves ±5%</a>
+      <a class="chip" href="?w=audusd:above:0.706">AUD/USD above 0.706</a>
+      <a class="chip" href="?w=aapl:above:371">Apple above 371</a>
+    </div>
+    <ul id="w-out"></ul>
+    <p class="note">Your board lives in this page's link (<a class="u mono" id="w-link" href="#mine">bookmark it</a>) — no account, nothing stored on our side. A paid plan does what a browser can't: checks your markets every hour and emails you when one crosses.</p>
+  </section>
+
+  <h2 class="sect" id="pricing">Pricing</h2>
+  <p class="sectsub">Monthly in Australian dollars. Paid plans start with 7 days free — cancel before day 7 and you pay nothing.</p>
+  <div class="plans">
+    <div class="plan">
+      <div class="pname">Free</div>
+      <div class="pp">A$0</div>
+      <p class="pfor">Follow along, no account needed.</p>
+      <ul><li>The live board and all 31 market prices</li><li>RSS feed of every alert</li><li>Build a watch-list in your browser</li></ul>
+      <a class="pbtn" href="#mine">Try it now</a>
+      <p class="pnote">No card, no email</p>
+    </div>
+    <div class="plan pop">
+      <div class="pname">Tripwire <span class="tag">7 DAYS FREE</span></div>
+      <div class="pp">A$9<small>/month</small></div>
+      <p class="pfor">Your own price alerts.</p>
+      <ul><li>Choose any 4 of 31 markets</li><li>Set your own price on each — change them any time</li><li>Checked every hour, emailed when crossed</li><li>Every alert with a verifiable receipt</li></ul>
+      <a class="pbtn" href="https://tripwire-alert.trade/subscribe?tier=tripwire">Start free trial</a>
+      <p class="pnote">7 days free, then A$9/mo</p>
+    </div>
+    <div class="plan">
+      <div class="pname">Baskets</div>
+      <div class="pp"><small>from</small> A$29<small>/month</small></div>
+      <p class="pfor">A ready-made basket, watched as one.</p>
+      <ul><li>ASX Steady A$29/mo · Global Core A$59/mo · Momentum A$99/mo</li><li>Alert when the whole basket moves past its band</li><li>Monday review of how the basket did</li></ul>
+      <a class="pbtn" href="https://tripwire-alert.trade/subscribe?tier=package">Start free trial</a>
+      <p class="pnote"><a class="u" href="#packages">See the baskets</a></p>
+    </div>
+    <div class="plan">
+      <div class="pname">Gear</div>
+      <div class="pp">A$99<small>/month</small></div>
+      <p class="pfor">A rules-based trend model.</p>
+      <ul><li>8 instruments incl. 2x/3x leveraged funds (higher risk)</li><li>Monthly target weights set by the rule</li><li>Monday review against buy &amp; hold</li></ul>
+      <a class="pbtn" href="https://tripwire-alert.trade/subscribe?tier=gear">Start free trial</a>
+      <p class="pnote"><a class="u" href="#algos">How the rule works</a></p>
+    </div>
+  </div>
+  <p class="stamp">Prices in AUD; the exact amount is shown at Stripe checkout before you confirm. Cancel or change card any time in the <a class="u" href="/subscribe#manage">billing portal</a>.</p>
+
+  <h2 class="sect" id="faq">Questions</h2>
+  <div class="faq">
+    <details><summary>Is this financial advice?</summary><p>No. Tripwire tells you a price crossed a number <i>you</i> chose. It doesn't predict prices or tell you what to buy or sell.</p></details>
+    <details><summary>How fast will I hear about a cross?</summary><p>Prices are checked once an hour, so an alert normally arrives within about an hour of the cross. It's built for people who don't want to watch screens — not for day trading.</p></details>
+    <details><summary>How do I choose my markets and prices?</summary><p>After checkout you get a member key. Open <a class="u" href="/account">your account</a>, paste it, then pick up to 4 markets and the price for each. You can change them whenever you like.</p></details>
+    <details><summary>How does the free trial work?</summary><p>Paid plans are free for 7 days, then billed monthly in AUD by Stripe. Cancel before day 7 in the billing portal and you aren't charged. Your card details go to Stripe, never to this site.</p></details>
+    <details><summary>Where do the prices come from?</summary><p>Public sources: CoinGecko for crypto, the European Central Bank (via Frankfurter) for exchange rates, and Yahoo Finance for shares, indices, metals and energy. If a source doesn't answer, the board says “stale” rather than showing an old or made-up number.</p></details>
+    <details><summary>What does “tamper-evident log” mean?</summary><p>Each alert includes a fingerprint (a SHA-256 hash) of the alert before it. Editing or deleting any past alert would break every fingerprint after it, so the history can't be quietly rewritten. Anyone can check it in <a class="u" href="https://tripwire-alert.trade/log.json">log.json</a>.</p></details>
+    <details><summary>Can I cancel?</summary><p>Yes, any time, in the <a class="u" href="/subscribe#manage">Stripe billing portal</a>. No phone call, no email needed.</p></details>
+  </div>
+
+  <div class="endcta">
+    <h2>Set your first tripwire</h2>
+    <p>7 days free, then A$9/mo. Cancel any time.</p>
+    <div class="ctarow" style="justify-content:center"><a class="btn" href="https://tripwire-alert.trade/subscribe?tier=tripwire">Start free trial</a><a class="btnghost" href="#mine">Try the free board</a></div>
+  </div>
+
+  <div class="deep">
+  <h2 class="sect" id="deep">For the data-curious</h2>
+  <p class="sectsub">Everything below is the detail behind the product: the baskets and their research notes, every position, the models and their backtests, the full market sheet, the member sign-in and the alert log. None of it is needed to use Tripwire.</p>
+
   <span id="baskets"></span><h3 id="packages">Baskets — a weighted set of legs, a live graph, and the alerts that watch it</h3>
   <p class="sub">Weights add to 100% by construction, so "combined" is arithmetic, not a claim. You get the basket, its live combined metric, the research note behind the weights, and a tripwire on the basket itself. The graph is drawn from our own hourly reads — no backtest, because a backtest is a history someone could have written after the fact.</p>
   <div class="pkg">
@@ -296,34 +504,34 @@
         </div>
         <div class="pkgmeta">4 holdings · weights total 100% · 2 sector(s) · rebalanced daily, back to these weights · risk lower · horizon 6–12 months</div>
         <div class="mixrow"><span class="chip2">ASX equities <b>75%</b></span><span class="chip2">Indices <b>25%</b></span></div>
-        <div class="pkgbig down">-0.74%<span class="pkglab">combined, today — the weighted sum of the legs below</span></div>
+        <div class="pkgbig down">-0.35%<span class="pkglab">combined, today — the weighted sum of the legs below</span></div>
         <div class="w4"><span class="w4k">Past 4 weeks</span><b class="up">+5.48%</b><span class="w4l">the weighted sum of the legs below</span><svg class="w4sp" viewBox="0 0 120 24" role="img" aria-label="ASX Steady, past 4 weeks, weighted sum +5.48%"><line x1="3" y1="19.9" x2="117" y2="19.9" stroke="#2d3542" stroke-width="1" stroke-dasharray="2 2"/><polyline points="3.0,19.9 7.1,19.9 11.1,18.2 15.2,19.8 19.3,19.4 23.4,21.0 27.4,18.0 31.5,18.0 35.6,18.0 39.6,18.1 43.7,16.3 47.8,15.2 51.9,12.6 55.9,12.9 60.0,12.9 64.1,12.9 68.1,14.5 72.2,14.0 76.3,15.6 80.4,9.3 84.4,10.0 88.5,10.0 92.6,10.0 96.6,9.3 100.7,5.5 104.8,5.7 108.9,3.0 112.9,5.1 117.0,5.1" fill="none" stroke="var(--live)" stroke-width="1.6"/></svg><span class="w4d">28 days to each leg's last cached close (2026-11-13)</span></div>
-        <div class="sparkwrap"><svg class="spark" viewBox="0 0 300 56" preserveAspectRatio="none" role="img" aria-label="ASX Steady index level, 33 reads"><polyline points="5.0,50.3 14.1,50.8 23.1,50.3 32.2,51.0 41.3,46.9 50.3,46.0 59.4,42.9 68.4,42.9 77.5,42.9 86.6,42.9 95.6,42.9 104.7,42.9 113.8,42.9 122.8,42.9 131.9,42.9 140.9,42.9 150.0,42.9 159.1,42.9 168.1,42.9 177.2,42.9 186.3,42.9 195.3,42.9 204.4,42.9 213.4,42.9 222.5,36.1 231.6,36.1 240.6,5.0 249.7,5.0 258.8,5.0 267.8,5.0 276.9,5.0 285.9,5.0 295.0,5.0" fill="none" stroke="var(--live)" stroke-width="2" vector-effect="non-scaling-stroke"/></svg></div>
+        <div class="sparkwrap"><svg class="spark" viewBox="0 0 300 56" preserveAspectRatio="none" role="img" aria-label="ASX Steady index level, 34 reads"><polyline points="5.0,50.3 13.8,50.8 22.6,50.3 31.4,51.0 40.2,46.9 48.9,46.0 57.7,42.9 66.5,42.9 75.3,42.9 84.1,42.9 92.9,42.9 101.7,42.9 110.5,42.9 119.2,42.9 128.0,42.9 136.8,42.9 145.6,42.9 154.4,42.9 163.2,42.9 172.0,42.9 180.8,42.9 189.5,42.9 198.3,42.9 207.1,42.9 215.9,36.1 224.7,36.1 233.5,5.0 242.3,5.0 251.1,5.0 259.8,5.0 268.6,5.0 277.4,5.0 286.2,5.0 295.0,8.2" fill="none" stroke="var(--live)" stroke-width="2" vector-effect="non-scaling-stroke"/></svg></div>
         <div class="wbar"><span class="wseg" style="width:30%;background:#31d68a" title="CommBank 30%"></span><span class="wseg" style="width:20%;background:#4a9eff" title="Westpac 20%"></span><span class="wseg" style="width:25%;background:#e3b341" title="BHP Group 25%"></span><span class="wseg" style="width:25%;background:#c084fc" title="ASX 200 25%"></span></div>
         <ul class="holds">
           <li><span class="dot" style="background:#31d68a"></span>
             <span class="hlbl">CommBank</span><span class="hw">30%</span>
-            <span class="hv">170.87 <span class="hu">A$</span></span>
-            <span class="hc down">-0.52%</span>
-            <span class="hk">-0.16pp</span>
+            <span class="hv">171.09 <span class="hu">A$</span></span>
+            <span class="hc up">+0.13%</span>
+            <span class="hk">+0.04pp</span>
             <span class="h4 up" title="CommBank, past 4 weeks">4w +10.68%</span></li>
           <li><span class="dot" style="background:#4a9eff"></span>
             <span class="hlbl">Westpac</span><span class="hw">20%</span>
-            <span class="hv">37.83 <span class="hu">A$</span></span>
-            <span class="hc down">-0.47%</span>
-            <span class="hk">-0.09pp</span>
+            <span class="hv">37.69 <span class="hu">A$</span></span>
+            <span class="hc down">-0.38%</span>
+            <span class="hk">-0.08pp</span>
             <span class="h4 up" title="Westpac, past 4 weeks">4w +9.91%</span></li>
           <li><span class="dot" style="background:#e3b341"></span>
             <span class="hlbl">BHP Group</span><span class="hw">25%</span>
-            <span class="hv">58.86 <span class="hu">A$</span></span>
-            <span class="hc down">-1.26%</span>
-            <span class="hk">-0.32pp</span>
+            <span class="hv">58.25 <span class="hu">A$</span></span>
+            <span class="hc down">-1.04%</span>
+            <span class="hk">-0.26pp</span>
             <span class="h4 down" title="BHP Group, past 4 weeks">4w -1.95%</span></li>
           <li><span class="dot" style="background:#c084fc"></span>
             <span class="hlbl">ASX 200</span><span class="hw">25%</span>
-            <span class="hv">9,082.2 <span class="hu">pts</span></span>
-            <span class="hc down">-0.71%</span>
-            <span class="hk">-0.18pp</span>
+            <span class="hv">9,064.3 <span class="hu">pts</span></span>
+            <span class="hc down">-0.2%</span>
+            <span class="hk">-0.05pp</span>
             <span class="h4 up" title="ASX 200, past 4 weeks">4w +3.13%</span></li>
         </ul>
         <p class="thesis">The four things an Australian already owns, in the weights an Australian already owns them: two banks for the earnings that pay the dividend, BHP for the commodity cycle, and the index for everything else.</p>
@@ -337,9 +545,9 @@
           </ul>
           <p class="note"><b>What would invalidate it:</b> A sustained fall in the cash rate that compresses bank net interest margins at the same time the iron ore price falls — both legs down for one macro reason, which is exactly when a 50-point bank weight stops diversifying.</p>
         </div>
-        <div class="pkgalert"><span class="live-dot"></span>Armed at ±2.5% / 24h — currently 0.00% against a base of 102.1159 from 2026-11-14 04:35Z.<br>
-          <span class="note">Index 102.12 · 33 hourly read(s) since 2026-11-06 · +2.12% measured from our own recorded reads, not a backtest.</span></div>
-        <a class="btn" href="mailto:andrew098710@gmail.com?subject=Tripwire%20package%3A%20ASX%20Steady">Take ASX Steady — A$29/mo</a>
+        <div class="pkgalert"><span class="live-dot"></span>Armed at ±2.5% / 24h — currently -0.35% against a base of 102.1159 from 2026-11-14 04:35Z.<br>
+          <span class="note">Index 101.76 · 34 hourly read(s) since 2026-11-06 · +1.76% measured from our own recorded reads, not a backtest.</span></div>
+        <a class="btn" href="https://tripwire-alert.trade/subscribe?tier=package&amp;basket=asx-steady">Start ASX Steady free trial — A$29/mo</a>
       </article>
       <article class="pkgcard">
         <div class="pkghead">
@@ -350,7 +558,7 @@
         <div class="mixrow"><span class="chip2">Indices <b>50%</b></span><span class="chip2">US equities <b>30%</b></span><span class="chip2">Commodities <b>20%</b></span></div>
         <div class="pkgbig down">-0.22%<span class="pkglab">combined, today — the weighted sum of the legs below</span></div>
         <div class="w4"><span class="w4k">Past 4 weeks</span><b class="down">-2.13%</b><span class="w4l">the weighted sum of the legs below</span><svg class="w4sp" viewBox="0 0 120 24" role="img" aria-label="Global Core, past 4 weeks, weighted sum -2.13%"><line x1="3" y1="6.7" x2="117" y2="6.7" stroke="#2d3542" stroke-width="1" stroke-dasharray="2 2"/><polyline points="3.0,6.7 7.1,6.7 11.1,6.7 15.2,5.1 19.3,6.0 23.4,3.0 27.4,9.9 31.5,11.6 35.6,11.6 39.6,11.6 43.7,8.9 47.8,5.7 51.9,6.3 55.9,7.5 60.0,17.7 64.1,17.7 68.1,17.7 72.2,21.0 76.3,19.9 80.4,5.3 84.4,19.2 88.5,19.8 92.6,19.8 96.6,19.8 100.7,9.8 104.8,14.9 108.9,12.4 112.9,15.7 117.0,16.6" fill="none" stroke="var(--hot)" stroke-width="1.6"/></svg><span class="w4d">28 days to each leg's last cached close (2026-11-13)</span></div>
-        <div class="sparkwrap"><svg class="spark" viewBox="0 0 300 56" preserveAspectRatio="none" role="img" aria-label="Global Core index level, 33 reads"><polyline points="5.0,45.8 14.1,46.0 23.1,49.0 32.2,50.2 41.3,50.8 50.3,51.0 59.4,50.6 68.4,49.7 77.5,50.8 86.6,44.9 95.6,45.6 104.7,46.1 113.8,49.2 122.8,34.3 131.9,24.9 140.9,19.4 150.0,22.1 159.1,19.0 168.1,33.5 177.2,19.9 186.3,28.8 195.3,41.2 204.4,40.5 213.4,40.0 222.5,33.3 231.6,33.1 240.6,5.0 249.7,5.0 258.8,5.0 267.8,5.0 276.9,5.0 285.9,5.0 295.0,5.0" fill="none" stroke="var(--live)" stroke-width="2" vector-effect="non-scaling-stroke"/></svg></div>
+        <div class="sparkwrap"><svg class="spark" viewBox="0 0 300 56" preserveAspectRatio="none" role="img" aria-label="Global Core index level, 34 reads"><polyline points="5.0,45.8 13.8,46.0 22.6,49.0 31.4,50.2 40.2,50.8 48.9,51.0 57.7,50.6 66.5,49.7 75.3,50.8 84.1,44.9 92.9,45.6 101.7,46.1 110.5,49.2 119.2,34.3 128.0,24.9 136.8,19.4 145.6,22.1 154.4,19.0 163.2,33.5 172.0,19.9 180.8,28.8 189.5,41.2 198.3,40.5 207.1,40.0 215.9,33.3 224.7,33.1 233.5,5.0 242.3,5.0 251.1,5.0 259.8,5.0 268.6,5.0 277.4,5.0 286.2,5.0 295.0,6.2" fill="none" stroke="var(--live)" stroke-width="2" vector-effect="non-scaling-stroke"/></svg></div>
         <div class="wbar"><span class="wseg" style="width:30%;background:#31d68a" title="S&amp;P 500 30%"></span><span class="wseg" style="width:20%;background:#4a9eff" title="Nasdaq Composite 20%"></span><span class="wseg" style="width:15%;background:#e3b341" title="Apple 15%"></span><span class="wseg" style="width:15%;background:#c084fc" title="Microsoft 15%"></span><span class="wseg" style="width:20%;background:#ff5c47" title="Gold (front month) 20%"></span></div>
         <ul class="holds">
           <li><span class="dot" style="background:#31d68a"></span>
@@ -379,9 +587,9 @@
             <span class="h4 down" title="Microsoft, past 4 weeks">4w -0.98%</span></li>
           <li><span class="dot" style="background:#ff5c47"></span>
             <span class="hlbl">Gold (front month)</span><span class="hw">20%</span>
-            <span class="hv">3,886.3 <span class="hu">USD/oz</span></span>
-            <span class="hc up">0%</span>
-            <span class="hk">0.00pp</span>
+            <span class="hv">3,885.5 <span class="hu">USD/oz</span></span>
+            <span class="hc down">-0.02%</span>
+            <span class="hk">-0.00pp</span>
             <span class="h4 down" title="Gold (front month), past 4 weeks">4w -7.02%</span></li>
         </ul>
         <p class="thesis">The two things people actually argue about — US earnings and the price of safety — in one number: 80 points of US equity in three shapes, against 20 points of gold as the thing that is not equity.</p>
@@ -396,8 +604,8 @@
           <p class="note"><b>What would invalidate it:</b> A US earnings recession with gold falling at the same time (real yields up, dollar up) — then 80 points of equity and the 20-point hedge go down together.</p>
         </div>
         <div class="pkgalert"><span class="live-dot"></span>Armed at ±3% / 24h — currently 0.00% against a base of 100.7992 from 2026-11-14 04:35Z.<br>
-          <span class="note">Index 100.80 · 33 hourly read(s) since 2026-11-06 · +0.80% measured from our own recorded reads, not a backtest.</span></div>
-        <a class="btn" href="mailto:andrew098710@gmail.com?subject=Tripwire%20package%3A%20Global%20Core">Take Global Core — A$59/mo</a>
+          <span class="note">Index 100.80 · 34 hourly read(s) since 2026-11-06 · +0.80% measured from our own recorded reads, not a backtest.</span></div>
+        <a class="btn" href="https://tripwire-alert.trade/subscribe?tier=package&amp;basket=global-core">Start Global Core free trial — A$59/mo</a>
       </article>
       <article class="pkgcard">
         <div class="pkghead">
@@ -406,22 +614,22 @@
         </div>
         <div class="pkgmeta">6 holdings · weights total 100% · 3 sector(s) · rebalanced daily, back to these weights · risk higher · horizon 1–6 months</div>
         <div class="mixrow"><span class="chip2">Crypto <b>60%</b></span><span class="chip2">US equities <b>30%</b></span><span class="chip2">Commodities <b>10%</b></span></div>
-        <div class="pkgbig up">+1.87%<span class="pkglab">combined, today — the weighted sum of the legs below</span></div>
+        <div class="pkgbig up">+1.65%<span class="pkglab">combined, today — the weighted sum of the legs below</span></div>
         <div class="w4"><span class="w4k">Past 4 weeks</span><b class="down">-16.15%</b><span class="w4l">the weighted sum of the legs below</span><svg class="w4sp" viewBox="0 0 120 24" role="img" aria-label="Momentum, past 4 weeks, weighted sum -16.15%"><line x1="3" y1="4.9" x2="117" y2="4.9" stroke="#2d3542" stroke-width="1" stroke-dasharray="2 2"/><polyline points="3.0,4.9 7.1,4.8 11.1,4.9 15.2,3.3 19.3,3.0 23.4,4.5 27.4,5.8 31.5,5.9 35.6,6.6 39.6,6.6 43.7,5.2 47.8,4.7 51.9,7.3 55.9,7.8 60.0,8.4 64.1,8.0 68.1,8.8 72.2,8.9 76.3,6.3 80.4,11.3 84.4,13.5 88.5,12.6 92.6,14.3 96.6,14.3 100.7,16.1 104.8,16.7 108.9,17.0 112.9,17.3 117.0,21.0" fill="none" stroke="var(--hot)" stroke-width="1.6"/></svg><span class="w4d">28 days to each leg's last cached close (2026-11-13–11-14)</span></div>
-        <div class="sparkwrap"><svg class="spark" viewBox="0 0 300 56" preserveAspectRatio="none" role="img" aria-label="Momentum index level, 33 reads"><polyline points="5.0,10.3 14.1,10.3 23.1,10.6 32.2,10.8 41.3,10.8 50.3,11.2 59.4,11.1 68.4,11.1 77.5,11.2 86.6,9.3 95.6,9.2 104.7,10.1 113.8,9.7 122.8,5.1 131.9,5.4 140.9,5.8 150.0,7.4 159.1,5.4 168.1,7.2 177.2,6.3 186.3,5.0 195.3,6.3 204.4,5.8 213.4,6.4 222.5,15.2 231.6,15.7 240.6,41.8 249.7,51.0 258.8,48.9 267.8,49.7 276.9,48.2 285.9,47.7 295.0,47.0" fill="none" stroke="var(--hot)" stroke-width="2" vector-effect="non-scaling-stroke"/></svg></div>
+        <div class="sparkwrap"><svg class="spark" viewBox="0 0 300 56" preserveAspectRatio="none" role="img" aria-label="Momentum index level, 34 reads"><polyline points="5.0,10.3 13.8,10.3 22.6,10.6 31.4,10.8 40.2,10.8 48.9,11.2 57.7,11.1 66.5,11.1 75.3,11.2 84.1,9.3 92.9,9.2 101.7,10.1 110.5,9.7 119.2,5.1 128.0,5.4 136.8,5.8 145.6,7.4 154.4,5.4 163.2,7.2 172.0,6.3 180.8,5.0 189.5,6.3 198.3,5.8 207.1,6.4 215.9,15.2 224.7,15.7 233.5,41.8 242.3,51.0 251.1,48.9 259.8,49.7 268.6,48.2 277.4,47.7 286.2,47.0 295.0,47.6" fill="none" stroke="var(--hot)" stroke-width="2" vector-effect="non-scaling-stroke"/></svg></div>
         <div class="wbar"><span class="wseg" style="width:30%;background:#31d68a" title="Bitcoin 30%"></span><span class="wseg" style="width:20%;background:#4a9eff" title="Ethereum 20%"></span><span class="wseg" style="width:20%;background:#e3b341" title="Nvidia 20%"></span><span class="wseg" style="width:10%;background:#c084fc" title="Solana 10%"></span><span class="wseg" style="width:10%;background:#ff5c47" title="Tesla 10%"></span><span class="wseg" style="width:10%;background:#22d3ee" title="WTI crude 10%"></span></div>
         <ul class="holds">
           <li><span class="dot" style="background:#31d68a"></span>
             <span class="hlbl">Bitcoin</span><span class="hw">30%</span>
-            <span class="hv">96,584 <span class="hu">A$</span></span>
-            <span class="hc up">+2.87%</span>
-            <span class="hk">+0.86pp</span>
+            <span class="hv">96,357 <span class="hu">A$</span></span>
+            <span class="hc up">+2.65%</span>
+            <span class="hk">+0.80pp</span>
             <span class="h4 down" title="Bitcoin, past 4 weeks">4w -15.89%</span></li>
           <li><span class="dot" style="background:#4a9eff"></span>
             <span class="hlbl">Ethereum</span><span class="hw">20%</span>
-            <span class="hv">2,711.51 <span class="hu">A$</span></span>
-            <span class="hc up">+5.27%</span>
-            <span class="hk">+1.05pp</span>
+            <span class="hv">2,708.57 <span class="hu">A$</span></span>
+            <span class="hc up">+4.94%</span>
+            <span class="hk">+0.99pp</span>
             <span class="h4 down" title="Ethereum, past 4 weeks">4w -19.22%</span></li>
           <li><span class="dot" style="background:#e3b341"></span>
             <span class="hlbl">Nvidia</span><span class="hw">20%</span>
@@ -431,9 +639,9 @@
             <span class="h4 down" title="Nvidia, past 4 weeks">4w -23.95%</span></li>
           <li><span class="dot" style="background:#c084fc"></span>
             <span class="hlbl">Solana</span><span class="hw">10%</span>
-            <span class="hv">107.48 <span class="hu">A$</span></span>
-            <span class="hc up">+5.34%</span>
-            <span class="hk">+0.53pp</span>
+            <span class="hv">107.11 <span class="hu">A$</span></span>
+            <span class="hc up">+4.55%</span>
+            <span class="hk">+0.46pp</span>
             <span class="h4 down" title="Solana, past 4 weeks">4w -25.18%</span></li>
           <li><span class="dot" style="background:#ff5c47"></span>
             <span class="hlbl">Tesla</span><span class="hw">10%</span>
@@ -443,9 +651,9 @@
             <span class="h4 up" title="Tesla, past 4 weeks">4w +10.01%</span></li>
           <li><span class="dot" style="background:#22d3ee"></span>
             <span class="hlbl">WTI crude</span><span class="hw">10%</span>
-            <span class="hv">88.56 <span class="hu">USD/bbl</span></span>
-            <span class="hc up">0%</span>
-            <span class="hk">0.00pp</span>
+            <span class="hv">88.49 <span class="hu">USD/bbl</span></span>
+            <span class="hc down">-0.08%</span>
+            <span class="hk">-0.01pp</span>
             <span class="h4 down" title="WTI crude, past 4 weeks">4w -12.32%</span></li>
         </ul>
         <p class="thesis">The highest-beta liquid things we can price for free, weighted so no single one can sink the basket: 60 points of crypto, 30 of high-beta US equity, 10 of crude.</p>
@@ -459,49 +667,49 @@
           </ul>
           <p class="note"><b>What would invalidate it:</b> A liquidity event where crypto, high-beta equity and crude fall on the same day — the 60-point crypto leg and the 30-point equity leg collapse into one position at the worst possible moment.</p>
         </div>
-        <div class="pkgalert"><span class="live-dot"></span>Armed at ±6% / 24h — currently -1.45% against a base of 91.4777 from 2026-11-14 04:35Z.<br>
-          <span class="note">Index 90.15 · 33 hourly read(s) since 2026-11-06 · -9.85% measured from our own recorded reads, not a backtest.</span></div>
-        <a class="btn" href="mailto:andrew098710@gmail.com?subject=Tripwire%20package%3A%20Momentum">Take Momentum — A$99/mo</a>
+        <div class="pkgalert"><span class="live-dot"></span>Armed at ±6% / 24h — currently -1.58% against a base of 91.4777 from 2026-11-14 04:35Z.<br>
+          <span class="note">Index 90.03 · 34 hourly read(s) since 2026-11-06 · -9.97% measured from our own recorded reads, not a backtest.</span></div>
+        <a class="btn" href="https://tripwire-alert.trade/subscribe?tier=package&amp;basket=momentum">Start Momentum free trial — A$99/mo</a>
       </article>
   </div>
   <p class="stamp">A basket is a set of weights, not a promise: nothing here forecasts a return. The combined % is each leg's own last-day change (prior close for equities, indices, futures and metals; trailing 24h for crypto; prior ECB business day for FX) times its weight. Every leg is live at this build. The <b>past 4 weeks</b> line is Σ weight × each leg's own return from its last close on or before 28 calendar days before its last cached daily close, to that close — the same cached, sha-pinned daily closes the backtest reads (<span class="mono">algos/history</span>), so it is a measurement, not a fetch; a leg with no cached series is shown n/a and left out of the sum, never filled. The small line is that same weighted sum on each day of the window.</p>
 
 
   <section class="card" id="desk-book">
-    <h2><span class="n">02</span><span class="live-dot"></span>Live trade updates — the desk book, 15 position(s)</h2>
+    <h2><span class="live-dot"></span>Live trade updates — the desk book, 15 position(s)</h2>
     <div class="pad" style="padding-top:12px;padding-bottom:4px"><div class="w4"><span class="w4k">Past 4 weeks</span><b class="down">-4.27%</b><span class="w4l">the weighted sum of the 15 positions below — size × 4-week move, ÷ total size, so each of the 3 baskets counts once at its own weights</span><svg class="w4sp" viewBox="0 0 120 24" role="img" aria-label="Desk book, past 4 weeks, weighted sum -4.27%"><line x1="3" y1="5.7" x2="117" y2="5.7" stroke="#2d3542" stroke-width="1" stroke-dasharray="2 2"/><polyline points="3.0,5.7 7.1,5.5 11.1,4.9 15.2,3.3 19.3,3.0 23.4,4.7 27.4,6.7 31.5,7.4 35.6,8.1 39.6,8.1 43.7,5.0 47.8,3.0 51.9,5.2 55.9,6.2 60.0,9.5 64.1,9.1 68.1,10.8 72.2,11.5 76.3,8.9 80.4,8.3 84.4,14.8 88.5,13.8 92.6,15.9 96.6,15.7 100.7,13.5 104.8,15.6 108.9,14.2 112.9,16.4 117.0,21.0" fill="none" stroke="var(--hot)" stroke-width="1.6"/></svg><span class="w4d">28 days to each leg's last cached close (2026-11-13–11-14)</span></div></div>
     <div class="bookwrap"><table class="book">
       <thead><tr><th>Position</th><th>Size</th><th>Entry</th><th>Last</th><th>Move</th><th>Contrib</th><th>4 wk</th><th>Band</th><th>State</th></tr></thead>
       <tbody>
       <tr class=""><td class="mono">asx-steady:cba</td><td>30%</td>
         <td>167.33</td>
-        <td>170.87</td>
-        <td class="up">+2.12%</td>
-        <td>+0.64pp</td>
+        <td>171.09</td>
+        <td class="up">+2.25%</td>
+        <td>+0.68pp</td>
         <td class="up">+10.68%</td>
         <td>±2.5%</td>
         <td class="state2">OPEN</td></tr>
       <tr class=""><td class="mono">asx-steady:wbc</td><td>20%</td>
         <td>36.97</td>
-        <td>37.83</td>
-        <td class="up">+2.33%</td>
-        <td>+0.47pp</td>
+        <td>37.69</td>
+        <td class="up">+1.93%</td>
+        <td>+0.39pp</td>
         <td class="up">+9.91%</td>
         <td>±2.5%</td>
         <td class="state2">OPEN</td></tr>
       <tr class="up"><td class="mono">asx-steady:bhp</td><td>25%</td>
         <td>57.25</td>
-        <td>58.86</td>
-        <td class="up">+2.81%</td>
-        <td>+0.70pp</td>
+        <td>58.25</td>
+        <td class="up">+1.75%</td>
+        <td>+0.44pp</td>
         <td class="down">-1.95%</td>
         <td>±2.5%</td>
         <td class="state2">TARGET 11-09 09:23</td></tr>
       <tr class=""><td class="mono">asx-steady:asx200</td><td>25%</td>
         <td>8,977.4</td>
-        <td>9,082.2</td>
-        <td class="up">+1.17%</td>
-        <td>+0.29pp</td>
+        <td>9,064.3</td>
+        <td class="up">+0.97%</td>
+        <td>+0.24pp</td>
         <td class="up">+3.13%</td>
         <td>±2.5%</td>
         <td class="state2">OPEN</td></tr>
@@ -539,25 +747,25 @@
         <td class="state2">OPEN</td></tr>
       <tr class="down"><td class="mono">global-core:gold</td><td>20%</td>
         <td>4,074.4</td>
-        <td>3,886.3</td>
-        <td class="down">-4.62%</td>
-        <td>-0.92pp</td>
+        <td>3,885.5</td>
+        <td class="down">-4.64%</td>
+        <td>-0.93pp</td>
         <td class="down">-7.02%</td>
         <td>±3%</td>
         <td class="state2">STOPPED 11-14 04:35</td></tr>
       <tr class="down"><td class="mono">momentum:btc</td><td>30%</td>
         <td>110,061</td>
-        <td>96,584</td>
-        <td class="down">-12.25%</td>
-        <td>-3.67pp</td>
+        <td>96,357</td>
+        <td class="down">-12.45%</td>
+        <td>-3.73pp</td>
         <td class="down">-15.89%</td>
         <td>±6%</td>
         <td class="state2">STOPPED 11-14 04:35</td></tr>
       <tr class="down"><td class="mono">momentum:eth</td><td>20%</td>
         <td>3,239.62</td>
-        <td>2,711.51</td>
-        <td class="down">-16.30%</td>
-        <td>-3.26pp</td>
+        <td>2,708.57</td>
+        <td class="down">-16.39%</td>
+        <td>-3.28pp</td>
         <td class="down">-19.22%</td>
         <td>±6%</td>
         <td class="state2">STOPPED 11-14 04:35</td></tr>
@@ -571,9 +779,9 @@
         <td class="state2">TARGET 11-06 15:02</td></tr>
       <tr class="down"><td class="mono">momentum:sol</td><td>10%</td>
         <td>130.54</td>
-        <td>107.48</td>
-        <td class="down">-17.67%</td>
-        <td>-1.77pp</td>
+        <td>107.11</td>
+        <td class="down">-17.95%</td>
+        <td>-1.79pp</td>
         <td class="down">-25.18%</td>
         <td>±6%</td>
         <td class="state2">STOPPED 11-14 04:35</td></tr>
@@ -587,9 +795,9 @@
         <td class="state2">TARGET 11-14 04:35</td></tr>
       <tr class=""><td class="mono">momentum:wti</td><td>10%</td>
         <td>91.67</td>
-        <td>88.56</td>
-        <td class="down">-3.39%</td>
-        <td>-0.34pp</td>
+        <td>88.49</td>
+        <td class="down">-3.47%</td>
+        <td>-0.35pp</td>
         <td class="down">-12.32%</td>
         <td>±6%</td>
         <td class="state2">OPEN</td></tr>
@@ -597,13 +805,13 @@
     </table></div>
     <p class="note" style="padding:10px 18px 0">Every leg of every basket is a position: entry = our first recorded read for that leg, last = the live sheet, move = the recorded change, band = the basket&#39;s ±alertMove rule applied to the leg. Stops and targets are read off marks we recorded, so a stop cannot be moved after the fact.</p>
     <p class="note" style="padding:4px 18px 0">Model book, no money: entry means the first read, not a fill, and there are no commission or slippage lines because nothing traded. The book updates when the page builds, which is what &quot;live&quot; means here.</p>
-    <p class="note" style="padding:6px 18px 14px"><a class="u mono" href="https://tripwire-alert.trade/trades.json">trades.json</a> — the same marks for a script. Marked 2026-11-15 23:05Z, hourly, with the page build — the same sheet the board renders.</p>
+    <p class="note" style="padding:6px 18px 14px"><a class="u mono" href="https://tripwire-alert.trade/trades.json">trades.json</a> — the same marks for a script. Marked 2026-11-15 23:44Z, hourly, with the page build — the same sheet the board renders.</p>
   </section>
   <p class="stamp">6 open · 4 stopped · 5 at target · 0 awaiting a first read. The band is each basket's own ±% rule applied to the leg: a stop the desk cannot move after the fact, because the marks it is read from are already on disk.</p>
 
 
   <section class="card" id="algos">
-    <h2><span class="n">03</span>What each tier's algorithm does — and what it measured</h2>
+    <h2>What each tier's algorithm does — and what it measured</h2>
     <div class="bookwrap"><table class="book">
       <thead><tr><th>Tier · algorithm</th><th>2020–26</th><th>Sharpe</th><th>Max DD</th><th>Jul 2023–26</th><th>Buy &amp; hold (OOS)</th><th>Ungated baseline (OOS)</th><th>Retirement</th></tr></thead>
       <tbody>
@@ -704,7 +912,7 @@
 
 
   <section class="card" id="styles">
-    <h2><span class="n">04</span>Pick a trading style — five stacks inside each tier</h2>
+    <h2>Pick a trading style — five stacks inside each tier</h2>
     <div class="pickrow">
       <label for="st-tier">Your tier</label>
       <select id="st-tier"><option value="digest">Digest · A$0</option><option value="tripwire">Tripwire · A$9/mo</option><option value="package">Package · A$29–99/mo</option><option value="gear">Gear · A$99/mo</option></select>
@@ -767,104 +975,33 @@
 })();
 </script>
 
-  <section class="card">
-    <h2><span class="n">05</span>Live right now — the board you'd get mailed</h2>
-    <ul>
-      <li class="row tripped">
-        <div class="row-top"><span class="lbl">Bitcoin below A$100k</span>
-          <span class="state">TRIPPED</span></div>
-        <div class="nums"><span class="now">96,596</span> <span class="vs">vs 100,000 · lt</span></div>
-        <div class="ruler"><svg viewBox="0 0 300 46" role="img" aria-label="Bitcoin below A$100k — crossed — alert fires: Bitcoin below A$100k"><rect x="39.062499999999886" y="19" width="221.87500000000023" height="6" rx="3" fill="#141a23"/><line x1="8" y1="10" x2="8" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="36.4" y1="13" x2="36.4" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="64.8" y1="13" x2="64.8" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="93.19999999999999" y1="13" x2="93.19999999999999" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="121.6" y1="13" x2="121.6" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="150" y1="10" x2="150" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="178.39999999999998" y1="13" x2="178.39999999999998" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="206.79999999999998" y1="13" x2="206.79999999999998" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="235.2" y1="13" x2="235.2" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="263.6" y1="13" x2="263.6" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="292" y1="10" x2="292" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="6" y1="22" x2="294" y2="22" stroke="#2d3542" stroke-width="2"/><path d="M255.9375000000001 8 L265.9375000000001 8 L260.9375000000001 16 Z" fill="#c9a227"/><text x="260.9375000000001" y="6" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" fill="#9c8434">100,000</text><line x1="39.062499999999886" y1="12" x2="39.062499999999886" y2="32" stroke="#e8edf5" stroke-width="2"/><circle cx="39.062499999999886" cy="22" r="3.5" fill="#e8edf5"/><text x="39.062499999999886" y="43" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" fill="#8b96a8">96,596</text></svg></div>
-        <div class="hint">crossed — alert fires: Bitcoin below A$100k</div>
-        <div class="hint sub2">trend over 25 reads: 3.71pp closer · closest 1.01% · 00:04–20:52Z</div>
-      </li>
-      <li class="row tripped">
-        <div class="row-top"><span class="lbl">Ethereum below A$3k</span>
-          <span class="state">TRIPPED</span></div>
-        <div class="nums"><span class="now">2,710</span> <span class="vs">vs 3,000 · lt</span></div>
-        <div class="ruler"><svg viewBox="0 0 300 46" role="img" aria-label="Ethereum below A$3k — crossed — alert fires: Ethereum below A$3k"><rect x="39.062499999999886" y="19" width="221.87500000000023" height="6" rx="3" fill="#141a23"/><line x1="8" y1="10" x2="8" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="36.4" y1="13" x2="36.4" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="64.8" y1="13" x2="64.8" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="93.19999999999999" y1="13" x2="93.19999999999999" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="121.6" y1="13" x2="121.6" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="150" y1="10" x2="150" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="178.39999999999998" y1="13" x2="178.39999999999998" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="206.79999999999998" y1="13" x2="206.79999999999998" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="235.2" y1="13" x2="235.2" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="263.6" y1="13" x2="263.6" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="292" y1="10" x2="292" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="6" y1="22" x2="294" y2="22" stroke="#2d3542" stroke-width="2"/><path d="M255.9375000000001 8 L265.9375000000001 8 L260.9375000000001 16 Z" fill="#c9a227"/><text x="260.9375000000001" y="6" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" fill="#9c8434">3,000</text><line x1="39.062499999999886" y1="12" x2="39.062499999999886" y2="32" stroke="#e8edf5" stroke-width="2"/><circle cx="39.062499999999886" cy="22" r="3.5" fill="#e8edf5"/><text x="39.062499999999886" y="43" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" fill="#8b96a8">2,710</text></svg></div>
-        <div class="hint">crossed — alert fires: Ethereum below A$3k</div>
-        <div class="hint sub2">trend over 25 reads: 8.49pp further · closest 0.67% · 00:04–20:52Z</div>
-      </li>
-      <li class="row tripped">
-        <div class="row-top"><span class="lbl">Solana below A$120</span>
-          <span class="state">TRIPPED</span></div>
-        <div class="nums"><span class="now">107</span> <span class="vs">vs 120 · lt</span></div>
-        <div class="ruler"><svg viewBox="0 0 300 46" role="img" aria-label="Solana below A$120 — crossed — alert fires: Solana below A$120"><rect x="39.06250000000007" y="19" width="221.87499999999983" height="6" rx="3" fill="#141a23"/><line x1="8" y1="10" x2="8" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="36.4" y1="13" x2="36.4" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="64.8" y1="13" x2="64.8" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="93.19999999999999" y1="13" x2="93.19999999999999" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="121.6" y1="13" x2="121.6" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="150" y1="10" x2="150" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="178.39999999999998" y1="13" x2="178.39999999999998" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="206.79999999999998" y1="13" x2="206.79999999999998" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="235.2" y1="13" x2="235.2" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="263.6" y1="13" x2="263.6" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="292" y1="10" x2="292" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="6" y1="22" x2="294" y2="22" stroke="#2d3542" stroke-width="2"/><path d="M255.9374999999999 8 L265.9374999999999 8 L260.9374999999999 16 Z" fill="#c9a227"/><text x="260.9374999999999" y="6" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" fill="#9c8434">120</text><line x1="39.06250000000007" y1="12" x2="39.06250000000007" y2="32" stroke="#e8edf5" stroke-width="2"/><circle cx="39.06250000000007" cy="22" r="3.5" fill="#e8edf5"/><text x="39.06250000000007" y="43" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" fill="#8b96a8">107</text></svg></div>
-        <div class="hint">crossed — alert fires: Solana below A$120</div>
-        <div class="hint sub2">trend over 25 reads: 8.51pp further · closest 0.08% · 00:04–20:52Z</div>
-      </li>
-      <li class="row armed">
-        <div class="row-top"><span class="lbl">AUD above 0.72 USD</span>
-          <span class="state">ARMED</span></div>
-        <div class="nums"><span class="now">0.6785</span> <span class="vs">vs 0.72 · gt</span></div>
-        <div class="ruler"><svg viewBox="0 0 300 46" role="img" aria-label="AUD above 0.72 USD — 6.1% away — trips when it rises to 0.72"><rect x="39.06250000000021" y="19" width="221.87499999999955" height="6" rx="3" fill="#141a23"/><line x1="8" y1="10" x2="8" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="36.4" y1="13" x2="36.4" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="64.8" y1="13" x2="64.8" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="93.19999999999999" y1="13" x2="93.19999999999999" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="121.6" y1="13" x2="121.6" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="150" y1="10" x2="150" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="178.39999999999998" y1="13" x2="178.39999999999998" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="206.79999999999998" y1="13" x2="206.79999999999998" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="235.2" y1="13" x2="235.2" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="263.6" y1="13" x2="263.6" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="292" y1="10" x2="292" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="6" y1="22" x2="294" y2="22" stroke="#2d3542" stroke-width="2"/><path d="M255.93749999999977 8 L265.9374999999998 8 L260.9374999999998 16 Z" fill="#c9a227"/><text x="260.9374999999998" y="6" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" fill="#9c8434">0.72</text><line x1="39.06250000000021" y1="12" x2="39.06250000000021" y2="32" stroke="#e8edf5" stroke-width="2"/><circle cx="39.06250000000021" cy="22" r="3.5" fill="#e8edf5"/><text x="39.06250000000021" y="43" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" fill="#8b96a8">0.6785</text></svg></div>
-        <div class="hint">6.1% away — trips when it rises to 0.72</div>
-        <div class="hint sub2">trend over 25 reads: 1.32pp further · closest 4.29% · 00:04–20:52Z</div>
-      </li>
-      <li class="row armed">
-        <div class="row-top"><span class="lbl">Gold above 4200 USD/oz</span>
-          <span class="state">ARMED</span></div>
-        <div class="nums"><span class="now">3,886</span> <span class="vs">vs 4,200 · gt</span></div>
-        <div class="ruler"><svg viewBox="0 0 300 46" role="img" aria-label="Gold above 4200 USD/oz — 8.1% away — trips when it rises to 4,200"><rect x="39.062500000000114" y="19" width="221.8750000000001" height="6" rx="3" fill="#141a23"/><line x1="8" y1="10" x2="8" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="36.4" y1="13" x2="36.4" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="64.8" y1="13" x2="64.8" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="93.19999999999999" y1="13" x2="93.19999999999999" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="121.6" y1="13" x2="121.6" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="150" y1="10" x2="150" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="178.39999999999998" y1="13" x2="178.39999999999998" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="206.79999999999998" y1="13" x2="206.79999999999998" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="235.2" y1="13" x2="235.2" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="263.6" y1="13" x2="263.6" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="292" y1="10" x2="292" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="6" y1="22" x2="294" y2="22" stroke="#2d3542" stroke-width="2"/><path d="M255.93750000000023 8 L265.9375000000002 8 L260.9375000000002 16 Z" fill="#c9a227"/><text x="260.9375000000002" y="6" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" fill="#9c8434">4,200</text><line x1="39.062500000000114" y1="12" x2="39.062500000000114" y2="32" stroke="#e8edf5" stroke-width="2"/><circle cx="39.062500000000114" cy="22" r="3.5" fill="#e8edf5"/><text x="39.062500000000114" y="43" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" fill="#8b96a8">3,886</text></svg></div>
-        <div class="hint">8.1% away — trips when it rises to 4,200</div>
-        <div class="hint sub2">trend over 25 reads: 4.8pp further · closest 1.63% · 00:04–20:52Z</div>
-      </li>
-      <li class="row armed">
-        <div class="row-top"><span class="lbl">ASX 200 below 8500 pts</span>
-          <span class="state">ARMED</span></div>
-        <div class="nums"><span class="now">9,082</span> <span class="vs">vs 8,500 · lt</span></div>
-        <div class="ruler"><svg viewBox="0 0 300 46" role="img" aria-label="ASX 200 below 8500 pts — 6.4% away — trips when it falls to 8,500"><rect x="39.062499999999915" y="19" width="221.8750000000002" height="6" rx="3" fill="#141a23"/><line x1="8" y1="10" x2="8" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="36.4" y1="13" x2="36.4" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="64.8" y1="13" x2="64.8" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="93.19999999999999" y1="13" x2="93.19999999999999" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="121.6" y1="13" x2="121.6" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="150" y1="10" x2="150" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="178.39999999999998" y1="13" x2="178.39999999999998" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="206.79999999999998" y1="13" x2="206.79999999999998" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="235.2" y1="13" x2="235.2" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="263.6" y1="13" x2="263.6" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="292" y1="10" x2="292" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="6" y1="22" x2="294" y2="22" stroke="#2d3542" stroke-width="2"/><path d="M34.062499999999915 8 L44.062499999999915 8 L39.062499999999915 16 Z" fill="#c9a227"/><text x="39.062499999999915" y="6" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" fill="#9c8434">8,500</text><line x1="260.9375000000001" y1="12" x2="260.9375000000001" y2="32" stroke="#e8edf5" stroke-width="2"/><circle cx="260.9375000000001" cy="22" r="3.5" fill="#e8edf5"/><text x="260.9375000000001" y="43" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" fill="#8b96a8">9,082</text></svg></div>
-        <div class="hint">6.4% away — trips when it falls to 8,500</div>
-        <div class="hint sub2">trend over 25 reads: 0.72pp further · closest 5.31% · 00:04–20:52Z</div>
-      </li>
-      <li class="row armed">
-        <div class="row-top"><span class="lbl">CommBank below 160 A$</span>
-          <span class="state">ARMED</span></div>
-        <div class="nums"><span class="now">171</span> <span class="vs">vs 160 · lt</span></div>
-        <div class="ruler"><svg viewBox="0 0 300 46" role="img" aria-label="CommBank below 160 A$ — 6.4% away — trips when it falls to 160"><rect x="39.0625000000002" y="19" width="221.87499999999957" height="6" rx="3" fill="#141a23"/><line x1="8" y1="10" x2="8" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="36.4" y1="13" x2="36.4" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="64.8" y1="13" x2="64.8" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="93.19999999999999" y1="13" x2="93.19999999999999" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="121.6" y1="13" x2="121.6" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="150" y1="10" x2="150" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="178.39999999999998" y1="13" x2="178.39999999999998" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="206.79999999999998" y1="13" x2="206.79999999999998" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="235.2" y1="13" x2="235.2" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="263.6" y1="13" x2="263.6" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="292" y1="10" x2="292" y2="16" stroke="#3f4a5a" stroke-width="1"/><line x1="6" y1="22" x2="294" y2="22" stroke="#2d3542" stroke-width="2"/><path d="M34.0625000000002 8 L44.0625000000002 8 L39.0625000000002 16 Z" fill="#c9a227"/><text x="39.0625000000002" y="6" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" fill="#9c8434">160</text><line x1="260.9374999999998" y1="12" x2="260.9374999999998" y2="32" stroke="#e8edf5" stroke-width="2"/><circle cx="260.9374999999998" cy="22" r="3.5" fill="#e8edf5"/><text x="260.9374999999998" y="43" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" fill="#8b96a8">171</text></svg></div>
-        <div class="hint">6.4% away — trips when it falls to 160</div>
-        <div class="hint sub2">trend over 25 reads: 2.14pp further · closest 3.18% · 00:04–20:52Z</div>
-      </li>
-      <li class="row armed">
-        <div class="row-top"><span class="lbl">Bitcoin moves 5% in 24h</span>
-          <span class="state">ARMED</span></div>
-        <div class="nums"><span class="now">96,596</span> <span class="vs">vs ±5% over 24h</span></div>
-        <div class="bar"><i style="width:40.599999999999994%"></i></div>
-        <div class="hint">-2.03% in 24h — fires at ±5%</div>
-        <div class="hint sub2">moves, not levels — computed from our own hourly readings, never predicted</div>
-      </li>
-    </ul>
-  </section>
-  <p class="stamp">Read 2026-11-15T23:05:24.201Z · 8 tripwires · 1 from ≤60s cache · sources: public keyless APIs (CoinGecko, ECB via Frankfurter, Yahoo Finance) · refreshed hourly.</p>
-
   <section class="card" id="markets">
-    <h2><span class="n">06</span><span class="live-dot"></span>Every market we can read — 31 of them, six classes</h2>
+    <h2><span class="live-dot"></span>Every market we can read — 31 of them, six classes</h2>
     <ul>
       <li class="row grp"><span class="kick2">Crypto</span></li>
       <li class="row mkt ">
-        <div class="mkt-top"><span class="lbl">Bitcoin</span><span class="chg up">▲ 2.87%</span></div>
-        <div class="mkt-bot"><span class="mono2">96,584</span> <span class="vs">A$</span></div>
+        <div class="mkt-top"><span class="lbl">Bitcoin</span><span class="chg up">▲ 2.65%</span></div>
+        <div class="mkt-bot"><span class="mono2">96,357</span> <span class="vs">A$</span></div>
       </li>
       <li class="row mkt ">
-        <div class="mkt-top"><span class="lbl">Ethereum</span><span class="chg up">▲ 5.27%</span></div>
-        <div class="mkt-bot"><span class="mono2">2,711.51</span> <span class="vs">A$</span></div>
+        <div class="mkt-top"><span class="lbl">Ethereum</span><span class="chg up">▲ 4.94%</span></div>
+        <div class="mkt-bot"><span class="mono2">2,708.57</span> <span class="vs">A$</span></div>
       </li>
       <li class="row mkt ">
-        <div class="mkt-top"><span class="lbl">Solana</span><span class="chg up">▲ 5.34%</span></div>
-        <div class="mkt-bot"><span class="mono2">107.48</span> <span class="vs">A$</span></div>
+        <div class="mkt-top"><span class="lbl">Solana</span><span class="chg up">▲ 4.55%</span></div>
+        <div class="mkt-bot"><span class="mono2">107.11</span> <span class="vs">A$</span></div>
       </li>
       <li class="row mkt ">
-        <div class="mkt-top"><span class="lbl">XRP</span><span class="chg up">▲ 8.8%</span></div>
+        <div class="mkt-top"><span class="lbl">XRP</span><span class="chg up">▲ 8.38%</span></div>
         <div class="mkt-bot"><span class="mono2">1.440</span> <span class="vs">A$</span></div>
       </li>
       <li class="row mkt ">
-        <div class="mkt-top"><span class="lbl">Cardano</span><span class="chg up">▲ 7.23%</span></div>
-        <div class="mkt-bot"><span class="mono2">0.2294</span> <span class="vs">A$</span></div>
+        <div class="mkt-top"><span class="lbl">Cardano</span><span class="chg up">▲ 6.6%</span></div>
+        <div class="mkt-bot"><span class="mono2">0.2293</span> <span class="vs">A$</span></div>
       </li>
       <li class="row mkt ">
-        <div class="mkt-top"><span class="lbl">Dogecoin</span><span class="chg up">▲ 6.22%</span></div>
-        <div class="mkt-bot"><span class="mono2">0.0882</span> <span class="vs">A$</span></div>
+        <div class="mkt-top"><span class="lbl">Dogecoin</span><span class="chg up">▲ 6.15%</span></div>
+        <div class="mkt-bot"><span class="mono2">0.0885</span> <span class="vs">A$</span></div>
       </li>
       <li class="row grp"><span class="kick2">Exchange rates</span></li>
       <li class="row mkt ">
@@ -893,8 +1030,8 @@
       </li>
       <li class="row grp"><span class="kick2">Indices</span></li>
       <li class="row mkt ">
-        <div class="mkt-top"><span class="lbl">ASX 200</span><span class="chg down">▼ 0.71%</span></div>
-        <div class="mkt-bot"><span class="mono2">9,082.2</span> <span class="vs">pts</span></div>
+        <div class="mkt-top"><span class="lbl">ASX 200</span><span class="chg down">▼ 0.2%</span></div>
+        <div class="mkt-bot"><span class="mono2">9,064.3</span> <span class="vs">pts</span></div>
       </li>
       <li class="row mkt ">
         <div class="mkt-top"><span class="lbl">S&amp;P 500</span><span class="chg down">▼ 0.4%</span></div>
@@ -918,42 +1055,42 @@
       </li>
       <li class="row grp"><span class="kick2">Metals</span></li>
       <li class="row mkt ">
-        <div class="mkt-top"><span class="lbl">Gold (front month)</span><span class="chg up">▲ 0%</span></div>
-        <div class="mkt-bot"><span class="mono2">3,886.3</span> <span class="vs">USD/oz</span></div>
+        <div class="mkt-top"><span class="lbl">Gold (front month)</span><span class="chg down">▼ 0.02%</span></div>
+        <div class="mkt-bot"><span class="mono2">3,885.5</span> <span class="vs">USD/oz</span></div>
       </li>
       <li class="row mkt ">
-        <div class="mkt-top"><span class="lbl">Silver (front month)</span><span class="chg up">▲ 0%</span></div>
-        <div class="mkt-bot"><span class="mono2">49.121</span> <span class="vs">USD/oz</span></div>
+        <div class="mkt-top"><span class="lbl">Silver (front month)</span><span class="chg down">▼ 0.91%</span></div>
+        <div class="mkt-bot"><span class="mono2">48.675</span> <span class="vs">USD/oz</span></div>
       </li>
       <li class="row mkt ">
-        <div class="mkt-top"><span class="lbl">Platinum (front month)</span><span class="chg up">▲ 0%</span></div>
-        <div class="mkt-bot"><span class="mono2">1,489.7</span> <span class="vs">USD/oz</span></div>
+        <div class="mkt-top"><span class="lbl">Platinum (front month)</span><span class="chg up">▲ 0.27%</span></div>
+        <div class="mkt-bot"><span class="mono2">1,493.7</span> <span class="vs">USD/oz</span></div>
       </li>
       <li class="row grp"><span class="kick2">Energy</span></li>
       <li class="row mkt ">
-        <div class="mkt-top"><span class="lbl">WTI crude</span><span class="chg up">▲ 0%</span></div>
-        <div class="mkt-bot"><span class="mono2">88.56</span> <span class="vs">USD/bbl</span></div>
+        <div class="mkt-top"><span class="lbl">WTI crude</span><span class="chg down">▼ 0.08%</span></div>
+        <div class="mkt-bot"><span class="mono2">88.49</span> <span class="vs">USD/bbl</span></div>
       </li>
       <li class="row mkt ">
-        <div class="mkt-top"><span class="lbl">Brent crude</span><span class="chg up">▲ 0%</span></div>
-        <div class="mkt-bot"><span class="mono2">95.84</span> <span class="vs">USD/bbl</span></div>
+        <div class="mkt-top"><span class="lbl">Brent crude</span><span class="chg down">▼ 0.38%</span></div>
+        <div class="mkt-bot"><span class="mono2">95.48</span> <span class="vs">USD/bbl</span></div>
       </li>
       <li class="row mkt ">
-        <div class="mkt-top"><span class="lbl">Natural gas</span><span class="chg up">▲ 0%</span></div>
-        <div class="mkt-bot"><span class="mono2">3.230</span> <span class="vs">USD</span></div>
+        <div class="mkt-top"><span class="lbl">Natural gas</span><span class="chg down">▼ 2.01%</span></div>
+        <div class="mkt-bot"><span class="mono2">3.165</span> <span class="vs">USD</span></div>
       </li>
       <li class="row grp"><span class="kick2">Stocks</span></li>
       <li class="row mkt ">
-        <div class="mkt-top"><span class="lbl">BHP Group</span><span class="chg down">▼ 1.26%</span></div>
-        <div class="mkt-bot"><span class="mono2">58.86</span> <span class="vs">A$</span></div>
+        <div class="mkt-top"><span class="lbl">BHP Group</span><span class="chg down">▼ 1.04%</span></div>
+        <div class="mkt-bot"><span class="mono2">58.25</span> <span class="vs">A$</span></div>
       </li>
       <li class="row mkt ">
-        <div class="mkt-top"><span class="lbl">CommBank</span><span class="chg down">▼ 0.52%</span></div>
-        <div class="mkt-bot"><span class="mono2">170.87</span> <span class="vs">A$</span></div>
+        <div class="mkt-top"><span class="lbl">CommBank</span><span class="chg up">▲ 0.13%</span></div>
+        <div class="mkt-bot"><span class="mono2">171.09</span> <span class="vs">A$</span></div>
       </li>
       <li class="row mkt ">
-        <div class="mkt-top"><span class="lbl">Westpac</span><span class="chg down">▼ 0.47%</span></div>
-        <div class="mkt-bot"><span class="mono2">37.83</span> <span class="vs">A$</span></div>
+        <div class="mkt-top"><span class="lbl">Westpac</span><span class="chg down">▼ 0.38%</span></div>
+        <div class="mkt-bot"><span class="mono2">37.69</span> <span class="vs">A$</span></div>
       </li>
       <li class="row mkt ">
         <div class="mkt-top"><span class="lbl">Apple</span><span class="chg up">▲ 0.39%</span></div>
@@ -975,29 +1112,8 @@
   </section>
   <p class="stamp">All 31 quotes fetched at build time from three keyless public APIs: CoinGecko (crypto), ECB via Frankfurter (FX), Yahoo Finance (equities, indices, energy and COMEX metals futures). None stale right now. The % is each leg's own last-day change — prior close for equities, indices and futures; trailing 24h for crypto; prior ECB business day for FX — never our arithmetic.</p>
 
-  <section class="card" id="mine">
-    <h2><span class="n">07</span>Your board — pick a market, name your number</h2>
-    <div class="mk">
-      <label for="w-asset">Market<select id="w-asset"><option value="btc">Bitcoin — A$</option><option value="eth">Ethereum — A$</option><option value="sol">Solana — A$</option><option value="xrp">XRP — A$</option><option value="ada">Cardano — A$</option><option value="doge">Dogecoin — A$</option><option value="audusd">AUD/USD — USD</option><option value="audeur">AUD/EUR — EUR</option><option value="audgbp">AUD/GBP — GBP</option><option value="audjpy">AUD/JPY — JPY</option><option value="usdjpy">USD/JPY — JPY</option><option value="eurusd">EUR/USD — USD</option><option value="gold">Gold (front month) — USD/oz</option><option value="silver">Silver (front month) — USD/oz</option><option value="platinum">Platinum (front month) — USD/oz</option><option value="asx200">ASX 200 — pts</option><option value="sp500">S&amp;P 500 — pts</option><option value="nasdaq">Nasdaq Composite — pts</option><option value="dow">Dow Jones — pts</option><option value="ftse">FTSE 100 — pts</option><option value="nikkei">Nikkei 225 — pts</option><option value="wti">WTI crude — USD/bbl</option><option value="brent">Brent crude — USD/bbl</option><option value="natgas">Natural gas — USD</option><option value="bhp">BHP Group — A$</option><option value="cba">CommBank — A$</option><option value="wbc">Westpac — A$</option><option value="aapl">Apple — USD</option><option value="msft">Microsoft — USD</option><option value="nvda">Nvidia — USD</option><option value="tsla">Tesla — USD</option></select></label>
-      <label for="w-dir">Fires when it<select id="w-dir"><option value="above">crosses above</option><option value="below">crosses below</option><option value="move">moves by %</option></select></label>
-      <label for="w-val"><span id="w-lab">your number</span><input id="w-val" type="number" step="any" inputmode="decimal" placeholder="0"></label>
-      <div><button class="btn2" id="w-add" type="button">Add to my board</button><button class="btn3" id="w-clear" type="button">Clear</button></div>
-    </div>
-    <div class="presets">Or start from one of these — the numbers are computed fresh from today's quotes:
-      <a class="chip" href="?w=gold:above:4050">Gold (front month) above 4050</a>
-      <a class="chip" href="?w=asx200:below:8700">ASX 200 below 8700</a>
-      <a class="chip" href="?w=cba:below:164">CommBank below 164</a>
-      <a class="chip" href="?w=btc:move:5">Bitcoin moves ±5%</a>
-      <a class="chip" href="?w=audusd:above:0.706">AUD/USD above 0.706</a>
-      <a class="chip" href="?w=aapl:above:371">Apple above 371</a>
-    </div>
-    <ul id="w-out"></ul>
-    <p class="note">The board lives in your URL (<a class="u mono" id="w-link" href="#mine">this page</a>), so it bookmarks and shares with no account and nothing stored on our side. It is computed in your browser from <code>quotes.json</code> — the same published numbers as the sheet above.
-    What the paid tier adds is the part a browser cannot do: it checks your board every hour, and emails you with the timestamped value and the chain hash.</p>
-  </section>
-
   <section class="card" id="proof">
-    <h2><span class="n">08</span>Proof — the alert log is append-only and hash-chained</h2>
+    <h2>Proof — the alert log is append-only and hash-chained</h2>
     <ul>
       <li class="row armed">
         <div class="row-top"><span class="lbl">Chain head</span>
@@ -1087,11 +1203,8 @@
   <p class="stamp">A <b>—</b> is the honest cell: that tier holds nothing in that sector, so it does not sell it — no basket holds FX, and Gear's sleeve holds no single names. A tier that lists a sector is stating coverage, not a recommendation — weights are the only opinion in <code>packages.json</code>, and Gear's are set by its rule each month.</p>
 
 
-  <a class="btn" href="https://tripwire-alert.trade/subscribe">Get the tripwire — A$9/mo</a>
-  <p class="note">Card checkout by Stripe — paid tiers start with 7 days free, then monthly in AUD. Cancel any time from the billing portal; Digest stays free with no card.</p>
-
   <section class="card">
-    <h2><span class="n">09</span>Subscribe without an account — the A$0 tier, working today</h2>
+    <h2>Subscribe without an account — the A$0 tier, working today</h2>
     <ul>
       <li class="row">
         <div class="row-top"><span class="lbl">RSS feed</span><span class="state armed">FEED</span></div>
@@ -1106,27 +1219,35 @@
     </ul>
   </section>
 
-  <section class="card" id="get">
-    <h2><span class="n">10</span>What you get, and what you don't — in the same breath</h2>
-    <div class="two">
-      <div>
-        <h3 style="margin-top:10px">What you actually get</h3>
-        <ol>
-          <li><b>The board above, mailed</b> — one line per tripwire: current value, your number, distance left.</li>
-          <li><b>An alert the moment it crosses</b> — sent within the hour, with the timestamped value and the chain hash as evidence. Delivery is a human pressing send today; wiring SMTP is the next step, and the page will say so until it is done.</li>
-          <li><b>Weekly digest</b> — what moved past a number, nothing that didn't.</li>
-        </ol>
-      </div>
-      <div>
-        <h3 style="margin-top:10px">What you don't get</h3>
-        <ol>
-          <li>Predictions. The alert says <i>it crossed your number</i>, never <i>it will go up</i>.</li>
-          <li>Charts, dashboards, communities, a mobile app.</li>
-          <li>A count of "10,000 traders trust us". This is new. The subscriber count is the number of people who asked, and today that is not a large number. The package returns are measured from our own recorded reads, not backtested.</li>
-        </ol>
+  <section class="card signin" id="signin">
+    <h2>Sign in — an address or a token, checked against a published hash</h2>
+    <div class="signin-grid">
+      <form class="li" id="li-form" novalidate>
+        <label for="li-id">Address on record, or the access token you were mailed</label>
+        <input id="li-id" type="text" name="id" autocomplete="username" spellcheck="false" autocapitalize="none"
+               placeholder="you@example.com  ·  wc1.…" aria-describedby="li-note">
+        <div class="li-row">
+          <button class="btn2" type="submit">Sign in</button>
+          <button class="btn3" type="button" id="li-out" hidden>Sign out</button>
+        </div>
+        <p class="li-note" id="li-note">Nothing is sent anywhere — this tab hashes what you type and compares it with
+          <a class="u mono" href="https://tripwire-alert.trade/members.json">members.json</a>, which ships 1 row(s), 1 active.</p>
+        <p class="li-status" id="li-status" role="status" aria-live="polite">Not signed in. The A$0 tier needs no account at all.</p>
+      </form>
+      <div class="li-panel" id="li-panel">
+        <div class="who"><b>No account yet?</b><span class="tierpill">A$0</span></div>
+        <ul class="wholines">
+          <li><span>What signing in shows</span><b>Your tier, the markets it lets you arm, and whether the live trade feed is part of it.</b></li>
+          <li><span>How to pay</span><b>Paid tiers start at <a class="u" href="/subscribe">/subscribe</a>: 7 days free, then card checkout by Stripe (the card never touches this site). This page only shows what you hold.</b></li>
+          <li><span>Where a token comes from</span><b>Shown once when you subscribe at <a class="u" href="/subscribe">/subscribe</a> (Digest is free, no card). Lost it? <a class="u" href="/subscribe#manage">Request a new one</a>. Only its hash is written down.</b></li>
+        </ul>
       </div>
     </div>
+    <p class="note pad">Sign-in is a hash comparison, not a password: the page ships members.json (hashes and dates only), hashes what you type in the tab, and looks for the row. Nothing is posted, no cookie is set, and the token itself is never stored — `wealthclaw login issue --email … --tier …` prints it once.
+      It proves possession of a token, not identity: whoever holds it gets in. The list is published at build time, so a revoke signs someone out on the next hourly build, not on their next refresh. Signing in on this page only tells you what your tier covers; paying happens at /subscribe, where Stripe Checkout takes the card (7 days free) and the card never reaches this site.</p>
   </section>
+
+  </div>
 </main>
 
   <footer class="foot">
@@ -1154,7 +1275,7 @@
       <a class="mono" href="#tiers">wealthclaw sectors</a>
     </div>
     <div class="fine">
-      Built 2026-11-15T23:05:24.201Z · Tripwire · <a class="u" href="https://tripwire-alert.trade/">https://tripwire-alert.trade/</a> ·
+      Built 2026-11-15T23:44:41.803Z · Tripwire · <a class="u" href="https://tripwire-alert.trade/">https://tripwire-alert.trade/</a> ·
       chain head <span class="mono">cd68207b8e878360</span> · 18 alert(s) on the chain ·
       every quote live at this build.
     </div>
@@ -1373,12 +1494,7 @@
     var saved = null;
     try { saved = localStorage.getItem(LS); } catch (e) {}
     if (saved) { if (signIn(saved, true)) $("li-id").value = saved; }
-    var nav = $("nav-signin");
-    if (nav) nav.addEventListener("click", function (e) {
-      e.preventDefault();
-      document.getElementById("signin").scrollIntoView({ behavior: "smooth", block: "start" });
-      $("li-id").focus({ preventScroll: true });
-    });
+    /* 0023: the header button goes to /account (the member page); the on-page check stays below */
   })();
   fetch("quotes.json",{cache:"no-store"}).then(function(r){return r.json();}).then(function(j){
     quotes={};(j.quotes||[]).forEach(function(q){quotes[q.id]=q;});render();

@@ -1,12 +1,12 @@
 {
-  "builtAt": "2026-11-15T18:00:35.353Z",
+  "builtAt": "2026-11-15T20:52:38.109Z",
   "engine": "signals",
-  "sourceArtifact": "workspace/signals/artifacts/rules-2026-11-15T03-05-15-631Z.json",
-  "sourceSha256": "467da179ac0e430a",
+  "sourceArtifact": "workspace/signals/artifacts/rules-2026-11-15T20-52-10-075Z.json",
+  "sourceSha256": "459579a85b14c132",
   "scores": [
     {
       "asset": "btc",
-      "at": "2026-11-15T03:05:15.631Z",
+      "at": "2026-11-15T20:52:10.075Z",
       "s_inst": -0.2368,
       "s_retail": null,
       "s_syndicated": null,
@@ -33,7 +33,7 @@
     },
     {
       "asset": "eth",
-      "at": "2026-11-15T03:05:15.631Z",
+      "at": "2026-11-15T20:52:10.075Z",
       "s_inst": -0.0364,
       "s_retail": null,
       "s_syndicated": null,
@@ -60,7 +60,7 @@
     },
     {
       "asset": "sol",
-      "at": "2026-11-15T03:05:15.631Z",
+      "at": "2026-11-15T20:52:10.075Z",
       "s_inst": null,
       "s_retail": null,
       "s_syndicated": null,
@@ -95,10 +95,10 @@
       "s_inst": -0.2368,
       "z_price": -2.9628,
       "d_s_inst": 0,
-      "reason": "divergence: z_sent 0.9354 - z_price -2.9628 = 3.8982 > 2, slope 0/h >= 0",
+      "reason": "divergence: z_sent 0.9428 - z_price -2.9628 = 3.9056 > 2, slope 0/h >= 0",
       "meta": {
-        "z_sent": 0.9354,
-        "history_n": 8,
+        "z_sent": 0.9428,
+        "history_n": 9,
         "basis": "daily closes"
       }
     },
@@ -158,10 +158,10 @@
       "s_inst": -0.0364,
       "z_price": -2.5386,
       "d_s_inst": 0,
-      "reason": "no fire: z_sent=-0.9354 (daily history n=8, need 5) z_price=-2.5386 slope=0/h vs gap>2",
+      "reason": "no fire: z_sent=-0.9428 (daily history n=9, need 5) z_price=-2.5386 slope=0/h vs gap>2",
       "meta": {
-        "z_sent": -0.9354,
-        "history_n": 8,
+        "z_sent": -0.9428,
+        "history_n": 9,
         "basis": "daily closes"
       }
     },

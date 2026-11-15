@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-11-14T04:35:55.649Z",
+  "builtAt": "2026-11-15T06:54:16.093Z",
   "name": "Tripwire",
   "source": "public keyless APIs: CoinGecko (crypto, trailing-24h change), ECB/Frankfurter (FX, prior business day), Yahoo Finance (equities, indices, energy and COMEX metals futures — the only free source that returns a prior close)",
   "count": 31,
@@ -46,13 +46,13 @@
       "unit": "A$",
       "dec": 0,
       "note": null,
-      "value": 98523,
+      "value": 95081,
       "prev": null,
-      "changePct": -2.77,
+      "changePct": -4.39,
       "basis": "24h",
       "status": 200,
-      "at": "2026-11-14T04:35:51.943Z",
-      "cached": true,
+      "at": "2026-11-15T06:54:14.663Z",
+      "cached": false,
       "src": "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana,ripple,cardano,dogecoin&vs_currencies=aud&include_24hr_change=true"
     },
     {
@@ -62,13 +62,13 @@
       "unit": "A$",
       "dec": 2,
       "note": null,
-      "value": 2789.49,
+      "value": 2645.47,
       "prev": null,
-      "changePct": -1.7,
+      "changePct": -5.94,
       "basis": "24h",
       "status": 200,
-      "at": "2026-11-14T04:35:51.943Z",
-      "cached": true,
+      "at": "2026-11-15T06:54:14.663Z",
+      "cached": false,
       "src": "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana,ripple,cardano,dogecoin&vs_currencies=aud&include_24hr_change=true"
     },
     {
@@ -78,13 +78,13 @@
       "unit": "A$",
       "dec": 2,
       "note": null,
-      "value": 111.07,
+      "value": 103.95,
       "prev": null,
-      "changePct": -3.68,
+      "changePct": -6.91,
       "basis": "24h",
       "status": 200,
-      "at": "2026-11-14T04:35:51.943Z",
-      "cached": true,
+      "at": "2026-11-15T06:54:14.663Z",
+      "cached": false,
       "src": "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana,ripple,cardano,dogecoin&vs_currencies=aud&include_24hr_change=true"
     },
     {
@@ -94,13 +94,13 @@
       "unit": "A$",
       "dec": 3,
       "note": null,
-      "value": 1.46,
+      "value": 1.42,
       "prev": null,
-      "changePct": -1.24,
+      "changePct": -3.27,
       "basis": "24h",
       "status": 200,
-      "at": "2026-11-14T04:35:51.943Z",
-      "cached": true,
+      "at": "2026-11-15T06:54:14.663Z",
+      "cached": false,
       "src": "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana,ripple,cardano,dogecoin&vs_currencies=aud&include_24hr_change=true"
     },
     {
@@ -110,13 +110,13 @@
       "unit": "A$",
       "dec": 4,
       "note": null,
-      "value": 0.241592,
+      "value": 0.221932,
       "prev": null,
-      "changePct": -2.24,
+      "changePct": -8.34,
       "basis": "24h",
       "status": 200,
-      "at": "2026-11-14T04:35:51.943Z",
-      "cached": true,
+      "at": "2026-11-15T06:54:14.663Z",
+      "cached": false,
       "src": "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana,ripple,cardano,dogecoin&vs_currencies=aud&include_24hr_change=true"
     },
     {
@@ -126,13 +126,13 @@
       "unit": "A$",
       "dec": 4,
       "note": null,
-      "value": 0.092565,
+      "value": 0.085524,
       "prev": null,
-      "changePct": -0.82,
+      "changePct": -8.01,
       "basis": "24h",
       "status": 200,
-      "at": "2026-11-14T04:35:51.943Z",
-      "cached": true,
+      "at": "2026-11-15T06:54:14.663Z",
+      "cached": false,
       "src": "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana,ripple,cardano,dogecoin&vs_currencies=aud&include_24hr_change=true"
     },
     {
@@ -147,9 +147,9 @@
       "changePct": -0.52,
       "basis": "prior ECB day (2026-11-12)",
       "status": 200,
-      "at": "2026-11-14T04:35:52.661Z",
-      "cached": true,
-      "src": "https://api.frankfurter.dev/v1/2026-11-04..?from=AUD&to=USD,EUR,GBP,JPY"
+      "at": "2026-11-15T06:54:15.373Z",
+      "cached": false,
+      "src": "https://api.frankfurter.dev/v1/2026-11-05..?from=AUD&to=USD,EUR,GBP,JPY"
     },
     {
       "id": "audeur",
@@ -163,9 +163,9 @@
       "changePct": -0.26,
       "basis": "prior ECB day (2026-11-12)",
       "status": 200,
-      "at": "2026-11-14T04:35:52.661Z",
-      "cached": true,
-      "src": "https://api.frankfurter.dev/v1/2026-11-04..?from=AUD&to=USD,EUR,GBP,JPY"
+      "at": "2026-11-15T06:54:15.373Z",
+      "cached": false,
+      "src": "https://api.frankfurter.dev/v1/2026-11-05..?from=AUD&to=USD,EUR,GBP,JPY"
     },
     {
       "id": "audgbp",
@@ -179,9 +179,9 @@
       "changePct": -0.3,
       "basis": "prior ECB day (2026-11-12)",
       "status": 200,
-      "at": "2026-11-14T04:35:52.661Z",
-      "cached": true,
-      "src": "https://api.frankfurter.dev/v1/2026-11-04..?from=AUD&to=USD,EUR,GBP,JPY"
+      "at": "2026-11-15T06:54:15.373Z",
+      "cached": false,
+      "src": "https://api.frankfurter.dev/v1/2026-11-05..?from=AUD&to=USD,EUR,GBP,JPY"
     },
     {
       "id": "audjpy",
@@ -195,9 +195,9 @@
       "changePct": -0.34,
       "basis": "prior ECB day (2026-11-12)",
       "status": 200,
-      "at": "2026-11-14T04:35:52.661Z",
-      "cached": true,
-      "src": "https://api.frankfurter.dev/v1/2026-11-04..?from=AUD&to=USD,EUR,GBP,JPY"
+      "at": "2026-11-15T06:54:15.373Z",
+      "cached": false,
+      "src": "https://api.frankfurter.dev/v1/2026-11-05..?from=AUD&to=USD,EUR,GBP,JPY"
     },
     {
       "id": "usdjpy",
@@ -211,9 +211,9 @@
       "changePct": 0.19,
       "basis": "prior ECB day (2026-11-12)",
       "status": 200,
-      "at": "2026-11-14T04:35:53.360Z",
-      "cached": true,
-      "src": "https://api.frankfurter.dev/v1/2026-11-04..?from=USD&to=JPY"
+      "at": "2026-11-15T06:54:15.749Z",
+      "cached": false,
+      "src": "https://api.frankfurter.dev/v1/2026-11-05..?from=USD&to=JPY"
     },
     {
       "id": "eurusd",
@@ -227,9 +227,9 @@
       "changePct": -0.26,
       "basis": "prior ECB day (2026-11-12)",
       "status": 200,
-      "at": "2026-11-14T04:35:54.086Z",
-      "cached": true,
-      "src": "https://api.frankfurter.dev/v1/2026-11-04..?from=EUR&to=USD"
+      "at": "2026-11-15T06:54:16.092Z",
+      "cached": false,
+      "src": "https://api.frankfurter.dev/v1/2026-11-05..?from=EUR&to=USD"
     },
     {
       "id": "gold",
@@ -243,7 +243,7 @@
       "changePct": 0.03,
       "basis": "prior close",
       "status": 200,
-      "at": "2026-11-14T04:35:48.008Z",
+      "at": "2026-11-15T06:53:52.635Z",
       "cached": true,
       "src": "https://query1.finance.yahoo.com/v8/finance/chart/GC%3DF?range=1d&interval=1d"
     },
@@ -259,8 +259,8 @@
       "changePct": -1.89,
       "basis": "prior close",
       "status": 200,
-      "at": "2026-11-14T04:35:50.639Z",
-      "cached": true,
+      "at": "2026-11-15T06:54:13.564Z",
+      "cached": false,
       "src": "https://query1.finance.yahoo.com/v8/finance/chart/SI%3DF?range=1d&interval=1d"
     },
     {
@@ -270,13 +270,13 @@
       "unit": "USD/oz",
       "dec": 2,
       "note": "COMEX front month, not spot",
-      "value": 1492.2,
+      "value": 1489.7,
       "prev": 1520.4,
-      "changePct": -1.85,
+      "changePct": -2.02,
       "basis": "prior close",
       "status": 200,
-      "at": "2026-11-14T04:35:50.892Z",
-      "cached": true,
+      "at": "2026-11-15T06:54:13.701Z",
+      "cached": false,
       "src": "https://query1.finance.yahoo.com/v8/finance/chart/PL%3DF?range=1d&interval=1d"
     },
     {
@@ -291,7 +291,7 @@
       "changePct": -0.71,
       "basis": "prior close",
       "status": 200,
-      "at": "2026-11-14T04:35:48.218Z",
+      "at": "2026-11-15T06:53:52.824Z",
       "cached": true,
       "src": "https://query1.finance.yahoo.com/v8/finance/chart/%5EAXJO?range=1d&interval=1d"
     },
@@ -307,7 +307,7 @@
       "changePct": -0.4,
       "basis": "prior close",
       "status": 200,
-      "at": "2026-11-14T04:35:48.348Z",
+      "at": "2026-11-15T06:53:52.953Z",
       "cached": true,
       "src": "https://query1.finance.yahoo.com/v8/finance/chart/%5EGSPC?range=1d&interval=1d"
     },
@@ -323,7 +323,7 @@
       "changePct": -0.91,
       "basis": "prior close",
       "status": 200,
-      "at": "2026-11-14T04:35:48.484Z",
+      "at": "2026-11-15T06:53:53.083Z",
       "cached": true,
       "src": "https://query1.finance.yahoo.com/v8/finance/chart/%5EIXIC?range=1d&interval=1d"
     },
@@ -339,8 +339,8 @@
       "changePct": 0.1,
       "basis": "prior close",
       "status": 200,
-      "at": "2026-11-14T04:35:51.058Z",
-      "cached": true,
+      "at": "2026-11-15T06:54:13.840Z",
+      "cached": false,
       "src": "https://query1.finance.yahoo.com/v8/finance/chart/%5EDJI?range=1d&interval=1d"
     },
     {
@@ -355,8 +355,8 @@
       "changePct": 0.36,
       "basis": "prior close",
       "status": 200,
-      "at": "2026-11-14T04:35:51.191Z",
-      "cached": true,
+      "at": "2026-11-15T06:54:13.979Z",
+      "cached": false,
       "src": "https://query1.finance.yahoo.com/v8/finance/chart/%5EFTSE?range=1d&interval=1d"
     },
     {
@@ -371,8 +371,8 @@
       "changePct": 0.53,
       "basis": "prior close",
       "status": 200,
-      "at": "2026-11-14T04:35:51.332Z",
-      "cached": true,
+      "at": "2026-11-15T06:54:14.111Z",
+      "cached": false,
       "src": "https://query1.finance.yahoo.com/v8/finance/chart/%5EN225?range=1d&interval=1d"
     },
     {
@@ -387,7 +387,7 @@
       "changePct": -0.2,
       "basis": "prior close",
       "status": 200,
-      "at": "2026-11-14T04:35:48.622Z",
+      "at": "2026-11-15T06:53:53.211Z",
       "cached": true,
       "src": "https://query1.finance.yahoo.com/v8/finance/chart/CL%3DF?range=1d&interval=1d"
     },
@@ -403,8 +403,8 @@
       "changePct": 0.02,
       "basis": "prior close",
       "status": 200,
-      "at": "2026-11-14T04:35:51.465Z",
-      "cached": true,
+      "at": "2026-11-15T06:54:14.238Z",
+      "cached": false,
       "src": "https://query1.finance.yahoo.com/v8/finance/chart/BZ%3DF?range=1d&interval=1d"
     },
     {
@@ -414,13 +414,13 @@
       "unit": "USD",
       "dec": 3,
       "note": null,
-      "value": 3.242,
+      "value": 3.23,
       "prev": 3.34,
-      "changePct": -2.93,
+      "changePct": -3.29,
       "basis": "prior close",
       "status": 200,
-      "at": "2026-11-14T04:35:51.598Z",
-      "cached": true,
+      "at": "2026-11-15T06:54:14.373Z",
+      "cached": false,
       "src": "https://query1.finance.yahoo.com/v8/finance/chart/NG%3DF?range=1d&interval=1d"
     },
     {
@@ -435,7 +435,7 @@
       "changePct": -1.26,
       "basis": "prior close",
       "status": 200,
-      "at": "2026-11-14T04:35:48.844Z",
+      "at": "2026-11-15T06:53:53.379Z",
       "cached": true,
       "src": "https://query1.finance.yahoo.com/v8/finance/chart/BHP.AX?range=1d&interval=1d"
     },
@@ -451,7 +451,7 @@
       "changePct": -0.52,
       "basis": "prior close",
       "status": 200,
-      "at": "2026-11-14T04:35:49.047Z",
+      "at": "2026-11-15T06:53:53.540Z",
       "cached": true,
       "src": "https://query1.finance.yahoo.com/v8/finance/chart/CBA.AX?range=1d&interval=1d"
     },
@@ -467,7 +467,7 @@
       "changePct": -0.47,
       "basis": "prior close",
       "status": 200,
-      "at": "2026-11-14T04:35:49.217Z",
+      "at": "2026-11-15T06:53:53.707Z",
       "cached": true,
       "src": "https://query1.finance.yahoo.com/v8/finance/chart/WBC.AX?range=1d&interval=1d"
     },
@@ -483,7 +483,7 @@
       "changePct": 0.39,
       "basis": "prior close",
       "status": 200,
-      "at": "2026-11-14T04:35:49.380Z",
+      "at": "2026-11-15T06:53:53.869Z",
       "cached": true,
       "src": "https://query1.finance.yahoo.com/v8/finance/chart/AAPL?range=1d&interval=1d"
     },
@@ -499,7 +499,7 @@
       "changePct": 0.17,
       "basis": "prior close",
       "status": 200,
-      "at": "2026-11-14T04:35:49.539Z",
+      "at": "2026-11-15T06:53:54.015Z",
       "cached": true,
       "src": "https://query1.finance.yahoo.com/v8/finance/chart/MSFT?range=1d&interval=1d"
     },
@@ -515,7 +515,7 @@
       "changePct": -2.01,
       "basis": "prior close",
       "status": 200,
-      "at": "2026-11-14T04:35:49.683Z",
+      "at": "2026-11-15T06:53:54.163Z",
       "cached": true,
       "src": "https://query1.finance.yahoo.com/v8/finance/chart/NVDA?range=1d&interval=1d"
     },
@@ -531,7 +531,7 @@
       "changePct": -1.82,
       "basis": "prior close",
       "status": 200,
-      "at": "2026-11-14T04:35:49.812Z",
+      "at": "2026-11-15T06:53:54.297Z",
       "cached": true,
       "src": "https://query1.finance.yahoo.com/v8/finance/chart/TSLA?range=1d&interval=1d"
     }

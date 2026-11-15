@@ -1,0 +1,520 @@
+{
+  "slug": "quant-rulebook-pack-2026-11-08",
+  "title": "Tripwire Quantitative Rulebook, 31-Asset Registry & Style Backtest Pack (2026-11-08)",
+  "builtAt": "2026-11-08T00:41:01.257Z",
+  "provenance": {
+    "assetsSha256": "ba5a1af17170016f",
+    "algosSha256": "867a03d66a24f15b",
+    "packagesSha256": "04707f880719f1b3",
+    "signalsSha256": "e683a85d0c51011d"
+  },
+  "tierLeaders": [
+    {
+      "tier": "digest",
+      "name": "Digest",
+      "price": "A$0",
+      "shippedAlgo": "Gauge",
+      "shippedOosCagr": 0.09636605133822918,
+      "bestStyleId": "trend",
+      "bestStyleName": "Trend & breakout",
+      "bestOosCagr": 0.12486940865109464,
+      "deltaPp": 2.85
+    },
+    {
+      "tier": "tripwire",
+      "name": "Tripwire",
+      "price": "A$9/mo",
+      "shippedAlgo": "Band",
+      "shippedOosCagr": 0.0661005821403644,
+      "bestStyleId": "trend",
+      "bestStyleName": "Trend & breakout",
+      "bestOosCagr": 0.12826628725110756,
+      "deltaPp": 6.22
+    },
+    {
+      "tier": "package",
+      "name": "Package",
+      "price": "A$29-99/mo",
+      "shippedAlgo": "Scale",
+      "shippedOosCagr": 0.09522286045788819,
+      "bestStyleId": "balanced",
+      "bestStyleName": "Risk parity",
+      "bestOosCagr": 0.1417867581036738,
+      "deltaPp": 4.66
+    },
+    {
+      "tier": "gear",
+      "name": "Package · high yield",
+      "price": "A$99/mo",
+      "shippedAlgo": "Gear",
+      "shippedOosCagr": 0.10423062793585669,
+      "bestStyleId": "balanced",
+      "bestStyleName": "Risk parity",
+      "bestOosCagr": 0.16090402349201272,
+      "deltaPp": 5.67
+    }
+  ],
+  "baskets": [
+    {
+      "id": "asx-steady",
+      "name": "ASX Steady",
+      "price": "A$29/mo",
+      "alertMove": 2.5,
+      "holds": [
+        {
+          "id": "cba",
+          "w": 30
+        },
+        {
+          "id": "wbc",
+          "w": 20
+        },
+        {
+          "id": "bhp",
+          "w": 25
+        },
+        {
+          "id": "asx200",
+          "w": 25
+        }
+      ]
+    },
+    {
+      "id": "global-core",
+      "name": "Global Core",
+      "price": "A$59/mo",
+      "alertMove": 3,
+      "holds": [
+        {
+          "id": "sp500",
+          "w": 30
+        },
+        {
+          "id": "nasdaq",
+          "w": 20
+        },
+        {
+          "id": "aapl",
+          "w": 15
+        },
+        {
+          "id": "msft",
+          "w": 15
+        },
+        {
+          "id": "gold",
+          "w": 20
+        }
+      ]
+    },
+    {
+      "id": "momentum",
+      "name": "Momentum",
+      "price": "A$99/mo",
+      "alertMove": 6,
+      "holds": [
+        {
+          "id": "btc",
+          "w": 30
+        },
+        {
+          "id": "eth",
+          "w": 20
+        },
+        {
+          "id": "nvda",
+          "w": 20
+        },
+        {
+          "id": "sol",
+          "w": 10
+        },
+        {
+          "id": "tsla",
+          "w": 10
+        },
+        {
+          "id": "wti",
+          "w": 10
+        }
+      ]
+    }
+  ],
+  "sentimentTaxonomy": {
+    "partitions": [
+      "institutional",
+      "retail",
+      "syndicated",
+      "meta_ensemble"
+    ],
+    "constants": {
+      "nMin": 3,
+      "zWindowDays": 63,
+      "snapshotMin": 5,
+      "rule1": {
+        "zGap": 2,
+        "slopeMin": 0
+      },
+      "rule2": {
+        "rankWindowDays": 7,
+        "topN": 3
+      },
+      "rule3": {
+        "retailGt": 0.7,
+        "instLt": -0.3,
+        "accelLt": 0
+      },
+      "rule4": {
+        "confFloor": 0.2
+      },
+      "form4": {
+        "alpha": 1,
+        "excludeCodes": [
+          "F",
+          "M",
+          "A",
+          "S"
+        ]
+      },
+      "ensemble": {
+        "wInternal": 0.7,
+        "wVendor": 0.3
+      }
+    },
+    "categories": [
+      {
+        "id": "1a",
+        "label": "Press Releases",
+        "partition": "institutional",
+        "tauHours": 4,
+        "rules": [
+          "R1",
+          "R2"
+        ],
+        "countsIndependent": true
+      },
+      {
+        "id": "1b",
+        "label": "Tier-1 Publishers",
+        "partition": "institutional",
+        "tauHours": 12,
+        "rules": [
+          "R1",
+          "R2"
+        ],
+        "countsIndependent": true
+      },
+      {
+        "id": "1c",
+        "label": "Syndicators",
+        "partition": "syndicated",
+        "tauHours": 2,
+        "rules": [],
+        "countsIndependent": false
+      },
+      {
+        "id": "2",
+        "label": "Social & Retail",
+        "partition": "retail",
+        "tauHours": 1,
+        "rules": [
+          "R3"
+        ],
+        "countsIndependent": true
+      },
+      {
+        "id": "3",
+        "label": "SEC & Regulatory Filings",
+        "partition": "institutional",
+        "tauHours": 504,
+        "rules": [
+          "R1",
+          "R2",
+          "R3"
+        ],
+        "countsIndependent": true
+      },
+      {
+        "id": "4",
+        "label": "Audio & Transcripts",
+        "partition": "institutional",
+        "tauHours": 144,
+        "rules": [
+          "R1",
+          "R3",
+          "R4"
+        ],
+        "countsIndependent": true
+      },
+      {
+        "id": "5",
+        "label": "Sell-Side & Credit",
+        "partition": "institutional",
+        "tauHours": 240,
+        "rules": [
+          "R1",
+          "R2"
+        ],
+        "countsIndependent": true
+      },
+      {
+        "id": "6",
+        "label": "Pre-Scored Aggregators",
+        "partition": "meta_ensemble",
+        "tauHours": null,
+        "rules": [],
+        "countsIndependent": false
+      }
+    ]
+  },
+  "assetsRegistry": [
+    {
+      "id": "btc",
+      "label": "Bitcoin",
+      "class": "crypto",
+      "sector": "crypto",
+      "unit": "A$",
+      "sourceKind": "coingecko"
+    },
+    {
+      "id": "eth",
+      "label": "Ethereum",
+      "class": "crypto",
+      "sector": "crypto",
+      "unit": "A$",
+      "sourceKind": "coingecko"
+    },
+    {
+      "id": "sol",
+      "label": "Solana",
+      "class": "crypto",
+      "sector": "crypto",
+      "unit": "A$",
+      "sourceKind": "coingecko"
+    },
+    {
+      "id": "xrp",
+      "label": "XRP",
+      "class": "crypto",
+      "sector": "crypto",
+      "unit": "A$",
+      "sourceKind": "coingecko"
+    },
+    {
+      "id": "ada",
+      "label": "Cardano",
+      "class": "crypto",
+      "sector": "crypto",
+      "unit": "A$",
+      "sourceKind": "coingecko"
+    },
+    {
+      "id": "doge",
+      "label": "Dogecoin",
+      "class": "crypto",
+      "sector": "crypto",
+      "unit": "A$",
+      "sourceKind": "coingecko"
+    },
+    {
+      "id": "audusd",
+      "label": "AUD/USD",
+      "class": "fx",
+      "sector": "fx",
+      "unit": "USD",
+      "sourceKind": "frankfurter"
+    },
+    {
+      "id": "audeur",
+      "label": "AUD/EUR",
+      "class": "fx",
+      "sector": "fx",
+      "unit": "EUR",
+      "sourceKind": "frankfurter"
+    },
+    {
+      "id": "audgbp",
+      "label": "AUD/GBP",
+      "class": "fx",
+      "sector": "fx",
+      "unit": "GBP",
+      "sourceKind": "frankfurter"
+    },
+    {
+      "id": "audjpy",
+      "label": "AUD/JPY",
+      "class": "fx",
+      "sector": "fx",
+      "unit": "JPY",
+      "sourceKind": "frankfurter"
+    },
+    {
+      "id": "usdjpy",
+      "label": "USD/JPY",
+      "class": "fx",
+      "sector": "fx",
+      "unit": "JPY",
+      "sourceKind": "frankfurter"
+    },
+    {
+      "id": "eurusd",
+      "label": "EUR/USD",
+      "class": "fx",
+      "sector": "fx",
+      "unit": "USD",
+      "sourceKind": "frankfurter"
+    },
+    {
+      "id": "gold",
+      "label": "Gold (front month)",
+      "class": "metal",
+      "sector": "commodities",
+      "unit": "USD/oz",
+      "sourceKind": "yahoo"
+    },
+    {
+      "id": "silver",
+      "label": "Silver (front month)",
+      "class": "metal",
+      "sector": "commodities",
+      "unit": "USD/oz",
+      "sourceKind": "yahoo"
+    },
+    {
+      "id": "platinum",
+      "label": "Platinum (front month)",
+      "class": "metal",
+      "sector": "commodities",
+      "unit": "USD/oz",
+      "sourceKind": "yahoo"
+    },
+    {
+      "id": "asx200",
+      "label": "ASX 200",
+      "class": "index",
+      "sector": "index",
+      "unit": "pts",
+      "sourceKind": "yahoo"
+    },
+    {
+      "id": "sp500",
+      "label": "S&P 500",
+      "class": "index",
+      "sector": "index",
+      "unit": "pts",
+      "sourceKind": "yahoo"
+    },
+    {
+      "id": "nasdaq",
+      "label": "Nasdaq Composite",
+      "class": "index",
+      "sector": "index",
+      "unit": "pts",
+      "sourceKind": "yahoo"
+    },
+    {
+      "id": "dow",
+      "label": "Dow Jones",
+      "class": "index",
+      "sector": "index",
+      "unit": "pts",
+      "sourceKind": "yahoo"
+    },
+    {
+      "id": "ftse",
+      "label": "FTSE 100",
+      "class": "index",
+      "sector": "index",
+      "unit": "pts",
+      "sourceKind": "yahoo"
+    },
+    {
+      "id": "nikkei",
+      "label": "Nikkei 225",
+      "class": "index",
+      "sector": "index",
+      "unit": "pts",
+      "sourceKind": "yahoo"
+    },
+    {
+      "id": "wti",
+      "label": "WTI crude",
+      "class": "energy",
+      "sector": "commodities",
+      "unit": "USD/bbl",
+      "sourceKind": "yahoo"
+    },
+    {
+      "id": "brent",
+      "label": "Brent crude",
+      "class": "energy",
+      "sector": "commodities",
+      "unit": "USD/bbl",
+      "sourceKind": "yahoo"
+    },
+    {
+      "id": "natgas",
+      "label": "Natural gas",
+      "class": "energy",
+      "sector": "commodities",
+      "unit": "USD",
+      "sourceKind": "yahoo"
+    },
+    {
+      "id": "bhp",
+      "label": "BHP Group",
+      "class": "stock",
+      "sector": "asx-equity",
+      "unit": "A$",
+      "sourceKind": "yahoo"
+    },
+    {
+      "id": "cba",
+      "label": "CommBank",
+      "class": "stock",
+      "sector": "asx-equity",
+      "unit": "A$",
+      "sourceKind": "yahoo"
+    },
+    {
+      "id": "wbc",
+      "label": "Westpac",
+      "class": "stock",
+      "sector": "asx-equity",
+      "unit": "A$",
+      "sourceKind": "yahoo"
+    },
+    {
+      "id": "aapl",
+      "label": "Apple",
+      "class": "stock",
+      "sector": "us-equity",
+      "unit": "USD",
+      "sourceKind": "yahoo"
+    },
+    {
+      "id": "msft",
+      "label": "Microsoft",
+      "class": "stock",
+      "sector": "us-equity",
+      "unit": "USD",
+      "sourceKind": "yahoo"
+    },
+    {
+      "id": "nvda",
+      "label": "Nvidia",
+      "class": "stock",
+      "sector": "us-equity",
+      "unit": "USD",
+      "sourceKind": "yahoo"
+    },
+    {
+      "id": "tsla",
+      "label": "Tesla",
+      "class": "stock",
+      "sector": "us-equity",
+      "unit": "USD",
+      "sourceKind": "yahoo"
+    }
+  ]
+}

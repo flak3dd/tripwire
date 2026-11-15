@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tripwire Digest — 2026-11-06</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0b0e13;--panel:#121720;--line:#222b38;--ink:#e8edf5;--muted:#93a0b4;--brass:#c9a227;--brass-dim:#9c8434;--ok:#31d68a;--serif:'Instrument Serif',Georgia,serif;--mono:ui-monospace,SFMono-Regular,Menlo,monospace}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
+.wrap{max-width:880px;margin:0 auto;padding:34px 22px 72px}
+.nav{display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line);padding-bottom:14px;margin-bottom:30px;font:12px var(--mono)}
+.mark{color:var(--ink);text-decoration:none;font-weight:700;letter-spacing:.08em}
+.mark span{color:var(--brass)}
+.nav-links a{color:var(--muted);text-decoration:none;margin-left:16px}
+.nav-links a:hover{color:var(--ink)}
+h1{font:400 52px/1.06 var(--serif);margin:0 0 14px;letter-spacing:-.01em}
+h1::after{content:".";color:var(--brass)}
+h2{font:600 13px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--brass);margin:28px 0 12px}
+h3{font:600 15px -apple-system,sans-serif;margin:20px 0 8px}
+p,li{color:#cfd7e6;font-size:15px}
+code{font:12px var(--mono);background:#161d29;padding:2px 6px;border-radius:4px;color:var(--ink)}
+a{color:var(--brass)}
+hr{border:0;border-top:1px solid var(--line);margin:28px 0}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:22px 24px;margin:18px 0}
+.cta{display:inline-block;background:var(--brass);color:#0b0e13;text-decoration:none;font:700 13px var(--mono);padding:11px 18px;border-radius:6px;margin-top:10px}
+.pill{display:inline-block;padding:3px 9px;border:1px solid var(--line);border-radius:99px;font:11px var(--mono);color:var(--muted);margin:0 6px 6px 0}
+.table-wrap{overflow-x:auto;margin:14px 0}
+table{width:100%;border-collapse:collapse;font:13px var(--mono)}
+th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line)}
+th{color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.06em}
+.foot{margin-top:42px;padding-top:18px;border-top:1px solid var(--line);font:12px var(--mono);color:var(--muted)}
+</style>
+</head><body><div class="wrap">
+  <nav class="nav">
+    <a class="mark" href="https://flak3dd.github.io/tripwire/">TRIPWIRE.DIGEST<span>.AU</span></a>
+    <div class="nav-links">
+      <a href="https://flak3dd.github.io/tripwire/">Live Board</a>
+      <a href="https://flak3dd.github.io/tripwire/listing/">Listing</a>
+      <a href="https://flak3dd.github.io/tripwire/store/">Store</a>
+      <a href="https://flak3dd.github.io/tripwire/newsletter/latest/">Newsletter</a>
+      <a href="https://tripwire-gate.shadowgrok.workers.dev/subscribe">Subscribe →</a>
+    </div>
+  </nav>
+  
+        <div class="card">
+          <span class="pill">issue: 2026-11-06</span>
+          <span class="pill">sha256:6779c714c509abdb</span>
+          <span class="pill"><a href="issue.md">raw markdown</a></span>
+          <h1>Tripwire — Issue #0</h1>
+<p><strong>What crossed a threshold this week: nothing. That is the honest answer, and it is the product.</strong></p>
+<p>Sent 2026-11-06 · 4 tripwires · all readings fetched from public keyless APIs at 2026-11-06T00:59Z.</p>
+<p>The board lives at <strong><a href="https://flak3dd.github.io/tripwire/">https://flak3dd.github.io/tripwire/</a></strong> and re-renders hourly — compare it to this</p>
+<p>email and you can tell whether I'm fudging the numbers. (You can't, but you can check.)</p>
+<div class="table-wrap"><table><thead><tr><th>Tripwire</th><th>Now</th><th>Your number</th><th>Distance</th><th>State</th></tr></thead><tbody>
+<tr><td>Bitcoin</td><td>A$109,908</td><td>A$100,000</td><td>9.01% above</td><td>ARMED</td></tr>
+<tr><td>Ethereum</td><td>A$3,234.32</td><td>A$3,000</td><td>7.24% above</td><td>ARMED</td></tr>
+<tr><td>Solana</td><td>A$130.05</td><td>A$120</td><td>7.73% above</td><td>ARMED</td></tr>
+<tr><td>AUD → USD</td><td>0.70006</td><td>0.72</td><td>2.85% below</td><td>ARMED</td></tr>
+</tbody></table></div>
+<h2>Closest to firing</h2>
+<p>AUD/USD is 2.85% from tripping — the tightest of the four. If the dollar weakens past 0.72, this</p>
+<p>email becomes a one-line alert with the timestamped value attached. That is the whole service:</p>
+<p><strong>arithmetic crossing a number you chose.</strong></p>
+<h2>Why a digest of &quot;nothing&quot; is still worth reading</h2>
+<p>Most market email is opinion with a chart stapled to it. This one only has facts to report when</p>
+<p>a number is crossed, so when nothing is crossed it says so. You can tell whether the tripwire is</p>
+<p>working by whether this table changes.</p>
+<h2>What I'm watching next week</h2>
+<ul>
+<li>BTC: a 9% drawdown trips the first tripwire.</li>
+<li>AUD/USD: unchanged at 0.70006 across two reads — thin week for FX.</li>
+<li>No new tripwires added. Custom tickers are the paid tier, and nobody has asked for one yet.</li>
+</ul>
+<hr>
+<p><em>Not financial advice. A tripwire fires on arithmetic, not opinion. Reply &quot;stop&quot; to stop.</em></p>
+        </div>
+      
+  <footer class="foot">Not financial advice. Every hash &amp; proof is verifiable · <a href="https://flak3dd.github.io/tripwire/">https://flak3dd.github.io/tripwire/</a></footer>
+</div></body></html>

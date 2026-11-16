@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-11-16T01:05:08.814Z",
+  "generatedAt": "2026-11-16T02:04:45.888Z",
   "name": "Tripwire",
   "genesis": "11e24f5192254d97de70cdb73a44cb80",
-  "head": "cd68207b8e878360c3841a6835a68bb953326ae0097ebbdf99f5fce03a6dc7cf",
-  "events": 18,
+  "head": "d0c9f1272f6990bd0e3f29abb2b85578f0022a2458aa1312215f0160f472dd9d",
+  "events": 21,
   "verified": true,
-  "verifiedAt": "2026-11-16T01:05:08.814Z",
+  "verifiedAt": "2026-11-16T02:04:45.888Z",
   "chain": [
     {
       "seq": 1,
@@ -204,6 +204,39 @@
       "op": "lt",
       "sha": "cd68207b8e878360c3841a6835a68bb953326ae0097ebbdf99f5fce03a6dc7cf",
       "prev": "047e5b60aafa5fa62a6028c2e0f07ffe431f0a77865da7255be9b8b3aaecb5e5"
+    },
+    {
+      "seq": 19,
+      "at": "2026-11-16T01:08:14.392Z",
+      "watcher": "btc-aud-floor",
+      "label": "Bitcoin below A$100k",
+      "value": 95654,
+      "threshold": 100000,
+      "op": "lt",
+      "sha": "226988e7f9d6a30deb2b16466c07119570f2401b8aa51ea4c03bdee90c709b0a",
+      "prev": "cd68207b8e878360c3841a6835a68bb953326ae0097ebbdf99f5fce03a6dc7cf"
+    },
+    {
+      "seq": 20,
+      "at": "2026-11-16T01:08:14.638Z",
+      "watcher": "eth-aud-floor",
+      "label": "Ethereum below A$3k",
+      "value": 2674.42,
+      "threshold": 3000,
+      "op": "lt",
+      "sha": "7b952fe299f7ddf1aad6a9d818d57058a85d113cadd06ed118e89a6996469be7",
+      "prev": "226988e7f9d6a30deb2b16466c07119570f2401b8aa51ea4c03bdee90c709b0a"
+    },
+    {
+      "seq": 21,
+      "at": "2026-11-16T01:08:14.665Z",
+      "watcher": "sol-aud-floor",
+      "label": "Solana below A$120",
+      "value": 106.02,
+      "threshold": 120,
+      "op": "lt",
+      "sha": "d0c9f1272f6990bd0e3f29abb2b85578f0022a2458aa1312215f0160f472dd9d",
+      "prev": "7b952fe299f7ddf1aad6a9d818d57058a85d113cadd06ed118e89a6996469be7"
     }
   ]
 }

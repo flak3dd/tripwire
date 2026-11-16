@@ -1,8 +1,8 @@
-# Tripwire Digest — 2026-11-15
+# Tripwire Digest — 2026-11-16
 
 **What crossed a threshold: 18 chain-verified event(s) on the log (latest 10 shown below). Every hash is verifiable.**
 
-Prepared 2026-11-15T23:44:32.643Z · 8 tripwires · 668 recorded poll(s) from public keyless APIs (CoinGecko, ECB/Frankfurter, Yahoo Finance).
+Prepared 2026-11-16T00:18:39.987Z · 8 tripwires · 668 recorded poll(s) from public keyless APIs (CoinGecko, ECB/Frankfurter, Yahoo Finance).
 The live board is published at **https://tripwire-alert.trade/** and re-renders hourly.
 
 | Tripwire | Now | Your number | Distance | State |
@@ -35,9 +35,9 @@ AUD above 0.72 USD is 6.11% from tripping (now 0.67854 vs gt 0.72 across 85 reco
 
 ## Basket & Sentiment Tape (recorded, no opinion)
 
-- **asx-steady**: index level `101.9652` (-0.15% today) as of `2026-11-15T23:30:41.109Z`.
-- **global-core**: index level `100.7759` (-0.24% today) as of `2026-11-15T23:30:41.118Z`.
-- **momentum**: index level `89.9071` (+1.45% today) as of `2026-11-15T23:30:41.132Z`.
+- **asx-steady**: index level `101.5279` (-0.57% today) as of `2026-11-16T00:17:31.104Z`.
+- **global-core**: index level `100.8646` (-0.15% today) as of `2026-11-16T00:17:31.113Z`.
+- **momentum**: index level `89.8089` (+0.52% today) as of `2026-11-16T00:17:31.121Z`.
 
 - **BTC**: institutional `-0.2368` · retail `thin` · composite `-0.2368` (11 independent source(s)).
 - **ETH**: institutional `-0.0364` · retail `thin` · composite `-0.0364` (3 independent source(s)).
@@ -45,7 +45,7 @@ AUD above 0.72 USD is 6.11% from tripping (now 0.67854 vs gt 0.72 across 85 reco
 
 ## Why a digest of arithmetic is worth reading
 
-Most market email is opinion with a chart stapled to it. Every number above was read from `workspace/newsletter/2026-11-15-claims.json` (sha256-verified before this draft closed). When nothing crosses, the digest says so.
+Most market email is opinion with a chart stapled to it. Every number above was read from `workspace/newsletter/2026-11-16-claims.json` (sha256-verified before this draft closed). When nothing crosses, the digest says so.
 
 ---
 

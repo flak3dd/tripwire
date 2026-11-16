@@ -1,24 +1,30 @@
 {
-  "builtAt": "2026-11-16T00:43:32.729Z",
+  "builtAt": "2026-11-16T01:05:08.998Z",
   "engine": "signals",
-  "sourceArtifact": "workspace/signals/artifacts/rules-2026-11-15T23-52-47-819Z.json",
-  "sourceSha256": "2a09c803d3c5a323",
+  "sourceArtifact": "workspace/signals/artifacts/rules-2026-11-16T01-05-00-746Z.json",
+  "sourceSha256": "ce951c8dcc020c1e",
   "scores": [
     {
       "asset": "btc",
-      "at": "2026-11-15T23:52:47.819Z",
-      "s_inst": -0.2368,
+      "at": "2026-11-16T01:05:00.746Z",
+      "s_inst": null,
       "s_retail": null,
       "s_syndicated": null,
       "s_vendor": null,
-      "s_internal": -0.2368,
-      "s_hat": -0.2368,
+      "s_internal": null,
+      "s_hat": null,
       "n": {
         "inst": 11,
         "retail": 0,
         "syndicated": 0,
         "vendor": 0,
         "total": 11
+      },
+      "n_fresh": {
+        "inst": 0,
+        "retail": 0,
+        "syndicated": 0,
+        "vendor": 0
       },
       "n_ind": 11,
       "cbar": {
@@ -27,25 +33,32 @@
         "internal": 0.6545
       },
       "thin": [
+        "inst",
         "retail",
         "vendor"
       ]
     },
     {
       "asset": "eth",
-      "at": "2026-11-15T23:52:47.819Z",
-      "s_inst": -0.0364,
+      "at": "2026-11-16T01:05:00.746Z",
+      "s_inst": null,
       "s_retail": null,
       "s_syndicated": null,
       "s_vendor": null,
-      "s_internal": -0.0364,
-      "s_hat": -0.0364,
+      "s_internal": null,
+      "s_hat": null,
       "n": {
         "inst": 3,
         "retail": 0,
         "syndicated": 0,
         "vendor": 0,
         "total": 3
+      },
+      "n_fresh": {
+        "inst": 0,
+        "retail": 0,
+        "syndicated": 0,
+        "vendor": 0
       },
       "n_ind": 3,
       "cbar": {
@@ -54,13 +67,14 @@
         "internal": 0.7333
       },
       "thin": [
+        "inst",
         "retail",
         "vendor"
       ]
     },
     {
       "asset": "sol",
-      "at": "2026-11-15T23:52:47.819Z",
+      "at": "2026-11-16T01:05:00.746Z",
       "s_inst": null,
       "s_retail": null,
       "s_syndicated": null,
@@ -73,6 +87,12 @@
         "syndicated": 0,
         "vendor": 0,
         "total": 1
+      },
+      "n_fresh": {
+        "inst": 0,
+        "retail": 0,
+        "syndicated": 0,
+        "vendor": 0
       },
       "n_ind": 1,
       "cbar": {
@@ -91,13 +111,13 @@
     {
       "asset": "btc",
       "rule": "R1",
-      "fired": 1,
-      "s_inst": -0.2368,
+      "fired": 0,
+      "s_inst": null,
       "z_price": -2.9628,
-      "d_s_inst": 0,
-      "reason": "divergence: z_sent 0.9428 - z_price -2.9628 = 3.9056 > 2, slope 0/h >= 0",
+      "d_s_inst": null,
+      "reason": "no fire: z_sent=null (daily history n=9, need 5) z_price=-2.9628 slope=null/h vs gap>2",
       "meta": {
-        "z_sent": 0.9428,
+        "z_sent": null,
         "history_n": 9,
         "basis": "daily closes"
       }
@@ -106,12 +126,12 @@
       "asset": "btc",
       "rule": "R2",
       "fired": 0,
-      "s_inst": -0.2368,
-      "d_s_inst": 0,
-      "reason": "sector crypto: rank 1/2, slope 0/h (top 3 and >0 fires)",
+      "s_inst": null,
+      "d_s_inst": null,
+      "reason": "no fire: no 7d slope history for btc",
       "meta": {
-        "rank": 1,
-        "of": 2,
+        "rank": null,
+        "of": null,
         "window_days": 7
       }
     },
@@ -119,10 +139,10 @@
       "asset": "btc",
       "rule": "R3",
       "fired": 0,
-      "s_inst": -0.2368,
+      "s_inst": null,
       "s_retail": null,
       "dv_retail": 0,
-      "reason": "retail null (need >0.7), inst -0.2368 (need <-0.3), volume [0,0,0]/h accel 0 (need <0, n>=3)",
+      "reason": "retail null (need >0.7), inst null (need <-0.3), volume [0,0,0]/h accel 0 (need <0, n>=3)",
       "meta": {
         "buckets": [
           0,
@@ -136,10 +156,10 @@
     {
       "asset": "btc",
       "rule": "R4",
-      "fired": 1,
-      "s_hat": -0.2368,
-      "size_mult": -1.2123,
-      "reason": "size = (S_hat -0.2368 / σ 0.3177) × c̄ 0.6545 × ln(1+N_ind 11) = -1.2123 risk units",
+      "fired": 0,
+      "s_hat": null,
+      "size_mult": null,
+      "reason": "no multiplier: S_hat null (thin event set)",
       "meta": {
         "sigma_annual": 0.3177,
         "cbar": 0.6545,
@@ -155,12 +175,12 @@
       "asset": "eth",
       "rule": "R1",
       "fired": 0,
-      "s_inst": -0.0364,
+      "s_inst": null,
       "z_price": -2.5386,
-      "d_s_inst": 0,
-      "reason": "no fire: z_sent=-0.9428 (daily history n=9, need 5) z_price=-2.5386 slope=0/h vs gap>2",
+      "d_s_inst": null,
+      "reason": "no fire: z_sent=null (daily history n=9, need 5) z_price=-2.5386 slope=null/h vs gap>2",
       "meta": {
-        "z_sent": -0.9428,
+        "z_sent": null,
         "history_n": 9,
         "basis": "daily closes"
       }
@@ -169,12 +189,12 @@
       "asset": "eth",
       "rule": "R2",
       "fired": 0,
-      "s_inst": -0.0364,
-      "d_s_inst": 0,
-      "reason": "sector crypto: rank 2/2, slope 0/h (top 3 and >0 fires)",
+      "s_inst": null,
+      "d_s_inst": null,
+      "reason": "no fire: no 7d slope history for eth",
       "meta": {
-        "rank": 2,
-        "of": 2,
+        "rank": null,
+        "of": null,
         "window_days": 7
       }
     },
@@ -182,10 +202,10 @@
       "asset": "eth",
       "rule": "R3",
       "fired": 0,
-      "s_inst": -0.0364,
+      "s_inst": null,
       "s_retail": null,
       "dv_retail": 0,
-      "reason": "retail null (need >0.7), inst -0.0364 (need <-0.3), volume [0,0,0]/h accel 0 (need <0, n>=3)",
+      "reason": "retail null (need >0.7), inst null (need <-0.3), volume [0,0,0]/h accel 0 (need <0, n>=3)",
       "meta": {
         "buckets": [
           0,
@@ -199,10 +219,10 @@
     {
       "asset": "eth",
       "rule": "R4",
-      "fired": 1,
-      "s_hat": -0.0364,
-      "size_mult": -0.0963,
-      "reason": "size = (S_hat -0.0364 / σ 0.3841) × c̄ 0.7333 × ln(1+N_ind 3) = -0.0963 risk units",
+      "fired": 0,
+      "s_hat": null,
+      "size_mult": null,
+      "reason": "no multiplier: S_hat null (thin event set)",
       "meta": {
         "sigma_annual": 0.3841,
         "cbar": 0.7333,

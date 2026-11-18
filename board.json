@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-11-18T00:04:46.463Z",
+  "builtAt": "2026-11-18T01:04:44.262Z",
   "name": "Tripwire",
   "url": "https://tripwire-alert.trade/",
   "chain": {
@@ -13,63 +13,63 @@
       "id": "btc-aud-floor",
       "label": "Bitcoin below A$100k",
       "kind": "price",
-      "value": 96205,
+      "value": 95987,
       "threshold": 100000,
       "op": "lt",
       "fired": true,
-      "distancePct": 3.94,
+      "distancePct": 4.18,
       "sourceStatus": 200,
       "cached": true,
-      "fetchedAt": 1794960270054,
+      "fetchedAt": 1794963870543,
       "url": "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=aud",
       "trend": {
-        "reads": 52,
-        "deltaPp": 0.12,
+        "reads": 53,
+        "deltaPp": 0.35,
         "closestPp": 1.01,
         "from": "2026-11-13T02:05:11.654Z",
-        "to": "2026-11-18T00:04:30.054Z"
+        "to": "2026-11-18T01:04:30.544Z"
       }
     },
     {
       "id": "eth-aud-floor",
       "label": "Ethereum below A$3k",
       "kind": "price",
-      "value": 2703.68,
+      "value": 2696.11,
       "threshold": 3000,
       "op": "lt",
       "fired": true,
-      "distancePct": 10.96,
+      "distancePct": 11.27,
       "sourceStatus": 200,
       "cached": true,
-      "fetchedAt": 1794960270314,
+      "fetchedAt": 1794963870874,
       "url": "https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=aud",
       "trend": {
-        "reads": 52,
-        "deltaPp": 9.23,
+        "reads": 53,
+        "deltaPp": 9.54,
         "closestPp": 1.73,
         "from": "2026-11-13T02:05:11.966Z",
-        "to": "2026-11-18T00:04:30.316Z"
+        "to": "2026-11-18T01:04:30.875Z"
       }
     },
     {
       "id": "sol-aud-floor",
       "label": "Solana below A$120",
       "kind": "price",
-      "value": 111.4,
+      "value": 111.06,
       "threshold": 120,
       "op": "lt",
       "fired": true,
-      "distancePct": 7.72,
+      "distancePct": 8.05,
       "sourceStatus": 200,
       "cached": true,
-      "fetchedAt": 1794960270364,
+      "fetchedAt": 1794963870904,
       "url": "https://api.coingecko.com/api/v3/simple/price?ids=solana&vs_currencies=aud",
       "trend": {
-        "reads": 52,
-        "deltaPp": 6.91,
+        "reads": 53,
+        "deltaPp": 7.23,
         "closestPp": 0.08,
         "from": "2026-11-13T02:05:12.252Z",
-        "to": "2026-11-18T00:04:30.364Z"
+        "to": "2026-11-18T01:04:30.905Z"
       }
     },
     {
@@ -83,101 +83,101 @@
       "distancePct": 6.9,
       "sourceStatus": 200,
       "cached": true,
-      "fetchedAt": 1794960270464,
+      "fetchedAt": 1794963871003,
       "url": "https://api.frankfurter.dev/v1/latest?from=AUD&to=USD",
       "trend": {
-        "reads": 54,
+        "reads": 55,
         "deltaPp": 1.34,
         "closestPp": 5.56,
         "from": "2026-11-13T02:05:12.384Z",
-        "to": "2026-11-18T00:04:30.464Z"
+        "to": "2026-11-18T01:04:31.003Z"
       }
     },
     {
       "id": "gold-gt-4200",
       "label": "Gold above 4200 USD/oz",
       "kind": "price",
-      "value": 3853.8,
+      "value": 3820.2,
       "threshold": 4200,
       "op": "gt",
       "fired": false,
-      "distancePct": 8.98,
+      "distancePct": 9.94,
       "sourceStatus": 200,
       "cached": true,
-      "fetchedAt": 1794960270694,
+      "fetchedAt": 1794963871228,
       "url": "https://api.coinbase.com/v2/prices/XAU-USD/spot",
       "trend": {
-        "reads": 54,
-        "deltaPp": 1.68,
+        "reads": 55,
+        "deltaPp": 2.64,
         "closestPp": 7.09,
         "from": "2026-11-13T02:05:12.804Z",
-        "to": "2026-11-18T00:04:30.695Z"
+        "to": "2026-11-18T01:04:31.229Z"
       }
     },
     {
       "id": "asx200-lt-8500",
       "label": "ASX 200 below 8500 pts",
       "kind": "price",
-      "value": 8859,
+      "value": 8857.9,
       "threshold": 8500,
       "op": "lt",
       "fired": false,
-      "distancePct": 4.05,
+      "distancePct": 4.04,
       "sourceStatus": 200,
       "cached": true,
-      "fetchedAt": 1794960270748,
+      "fetchedAt": 1794963871361,
       "url": "https://query1.finance.yahoo.com/v8/finance/chart/%5EAXJO?range=1d&interval=1d",
       "trend": {
-        "reads": 54,
-        "deltaPp": -2.4,
-        "closestPp": 4.05,
+        "reads": 55,
+        "deltaPp": -2.41,
+        "closestPp": 4.04,
         "from": "2026-11-13T02:05:13.009Z",
-        "to": "2026-11-18T00:04:30.749Z"
+        "to": "2026-11-18T01:04:31.362Z"
       }
     },
     {
       "id": "cba-lt-160",
       "label": "CommBank below 160 A$",
       "kind": "price",
-      "value": 168.645,
+      "value": 168.51,
       "threshold": 160,
       "op": "lt",
       "fired": false,
-      "distancePct": 5.13,
+      "distancePct": 5.05,
       "sourceStatus": 200,
       "cached": true,
-      "fetchedAt": 1794960271007,
+      "fetchedAt": 1794963871533,
       "url": "https://query1.finance.yahoo.com/v8/finance/chart/CBA.AX?range=1d&interval=1d",
       "trend": {
-        "reads": 54,
-        "deltaPp": -1.09,
-        "closestPp": 5.13,
+        "reads": 55,
+        "deltaPp": -1.16,
+        "closestPp": 5.05,
         "from": "2026-11-13T02:05:13.204Z",
-        "to": "2026-11-18T00:04:31.008Z"
+        "to": "2026-11-18T01:04:31.533Z"
       }
     },
     {
       "id": "btc-move-5",
       "label": "Bitcoin moves 5% in 24h",
       "kind": "move",
-      "value": 96205,
+      "value": 95987,
       "threshold": 5,
       "op": "move",
       "windowH": 24,
-      "pct": 0.02,
-      "base": 96187,
+      "pct": 0.12,
+      "base": 95876,
       "fired": false,
-      "distancePct": 0.02,
+      "distancePct": 0.12,
       "sourceStatus": 200,
       "cached": true,
-      "fetchedAt": 1794960270054,
+      "fetchedAt": 1794963870543,
       "url": "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=aud",
       "trend": {
-        "reads": 52,
+        "reads": 53,
         "deltaPp": 0,
         "closestPp": 99.99,
         "from": "2026-11-13T02:05:13.213Z",
-        "to": "2026-11-18T00:04:31.021Z"
+        "to": "2026-11-18T01:04:31.538Z"
       }
     }
   ],
@@ -188,10 +188,10 @@
       "sector": "crypto",
       "label": "Bitcoin",
       "unit": "A$",
-      "value": 96145,
+      "value": 95963,
       "changePct": 0.07,
       "basis": "24h",
-      "at": "2026-11-18T00:04:44.357Z"
+      "at": "2026-11-18T01:04:42.166Z"
     },
     {
       "id": "eth",
@@ -199,10 +199,10 @@
       "sector": "crypto",
       "label": "Ethereum",
       "unit": "A$",
-      "value": 2702.65,
-      "changePct": 0.27,
+      "value": 2696.17,
+      "changePct": 0.16,
       "basis": "24h",
-      "at": "2026-11-18T00:04:44.357Z"
+      "at": "2026-11-18T01:04:42.166Z"
     },
     {
       "id": "sol",
@@ -210,10 +210,10 @@
       "sector": "crypto",
       "label": "Solana",
       "unit": "A$",
-      "value": 111.29,
-      "changePct": 4.98,
+      "value": 111.03,
+      "changePct": 4.65,
       "basis": "24h",
-      "at": "2026-11-18T00:04:44.357Z"
+      "at": "2026-11-18T01:04:42.166Z"
     },
     {
       "id": "xrp",
@@ -222,9 +222,9 @@
       "label": "XRP",
       "unit": "A$",
       "value": 1.45,
-      "changePct": 2.84,
+      "changePct": 2.57,
       "basis": "24h",
-      "at": "2026-11-18T00:04:44.357Z"
+      "at": "2026-11-18T01:04:42.166Z"
     },
     {
       "id": "ada",
@@ -232,10 +232,10 @@
       "sector": "crypto",
       "label": "Cardano",
       "unit": "A$",
-      "value": 0.230056,
-      "changePct": 1.38,
+      "value": 0.228412,
+      "changePct": 1.34,
       "basis": "24h",
-      "at": "2026-11-18T00:04:44.357Z"
+      "at": "2026-11-18T01:04:42.166Z"
     },
     {
       "id": "doge",
@@ -243,10 +243,10 @@
       "sector": "crypto",
       "label": "Dogecoin",
       "unit": "A$",
-      "value": 0.089045,
-      "changePct": 2.03,
+      "value": 0.088513,
+      "changePct": 1.59,
       "basis": "24h",
-      "at": "2026-11-18T00:04:44.357Z"
+      "at": "2026-11-18T01:04:42.166Z"
     },
     {
       "id": "audusd",
@@ -257,7 +257,7 @@
       "value": 0.67351,
       "changePct": -0.32,
       "basis": "prior ECB day (2026-11-16)",
-      "at": "2026-11-18T00:04:44.908Z"
+      "at": "2026-11-18T01:04:42.707Z"
     },
     {
       "id": "audeur",
@@ -268,7 +268,7 @@
       "value": 0.6129,
       "changePct": -0.09,
       "basis": "prior ECB day (2026-11-16)",
-      "at": "2026-11-18T00:04:44.908Z"
+      "at": "2026-11-18T01:04:42.707Z"
     },
     {
       "id": "audgbp",
@@ -279,7 +279,7 @@
       "value": 0.51057,
       "changePct": -0.27,
       "basis": "prior ECB day (2026-11-16)",
-      "at": "2026-11-18T00:04:44.908Z"
+      "at": "2026-11-18T01:04:42.707Z"
     },
     {
       "id": "audjpy",
@@ -290,7 +290,7 @@
       "value": 107.29,
       "changePct": -0.5,
       "basis": "prior ECB day (2026-11-16)",
-      "at": "2026-11-18T00:04:44.908Z"
+      "at": "2026-11-18T01:04:42.707Z"
     },
     {
       "id": "usdjpy",
@@ -301,7 +301,7 @@
       "value": 159.3,
       "changePct": -0.19,
       "basis": "prior ECB day (2026-11-16)",
-      "at": "2026-11-18T00:04:45.705Z"
+      "at": "2026-11-18T01:04:43.382Z"
     },
     {
       "id": "eurusd",
@@ -312,7 +312,7 @@
       "value": 1.0989,
       "changePct": -0.23,
       "basis": "prior ECB day (2026-11-16)",
-      "at": "2026-11-18T00:04:46.459Z"
+      "at": "2026-11-18T01:04:44.258Z"
     },
     {
       "id": "gold",
@@ -320,10 +320,10 @@
       "sector": "commodities",
       "label": "Gold (front month)",
       "unit": "USD/oz",
-      "value": 3853.8,
-      "changePct": -0.27,
+      "value": 3819.8,
+      "changePct": -1.15,
       "basis": "prior close",
-      "at": "2026-11-18T00:04:33.317Z"
+      "at": "2026-11-18T01:04:37.655Z"
     },
     {
       "id": "silver",
@@ -331,10 +331,10 @@
       "sector": "commodities",
       "label": "Silver (front month)",
       "unit": "USD/oz",
-      "value": 47.395,
-      "changePct": 0.08,
+      "value": 46.81,
+      "changePct": -1.16,
       "basis": "prior close",
-      "at": "2026-11-18T00:04:42.769Z"
+      "at": "2026-11-18T01:04:40.797Z"
     },
     {
       "id": "platinum",
@@ -342,10 +342,10 @@
       "sector": "commodities",
       "label": "Platinum (front month)",
       "unit": "USD/oz",
-      "value": 1429.1,
-      "changePct": 0.18,
+      "value": 1416.3,
+      "changePct": -0.72,
       "basis": "prior close",
-      "at": "2026-11-18T00:04:43.061Z"
+      "at": "2026-11-18T01:04:41.009Z"
     },
     {
       "id": "asx200",
@@ -353,10 +353,10 @@
       "sector": "index",
       "label": "ASX 200",
       "unit": "pts",
-      "value": 8859,
-      "changePct": -0.27,
+      "value": 8857.9,
+      "changePct": -0.28,
       "basis": "prior close",
-      "at": "2026-11-18T00:04:33.535Z"
+      "at": "2026-11-18T01:04:37.972Z"
     },
     {
       "id": "sp500",
@@ -367,7 +367,7 @@
       "value": 7340.53,
       "changePct": -1.03,
       "basis": "prior close",
-      "at": "2026-11-18T00:04:33.724Z"
+      "at": "2026-11-18T01:04:38.128Z"
     },
     {
       "id": "nasdaq",
@@ -378,7 +378,7 @@
       "value": 24328.383,
       "changePct": -0.74,
       "basis": "prior close",
-      "at": "2026-11-18T00:04:33.915Z"
+      "at": "2026-11-18T01:04:38.271Z"
     },
     {
       "id": "dow",
@@ -389,7 +389,7 @@
       "value": 50759.42,
       "changePct": -1.64,
       "basis": "prior close",
-      "at": "2026-11-18T00:04:43.208Z"
+      "at": "2026-11-18T01:04:41.232Z"
     },
     {
       "id": "ftse",
@@ -400,7 +400,7 @@
       "value": 10689.87,
       "changePct": -1.76,
       "basis": "prior close",
-      "at": "2026-11-18T00:04:43.369Z"
+      "at": "2026-11-18T01:04:41.361Z"
     },
     {
       "id": "nikkei",
@@ -408,10 +408,10 @@
       "sector": "index",
       "label": "Nikkei 225",
       "unit": "pts",
-      "value": 58860.43,
-      "changePct": 0,
+      "value": 59501.88,
+      "changePct": 1.09,
       "basis": "prior close",
-      "at": "2026-11-18T00:04:43.596Z"
+      "at": "2026-11-18T01:04:41.512Z"
     },
     {
       "id": "wti",
@@ -419,10 +419,10 @@
       "sector": "commodities",
       "label": "WTI crude",
       "unit": "USD/bbl",
-      "value": 85.85,
-      "changePct": -0.19,
+      "value": 85.59,
+      "changePct": -0.49,
       "basis": "prior close",
-      "at": "2026-11-18T00:04:34.156Z"
+      "at": "2026-11-18T01:04:38.402Z"
     },
     {
       "id": "brent",
@@ -430,10 +430,10 @@
       "sector": "commodities",
       "label": "Brent crude",
       "unit": "USD/bbl",
-      "value": 93.33,
-      "changePct": 0.2,
+      "value": 93.23,
+      "changePct": 0.1,
       "basis": "prior close",
-      "at": "2026-11-18T00:04:43.750Z"
+      "at": "2026-11-18T01:04:41.642Z"
     },
     {
       "id": "natgas",
@@ -441,10 +441,10 @@
       "sector": "commodities",
       "label": "Natural gas",
       "unit": "USD",
-      "value": 3.201,
-      "changePct": -0.22,
+      "value": 3.191,
+      "changePct": -0.53,
       "basis": "prior close",
-      "at": "2026-11-18T00:04:43.942Z"
+      "at": "2026-11-18T01:04:41.780Z"
     },
     {
       "id": "bhp",
@@ -452,10 +452,10 @@
       "sector": "asx-equity",
       "label": "BHP Group",
       "unit": "A$",
-      "value": 55.5,
-      "changePct": 2.06,
+      "value": 55.38,
+      "changePct": 1.84,
       "basis": "prior close",
-      "at": "2026-11-18T00:04:34.418Z"
+      "at": "2026-11-18T01:04:38.784Z"
     },
     {
       "id": "cba",
@@ -463,10 +463,10 @@
       "sector": "asx-equity",
       "label": "CommBank",
       "unit": "A$",
-      "value": 168.695,
-      "changePct": -1.02,
+      "value": 168.52,
+      "changePct": -1.13,
       "basis": "prior close",
-      "at": "2026-11-18T00:04:34.592Z"
+      "at": "2026-11-18T01:04:39.032Z"
     },
     {
       "id": "wbc",
@@ -474,10 +474,10 @@
       "sector": "asx-equity",
       "label": "Westpac",
       "unit": "A$",
-      "value": 36.805,
-      "changePct": -1.14,
+      "value": 36.765,
+      "changePct": -1.25,
       "basis": "prior close",
-      "at": "2026-11-18T00:04:34.765Z"
+      "at": "2026-11-18T01:04:39.202Z"
     },
     {
       "id": "aapl",
@@ -488,7 +488,7 @@
       "value": 351.91,
       "changePct": -0.25,
       "basis": "prior close",
-      "at": "2026-11-18T00:04:35.051Z"
+      "at": "2026-11-18T01:04:39.359Z"
     },
     {
       "id": "msft",
@@ -499,7 +499,7 @@
       "value": 506.24,
       "changePct": -2.27,
       "basis": "prior close",
-      "at": "2026-11-18T00:04:35.358Z"
+      "at": "2026-11-18T01:04:39.507Z"
     },
     {
       "id": "nvda",
@@ -510,7 +510,7 @@
       "value": 155.46,
       "changePct": -0.44,
       "basis": "prior close",
-      "at": "2026-11-18T00:04:35.540Z"
+      "at": "2026-11-18T01:04:39.677Z"
     },
     {
       "id": "tsla",
@@ -521,7 +521,7 @@
       "value": 380.11,
       "changePct": 0.1,
       "basis": "prior close",
-      "at": "2026-11-18T00:04:35.685Z"
+      "at": "2026-11-18T01:04:39.831Z"
     }
   ],
   "packages": [
@@ -530,22 +530,22 @@
       "name": "ASX Steady",
       "price": "A$29/mo",
       "weightsTotal": 100,
-      "dayPct": -0.09,
+      "dayPct": -0.2,
       "past4wPct": 5.48,
-      "level": 99.0919,
-      "sincePct": -0.91,
-      "reads": 80,
+      "level": 98.9829,
+      "sincePct": -1.02,
+      "reads": 81,
       "alert": {
         "package": "asx-steady",
         "name": "ASX Steady",
         "kind": "package-move",
         "fired": false,
-        "pct": -0.92,
-        "base": 100.0151,
-        "level": 99.0919,
+        "pct": -0.78,
+        "base": 99.7579,
+        "level": 98.9829,
         "threshold": 2.5,
         "windowH": 24,
-        "baseAt": "2026-11-17T00:04:35.890Z"
+        "baseAt": "2026-11-17T01:04:35.064Z"
       }
     },
     {
@@ -553,22 +553,22 @@
       "name": "Global Core",
       "price": "A$59/mo",
       "weightsTotal": 100,
-      "dayPct": -0.89,
+      "dayPct": -1.06,
       "past4wPct": -2.13,
-      "level": 98.4099,
-      "sincePct": -1.59,
-      "reads": 80,
+      "level": 98.2363,
+      "sincePct": -1.76,
+      "reads": 81,
       "alert": {
         "package": "global-core",
         "name": "Global Core",
         "kind": "package-move",
         "fired": false,
-        "pct": -0.9,
-        "base": 99.3006,
-        "level": 98.4099,
+        "pct": -1.02,
+        "base": 99.2518,
+        "level": 98.2363,
         "threshold": 3,
         "windowH": 24,
-        "baseAt": "2026-11-17T00:04:35.900Z"
+        "baseAt": "2026-11-17T01:04:35.074Z"
       }
     },
     {
@@ -576,22 +576,22 @@
       "name": "Momentum",
       "price": "A$99/mo",
       "weightsTotal": 100,
-      "dayPct": 0.48,
+      "dayPct": 0.39,
       "past4wPct": -16.15,
-      "level": 89.1544,
-      "sincePct": -10.85,
-      "reads": 80,
+      "level": 89.0132,
+      "sincePct": -10.99,
+      "reads": 81,
       "alert": {
         "package": "momentum",
         "name": "Momentum",
         "kind": "package-move",
         "fired": false,
-        "pct": 0.69,
-        "base": 88.5455,
-        "level": 89.1544,
+        "pct": 0.71,
+        "base": 88.3816,
+        "level": 89.0132,
         "threshold": 6,
         "windowH": 24,
-        "baseAt": "2026-11-17T00:04:35.914Z"
+        "baseAt": "2026-11-17T01:04:35.082Z"
       }
     }
   ]

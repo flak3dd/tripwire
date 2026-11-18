@@ -10,11 +10,11 @@ Live deterministic price, FX, equity & basket alert engine with SHA-256 hash-cha
 
 | Watcher | Live Reading | Rule | State |
 |---|---|---|---|
-| Bitcoin below A$100k | 95734 | 100000 | TRIPPED |
-| Ethereum below A$3k | 2682.56 | 3000 | TRIPPED |
-| Solana below A$120 | 111.18 | 120 | TRIPPED |
+| Bitcoin below A$100k | 95698 | 100000 | TRIPPED |
+| Ethereum below A$3k | 2678.48 | 3000 | TRIPPED |
+| Solana below A$120 | 111.26 | 120 | TRIPPED |
 | AUD above 0.72 USD | 0.67351 | 0.72 | ARMED |
-| Gold above 4200 USD/oz | 3794.8 | 4200 | ARMED |
-| ASX 200 below 8500 pts | 8838 | 8500 | ARMED |
-| CommBank below 160 A$ | 169.85 | 160 | ARMED |
-| Bitcoin moves 5% in 24h | 95734 | ±5% | ARMED |
+| Gold above 4200 USD/oz | 3787.8 | 4200 | ARMED |
+| ASX 200 below 8500 pts | 8825.6 | 8500 | ARMED |
+| CommBank below 160 A$ | 169.94 | 160 | ARMED |
+| Bitcoin moves 5% in 24h | 95698 | ±5% | ARMED |

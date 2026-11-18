@@ -24,7 +24,14 @@ body{margin:0;background:radial-gradient(900px 420px at 50% -160px,#12202b 0,rgb
 .navl a:hover{color:var(--ink);background:#141a23}
 .signin-btn{border:1px solid #1c5c3f;background:#0e2018;color:var(--live);text-decoration:none;font-size:13px;font-weight:700;padding:10px 12px;border-radius:9px;white-space:nowrap}
 .navcta{background:var(--live);color:#04140c;text-decoration:none;font-weight:700;font-size:13px;padding:11px 13px;border-radius:9px;white-space:nowrap}
-@media(max-width:760px){.navl{display:none}.signin-btn{margin-left:auto}}
+@media(max-width:760px){
+  .navl{margin-left:auto;overflow:visible}
+  .navl a{display:none}
+  .navl a[href$="#pricing"]{display:inline-flex;align-items:center;min-height:44px;padding:0 10px}
+  .signin-btn{margin-left:8px}
+}
+.cta-short{display:none}
+@media(max-width:380px){.cta-full{display:none}.cta-short{display:inline}}
 .wrap{max-width:880px;margin:0 auto;padding:34px 22px 40px}
 h1{font:400 clamp(36px,6vw,52px)/1.06 var(--serif);margin:0 0 14px;letter-spacing:-.01em;overflow-wrap:anywhere}
 h1::after{content:".";color:var(--brass)}
@@ -56,7 +63,7 @@ th{color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.06
   <a class="brand" href="https://tripwire-alert.trade/" aria-label="Tripwire home"><svg viewBox="0 0 24 24" aria-hidden="true" width="22" height="22"><rect width="24" height="24" rx="6" fill="#0e2018"/><path d="M3 15h18" stroke="#31d68a" stroke-width="2" stroke-linecap="round"/><path d="M12 5l3.5 6h-7z" fill="#ff5c47"/></svg>Tripwire</a>
   <nav class="navl" aria-label="Main"><a href="https://tripwire-alert.trade/#how">How it works</a><a href="https://tripwire-alert.trade/#board">Live board</a><a href="https://tripwire-alert.trade/#pricing">Pricing</a><a href="https://tripwire-alert.trade/#faq">FAQ</a><a href="https://tripwire-alert.trade/store/">Data drops</a></nav>
   <a class="signin-btn" href="/account">Sign in</a>
-  <a class="navcta" href="https://tripwire-alert.trade/subscribe">Start free trial</a>
+  <a class="navcta" href="https://tripwire-alert.trade/subscribe"><span class="cta-full">Start free trial</span><span class="cta-short">Free trial</span></a>
 </div></header>
 <main id="main" class="wrap">
   

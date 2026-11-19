@@ -1,46 +1,46 @@
 {
-  "builtAt": "2026-11-19T06:04:48.769Z",
+  "builtAt": "2026-11-19T07:04:40.365Z",
   "watchers": [
     {
       "id": "btc-aud-floor",
       "label": "Bitcoin below A$100k",
       "kind": "price",
-      "value": 94814,
+      "value": 95161,
       "threshold": 100000,
       "op": "lt",
       "fired": true,
-      "distancePct": 5.47,
+      "distancePct": 5.09,
       "sourceStatus": 200,
       "cached": true,
-      "fetchedAt": 1795068270531,
+      "fetchedAt": 1795071869741,
       "url": "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=aud"
     },
     {
       "id": "eth-aud-floor",
       "label": "Ethereum below A$3k",
       "kind": "price",
-      "value": 2695.28,
+      "value": 2698.24,
       "threshold": 3000,
       "op": "lt",
       "fired": true,
-      "distancePct": 11.31,
+      "distancePct": 11.18,
       "sourceStatus": 200,
       "cached": true,
-      "fetchedAt": 1795068271013,
+      "fetchedAt": 1795071870057,
       "url": "https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=aud"
     },
     {
       "id": "sol-aud-floor",
       "label": "Solana below A$120",
       "kind": "price",
-      "value": 111.87,
+      "value": 112.07,
       "threshold": 120,
       "op": "lt",
       "fired": true,
-      "distancePct": 7.27,
+      "distancePct": 7.08,
       "sourceStatus": 200,
       "cached": true,
-      "fetchedAt": 1795068271351,
+      "fetchedAt": 1795071870096,
       "url": "https://api.coingecko.com/api/v3/simple/price?ids=solana&vs_currencies=aud"
     },
     {
@@ -54,21 +54,21 @@
       "distancePct": 6.96,
       "sourceStatus": 200,
       "cached": true,
-      "fetchedAt": 1795068272673,
+      "fetchedAt": 1795071870283,
       "url": "https://api.frankfurter.dev/v1/latest?from=AUD&to=USD"
     },
     {
       "id": "gold-gt-4200",
       "label": "Gold above 4200 USD/oz",
       "kind": "price",
-      "value": 3742.1,
+      "value": 3730.1,
       "threshold": 4200,
       "op": "gt",
       "fired": false,
-      "distancePct": 12.24,
+      "distancePct": 12.6,
       "sourceStatus": 200,
       "cached": true,
-      "fetchedAt": 1795068274182,
+      "fetchedAt": 1795071870633,
       "url": "https://api.coinbase.com/v2/prices/XAU-USD/spot"
     },
     {
@@ -82,7 +82,7 @@
       "distancePct": 2.64,
       "sourceStatus": 200,
       "cached": true,
-      "fetchedAt": 1795068274529,
+      "fetchedAt": 1795071870791,
       "url": "https://query1.finance.yahoo.com/v8/finance/chart/%5EAXJO?range=1d&interval=1d"
     },
     {
@@ -96,24 +96,24 @@
       "distancePct": 6.78,
       "sourceStatus": 200,
       "cached": true,
-      "fetchedAt": 1795068275005,
+      "fetchedAt": 1795071870968,
       "url": "https://query1.finance.yahoo.com/v8/finance/chart/CBA.AX?range=1d&interval=1d"
     },
     {
       "id": "btc-move-5",
       "label": "Bitcoin moves 5% in 24h",
       "kind": "move",
-      "value": 94814,
+      "value": 95161,
       "threshold": 5,
       "op": "move",
       "windowH": 24,
-      "pct": -1.31,
+      "pct": -0.95,
       "base": 96072,
       "fired": false,
-      "distancePct": 1.31,
+      "distancePct": 0.95,
       "sourceStatus": 200,
       "cached": true,
-      "fetchedAt": 1795068270531,
+      "fetchedAt": 1795071869741,
       "url": "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=aud"
     }
   ]

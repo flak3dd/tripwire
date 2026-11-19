@@ -1,18 +1,18 @@
 {
-  "builtAt": "2026-11-19T02:04:40.948Z",
+  "builtAt": "2026-11-19T03:04:38.391Z",
   "engine": "signals",
-  "sourceArtifact": "workspace/signals/artifacts/rules-2026-11-19T01-05-25-651Z.json",
-  "sourceSha256": "9a7ecbdd0656f89b",
+  "sourceArtifact": "workspace/signals/artifacts/rules-2026-11-19T02-05-25-756Z.json",
+  "sourceSha256": "83b007260fb810b2",
   "scores": [
     {
       "asset": "aapl",
-      "at": "2026-11-19T01:05:25.651Z",
+      "at": "2026-11-19T02:05:25.756Z",
       "s_inst": 0,
       "s_retail": 0.0017,
       "s_syndicated": null,
       "s_vendor": null,
-      "s_internal": 0.001,
-      "s_hat": 0.001,
+      "s_internal": 0.0007,
+      "s_hat": 0.0007,
       "n": {
         "inst": 6,
         "retail": 50,
@@ -22,7 +22,7 @@
       },
       "n_fresh": {
         "inst": 4,
-        "retail": 6,
+        "retail": 5,
         "syndicated": 1,
         "vendor": 0
       },
@@ -30,7 +30,7 @@
       "cbar": {
         "inst": 0.2,
         "retail": 0.1603,
-        "internal": 0.1748
+        "internal": 0.1809
       },
       "thin": [
         "vendor"
@@ -38,13 +38,13 @@
     },
     {
       "asset": "ada",
-      "at": "2026-11-19T01:05:25.651Z",
+      "at": "2026-11-19T02:05:25.756Z",
       "s_inst": 0.3562,
-      "s_retail": 0,
+      "s_retail": null,
       "s_syndicated": 0.0052,
       "s_vendor": -0.3502,
-      "s_internal": 0.2753,
-      "s_hat": 0.0877,
+      "s_internal": 0.3082,
+      "s_hat": 0.1107,
       "n": {
         "inst": 4,
         "retail": 24,
@@ -54,7 +54,7 @@
       },
       "n_fresh": {
         "inst": 3,
-        "retail": 3,
+        "retail": 2,
         "syndicated": 4,
         "vendor": 6
       },
@@ -62,43 +62,45 @@
       "cbar": {
         "inst": 0.3658,
         "retail": 0.16,
-        "internal": 0.2832
+        "internal": 0.3118
       },
-      "thin": []
+      "thin": [
+        "retail"
+      ]
     },
     {
       "asset": "btc",
-      "at": "2026-11-19T01:05:25.651Z",
-      "s_inst": -0.1873,
-      "s_retail": -0.2288,
-      "s_syndicated": -0.1933,
+      "at": "2026-11-19T02:05:25.756Z",
+      "s_inst": -0.1824,
+      "s_retail": -0.053,
+      "s_syndicated": -0.199,
       "s_vendor": -0.2645,
-      "s_internal": -0.2119,
-      "s_hat": -0.2277,
+      "s_internal": -0.1044,
+      "s_hat": -0.1524,
       "n": {
-        "inst": 140,
-        "retail": 2315,
-        "syndicated": 773,
+        "inst": 142,
+        "retail": 2347,
+        "syndicated": 782,
         "vendor": 8,
-        "total": 3236
+        "total": 3279
       },
       "n_fresh": {
-        "inst": 76,
-        "retail": 120,
-        "syndicated": 75,
+        "inst": 78,
+        "retail": 133,
+        "syndicated": 70,
         "vendor": 8
       },
-      "n_ind": 2446,
+      "n_ind": 2480,
       "cbar": {
-        "inst": 0.4086,
-        "retail": 0.3239,
-        "internal": 0.3537
+        "inst": 0.3977,
+        "retail": 0.3434,
+        "internal": 0.3631
       },
       "thin": []
     },
     {
       "asset": "doge",
-      "at": "2026-11-19T01:05:25.651Z",
+      "at": "2026-11-19T02:05:25.756Z",
       "s_inst": null,
       "s_retail": null,
       "s_syndicated": 0.0941,
@@ -115,7 +117,7 @@
       "n_fresh": {
         "inst": 0,
         "retail": 0,
-        "syndicated": 4,
+        "syndicated": 3,
         "vendor": 4
       },
       "n_ind": 9,
@@ -131,61 +133,61 @@
     },
     {
       "asset": "eth",
-      "at": "2026-11-19T01:05:25.651Z",
+      "at": "2026-11-19T02:05:25.756Z",
       "s_inst": -0.4194,
-      "s_retail": 0.0174,
-      "s_syndicated": 0.0626,
-      "s_vendor": -0.2328,
-      "s_internal": -0.2238,
-      "s_hat": -0.2265,
+      "s_retail": 0.0876,
+      "s_syndicated": -0.1005,
+      "s_vendor": -0.0698,
+      "s_internal": -0.2237,
+      "s_hat": -0.1776,
       "n": {
         "inst": 32,
-        "retail": 532,
-        "syndicated": 196,
-        "vendor": 7,
-        "total": 767
+        "retail": 536,
+        "syndicated": 197,
+        "vendor": 8,
+        "total": 773
       },
       "n_fresh": {
         "inst": 19,
-        "retail": 30,
-        "syndicated": 17,
-        "vendor": 7
+        "retail": 24,
+        "syndicated": 16,
+        "vendor": 8
       },
-      "n_ind": 563,
+      "n_ind": 567,
       "cbar": {
         "inst": 0.4453,
-        "retail": 0.2856,
-        "internal": 0.3561
+        "retail": 0.2653,
+        "internal": 0.3529
       },
       "thin": []
     },
     {
       "asset": "msft",
-      "at": "2026-11-19T01:05:25.651Z",
-      "s_inst": 0.2325,
+      "at": "2026-11-19T02:05:25.756Z",
+      "s_inst": 0.2189,
       "s_retail": 0.1293,
-      "s_syndicated": 0.4544,
+      "s_syndicated": 0.3667,
       "s_vendor": null,
-      "s_internal": 0.2223,
-      "s_hat": 0.2223,
+      "s_internal": 0.2142,
+      "s_hat": 0.2142,
       "n": {
-        "inst": 27,
+        "inst": 29,
         "retail": 65,
-        "syndicated": 116,
+        "syndicated": 118,
         "vendor": 0,
-        "total": 208
+        "total": 212
       },
       "n_fresh": {
-        "inst": 26,
-        "retail": 9,
-        "syndicated": 16,
+        "inst": 28,
+        "retail": 6,
+        "syndicated": 17,
         "vendor": 0
       },
-      "n_ind": 92,
+      "n_ind": 94,
       "cbar": {
-        "inst": 0.2695,
+        "inst": 0.2641,
         "retail": 0.193,
-        "internal": 0.2594
+        "internal": 0.2592
       },
       "thin": [
         "vendor"
@@ -193,31 +195,31 @@
     },
     {
       "asset": "nvda",
-      "at": "2026-11-19T01:05:25.651Z",
+      "at": "2026-11-19T02:05:25.756Z",
       "s_inst": 0.0074,
-      "s_retail": -0.2233,
-      "s_syndicated": 0.0291,
+      "s_retail": -0.1738,
+      "s_syndicated": 0.028,
       "s_vendor": null,
-      "s_internal": -0.0773,
-      "s_hat": -0.0773,
+      "s_internal": -0.0473,
+      "s_hat": -0.0473,
       "n": {
         "inst": 91,
-        "retail": 325,
-        "syndicated": 817,
+        "retail": 329,
+        "syndicated": 818,
         "vendor": 0,
-        "total": 1233
+        "total": 1238
       },
       "n_fresh": {
         "inst": 76,
-        "retail": 37,
-        "syndicated": 65,
+        "retail": 33,
+        "syndicated": 57,
         "vendor": 0
       },
-      "n_ind": 415,
+      "n_ind": 419,
       "cbar": {
         "inst": 0.3472,
-        "retail": 0.3187,
-        "internal": 0.3361
+        "retail": 0.3245,
+        "internal": 0.34
       },
       "thin": [
         "vendor"
@@ -225,61 +227,61 @@
     },
     {
       "asset": "sol",
-      "at": "2026-11-19T01:05:25.651Z",
+      "at": "2026-11-19T02:05:25.756Z",
       "s_inst": 0.0112,
-      "s_retail": -0.0456,
+      "s_retail": 0.1506,
       "s_syndicated": 0.2107,
       "s_vendor": -0.4696,
-      "s_internal": -0.0094,
-      "s_hat": -0.1475,
+      "s_internal": 0.0799,
+      "s_hat": -0.0849,
       "n": {
         "inst": 24,
-        "retail": 357,
+        "retail": 361,
         "syndicated": 159,
         "vendor": 6,
-        "total": 546
+        "total": 550
       },
       "n_fresh": {
         "inst": 13,
-        "retail": 9,
-        "syndicated": 12,
+        "retail": 11,
+        "syndicated": 10,
         "vendor": 6
       },
-      "n_ind": 378,
+      "n_ind": 382,
       "cbar": {
         "inst": 0.2141,
-        "retail": 0.2629,
-        "internal": 0.2296
+        "retail": 0.2393,
+        "internal": 0.2258
       },
       "thin": []
     },
     {
       "asset": "tsla",
-      "at": "2026-11-19T01:05:25.651Z",
+      "at": "2026-11-19T02:05:25.756Z",
       "s_inst": 0,
-      "s_retail": -0.0184,
-      "s_syndicated": 0.0024,
+      "s_retail": -0.0126,
+      "s_syndicated": null,
       "s_vendor": null,
-      "s_internal": -0.0144,
-      "s_hat": -0.0144,
+      "s_internal": -0.0093,
+      "s_hat": -0.0093,
       "n": {
         "inst": 7,
-        "retail": 48,
+        "retail": 53,
         "syndicated": 56,
         "vendor": 0,
-        "total": 111
+        "total": 116
       },
       "n_fresh": {
         "inst": 7,
-        "retail": 23,
-        "syndicated": 4,
+        "retail": 28,
+        "syndicated": 2,
         "vendor": 0
       },
-      "n_ind": 55,
+      "n_ind": 60,
       "cbar": {
         "inst": 0.2,
-        "retail": 0.2255,
-        "internal": 0.2194
+        "retail": 0.2275,
+        "internal": 0.2196
       },
       "thin": [
         "vendor"
@@ -287,31 +289,31 @@
     },
     {
       "asset": "xrp",
-      "at": "2026-11-19T01:05:25.651Z",
+      "at": "2026-11-19T02:05:25.756Z",
       "s_inst": -0.1832,
-      "s_retail": -0.2228,
-      "s_syndicated": -0.1248,
+      "s_retail": -0.1446,
+      "s_syndicated": -0.1891,
       "s_vendor": -0.7855,
-      "s_internal": -0.1979,
-      "s_hat": -0.3742,
+      "s_internal": -0.1706,
+      "s_hat": -0.3551,
       "n": {
         "inst": 8,
-        "retail": 78,
-        "syndicated": 254,
+        "retail": 80,
+        "syndicated": 256,
         "vendor": 4,
-        "total": 344
+        "total": 348
       },
       "n_fresh": {
         "inst": 7,
-        "retail": 11,
-        "syndicated": 25,
+        "retail": 10,
+        "syndicated": 23,
         "vendor": 4
       },
-      "n_ind": 86,
+      "n_ind": 88,
       "cbar": {
         "inst": 0.3693,
-        "retail": 0.2242,
-        "internal": 0.2976
+        "retail": 0.1965,
+        "internal": 0.287
       },
       "thin": []
     }
@@ -339,13 +341,13 @@
       "fired": 0,
       "s_inst": 0,
       "d_s_inst": null,
-      "reason": "no fire: slope history spans 0.8705d, the 7d slope needs 6.5d",
+      "reason": "no fire: slope history spans 0.9121d, the 7d slope needs 6.5d",
       "meta": {
         "rule_v": 2,
         "rank": null,
         "of": null,
         "window_days": 7,
-        "span_days": 0.8705,
+        "span_days": 0.9121,
         "min_peers": 4
       }
     },
@@ -355,15 +357,15 @@
       "fired": 0,
       "s_inst": 0,
       "s_retail": 0.0017,
-      "dv_retail": -4,
-      "reason": "retail 0.0017 (need >0.7), inst 0 (need <-0.3), volume [0,4,0]/h accel -8 (need <0, n>=3)",
+      "dv_retail": -1,
+      "reason": "retail 0.0017 (need >0.7), inst 0 (need <-0.3), volume [4,1,0]/h accel 2 (need <0, n>=3)",
       "meta": {
         "buckets": [
-          0,
           4,
+          1,
           0
         ],
-        "accel": -8,
+        "accel": 2,
         "note": "retail high + inst low + crowd already leaving"
       }
     },
@@ -371,12 +373,12 @@
       "asset": "aapl",
       "rule": "R4",
       "fired": 1,
-      "s_hat": 0.001,
-      "size_mult": 0.0032,
-      "reason": "size = (S_hat 0.001 / σ 0.2197) × c̄ 0.1748 × ln(1+N_ind 56) = 0.0032 risk units",
+      "s_hat": 0.0007,
+      "size_mult": 0.0023,
+      "reason": "size = (S_hat 0.0007 / σ 0.2197) × c̄ 0.1809 × ln(1+N_ind 56) = 0.0023 risk units",
       "meta": {
         "sigma_annual": 0.2197,
-        "cbar": 0.1748,
+        "cbar": 0.1809,
         "n_ind": 56,
         "s_vendor": null,
         "w": {
@@ -392,11 +394,11 @@
       "fired": 0,
       "s_inst": 0.3562,
       "z_price": -1.8098,
-      "d_s_inst": null,
-      "reason": "no fire: z_sent=null (daily history n=0, need 5) z_price=-1.8098 [closes to 2026-11-19] slope=null/h vs gap>2",
+      "d_s_inst": 0,
+      "reason": "no fire: z_sent=null (daily history n=1, need 5) z_price=-1.8098 [closes to 2026-11-19] slope=0/h vs gap>2",
       "meta": {
         "z_sent": null,
-        "history_n": 0,
+        "history_n": 1,
         "basis": "closes to 2026-11-19",
         "price_src": "workspace/signals/prices/ada.json",
         "price_asof": "2026-11-19"
@@ -408,13 +410,13 @@
       "fired": 0,
       "s_inst": 0.3562,
       "d_s_inst": null,
-      "reason": "no fire: no 7d slope history for ada",
+      "reason": "no fire: slope history spans 0.0417d, the 7d slope needs 6.5d",
       "meta": {
         "rule_v": 2,
         "rank": null,
         "of": null,
         "window_days": 7,
-        "span_days": null,
+        "span_days": 0.0417,
         "min_peers": 4
       }
     },
@@ -423,16 +425,16 @@
       "rule": "R3",
       "fired": 0,
       "s_inst": 0.3562,
-      "s_retail": 0,
-      "dv_retail": 0,
-      "reason": "retail 0 (need >0.7), inst 0.3562 (need <-0.3), volume [1,0,0]/h accel 1 (need <0, n>=3)",
+      "s_retail": null,
+      "dv_retail": -1,
+      "reason": "retail null (need >0.7), inst 0.3562 (need <-0.3), volume [0,1,0]/h accel -2 (need <0, n>=3)",
       "meta": {
         "buckets": [
-          1,
           0,
+          1,
           0
         ],
-        "accel": 1,
+        "accel": -2,
         "note": "retail high + inst low + crowd already leaving"
       }
     },
@@ -440,12 +442,12 @@
       "asset": "ada",
       "rule": "R4",
       "fired": 1,
-      "s_hat": 0.0877,
-      "size_mult": 0.1366,
-      "reason": "size = (S_hat 0.0877 / σ 0.6123) × c̄ 0.2832 × ln(1+N_ind 28) = 0.1366 risk units",
+      "s_hat": 0.1107,
+      "size_mult": 0.1898,
+      "reason": "size = (S_hat 0.1107 / σ 0.6123) × c̄ 0.3118 × ln(1+N_ind 28) = 0.1898 risk units",
       "meta": {
         "sigma_annual": 0.6123,
-        "cbar": 0.2832,
+        "cbar": 0.3118,
         "n_ind": 28,
         "s_vendor": -0.3502,
         "w": {
@@ -459,10 +461,10 @@
       "asset": "btc",
       "rule": "R1",
       "fired": 0,
-      "s_inst": -0.1873,
+      "s_inst": -0.1824,
       "z_price": -2.6644,
-      "d_s_inst": 0.0957,
-      "reason": "no fire: z_sent=null (daily history n=4, need 5) z_price=-2.6644 [closes to 2026-11-19] slope=0.0957/h vs gap>2",
+      "d_s_inst": 0.0049,
+      "reason": "no fire: z_sent=null (daily history n=4, need 5) z_price=-2.6644 [closes to 2026-11-19] slope=0.0049/h vs gap>2",
       "meta": {
         "z_sent": null,
         "history_n": 4,
@@ -475,15 +477,15 @@
       "asset": "btc",
       "rule": "R2",
       "fired": 0,
-      "s_inst": -0.1873,
+      "s_inst": -0.1824,
       "d_s_inst": null,
-      "reason": "no fire: slope history spans 2.9582d, the 7d slope needs 6.5d",
+      "reason": "no fire: slope history spans 2.9999d, the 7d slope needs 6.5d",
       "meta": {
         "rule_v": 2,
         "rank": null,
         "of": null,
         "window_days": 7,
-        "span_days": 2.9582,
+        "span_days": 2.9999,
         "min_peers": 4
       }
     },
@@ -491,17 +493,17 @@
       "asset": "btc",
       "rule": "R3",
       "fired": 0,
-      "s_inst": -0.1873,
-      "s_retail": -0.2288,
-      "dv_retail": -19,
-      "reason": "retail -0.2288 (need >0.7), inst -0.1873 (need <-0.3), volume [37,19,0]/h accel -1 (need <0, n>=3)",
+      "s_inst": -0.1824,
+      "s_retail": -0.053,
+      "dv_retail": -45,
+      "reason": "retail -0.053 (need >0.7), inst -0.1824 (need <-0.3), volume [19,45,0]/h accel -71 (need <0, n>=3)",
       "meta": {
         "buckets": [
-          37,
           19,
+          45,
           0
         ],
-        "accel": -1,
+        "accel": -71,
         "note": "retail high + inst low + crowd already leaving"
       }
     },
@@ -509,13 +511,13 @@
       "asset": "btc",
       "rule": "R4",
       "fired": 1,
-      "s_hat": -0.2277,
-      "size_mult": -1.9534,
-      "reason": "size = (S_hat -0.2277 / σ 0.3217) × c̄ 0.3537 × ln(1+N_ind 2446) = -1.9534 risk units",
+      "s_hat": -0.1524,
+      "size_mult": -1.3446,
+      "reason": "size = (S_hat -0.1524 / σ 0.3217) × c̄ 0.3631 × ln(1+N_ind 2480) = -1.3446 risk units",
       "meta": {
         "sigma_annual": 0.3217,
-        "cbar": 0.3537,
-        "n_ind": 2446,
+        "cbar": 0.3631,
+        "n_ind": 2480,
         "s_vendor": -0.2645,
         "w": {
           "wInternal": 0.7,
@@ -599,8 +601,8 @@
       "fired": 0,
       "s_inst": -0.4194,
       "z_price": -2.168,
-      "d_s_inst": -0.3443,
-      "reason": "no fire: z_sent=null (daily history n=4, need 5) z_price=-2.168 [closes to 2026-11-19] slope=-0.3443/h vs gap>2",
+      "d_s_inst": 0,
+      "reason": "no fire: z_sent=null (daily history n=4, need 5) z_price=-2.168 [closes to 2026-11-19] slope=0/h vs gap>2",
       "meta": {
         "z_sent": null,
         "history_n": 4,
@@ -615,13 +617,13 @@
       "fired": 0,
       "s_inst": -0.4194,
       "d_s_inst": null,
-      "reason": "no fire: slope history spans 2.6666d, the 7d slope needs 6.5d",
+      "reason": "no fire: slope history spans 2.7082d, the 7d slope needs 6.5d",
       "meta": {
         "rule_v": 2,
         "rank": null,
         "of": null,
         "window_days": 7,
-        "span_days": 2.6666,
+        "span_days": 2.7082,
         "min_peers": 4
       }
     },
@@ -630,16 +632,16 @@
       "rule": "R3",
       "fired": 0,
       "s_inst": -0.4194,
-      "s_retail": 0.0174,
-      "dv_retail": -5,
-      "reason": "retail 0.0174 (need >0.7), inst -0.4194 (need <-0.3), volume [8,5,0]/h accel -2 (need <0, n>=3)",
+      "s_retail": 0.0876,
+      "dv_retail": -7,
+      "reason": "retail 0.0876 (need >0.7), inst -0.4194 (need <-0.3), volume [5,7,0]/h accel -9 (need <0, n>=3)",
       "meta": {
         "buckets": [
-          8,
           5,
+          7,
           0
         ],
-        "accel": -2,
+        "accel": -9,
         "note": "retail high + inst low + crowd already leaving"
       }
     },
@@ -647,14 +649,14 @@
       "asset": "eth",
       "rule": "R4",
       "fired": 1,
-      "s_hat": -0.2265,
-      "size_mult": -1.2689,
-      "reason": "size = (S_hat -0.2265 / σ 0.4027) × c̄ 0.3561 × ln(1+N_ind 563) = -1.2689 risk units",
+      "s_hat": -0.1776,
+      "size_mult": -0.9871,
+      "reason": "size = (S_hat -0.1776 / σ 0.4027) × c̄ 0.3529 × ln(1+N_ind 567) = -0.9871 risk units",
       "meta": {
         "sigma_annual": 0.4027,
-        "cbar": 0.3561,
-        "n_ind": 563,
-        "s_vendor": -0.2328,
+        "cbar": 0.3529,
+        "n_ind": 567,
+        "s_vendor": -0.0698,
         "w": {
           "wInternal": 0.7,
           "wVendor": 0.3
@@ -666,13 +668,13 @@
       "asset": "msft",
       "rule": "R1",
       "fired": 0,
-      "s_inst": 0.2325,
+      "s_inst": 0.2189,
       "z_price": -0.5001,
-      "d_s_inst": null,
-      "reason": "no fire: z_sent=null (daily history n=0, need 5) z_price=-0.5001 [closes to 2026-11-17] slope=null/h vs gap>2",
+      "d_s_inst": -0.0136,
+      "reason": "no fire: z_sent=null (daily history n=1, need 5) z_price=-0.5001 [closes to 2026-11-17] slope=-0.0136/h vs gap>2",
       "meta": {
         "z_sent": null,
-        "history_n": 0,
+        "history_n": 1,
         "basis": "closes to 2026-11-17",
         "price_src": "workspace/signals/prices/msft.json",
         "price_asof": "2026-11-17"
@@ -682,15 +684,15 @@
       "asset": "msft",
       "rule": "R2",
       "fired": 0,
-      "s_inst": 0.2325,
+      "s_inst": 0.2189,
       "d_s_inst": null,
-      "reason": "no fire: no 7d slope history for msft",
+      "reason": "no fire: slope history spans 0.0417d, the 7d slope needs 6.5d",
       "meta": {
         "rule_v": 2,
         "rank": null,
         "of": null,
         "window_days": 7,
-        "span_days": null,
+        "span_days": 0.0417,
         "min_peers": 4
       }
     },
@@ -698,17 +700,17 @@
       "asset": "msft",
       "rule": "R3",
       "fired": 0,
-      "s_inst": 0.2325,
+      "s_inst": 0.2189,
       "s_retail": 0.1293,
-      "dv_retail": -1,
-      "reason": "retail 0.1293 (need >0.7), inst 0.2325 (need <-0.3), volume [3,1,0]/h accel 1 (need <0, n>=3)",
+      "dv_retail": -2,
+      "reason": "retail 0.1293 (need >0.7), inst 0.2189 (need <-0.3), volume [1,2,0]/h accel -3 (need <0, n>=3)",
       "meta": {
         "buckets": [
-          3,
           1,
+          2,
           0
         ],
-        "accel": 1,
+        "accel": -3,
         "note": "retail high + inst low + crowd already leaving"
       }
     },
@@ -716,13 +718,13 @@
       "asset": "msft",
       "rule": "R4",
       "fired": 1,
-      "s_hat": 0.2223,
-      "size_mult": 0.9439,
-      "reason": "size = (S_hat 0.2223 / σ 0.2769) × c̄ 0.2594 × ln(1+N_ind 92) = 0.9439 risk units",
+      "s_hat": 0.2142,
+      "size_mult": 0.9131,
+      "reason": "size = (S_hat 0.2142 / σ 0.2769) × c̄ 0.2592 × ln(1+N_ind 94) = 0.9131 risk units",
       "meta": {
         "sigma_annual": 0.2769,
-        "cbar": 0.2594,
-        "n_ind": 92,
+        "cbar": 0.2592,
+        "n_ind": 94,
         "s_vendor": null,
         "w": {
           "wInternal": 0.7,
@@ -737,8 +739,8 @@
       "fired": 0,
       "s_inst": 0.0074,
       "z_price": -2.8833,
-      "d_s_inst": -0.0023,
-      "reason": "no fire: z_sent=null (daily history n=4, need 5) z_price=-2.8833 [closes to 2026-11-17] slope=-0.0023/h vs gap>2",
+      "d_s_inst": 0,
+      "reason": "no fire: z_sent=null (daily history n=4, need 5) z_price=-2.8833 [closes to 2026-11-17] slope=0/h vs gap>2",
       "meta": {
         "z_sent": null,
         "history_n": 4,
@@ -753,13 +755,13 @@
       "fired": 0,
       "s_inst": 0.0074,
       "d_s_inst": null,
-      "reason": "no fire: slope history spans 2.9582d, the 7d slope needs 6.5d",
+      "reason": "no fire: slope history spans 2.9999d, the 7d slope needs 6.5d",
       "meta": {
         "rule_v": 2,
         "rank": null,
         "of": null,
         "window_days": 7,
-        "span_days": 2.9582,
+        "span_days": 2.9999,
         "min_peers": 4
       }
     },
@@ -768,16 +770,16 @@
       "rule": "R3",
       "fired": 0,
       "s_inst": 0.0074,
-      "s_retail": -0.2233,
-      "dv_retail": -7,
-      "reason": "retail -0.2233 (need >0.7), inst 0.0074 (need <-0.3), volume [9,7,0]/h accel -5 (need <0, n>=3)",
+      "s_retail": -0.1738,
+      "dv_retail": -13,
+      "reason": "retail -0.1738 (need >0.7), inst 0.0074 (need <-0.3), volume [7,13,0]/h accel -19 (need <0, n>=3)",
       "meta": {
         "buckets": [
-          9,
           7,
+          13,
           0
         ],
-        "accel": -5,
+        "accel": -19,
         "note": "retail high + inst low + crowd already leaving"
       }
     },
@@ -785,13 +787,13 @@
       "asset": "nvda",
       "rule": "R4",
       "fired": 1,
-      "s_hat": -0.0773,
-      "size_mult": -0.361,
-      "reason": "size = (S_hat -0.0773 / σ 0.434) × c̄ 0.3361 × ln(1+N_ind 415) = -0.361 risk units",
+      "s_hat": -0.0473,
+      "size_mult": -0.2238,
+      "reason": "size = (S_hat -0.0473 / σ 0.434) × c̄ 0.34 × ln(1+N_ind 419) = -0.2238 risk units",
       "meta": {
         "sigma_annual": 0.434,
-        "cbar": 0.3361,
-        "n_ind": 415,
+        "cbar": 0.34,
+        "n_ind": 419,
         "s_vendor": null,
         "w": {
           "wInternal": 0.7,
@@ -806,8 +808,8 @@
       "fired": 0,
       "s_inst": 0.0112,
       "z_price": -1.8776,
-      "d_s_inst": -0.0137,
-      "reason": "no fire: z_sent=null (daily history n=4, need 5) z_price=-1.8776 [closes to 2026-11-19] slope=-0.0137/h vs gap>2",
+      "d_s_inst": 0,
+      "reason": "no fire: z_sent=null (daily history n=4, need 5) z_price=-1.8776 [closes to 2026-11-19] slope=0/h vs gap>2",
       "meta": {
         "z_sent": null,
         "history_n": 4,
@@ -822,13 +824,13 @@
       "fired": 0,
       "s_inst": 0.0112,
       "d_s_inst": null,
-      "reason": "no fire: slope history spans 2.4999d, the 7d slope needs 6.5d",
+      "reason": "no fire: slope history spans 2.5416d, the 7d slope needs 6.5d",
       "meta": {
         "rule_v": 2,
         "rank": null,
         "of": null,
         "window_days": 7,
-        "span_days": 2.4999,
+        "span_days": 2.5416,
         "min_peers": 4
       }
     },
@@ -837,16 +839,16 @@
       "rule": "R3",
       "fired": 0,
       "s_inst": 0.0112,
-      "s_retail": -0.0456,
-      "dv_retail": -2,
-      "reason": "retail -0.0456 (need >0.7), inst 0.0112 (need <-0.3), volume [5,2,0]/h accel 1 (need <0, n>=3)",
+      "s_retail": 0.1506,
+      "dv_retail": 0,
+      "reason": "retail 0.1506 (need >0.7), inst 0.0112 (need <-0.3), volume [2,0,0]/h accel 2 (need <0, n>=3)",
       "meta": {
         "buckets": [
-          5,
           2,
+          0,
           0
         ],
-        "accel": 1,
+        "accel": 2,
         "note": "retail high + inst low + crowd already leaving"
       }
     },
@@ -854,13 +856,13 @@
       "asset": "sol",
       "rule": "R4",
       "fired": 1,
-      "s_hat": -0.1475,
-      "size_mult": -0.4186,
-      "reason": "size = (S_hat -0.1475 / σ 0.4804) × c̄ 0.2296 × ln(1+N_ind 378) = -0.4186 risk units",
+      "s_hat": -0.0849,
+      "size_mult": -0.2374,
+      "reason": "size = (S_hat -0.0849 / σ 0.4804) × c̄ 0.2258 × ln(1+N_ind 382) = -0.2374 risk units",
       "meta": {
         "sigma_annual": 0.4804,
-        "cbar": 0.2296,
-        "n_ind": 378,
+        "cbar": 0.2258,
+        "n_ind": 382,
         "s_vendor": -0.4696,
         "w": {
           "wInternal": 0.7,
@@ -875,11 +877,11 @@
       "fired": 0,
       "s_inst": 0,
       "z_price": 0.5264,
-      "d_s_inst": null,
-      "reason": "no fire: z_sent=null (daily history n=0, need 5) z_price=0.5264 [closes to 2026-11-17] slope=null/h vs gap>2",
+      "d_s_inst": 0,
+      "reason": "no fire: z_sent=null (daily history n=1, need 5) z_price=0.5264 [closes to 2026-11-17] slope=0/h vs gap>2",
       "meta": {
         "z_sent": null,
-        "history_n": 0,
+        "history_n": 1,
         "basis": "closes to 2026-11-17",
         "price_src": "workspace/signals/prices/tsla.json",
         "price_asof": "2026-11-17"
@@ -891,13 +893,13 @@
       "fired": 0,
       "s_inst": 0,
       "d_s_inst": null,
-      "reason": "no fire: no 7d slope history for tsla",
+      "reason": "no fire: slope history spans 0.0417d, the 7d slope needs 6.5d",
       "meta": {
         "rule_v": 2,
         "rank": null,
         "of": null,
         "window_days": 7,
-        "span_days": null,
+        "span_days": 0.0417,
         "min_peers": 4
       }
     },
@@ -906,16 +908,16 @@
       "rule": "R3",
       "fired": 0,
       "s_inst": 0,
-      "s_retail": -0.0184,
-      "dv_retail": -1,
-      "reason": "retail -0.0184 (need >0.7), inst 0 (need <-0.3), volume [0,1,0]/h accel -2 (need <0, n>=3)",
+      "s_retail": -0.0126,
+      "dv_retail": -22,
+      "reason": "retail -0.0126 (need >0.7), inst 0 (need <-0.3), volume [1,22,0]/h accel -43 (need <0, n>=3)",
       "meta": {
         "buckets": [
-          0,
           1,
+          22,
           0
         ],
-        "accel": -2,
+        "accel": -43,
         "note": "retail high + inst low + crowd already leaving"
       }
     },
@@ -923,13 +925,13 @@
       "asset": "tsla",
       "rule": "R4",
       "fired": 1,
-      "s_hat": -0.0144,
-      "size_mult": -0.0269,
-      "reason": "size = (S_hat -0.0144 / σ 0.4727) × c̄ 0.2194 × ln(1+N_ind 55) = -0.0269 risk units",
+      "s_hat": -0.0093,
+      "size_mult": -0.0178,
+      "reason": "size = (S_hat -0.0093 / σ 0.4727) × c̄ 0.2196 × ln(1+N_ind 60) = -0.0178 risk units",
       "meta": {
         "sigma_annual": 0.4727,
-        "cbar": 0.2194,
-        "n_ind": 55,
+        "cbar": 0.2196,
+        "n_ind": 60,
         "s_vendor": null,
         "w": {
           "wInternal": 0.7,
@@ -944,11 +946,11 @@
       "fired": 0,
       "s_inst": -0.1832,
       "z_price": -1.894,
-      "d_s_inst": null,
-      "reason": "no fire: z_sent=null (daily history n=0, need 5) z_price=-1.894 [closes to 2026-11-19] slope=null/h vs gap>2",
+      "d_s_inst": 0,
+      "reason": "no fire: z_sent=null (daily history n=1, need 5) z_price=-1.894 [closes to 2026-11-19] slope=0/h vs gap>2",
       "meta": {
         "z_sent": null,
-        "history_n": 0,
+        "history_n": 1,
         "basis": "closes to 2026-11-19",
         "price_src": "workspace/signals/prices/xrp.json",
         "price_asof": "2026-11-19"
@@ -960,13 +962,13 @@
       "fired": 0,
       "s_inst": -0.1832,
       "d_s_inst": null,
-      "reason": "no fire: no 7d slope history for xrp",
+      "reason": "no fire: slope history spans 0.0417d, the 7d slope needs 6.5d",
       "meta": {
         "rule_v": 2,
         "rank": null,
         "of": null,
         "window_days": 7,
-        "span_days": null,
+        "span_days": 0.0417,
         "min_peers": 4
       }
     },
@@ -975,16 +977,16 @@
       "rule": "R3",
       "fired": 0,
       "s_inst": -0.1832,
-      "s_retail": -0.2228,
-      "dv_retail": -4,
-      "reason": "retail -0.2228 (need >0.7), inst -0.1832 (need <-0.3), volume [2,4,0]/h accel -6 (need <0, n>=3)",
+      "s_retail": -0.1446,
+      "dv_retail": -2,
+      "reason": "retail -0.1446 (need >0.7), inst -0.1832 (need <-0.3), volume [4,2,0]/h accel 0 (need <0, n>=3)",
       "meta": {
         "buckets": [
-          2,
           4,
+          2,
           0
         ],
-        "accel": -6,
+        "accel": 0,
         "note": "retail high + inst low + crowd already leaving"
       }
     },
@@ -992,13 +994,13 @@
       "asset": "xrp",
       "rule": "R4",
       "fired": 1,
-      "s_hat": -0.3742,
-      "size_mult": -1.0352,
-      "reason": "size = (S_hat -0.3742 / σ 0.4804) × c̄ 0.2976 × ln(1+N_ind 86) = -1.0352 risk units",
+      "s_hat": -0.3551,
+      "size_mult": -0.9521,
+      "reason": "size = (S_hat -0.3551 / σ 0.4804) × c̄ 0.287 × ln(1+N_ind 88) = -0.9521 risk units",
       "meta": {
         "sigma_annual": 0.4804,
-        "cbar": 0.2976,
-        "n_ind": 86,
+        "cbar": 0.287,
+        "n_ind": 88,
         "s_vendor": -0.7855,
         "w": {
           "wInternal": 0.7,

@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-11-20T15:01:19.717Z",
+  "generatedAt": "2026-11-20T16:01:22.802Z",
   "name": "Tripwire",
   "genesis": "11e24f5192254d97de70cdb73a44cb80",
-  "head": "dc106fe080895a514b62198e70ca7eae545c6af36a217457cc8f480a1fa3b56d",
-  "events": 33,
+  "head": "a53ca38b6ea3230bae5ca7acbf347d11ed5c63a6495058eb1fca74c6c4ebb82b",
+  "events": 36,
   "verified": true,
-  "verifiedAt": "2026-11-20T15:01:19.717Z",
+  "verifiedAt": "2026-11-20T16:01:22.802Z",
   "chain": [
     {
       "seq": 1,
@@ -369,6 +369,39 @@
       "op": "lt",
       "sha": "dc106fe080895a514b62198e70ca7eae545c6af36a217457cc8f480a1fa3b56d",
       "prev": "3eaaa0f58cea70520c413f4180238ba47e422f6a232aafde5fce69e5321041ef"
+    },
+    {
+      "seq": 34,
+      "at": "2026-11-20T16:01:06.738Z",
+      "watcher": "btc-move-5",
+      "label": "Bitcoin moves 5% in 24h",
+      "value": 89322,
+      "threshold": 5,
+      "op": "move",
+      "sha": "0c8609033ad3846aac1045f4a672c24a940b550a9ceff79799247e75d9760c1f",
+      "prev": "dc106fe080895a514b62198e70ca7eae545c6af36a217457cc8f480a1fa3b56d"
+    },
+    {
+      "seq": 35,
+      "at": "2026-11-20T16:01:11.232Z",
+      "watcher": "global-core",
+      "label": "Global Core basket",
+      "value": 94.4294,
+      "threshold": 3,
+      "op": "move",
+      "sha": "11a27059f115641b99a9389c6da9ef57ad913a698ceeb67f7fcba47c4760400a",
+      "prev": "0c8609033ad3846aac1045f4a672c24a940b550a9ceff79799247e75d9760c1f"
+    },
+    {
+      "seq": 36,
+      "at": "2026-11-20T16:01:11.241Z",
+      "watcher": "momentum",
+      "label": "Momentum basket",
+      "value": 82.2265,
+      "threshold": 6,
+      "op": "move",
+      "sha": "a53ca38b6ea3230bae5ca7acbf347d11ed5c63a6495058eb1fca74c6c4ebb82b",
+      "prev": "11a27059f115641b99a9389c6da9ef57ad913a698ceeb67f7fcba47c4760400a"
     }
   ]
 }

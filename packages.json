@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-11-20T21:01:15.110Z",
+  "builtAt": "2026-11-20T22:01:12.552Z",
   "name": "Tripwire",
   "rebalance": "daily, back to these weights",
   "note": "A basket is weights, not a promise. dayPct is the weighted mean of each leg's own last-day change; past4w.pct is the weighted mean of each leg's return over the last 28 calendar days of cached daily closes; level is an index that starts at 100 at the first hourly snapshot and compounds from recorded per-leg values. No backtest: the history here was written by our own builds, one point per hour.",
@@ -177,6 +177,7 @@
         96.2372,
         96.2372,
         96.2372,
+        96.2372,
         96.2372
       ],
       "alert": {
@@ -192,7 +193,7 @@
           "level": 96.2372,
           "threshold": 2.5,
           "windowH": 24,
-          "baseAt": "2026-11-19T21:01:08.991Z"
+          "baseAt": "2026-11-19T22:01:08.643Z"
         }
       },
       "past4w": {
@@ -320,10 +321,10 @@
       "invalidates": "A US earnings recession with gold falling at the same time (real yields up, dollar up) — then 80 points of equity and the 20-point hedge go down together.",
       "cadence": "Checked hourly. A ±3% basket move in 24h is written to the hash chain with the per-holding contribution, so the alert names the leg that moved.",
       "weightsTotal": 100,
-      "dayPct": -3.74,
+      "dayPct": -3.69,
       "coveragePct": 100,
-      "level": 92.5964,
-      "sincePct": -7.4,
+      "level": 92.64,
+      "sincePct": -7.36,
       "since": "2026-11-06T02:52:23.226Z",
       "series": [
         100,
@@ -477,7 +478,8 @@
         93.6848,
         93.694,
         93.0988,
-        92.5964
+        92.5964,
+        92.64
       ],
       "alert": {
         "move": 3,
@@ -487,12 +489,12 @@
           "name": "Global Core",
           "kind": "package-move",
           "fired": true,
-          "pct": -3.64,
-          "base": 96.0949,
-          "level": 92.5964,
+          "pct": -3.37,
+          "base": 95.8677,
+          "level": 92.64,
           "threshold": 3,
           "windowH": 24,
-          "baseAt": "2026-11-19T21:01:08.995Z"
+          "baseAt": "2026-11-19T22:01:08.648Z"
         }
       },
       "past4w": {
@@ -543,9 +545,9 @@
           "label": "S&P 500",
           "w": 30,
           "unit": "pts",
-          "value": 6910.79,
-          "changePct": -3.69,
-          "contribPp": -1.107,
+          "value": 6910.39,
+          "changePct": -3.7,
+          "contribPp": -1.11,
           "past4wPct": -1.28,
           "past4w": {
             "from": "2026-10-16",
@@ -607,9 +609,9 @@
           "label": "Gold (front month)",
           "w": 20,
           "unit": "USD/oz",
-          "value": 3524.7,
-          "changePct": -4.36,
-          "contribPp": -0.872,
+          "value": 3533.3,
+          "changePct": -4.13,
+          "contribPp": -0.826,
           "past4wPct": -7.02,
           "past4w": {
             "from": "2026-10-16",
@@ -636,10 +638,10 @@
       "invalidates": "A liquidity event where crypto, high-beta equity and crude fall on the same day — the 60-point crypto leg and the 30-point equity leg collapse into one position at the worst possible moment.",
       "cadence": "Checked hourly. A ±6% basket move in 24h is written to the hash chain; because the legs are correlated, the alert fires early in a risk-off move rather than after it.",
       "weightsTotal": 100,
-      "dayPct": -7.34,
+      "dayPct": -6.15,
       "coveragePct": 100,
-      "level": 79.828,
-      "sincePct": -20.17,
+      "level": 80.3867,
+      "sincePct": -19.61,
       "since": "2026-11-06T02:52:23.227Z",
       "series": [
         100,
@@ -793,7 +795,8 @@
         81.7803,
         81.4532,
         80.3906,
-        79.828
+        79.828,
+        80.3846
       ],
       "alert": {
         "move": 6,
@@ -803,12 +806,12 @@
           "name": "Momentum",
           "kind": "package-move",
           "fired": true,
-          "pct": -7.49,
-          "base": 86.2958,
-          "level": 79.828,
+          "pct": -6.29,
+          "base": 85.7867,
+          "level": 80.3867,
           "threshold": 6,
           "windowH": 24,
-          "baseAt": "2026-11-19T21:01:08.999Z"
+          "baseAt": "2026-11-19T22:01:08.655Z"
         }
       },
       "past4w": {
@@ -859,9 +862,9 @@
           "label": "Bitcoin",
           "w": 30,
           "unit": "A$",
-          "value": 88169,
-          "changePct": -5.32,
-          "contribPp": -1.596,
+          "value": 89054,
+          "changePct": -3.54,
+          "contribPp": -1.062,
           "past4wPct": -15.89,
           "past4w": {
             "from": "2026-10-17",
@@ -875,9 +878,9 @@
           "label": "Ethereum",
           "w": 20,
           "unit": "A$",
-          "value": 2418.59,
-          "changePct": -8.37,
-          "contribPp": -1.674,
+          "value": 2444.76,
+          "changePct": -6.35,
+          "contribPp": -1.27,
           "past4wPct": -19.22,
           "past4w": {
             "from": "2026-10-17",
@@ -907,9 +910,9 @@
           "label": "Solana",
           "w": 10,
           "unit": "A$",
-          "value": 101.9,
-          "changePct": -6.9,
-          "contribPp": -0.69,
+          "value": 104.22,
+          "changePct": -3.85,
+          "contribPp": -0.385,
           "past4wPct": -25.18,
           "past4w": {
             "from": "2026-10-17",
@@ -939,9 +942,9 @@
           "label": "WTI crude",
           "w": 10,
           "unit": "USD/bbl",
-          "value": 83.95,
-          "changePct": 1.83,
-          "contribPp": 0.183,
+          "value": 83.57,
+          "changePct": 1.37,
+          "contribPp": 0.137,
           "past4wPct": -12.32,
           "past4w": {
             "from": "2026-10-16",

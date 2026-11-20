@@ -1,19 +1,19 @@
 {
-  "builtAt": "2026-11-20T18:01:23.764Z",
+  "builtAt": "2026-11-20T19:01:13.175Z",
   "engine": "signals",
   "tier": "public-summary",
   "fullEndpoint": "https://tripwire-alert.trade/api/signals/full",
   "subscribeUrl": "https://tripwire-alert.trade/signals/",
-  "sourceArtifact": "workspace/signals/artifacts/rules-2026-11-20T17-05-25-447Z.json",
-  "sourceSha256": "e208a30d4af4abb4",
+  "sourceArtifact": "workspace/signals/artifacts/rules-2026-11-20T18-05-25-439Z.json",
+  "sourceSha256": "311cf3d521c136b0",
   "scores": [
     {
       "asset": "aapl",
-      "at": "2026-11-20T17:05:25.447Z",
-      "s_hat": 0.0817,
+      "at": "2026-11-20T18:05:25.439Z",
+      "s_hat": 0.0478,
       "n_fresh": {
         "inst": 10,
-        "retail": 12,
+        "retail": 8,
         "syndicated": 8,
         "vendor": 0
       },
@@ -23,11 +23,11 @@
     },
     {
       "asset": "ada",
-      "at": "2026-11-20T17:05:25.447Z",
-      "s_hat": 0.0621,
+      "at": "2026-11-20T18:05:25.439Z",
+      "s_hat": 0.0866,
       "n_fresh": {
         "inst": 2,
-        "retail": 5,
+        "retail": 3,
         "syndicated": 1,
         "vendor": 14
       },
@@ -37,25 +37,25 @@
     },
     {
       "asset": "btc",
-      "at": "2026-11-20T17:05:25.447Z",
-      "s_hat": -0.2417,
+      "at": "2026-11-20T18:05:25.439Z",
+      "s_hat": -0.2638,
       "n_fresh": {
-        "inst": 104,
-        "retail": 195,
-        "syndicated": 140,
+        "inst": 103,
+        "retail": 178,
+        "syndicated": 152,
         "vendor": 15
       },
       "thin": []
     },
     {
       "asset": "doge",
-      "at": "2026-11-20T17:05:25.447Z",
-      "s_hat": -0.0607,
+      "at": "2026-11-20T18:05:25.439Z",
+      "s_hat": -0.3207,
       "n_fresh": {
         "inst": 0,
         "retail": 4,
         "syndicated": 3,
-        "vendor": 11
+        "vendor": 12
       },
       "thin": [
         "inst"
@@ -63,11 +63,11 @@
     },
     {
       "asset": "eth",
-      "at": "2026-11-20T17:05:25.447Z",
-      "s_hat": -0.1637,
+      "at": "2026-11-20T18:05:25.439Z",
+      "s_hat": -0.1443,
       "n_fresh": {
-        "inst": 26,
-        "retail": 33,
+        "inst": 25,
+        "retail": 34,
         "syndicated": 30,
         "vendor": 15
       },
@@ -75,12 +75,12 @@
     },
     {
       "asset": "msft",
-      "at": "2026-11-20T17:05:25.447Z",
-      "s_hat": 0.1047,
+      "at": "2026-11-20T18:05:25.439Z",
+      "s_hat": 0.0943,
       "n_fresh": {
         "inst": 43,
-        "retail": 4,
-        "syndicated": 13,
+        "retail": 7,
+        "syndicated": 12,
         "vendor": 0
       },
       "thin": [
@@ -89,12 +89,12 @@
     },
     {
       "asset": "nvda",
-      "at": "2026-11-20T17:05:25.447Z",
-      "s_hat": -0.1304,
+      "at": "2026-11-20T18:05:25.439Z",
+      "s_hat": -0.2222,
       "n_fresh": {
-        "inst": 32,
-        "retail": 77,
-        "syndicated": 70,
+        "inst": 30,
+        "retail": 76,
+        "syndicated": 78,
         "vendor": 0
       },
       "thin": [
@@ -103,11 +103,11 @@
     },
     {
       "asset": "sol",
-      "at": "2026-11-20T17:05:25.447Z",
-      "s_hat": 0.0101,
+      "at": "2026-11-20T18:05:25.439Z",
+      "s_hat": -0.0182,
       "n_fresh": {
         "inst": 15,
-        "retail": 23,
+        "retail": 17,
         "syndicated": 13,
         "vendor": 14
       },
@@ -115,12 +115,12 @@
     },
     {
       "asset": "tsla",
-      "at": "2026-11-20T17:05:25.447Z",
-      "s_hat": 0.2266,
+      "at": "2026-11-20T18:05:25.439Z",
+      "s_hat": 0.1186,
       "n_fresh": {
-        "inst": 17,
-        "retail": 27,
-        "syndicated": 9,
+        "inst": 19,
+        "retail": 21,
+        "syndicated": 10,
         "vendor": 0
       },
       "thin": [
@@ -129,12 +129,12 @@
     },
     {
       "asset": "xrp",
-      "at": "2026-11-20T17:05:25.447Z",
-      "s_hat": -0.1878,
+      "at": "2026-11-20T18:05:25.439Z",
+      "s_hat": -0.1552,
       "n_fresh": {
         "inst": 11,
-        "retail": 21,
-        "syndicated": 24,
+        "retail": 16,
+        "syndicated": 23,
         "vendor": 12
       },
       "thin": []

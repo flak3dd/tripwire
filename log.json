@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-11-20T23:01:11.863Z",
+  "generatedAt": "2026-11-21T00:01:29.563Z",
   "name": "Tripwire",
   "genesis": "11e24f5192254d97de70cdb73a44cb80",
-  "head": "a53ca38b6ea3230bae5ca7acbf347d11ed5c63a6495058eb1fca74c6c4ebb82b",
-  "events": 36,
+  "head": "c1db2fe57c7e3c18af90678aaa80107e48e364f736f8ca4338079e3f7a67c0d6",
+  "events": 38,
   "verified": true,
-  "verifiedAt": "2026-11-20T23:01:11.863Z",
+  "verifiedAt": "2026-11-21T00:01:29.563Z",
   "chain": [
     {
       "seq": 1,
@@ -402,6 +402,28 @@
       "op": "move",
       "sha": "a53ca38b6ea3230bae5ca7acbf347d11ed5c63a6495058eb1fca74c6c4ebb82b",
       "prev": "11a27059f115641b99a9389c6da9ef57ad913a698ceeb67f7fcba47c4760400a"
+    },
+    {
+      "seq": 37,
+      "at": "2026-11-21T00:01:10.221Z",
+      "watcher": "global-core",
+      "label": "Global Core basket",
+      "value": 92.6699,
+      "threshold": 3,
+      "op": "move",
+      "sha": "94f23fdf0ccebb64ad30917dd072eca7334bd3845372b13a04584c73b07261f0",
+      "prev": "a53ca38b6ea3230bae5ca7acbf347d11ed5c63a6495058eb1fca74c6c4ebb82b"
+    },
+    {
+      "seq": 38,
+      "at": "2026-11-21T00:01:10.231Z",
+      "watcher": "momentum",
+      "label": "Momentum basket",
+      "value": 80.3036,
+      "threshold": 6,
+      "op": "move",
+      "sha": "c1db2fe57c7e3c18af90678aaa80107e48e364f736f8ca4338079e3f7a67c0d6",
+      "prev": "94f23fdf0ccebb64ad30917dd072eca7334bd3845372b13a04584c73b07261f0"
     }
   ]
 }

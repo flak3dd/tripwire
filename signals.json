@@ -1,18 +1,18 @@
 {
-  "builtAt": "2026-11-21T16:01:11.558Z",
+  "builtAt": "2026-11-21T17:01:11.566Z",
   "engine": "signals",
   "tier": "public-summary",
   "fullEndpoint": "https://tripwire-alert.trade/api/signals/full",
   "subscribeUrl": "https://tripwire-alert.trade/signals/",
-  "sourceArtifact": "workspace/signals/artifacts/rules-2026-11-21T15-05-25-467Z.json",
-  "sourceSha256": "399acc78c185d206",
+  "sourceArtifact": "workspace/signals/artifacts/rules-2026-11-21T16-05-25-491Z.json",
+  "sourceSha256": "f236c607d2d18244",
   "scores": [
     {
       "asset": "aapl",
-      "at": "2026-11-21T15:05:25.467Z",
-      "s_hat": 0.0875,
+      "at": "2026-11-21T16:05:25.491Z",
+      "s_hat": 0.0888,
       "n_fresh": {
-        "inst": 9,
+        "inst": 8,
         "retail": 2,
         "syndicated": 4,
         "vendor": 0
@@ -24,7 +24,7 @@
     },
     {
       "asset": "ada",
-      "at": "2026-11-21T15:05:25.467Z",
+      "at": "2026-11-21T16:05:25.491Z",
       "s_hat": null,
       "n_fresh": {
         "inst": 0,
@@ -39,19 +39,19 @@
     },
     {
       "asset": "btc",
-      "at": "2026-11-21T15:05:25.467Z",
-      "s_hat": -0.2893,
+      "at": "2026-11-21T16:05:25.491Z",
+      "s_hat": -0.2705,
       "n_fresh": {
-        "inst": 82,
-        "retail": 190,
-        "syndicated": 77,
+        "inst": 79,
+        "retail": 241,
+        "syndicated": 83,
         "vendor": 20
       },
       "thin": []
     },
     {
       "asset": "doge",
-      "at": "2026-11-21T15:05:25.467Z",
+      "at": "2026-11-21T16:05:25.491Z",
       "s_hat": null,
       "n_fresh": {
         "inst": 0,
@@ -66,24 +66,24 @@
     },
     {
       "asset": "eth",
-      "at": "2026-11-21T15:05:25.467Z",
-      "s_hat": -0.0259,
+      "at": "2026-11-21T16:05:25.491Z",
+      "s_hat": -0.1153,
       "n_fresh": {
         "inst": 15,
-        "retail": 18,
-        "syndicated": 16,
+        "retail": 22,
+        "syndicated": 18,
         "vendor": 20
       },
       "thin": []
     },
     {
       "asset": "msft",
-      "at": "2026-11-21T15:05:25.467Z",
-      "s_hat": 0.0729,
+      "at": "2026-11-21T16:05:25.491Z",
+      "s_hat": 0.0416,
       "n_fresh": {
-        "inst": 15,
-        "retail": 6,
-        "syndicated": 0,
+        "inst": 14,
+        "retail": 7,
+        "syndicated": 1,
         "vendor": 0
       },
       "thin": [
@@ -92,12 +92,12 @@
     },
     {
       "asset": "nvda",
-      "at": "2026-11-21T15:05:25.467Z",
-      "s_hat": -0.1867,
+      "at": "2026-11-21T16:05:25.491Z",
+      "s_hat": -0.176,
       "n_fresh": {
         "inst": 25,
-        "retail": 25,
-        "syndicated": 31,
+        "retail": 32,
+        "syndicated": 30,
         "vendor": 0
       },
       "thin": [
@@ -106,23 +106,23 @@
     },
     {
       "asset": "sol",
-      "at": "2026-11-21T15:05:25.467Z",
-      "s_hat": 0.0764,
+      "at": "2026-11-21T16:05:25.491Z",
+      "s_hat": -0.0094,
       "n_fresh": {
-        "inst": 7,
-        "retail": 19,
-        "syndicated": 6,
+        "inst": 6,
+        "retail": 22,
+        "syndicated": 7,
         "vendor": 19
       },
       "thin": []
     },
     {
       "asset": "tsla",
-      "at": "2026-11-21T15:05:25.467Z",
-      "s_hat": 0.1704,
+      "at": "2026-11-21T16:05:25.491Z",
+      "s_hat": -0.1448,
       "n_fresh": {
         "inst": 10,
-        "retail": 4,
+        "retail": 9,
         "syndicated": 2,
         "vendor": 0
       },
@@ -132,20 +132,20 @@
     },
     {
       "asset": "xrp",
-      "at": "2026-11-21T15:05:25.467Z",
-      "s_hat": -0.2852,
+      "at": "2026-11-21T16:05:25.491Z",
+      "s_hat": -0.1863,
       "n_fresh": {
         "inst": 9,
-        "retail": 9,
+        "retail": 12,
         "syndicated": 22,
-        "vendor": 16
+        "vendor": 17
       },
       "thin": []
     }
   ],
   "rulesSummary": {
     "evaluated": 40,
-    "fired": 9,
+    "fired": 10,
     "note": "Per-asset S_inst vs S_retail split, R1–R4 rule triggers, and headline drivers require Package, Gear, or Signals Pro (/api/signals/full)."
   }
 }

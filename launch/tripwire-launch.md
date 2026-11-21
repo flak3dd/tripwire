@@ -1,4 +1,4 @@
-# Tripwire Launch Bulletin — 2026-11-20
+# Tripwire Launch Bulletin — 2026-11-21
 
 Live deterministic price, FX, equity & basket alert engine with SHA-256 hash-chained alerts and self-serve token onboarding.
 
@@ -6,15 +6,15 @@ Live deterministic price, FX, equity & basket alert engine with SHA-256 hash-cha
 - **Self-Serve Trial & Checkout**: https://tripwire-alert.trade/subscribe
 - **Digital Telemetry Store**: https://tripwire-alert.trade/store/
 - **Latest Digest**: https://tripwire-alert.trade/newsletter/latest/
-- **Chain Head**: `a53ca38b6ea3230bae5ca7ac` (36 verified crossings)
+- **Chain Head**: `c1db2fe57c7e3c18af90678a` (38 verified crossings)
 
 | Watcher | Live Reading | Rule | State |
 |---|---|---|---|
-| Bitcoin below A$100k | 89162 | 100000 | TRIPPED |
-| Ethereum below A$3k | 2445.73 | 3000 | TRIPPED |
-| Solana below A$120 | 104.6 | 120 | TRIPPED |
+| Bitcoin below A$100k | 88811 | 100000 | TRIPPED |
+| Ethereum below A$3k | 2445.01 | 3000 | TRIPPED |
+| Solana below A$120 | 103.84 | 120 | TRIPPED |
 | AUD above 0.72 USD | 0.66659 | 0.72 | ARMED |
 | Gold above 4200 USD/oz | 3539 | 4200 | ARMED |
 | ASX 200 below 8500 pts | 8592.6 | 8500 | ARMED |
 | CommBank below 160 A$ | 169.92 | 160 | ARMED |
-| Bitcoin moves 5% in 24h | 89162 | ±5% | ARMED |
+| Bitcoin moves 5% in 24h | 88811 | ±5% | ARMED |

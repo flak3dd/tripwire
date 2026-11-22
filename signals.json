@@ -1,20 +1,20 @@
 {
-  "builtAt": "2026-11-22T10:01:11.515Z",
+  "builtAt": "2026-11-22T11:01:11.514Z",
   "engine": "signals",
   "tier": "public-summary",
   "fullEndpoint": "https://tripwire-alert.trade/api/signals/full",
   "subscribeUrl": "https://tripwire-alert.trade/signals/",
-  "sourceArtifact": "workspace/signals/artifacts/rules-2026-11-22T09-05-25-460Z.json",
-  "sourceSha256": "521a00842211fbe8",
+  "sourceArtifact": "workspace/signals/artifacts/rules-2026-11-22T10-05-25-443Z.json",
+  "sourceSha256": "6fb67090567d0454",
   "scores": [
     {
       "asset": "aapl",
-      "at": "2026-11-22T09:05:25.460Z",
-      "s_hat": 0.0905,
+      "at": "2026-11-22T10:05:25.443Z",
+      "s_hat": 0.0903,
       "n_fresh": {
         "inst": 8,
         "retail": 0,
-        "syndicated": 1,
+        "syndicated": 5,
         "vendor": 0
       },
       "thin": [
@@ -24,7 +24,7 @@
     },
     {
       "asset": "ada",
-      "at": "2026-11-22T09:05:25.460Z",
+      "at": "2026-11-22T10:05:25.443Z",
       "s_hat": null,
       "n_fresh": {
         "inst": 0,
@@ -39,19 +39,19 @@
     },
     {
       "asset": "btc",
-      "at": "2026-11-22T09:05:25.460Z",
-      "s_hat": -0.2028,
+      "at": "2026-11-22T10:05:25.443Z",
+      "s_hat": -0.2533,
       "n_fresh": {
-        "inst": 56,
-        "retail": 223,
-        "syndicated": 45,
+        "inst": 58,
+        "retail": 221,
+        "syndicated": 58,
         "vendor": 24
       },
       "thin": []
     },
     {
       "asset": "doge",
-      "at": "2026-11-22T09:05:25.460Z",
+      "at": "2026-11-22T10:05:25.443Z",
       "s_hat": null,
       "n_fresh": {
         "inst": 0,
@@ -66,24 +66,24 @@
     },
     {
       "asset": "eth",
-      "at": "2026-11-22T09:05:25.460Z",
-      "s_hat": -0.0399,
+      "at": "2026-11-22T10:05:25.443Z",
+      "s_hat": -0.0538,
       "n_fresh": {
         "inst": 10,
-        "retail": 26,
-        "syndicated": 3,
+        "retail": 28,
+        "syndicated": 5,
         "vendor": 24
       },
       "thin": []
     },
     {
       "asset": "msft",
-      "at": "2026-11-22T09:05:25.460Z",
+      "at": "2026-11-22T10:05:25.443Z",
       "s_hat": 0.0913,
       "n_fresh": {
         "inst": 11,
         "retail": 0,
-        "syndicated": 3,
+        "syndicated": 4,
         "vendor": 0
       },
       "thin": [
@@ -93,12 +93,12 @@
     },
     {
       "asset": "nvda",
-      "at": "2026-11-22T09:05:25.460Z",
-      "s_hat": -0.192,
+      "at": "2026-11-22T10:05:25.443Z",
+      "s_hat": -0.1947,
       "n_fresh": {
         "inst": 16,
         "retail": 9,
-        "syndicated": 20,
+        "syndicated": 32,
         "vendor": 0
       },
       "thin": [
@@ -107,12 +107,12 @@
     },
     {
       "asset": "sol",
-      "at": "2026-11-22T09:05:25.460Z",
-      "s_hat": -0.0783,
+      "at": "2026-11-22T10:05:25.443Z",
+      "s_hat": -0.1018,
       "n_fresh": {
         "inst": 1,
-        "retail": 14,
-        "syndicated": 6,
+        "retail": 15,
+        "syndicated": 10,
         "vendor": 23
       },
       "thin": [
@@ -121,35 +121,34 @@
     },
     {
       "asset": "tsla",
-      "at": "2026-11-22T09:05:25.460Z",
-      "s_hat": 0.0559,
+      "at": "2026-11-22T10:05:25.443Z",
+      "s_hat": 0.0591,
       "n_fresh": {
         "inst": 8,
-        "retail": 2,
-        "syndicated": 2,
+        "retail": 3,
+        "syndicated": 6,
         "vendor": 0
       },
       "thin": [
-        "retail",
         "vendor"
       ]
     },
     {
       "asset": "xrp",
-      "at": "2026-11-22T09:05:25.460Z",
-      "s_hat": -0.0516,
+      "at": "2026-11-22T10:05:25.443Z",
+      "s_hat": -0.1173,
       "n_fresh": {
         "inst": 6,
-        "retail": 5,
-        "syndicated": 11,
-        "vendor": 20
+        "retail": 8,
+        "syndicated": 14,
+        "vendor": 21
       },
       "thin": []
     }
   ],
   "rulesSummary": {
     "evaluated": 40,
-    "fired": 10,
+    "fired": 9,
     "note": "Per-asset S_inst vs S_retail split, R1–R4 rule triggers, and headline drivers require Package, Gear, or Signals Pro (/api/signals/full)."
   }
 }

@@ -1,19 +1,19 @@
 {
-  "builtAt": "2026-11-22T02:01:11.553Z",
+  "builtAt": "2026-11-22T03:01:13.117Z",
   "engine": "signals",
   "tier": "public-summary",
   "fullEndpoint": "https://tripwire-alert.trade/api/signals/full",
   "subscribeUrl": "https://tripwire-alert.trade/signals/",
-  "sourceArtifact": "workspace/signals/artifacts/rules-2026-11-22T01-05-25-458Z.json",
-  "sourceSha256": "2850e77c458d4e5d",
+  "sourceArtifact": "workspace/signals/artifacts/rules-2026-11-22T02-05-25-464Z.json",
+  "sourceSha256": "47ea0d6fe0c3297b",
   "scores": [
     {
       "asset": "aapl",
-      "at": "2026-11-22T01:05:25.458Z",
-      "s_hat": 0.0902,
+      "at": "2026-11-22T02:05:25.464Z",
+      "s_hat": 0.0851,
       "n_fresh": {
         "inst": 8,
-        "retail": 0,
+        "retail": 2,
         "syndicated": 8,
         "vendor": 0
       },
@@ -24,7 +24,7 @@
     },
     {
       "asset": "ada",
-      "at": "2026-11-22T01:05:25.458Z",
+      "at": "2026-11-22T02:05:25.464Z",
       "s_hat": null,
       "n_fresh": {
         "inst": 0,
@@ -39,19 +39,19 @@
     },
     {
       "asset": "btc",
-      "at": "2026-11-22T01:05:25.458Z",
-      "s_hat": -0.3515,
+      "at": "2026-11-22T02:05:25.464Z",
+      "s_hat": -0.3477,
       "n_fresh": {
         "inst": 64,
-        "retail": 217,
-        "syndicated": 53,
+        "retail": 202,
+        "syndicated": 52,
         "vendor": 23
       },
       "thin": []
     },
     {
       "asset": "doge",
-      "at": "2026-11-22T01:05:25.458Z",
+      "at": "2026-11-22T02:05:25.464Z",
       "s_hat": null,
       "n_fresh": {
         "inst": 0,
@@ -66,24 +66,24 @@
     },
     {
       "asset": "eth",
-      "at": "2026-11-22T01:05:25.458Z",
-      "s_hat": 0.0251,
+      "at": "2026-11-22T02:05:25.464Z",
+      "s_hat": -0.0118,
       "n_fresh": {
         "inst": 13,
-        "retail": 27,
-        "syndicated": 9,
-        "vendor": 22
+        "retail": 20,
+        "syndicated": 7,
+        "vendor": 23
       },
       "thin": []
     },
     {
       "asset": "msft",
-      "at": "2026-11-22T01:05:25.458Z",
-      "s_hat": 0.0856,
+      "at": "2026-11-22T02:05:25.464Z",
+      "s_hat": 0.0885,
       "n_fresh": {
         "inst": 13,
-        "retail": 4,
-        "syndicated": 6,
+        "retail": 3,
+        "syndicated": 5,
         "vendor": 0
       },
       "thin": [
@@ -92,11 +92,11 @@
     },
     {
       "asset": "nvda",
-      "at": "2026-11-22T01:05:25.458Z",
-      "s_hat": -0.2752,
+      "at": "2026-11-22T02:05:25.464Z",
+      "s_hat": -0.2441,
       "n_fresh": {
         "inst": 20,
-        "retail": 19,
+        "retail": 22,
         "syndicated": 32,
         "vendor": 0
       },
@@ -106,12 +106,12 @@
     },
     {
       "asset": "sol",
-      "at": "2026-11-22T01:05:25.458Z",
-      "s_hat": -0.0276,
+      "at": "2026-11-22T02:05:25.464Z",
+      "s_hat": -0.1808,
       "n_fresh": {
         "inst": 2,
         "retail": 9,
-        "syndicated": 6,
+        "syndicated": 4,
         "vendor": 21
       },
       "thin": [
@@ -120,12 +120,12 @@
     },
     {
       "asset": "tsla",
-      "at": "2026-11-22T01:05:25.458Z",
-      "s_hat": -0.2497,
+      "at": "2026-11-22T02:05:25.464Z",
+      "s_hat": -0.1323,
       "n_fresh": {
         "inst": 7,
-        "retail": 16,
-        "syndicated": 15,
+        "retail": 18,
+        "syndicated": 14,
         "vendor": 0
       },
       "thin": [
@@ -134,12 +134,12 @@
     },
     {
       "asset": "xrp",
-      "at": "2026-11-22T01:05:25.458Z",
-      "s_hat": -0.1843,
+      "at": "2026-11-22T02:05:25.464Z",
+      "s_hat": -0.1788,
       "n_fresh": {
         "inst": 9,
-        "retail": 11,
-        "syndicated": 22,
+        "retail": 10,
+        "syndicated": 18,
         "vendor": 19
       },
       "thin": []

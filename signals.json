@@ -1,35 +1,34 @@
 {
-  "builtAt": "2026-11-22T16:01:11.743Z",
+  "builtAt": "2026-11-22T17:01:11.758Z",
   "engine": "signals",
   "tier": "public-summary",
   "fullEndpoint": "https://tripwire-alert.trade/api/signals/full",
   "subscribeUrl": "https://tripwire-alert.trade/signals/",
-  "sourceArtifact": "workspace/signals/artifacts/rules-2026-11-22T15-05-25-496Z.json",
-  "sourceSha256": "f60139dbae4dccc1",
+  "sourceArtifact": "workspace/signals/artifacts/rules-2026-11-22T16-05-25-520Z.json",
+  "sourceSha256": "135217e642938ba8",
   "scores": [
     {
       "asset": "aapl",
-      "at": "2026-11-22T15:05:25.496Z",
-      "s_hat": 0.0864,
+      "at": "2026-11-22T16:05:25.520Z",
+      "s_hat": 0.1209,
       "n_fresh": {
         "inst": 8,
-        "retail": 2,
-        "syndicated": 13,
+        "retail": 3,
+        "syndicated": 16,
         "vendor": 0
       },
       "thin": [
-        "retail",
         "vendor"
       ]
     },
     {
       "asset": "ada",
-      "at": "2026-11-22T15:05:25.496Z",
+      "at": "2026-11-22T16:05:25.520Z",
       "s_hat": null,
       "n_fresh": {
         "inst": 0,
         "retail": 0,
-        "syndicated": 0,
+        "syndicated": 1,
         "vendor": 23
       },
       "thin": [
@@ -39,19 +38,19 @@
     },
     {
       "asset": "btc",
-      "at": "2026-11-22T15:05:25.496Z",
-      "s_hat": -0.1961,
+      "at": "2026-11-22T16:05:25.520Z",
+      "s_hat": -0.1996,
       "n_fresh": {
-        "inst": 51,
-        "retail": 175,
-        "syndicated": 87,
+        "inst": 41,
+        "retail": 223,
+        "syndicated": 79,
         "vendor": 25
       },
       "thin": []
     },
     {
       "asset": "doge",
-      "at": "2026-11-22T15:05:25.496Z",
+      "at": "2026-11-22T16:05:25.520Z",
       "s_hat": 0.2932,
       "n_fresh": {
         "inst": 0,
@@ -65,11 +64,11 @@
     },
     {
       "asset": "eth",
-      "at": "2026-11-22T15:05:25.496Z",
-      "s_hat": 0.0973,
+      "at": "2026-11-22T16:05:25.520Z",
+      "s_hat": -0.1027,
       "n_fresh": {
-        "inst": 6,
-        "retail": 17,
+        "inst": 5,
+        "retail": 19,
         "syndicated": 8,
         "vendor": 25
       },
@@ -77,27 +76,26 @@
     },
     {
       "asset": "msft",
-      "at": "2026-11-22T15:05:25.496Z",
-      "s_hat": 0.1083,
+      "at": "2026-11-22T16:05:25.520Z",
+      "s_hat": 0.0967,
       "n_fresh": {
         "inst": 9,
-        "retail": 2,
+        "retail": 3,
         "syndicated": 7,
         "vendor": 0
       },
       "thin": [
-        "retail",
         "vendor"
       ]
     },
     {
       "asset": "nvda",
-      "at": "2026-11-22T15:05:25.496Z",
-      "s_hat": -0.1318,
+      "at": "2026-11-22T16:05:25.520Z",
+      "s_hat": -0.0957,
       "n_fresh": {
         "inst": 12,
-        "retail": 22,
-        "syndicated": 34,
+        "retail": 29,
+        "syndicated": 35,
         "vendor": 0
       },
       "thin": [
@@ -106,12 +104,12 @@
     },
     {
       "asset": "sol",
-      "at": "2026-11-22T15:05:25.496Z",
-      "s_hat": -0.08,
+      "at": "2026-11-22T16:05:25.520Z",
+      "s_hat": 0.0171,
       "n_fresh": {
         "inst": 1,
-        "retail": 14,
-        "syndicated": 20,
+        "retail": 17,
+        "syndicated": 17,
         "vendor": 24
       },
       "thin": [
@@ -120,12 +118,12 @@
     },
     {
       "asset": "tsla",
-      "at": "2026-11-22T15:05:25.496Z",
-      "s_hat": 0.0481,
+      "at": "2026-11-22T16:05:25.520Z",
+      "s_hat": 0.0503,
       "n_fresh": {
-        "inst": 6,
-        "retail": 5,
-        "syndicated": 13,
+        "inst": 5,
+        "retail": 6,
+        "syndicated": 12,
         "vendor": 0
       },
       "thin": [
@@ -134,13 +132,13 @@
     },
     {
       "asset": "xrp",
-      "at": "2026-11-22T15:05:25.496Z",
-      "s_hat": -0.1752,
+      "at": "2026-11-22T16:05:25.520Z",
+      "s_hat": -0.1544,
       "n_fresh": {
         "inst": 6,
         "retail": 11,
-        "syndicated": 28,
-        "vendor": 21
+        "syndicated": 25,
+        "vendor": 22
       },
       "thin": []
     }

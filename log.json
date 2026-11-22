@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-11-22T04:01:11.037Z",
+  "generatedAt": "2026-11-22T05:01:17.229Z",
   "name": "Tripwire",
   "genesis": "11e24f5192254d97de70cdb73a44cb80",
-  "head": "0c06a8eaf3cd4769d644fda9a47da6252c9a25a639d15c7876981288c44ba542",
-  "events": 39,
+  "head": "d088482d3b8f1240b0beec345928c6622dfac49ba0be8b460e3c11f90817312b",
+  "events": 40,
   "verified": true,
-  "verifiedAt": "2026-11-22T04:01:11.037Z",
+  "verifiedAt": "2026-11-22T05:01:17.229Z",
   "chain": [
     {
       "seq": 1,
@@ -435,6 +435,17 @@
       "op": "move",
       "sha": "0c06a8eaf3cd4769d644fda9a47da6252c9a25a639d15c7876981288c44ba542",
       "prev": "c1db2fe57c7e3c18af90678aaa80107e48e364f736f8ca4338079e3f7a67c0d6"
+    },
+    {
+      "seq": 40,
+      "at": "2026-11-22T05:01:05.943Z",
+      "watcher": "btc-move-5",
+      "label": "Bitcoin moves 5% in 24h",
+      "value": 89385,
+      "threshold": 5,
+      "op": "move",
+      "sha": "d088482d3b8f1240b0beec345928c6622dfac49ba0be8b460e3c11f90817312b",
+      "prev": "0c06a8eaf3cd4769d644fda9a47da6252c9a25a639d15c7876981288c44ba542"
     }
   ]
 }

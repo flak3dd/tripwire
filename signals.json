@@ -1,16 +1,16 @@
 {
-  "builtAt": "2026-11-23T06:01:12.651Z",
+  "builtAt": "2026-11-23T07:01:14.680Z",
   "engine": "signals",
   "tier": "public-summary",
   "fullEndpoint": "https://tripwire-alert.trade/api/signals/full",
   "subscribeUrl": "https://tripwire-alert.trade/signals/",
-  "sourceArtifact": "workspace/signals/artifacts/rules-2026-11-23T05-05-25-564Z.json",
-  "sourceSha256": "53e23f6fddee9ab3",
+  "sourceArtifact": "workspace/signals/artifacts/rules-2026-11-23T06-05-25-462Z.json",
+  "sourceSha256": "c41488cdf5b5a86e",
   "scores": [
     {
       "asset": "aapl",
-      "at": "2026-11-23T05:05:25.564Z",
-      "s_hat": 0.0969,
+      "at": "2026-11-23T06:05:25.462Z",
+      "s_hat": 0.0933,
       "n_fresh": {
         "inst": 8,
         "retail": 2,
@@ -24,11 +24,11 @@
     },
     {
       "asset": "ada",
-      "at": "2026-11-23T05:05:25.564Z",
+      "at": "2026-11-23T06:05:25.462Z",
       "s_hat": null,
       "n_fresh": {
         "inst": 0,
-        "retail": 0,
+        "retail": 1,
         "syndicated": 1,
         "vendor": 27
       },
@@ -39,25 +39,25 @@
     },
     {
       "asset": "btc",
-      "at": "2026-11-23T05:05:25.564Z",
-      "s_hat": -0.1172,
+      "at": "2026-11-23T06:05:25.462Z",
+      "s_hat": -0.1058,
       "n_fresh": {
-        "inst": 26,
-        "retail": 162,
-        "syndicated": 56,
+        "inst": 28,
+        "retail": 170,
+        "syndicated": 71,
         "vendor": 28
       },
       "thin": []
     },
     {
       "asset": "doge",
-      "at": "2026-11-23T05:05:25.564Z",
-      "s_hat": 0.2848,
+      "at": "2026-11-23T06:05:25.462Z",
+      "s_hat": 0.1787,
       "n_fresh": {
         "inst": 0,
         "retail": 3,
         "syndicated": 3,
-        "vendor": 24
+        "vendor": 25
       },
       "thin": [
         "inst"
@@ -65,8 +65,8 @@
     },
     {
       "asset": "eth",
-      "at": "2026-11-23T05:05:25.564Z",
-      "s_hat": 0.0619,
+      "at": "2026-11-23T06:05:25.462Z",
+      "s_hat": 0.1107,
       "n_fresh": {
         "inst": 5,
         "retail": 19,
@@ -77,8 +77,8 @@
     },
     {
       "asset": "msft",
-      "at": "2026-11-23T05:05:25.564Z",
-      "s_hat": 0.0811,
+      "at": "2026-11-23T06:05:25.462Z",
+      "s_hat": 0.0842,
       "n_fresh": {
         "inst": 9,
         "retail": 2,
@@ -92,12 +92,12 @@
     },
     {
       "asset": "nvda",
-      "at": "2026-11-23T05:05:25.564Z",
-      "s_hat": -0.1332,
+      "at": "2026-11-23T06:05:25.462Z",
+      "s_hat": -0.0182,
       "n_fresh": {
-        "inst": 7,
-        "retail": 21,
-        "syndicated": 41,
+        "inst": 8,
+        "retail": 19,
+        "syndicated": 46,
         "vendor": 0
       },
       "thin": [
@@ -106,12 +106,12 @@
     },
     {
       "asset": "sol",
-      "at": "2026-11-23T05:05:25.564Z",
-      "s_hat": -0.104,
+      "at": "2026-11-23T06:05:25.462Z",
+      "s_hat": 0.0563,
       "n_fresh": {
         "inst": 2,
         "retail": 9,
-        "syndicated": 7,
+        "syndicated": 9,
         "vendor": 27
       },
       "thin": [
@@ -120,12 +120,12 @@
     },
     {
       "asset": "tsla",
-      "at": "2026-11-23T05:05:25.564Z",
-      "s_hat": -0.2451,
+      "at": "2026-11-23T06:05:25.462Z",
+      "s_hat": -0.1497,
       "n_fresh": {
         "inst": 2,
-        "retail": 5,
-        "syndicated": 6,
+        "retail": 6,
+        "syndicated": 8,
         "vendor": 0
       },
       "thin": [
@@ -135,12 +135,12 @@
     },
     {
       "asset": "xrp",
-      "at": "2026-11-23T05:05:25.564Z",
-      "s_hat": -0.1899,
+      "at": "2026-11-23T06:05:25.462Z",
+      "s_hat": -0.1887,
       "n_fresh": {
-        "inst": 6,
-        "retail": 7,
-        "syndicated": 16,
+        "inst": 5,
+        "retail": 8,
+        "syndicated": 19,
         "vendor": 25
       },
       "thin": []
@@ -148,7 +148,7 @@
   ],
   "rulesSummary": {
     "evaluated": 40,
-    "fired": 13,
+    "fired": 11,
     "note": "Per-asset S_inst vs S_retail split, R1–R4 rule triggers, and headline drivers require Package, Gear, or Signals Pro (/api/signals/full)."
   }
 }

@@ -6,15 +6,15 @@ Live deterministic price, FX, equity & basket alert engine with SHA-256 hash-cha
 - **Self-Serve Trial & Checkout**: https://tripwire-alert.trade/subscribe
 - **Digital Telemetry Store**: https://tripwire-alert.trade/store/
 - **Latest Digest**: https://tripwire-alert.trade/newsletter/latest/
-- **Chain Head**: `592673f56348e4b332cf03fa` (44 verified crossings)
+- **Chain Head**: `18dc07092afa27f720819326` (45 verified crossings)
 
 | Watcher | Live Reading | Rule | State |
 |---|---|---|---|
-| Bitcoin below A$100k | 90833 | 100000 | TRIPPED |
-| Ethereum below A$3k | 2559.13 | 3000 | TRIPPED |
-| Solana below A$120 | 106.21 | 120 | TRIPPED |
+| Bitcoin below A$100k | 90253 | 100000 | TRIPPED |
+| Ethereum below A$3k | 2542.39 | 3000 | TRIPPED |
+| Solana below A$120 | 105.05 | 120 | TRIPPED |
 | AUD above 0.72 USD | 0.66169 | 0.72 | ARMED |
-| Gold above 4200 USD/oz | 3642.5 | 4200 | ARMED |
+| Gold above 4200 USD/oz | 3617 | 4200 | ARMED |
 | ASX 200 below 8500 pts | 8726.4 | 8500 | ARMED |
 | CommBank below 160 A$ | 169.18 | 160 | ARMED |
-| Bitcoin moves 5% in 24h | 90833 | ±5% | ARMED |
+| Bitcoin moves 5% in 24h | 90253 | ±5% | TRIPPED |

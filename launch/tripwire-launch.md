@@ -1,4 +1,4 @@
-# Tripwire Launch Bulletin — 2026-11-23
+# Tripwire Launch Bulletin — 2026-11-24
 
 Live deterministic price, FX, equity & basket alert engine with SHA-256 hash-chained alerts and self-serve token onboarding.
 
@@ -6,15 +6,15 @@ Live deterministic price, FX, equity & basket alert engine with SHA-256 hash-cha
 - **Self-Serve Trial & Checkout**: https://tripwire-alert.trade/subscribe
 - **Digital Telemetry Store**: https://tripwire-alert.trade/store/
 - **Latest Digest**: https://tripwire-alert.trade/newsletter/latest/
-- **Chain Head**: `7101a57dc57590d25fb72cc8` (42 verified crossings)
+- **Chain Head**: `592673f56348e4b332cf03fa` (44 verified crossings)
 
 | Watcher | Live Reading | Rule | State |
 |---|---|---|---|
-| Bitcoin below A$100k | 92221 | 100000 | TRIPPED |
-| Ethereum below A$3k | 2579.95 | 3000 | TRIPPED |
-| Solana below A$120 | 108.32 | 120 | TRIPPED |
+| Bitcoin below A$100k | 92365 | 100000 | TRIPPED |
+| Ethereum below A$3k | 2579.06 | 3000 | TRIPPED |
+| Solana below A$120 | 108.64 | 120 | TRIPPED |
 | AUD above 0.72 USD | 0.66169 | 0.72 | ARMED |
-| Gold above 4200 USD/oz | 3634.4 | 4200 | ARMED |
-| ASX 200 below 8500 pts | 8570.6 | 8500 | ARMED |
-| CommBank below 160 A$ | 166.15 | 160 | ARMED |
-| Bitcoin moves 5% in 24h | 92221 | ±5% | ARMED |
+| Gold above 4200 USD/oz | 3622.5 | 4200 | ARMED |
+| ASX 200 below 8500 pts | 8678.8 | 8500 | ARMED |
+| CommBank below 160 A$ | 167.71 | 160 | ARMED |
+| Bitcoin moves 5% in 24h | 92365 | ±5% | ARMED |

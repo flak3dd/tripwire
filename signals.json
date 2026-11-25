@@ -1,16 +1,16 @@
 {
-  "builtAt": "2026-11-25T12:01:19.686Z",
+  "builtAt": "2026-11-25T13:01:14.314Z",
   "engine": "signals",
   "tier": "public-summary",
   "fullEndpoint": "https://tripwire-alert.trade/api/signals/full",
   "subscribeUrl": "https://tripwire-alert.trade/signals/",
-  "sourceArtifact": "workspace/signals/artifacts/rules-2026-11-25T11-05-25-572Z.json",
-  "sourceSha256": "d1903e7c617bd2f2",
+  "sourceArtifact": "workspace/signals/artifacts/rules-2026-11-25T12-05-25-517Z.json",
+  "sourceSha256": "2f93cf8d4c35b0e3",
   "scores": [
     {
       "asset": "aapl",
-      "at": "2026-11-25T11:05:25.572Z",
-      "s_hat": 0.0311,
+      "at": "2026-11-25T12:05:25.517Z",
+      "s_hat": 0.0814,
       "n_fresh": {
         "inst": 6,
         "retail": 2,
@@ -24,11 +24,11 @@
     },
     {
       "asset": "ada",
-      "at": "2026-11-25T11:05:25.572Z",
-      "s_hat": 0.0717,
+      "at": "2026-11-25T12:05:25.517Z",
+      "s_hat": 0.0708,
       "n_fresh": {
         "inst": 0,
-        "retail": 6,
+        "retail": 4,
         "syndicated": 3,
         "vendor": 38
       },
@@ -38,25 +38,25 @@
     },
     {
       "asset": "btc",
-      "at": "2026-11-25T11:05:25.572Z",
-      "s_hat": -0.0111,
+      "at": "2026-11-25T12:05:25.517Z",
+      "s_hat": -0.0122,
       "n_fresh": {
-        "inst": 110,
-        "retail": 192,
-        "syndicated": 61,
+        "inst": 111,
+        "retail": 188,
+        "syndicated": 74,
         "vendor": 39
       },
       "thin": []
     },
     {
       "asset": "doge",
-      "at": "2026-11-25T11:05:25.572Z",
+      "at": "2026-11-25T12:05:25.517Z",
       "s_hat": null,
       "n_fresh": {
         "inst": 0,
         "retail": 2,
         "syndicated": 3,
-        "vendor": 35
+        "vendor": 36
       },
       "thin": [
         "inst",
@@ -65,24 +65,24 @@
     },
     {
       "asset": "eth",
-      "at": "2026-11-25T11:05:25.572Z",
-      "s_hat": 0.1659,
+      "at": "2026-11-25T12:05:25.517Z",
+      "s_hat": 0.1046,
       "n_fresh": {
-        "inst": 22,
-        "retail": 27,
-        "syndicated": 16,
+        "inst": 24,
+        "retail": 28,
+        "syndicated": 20,
         "vendor": 39
       },
       "thin": []
     },
     {
       "asset": "msft",
-      "at": "2026-11-25T11:05:25.572Z",
-      "s_hat": 0.0856,
+      "at": "2026-11-25T12:05:25.517Z",
+      "s_hat": 0.0882,
       "n_fresh": {
         "inst": 8,
-        "retail": 2,
-        "syndicated": 0,
+        "retail": 1,
+        "syndicated": 1,
         "vendor": 0
       },
       "thin": [
@@ -92,12 +92,12 @@
     },
     {
       "asset": "nvda",
-      "at": "2026-11-25T11:05:25.572Z",
-      "s_hat": 0.0968,
+      "at": "2026-11-25T12:05:25.517Z",
+      "s_hat": 0.1382,
       "n_fresh": {
         "inst": 90,
-        "retail": 91,
-        "syndicated": 34,
+        "retail": 95,
+        "syndicated": 40,
         "vendor": 0
       },
       "thin": [
@@ -106,24 +106,24 @@
     },
     {
       "asset": "sol",
-      "at": "2026-11-25T11:05:25.572Z",
-      "s_hat": -0.0646,
+      "at": "2026-11-25T12:05:25.517Z",
+      "s_hat": -0.1086,
       "n_fresh": {
-        "inst": 7,
-        "retail": 27,
-        "syndicated": 11,
+        "inst": 9,
+        "retail": 21,
+        "syndicated": 13,
         "vendor": 38
       },
       "thin": []
     },
     {
       "asset": "tsla",
-      "at": "2026-11-25T11:05:25.572Z",
-      "s_hat": 0.0008,
+      "at": "2026-11-25T12:05:25.517Z",
+      "s_hat": 0.057,
       "n_fresh": {
-        "inst": 20,
-        "retail": 5,
-        "syndicated": 1,
+        "inst": 18,
+        "retail": 6,
+        "syndicated": 2,
         "vendor": 0
       },
       "thin": [
@@ -132,12 +132,12 @@
     },
     {
       "asset": "xrp",
-      "at": "2026-11-25T11:05:25.572Z",
-      "s_hat": 0.157,
+      "at": "2026-11-25T12:05:25.517Z",
+      "s_hat": 0.1669,
       "n_fresh": {
         "inst": 9,
-        "retail": 13,
-        "syndicated": 27,
+        "retail": 6,
+        "syndicated": 29,
         "vendor": 36
       },
       "thin": []
@@ -145,7 +145,7 @@
   ],
   "rulesSummary": {
     "evaluated": 40,
-    "fired": 12,
+    "fired": 10,
     "note": "Per-asset S_inst vs S_retail split, R1–R4 rule triggers, and headline drivers require Package, Gear, or Signals Pro (/api/signals/full)."
   }
 }

@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-11-26T00:02:29.599Z",
+  "builtAt": "2026-11-26T01:02:29.775Z",
   "name": "Tripwire",
   "rebalance": "daily, back to these weights",
   "note": "A basket is weights, not a promise. dayPct is the weighted mean of each leg's own last-day change; past4w.pct is the weighted mean of each leg's return over the last 28 calendar days of cached daily closes; level is an index that starts at 100 at the first hourly snapshot and compounds from recorded per-leg values. No backtest: the history here was written by our own builds, one point per hour.",
@@ -300,6 +300,7 @@
         96.6954,
         96.6954,
         96.6954,
+        96.6954,
         96.6954
       ],
       "alert": {
@@ -310,12 +311,12 @@
           "name": "ASX Steady",
           "kind": "package-move",
           "fired": false,
-          "pct": 0.09,
-          "base": 96.6072,
+          "pct": 0.63,
+          "base": 96.0882,
           "level": 96.6954,
           "threshold": 2.5,
           "windowH": 24,
-          "baseAt": "2026-11-25T00:01:17.447Z"
+          "baseAt": "2026-11-25T01:01:09.479Z"
         }
       },
       "past4w": {
@@ -723,6 +724,7 @@
         95.6118,
         95.639,
         95.6867,
+        95.6867,
         95.6867
       ],
       "alert": {
@@ -733,12 +735,12 @@
           "name": "Global Core",
           "kind": "package-move",
           "fired": false,
-          "pct": 0.07,
-          "base": 95.6155,
+          "pct": 0.05,
+          "base": 95.6381,
           "level": 95.6867,
           "threshold": 3,
           "windowH": 24,
-          "baseAt": "2026-11-25T00:01:17.454Z"
+          "baseAt": "2026-11-25T01:01:09.483Z"
         }
       },
       "past4w": {
@@ -1162,6 +1164,7 @@
         86.2489,
         86.2442,
         86.1815,
+        86.1815,
         86.1815
       ],
       "alert": {
@@ -1172,12 +1175,12 @@
           "name": "Momentum",
           "kind": "package-move",
           "fired": false,
-          "pct": -0.12,
-          "base": 86.2857,
+          "pct": 0.2,
+          "base": 86.0052,
           "level": 86.1815,
           "threshold": 6,
           "windowH": 24,
-          "baseAt": "2026-11-25T00:01:17.461Z"
+          "baseAt": "2026-11-25T01:01:09.487Z"
         }
       },
       "past4w": {

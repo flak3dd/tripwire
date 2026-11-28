@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-11-28T12:01:24.572Z",
+  "builtAt": "2026-11-28T13:01:14.325Z",
   "name": "Tripwire",
   "rebalance": "daily, back to these weights",
   "note": "A basket is weights, not a promise. dayPct is the weighted mean of each leg's own last-day change; past4w.pct is the weighted mean of each leg's return over the last 28 calendar days of cached daily closes; level is an index that starts at 100 at the first hourly snapshot and compounds from recorded per-leg values. No backtest: the history here was written by our own builds, one point per hour.",
@@ -360,6 +360,7 @@
         97.3383,
         97.3383,
         97.3383,
+        97.3383,
         97.3383
       ],
       "alert": {
@@ -375,7 +376,7 @@
           "level": 97.3383,
           "threshold": 2.5,
           "windowH": 24,
-          "baseAt": "2026-11-27T12:01:10.288Z"
+          "baseAt": "2026-11-27T13:01:10.452Z"
         }
       },
       "past4w": {
@@ -843,6 +844,7 @@
         97.1638,
         97.1638,
         97.1638,
+        97.1638,
         97.1638
       ],
       "alert": {
@@ -853,12 +855,12 @@
           "name": "Global Core",
           "kind": "package-move",
           "fired": false,
-          "pct": 1.01,
-          "base": 96.191,
+          "pct": 1.02,
+          "base": 96.1853,
           "level": 97.1638,
           "threshold": 3,
           "windowH": 24,
-          "baseAt": "2026-11-27T12:01:10.293Z"
+          "baseAt": "2026-11-27T13:01:10.460Z"
         }
       },
       "past4w": {
@@ -1004,8 +1006,8 @@
       "weightsTotal": 100,
       "dayPct": -1.59,
       "coveragePct": 100,
-      "level": 85.4218,
-      "sincePct": -14.58,
+      "level": 85.4066,
+      "sincePct": -14.59,
       "since": "2026-11-06T02:52:23.227Z",
       "series": [
         100,
@@ -1342,7 +1344,8 @@
         85.6295,
         85.6384,
         85.3926,
-        85.4218
+        85.4218,
+        85.4121
       ],
       "alert": {
         "move": 6,
@@ -1352,12 +1355,12 @@
           "name": "Momentum",
           "kind": "package-move",
           "fired": false,
-          "pct": -1.83,
-          "base": 87.0178,
-          "level": 85.4218,
+          "pct": -1.76,
+          "base": 86.9334,
+          "level": 85.4066,
           "threshold": 6,
           "windowH": 24,
-          "baseAt": "2026-11-27T12:01:10.298Z"
+          "baseAt": "2026-11-27T13:01:10.467Z"
         }
       },
       "past4w": {
@@ -1408,9 +1411,9 @@
           "label": "Bitcoin",
           "w": 30,
           "unit": "A$",
-          "value": 88931,
-          "changePct": -3.72,
-          "contribPp": -1.116,
+          "value": 88927,
+          "changePct": -3.59,
+          "contribPp": -1.077,
           "past4wPct": -15.89,
           "past4w": {
             "from": "2026-10-17",
@@ -1424,9 +1427,9 @@
           "label": "Ethereum",
           "w": 20,
           "unit": "A$",
-          "value": 2474.53,
-          "changePct": -4.07,
-          "contribPp": -0.814,
+          "value": 2472.84,
+          "changePct": -4.24,
+          "contribPp": -0.848,
           "past4wPct": -19.22,
           "past4w": {
             "from": "2026-10-17",
@@ -1456,9 +1459,9 @@
           "label": "Solana",
           "w": 10,
           "unit": "A$",
-          "value": 106.51,
-          "changePct": -2.72,
-          "contribPp": -0.272,
+          "value": 106.48,
+          "changePct": -2.76,
+          "contribPp": -0.276,
           "past4wPct": -25.18,
           "past4w": {
             "from": "2026-10-17",

@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-11-28T05:01:12.088Z",
+  "builtAt": "2026-11-28T06:01:54.584Z",
   "name": "Tripwire",
   "rebalance": "daily, back to these weights",
   "note": "A basket is weights, not a promise. dayPct is the weighted mean of each leg's own last-day change; past4w.pct is the weighted mean of each leg's return over the last 28 calendar days of cached daily closes; level is an index that starts at 100 at the first hourly snapshot and compounds from recorded per-leg values. No backtest: the history here was written by our own builds, one point per hour.",
@@ -353,6 +353,7 @@
         97.3383,
         97.3383,
         97.3383,
+        97.3383,
         97.3383
       ],
       "alert": {
@@ -363,12 +364,12 @@
           "name": "ASX Steady",
           "kind": "package-move",
           "fired": false,
-          "pct": 0.1,
-          "base": 97.2368,
+          "pct": 0,
+          "base": 97.3383,
           "level": 97.3383,
           "threshold": 2.5,
           "windowH": 24,
-          "baseAt": "2026-11-27T05:01:09.397Z"
+          "baseAt": "2026-11-27T06:01:15.738Z"
         }
       },
       "past4w": {
@@ -829,6 +830,7 @@
         97.1638,
         97.1638,
         97.1638,
+        97.1638,
         97.1638
       ],
       "alert": {
@@ -839,12 +841,12 @@
           "name": "Global Core",
           "kind": "package-move",
           "fired": false,
-          "pct": 1.18,
-          "base": 96.0312,
+          "pct": 1.15,
+          "base": 96.0574,
           "level": 97.1638,
           "threshold": 3,
           "windowH": 24,
-          "baseAt": "2026-11-27T05:01:09.404Z"
+          "baseAt": "2026-11-27T06:01:15.742Z"
         }
       },
       "past4w": {
@@ -988,10 +990,10 @@
       "invalidates": "A liquidity event where crypto, high-beta equity and crude fall on the same day — the 60-point crypto leg and the 30-point equity leg collapse into one position at the worst possible moment.",
       "cadence": "Checked hourly. A ±6% basket move in 24h is written to the hash chain; because the legs are correlated, the alert fires early in a risk-off move rather than after it.",
       "weightsTotal": 100,
-      "dayPct": -1.04,
+      "dayPct": -1.45,
       "coveragePct": 100,
-      "level": 85.976,
-      "sincePct": -14.02,
+      "level": 85.7585,
+      "sincePct": -14.24,
       "since": "2026-11-06T02:52:23.227Z",
       "series": [
         100,
@@ -1321,7 +1323,8 @@
         86.1943,
         85.9979,
         86.0132,
-        85.975
+        85.975,
+        85.7585
       ],
       "alert": {
         "move": 6,
@@ -1331,12 +1334,12 @@
           "name": "Momentum",
           "kind": "package-move",
           "fired": false,
-          "pct": -1.23,
-          "base": 87.0484,
-          "level": 85.976,
+          "pct": -1.75,
+          "base": 87.2891,
+          "level": 85.7585,
           "threshold": 6,
           "windowH": 24,
-          "baseAt": "2026-11-27T05:01:09.412Z"
+          "baseAt": "2026-11-27T06:01:15.746Z"
         }
       },
       "past4w": {
@@ -1387,9 +1390,9 @@
           "label": "Bitcoin",
           "w": 30,
           "unit": "A$",
-          "value": 90063,
-          "changePct": -2.29,
-          "contribPp": -0.687,
+          "value": 89694,
+          "changePct": -3.01,
+          "contribPp": -0.903,
           "past4wPct": -15.89,
           "past4w": {
             "from": "2026-10-17",
@@ -1403,9 +1406,9 @@
           "label": "Ethereum",
           "w": 20,
           "unit": "A$",
-          "value": 2496.49,
-          "changePct": -4.04,
-          "contribPp": -0.808,
+          "value": 2486.87,
+          "changePct": -4.61,
+          "contribPp": -0.922,
           "past4wPct": -19.22,
           "past4w": {
             "from": "2026-10-17",
@@ -1435,9 +1438,9 @@
           "label": "Solana",
           "w": 10,
           "unit": "A$",
-          "value": 107.49,
-          "changePct": -1.57,
-          "contribPp": -0.157,
+          "value": 106.92,
+          "changePct": -2.31,
+          "contribPp": -0.231,
           "past4wPct": -25.18,
           "past4w": {
             "from": "2026-10-17",
